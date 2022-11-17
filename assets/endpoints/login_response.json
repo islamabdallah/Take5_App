@@ -1,0 +1,9 @@
+{
+  "message": "Successful Process",
+  "data": {
+    "userId": "b3faa241-dacb-4e94-928e-e3cf424129c0",
+    "driverId": 2001,
+    "driverName": "testDriver2",
+    "userUnSeenNotificationCount": 2
+  }
+}

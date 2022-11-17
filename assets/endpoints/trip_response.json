@@ -1,0 +1,18 @@
+{
+  "message": "Successful Process",
+  "data":{
+      "tripNumber": 1810,
+      "jobsiteName": "Jobsite6",
+      "jobsiteNumber": 123456,
+      "jobsiteHasNetworkCoverage": true,
+      "driverName": "testDriver2",
+      "driverNumber": 2001,
+      "truckNumber": "ASD123",
+      "tripStatus": "Pending",
+      "take5Status": "NotStarted",
+      "isTripConverted": false,
+    "Longitude": 20.2344,
+    "Latituide": 20.2344,
+      "tripDate": "2022-10-18T07:04:42.156"
+  }
+}

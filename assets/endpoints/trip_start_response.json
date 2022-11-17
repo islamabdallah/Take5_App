@@ -1,0 +1,110 @@
+{
+  "message": "Success Process",
+  "data": {
+    "stepOneQuestions": [
+      {
+        "id": 1,
+        "question": "هل السيارة علي أرض مستوية",
+        "answer": null
+      },
+      {
+        "id": 2,
+        "question": "هل جميع المخارج والمداخل أمنة؟",
+        "answer": null
+      },
+      {
+        "id": 3,
+        "question": "هل جميع المخارج أمنة؟",
+        "answer": null
+      }
+    ],
+    "stepTwoQuestions": [
+      {
+        "id": 4,
+        "question":"هل قابلت صاحب الموقع؟",
+        "answer": null
+      },
+      {
+        "id": 5,
+        "question":"هل جمعت الادوات اللازمة؟",
+        "answer": null
+      }
+    ],
+    "dangerControlsWithCategoryModels": [
+      {
+        "dangerCategory": "الموقع",
+        "dangerCategoryId": 1,
+        "dangerModels": [
+          {
+            "dangerId": 1,
+            "dangerName": "الاماكن الضيقة",
+            "controls": []
+          },
+          {
+            "dangerId": 2,
+            "dangerName": "استخدام الالات الحادة",
+            "controls": []
+          }
+        ]
+      },
+      {
+        "dangerCategory": "الصحة",
+        "dangerCategoryId": 2,
+        "dangerModels": [
+          {
+            "dangerId": 3,
+            "dangerName": "تناول احمال لاسفل",
+            "controls": [
+              {
+                "MeasureControlId": 5,
+                "MeasureControlName": "استخدام مهمات الوقاية الشخصية"
+              },
+              {
+                "MeasureControlId": 6,
+                "MeasureControlName": "التعامل مع الخطر "
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "dangerCategory": "اصطدام وانحشار",
+        "dangerCategoryId": 3,
+        "dangerModels": [
+          {
+            "dangerId": 4,
+            "dangerName": "حمل معلق",
+            "controls": [
+              {
+                "MeasureControlId": 7,
+                "MeasureControlName": "التواصل مع المشرف"
+              },
+              {
+                "MeasureControlId": 8,
+                "MeasureControlName": "عزل الخطر"
+              },
+              {
+                "MeasureControlId": 9,
+                "MeasureControlName": "التواصل مع صاحب الموقع"
+              },
+              {
+                "MeasureControlId": 10,
+                "MeasureControlName": "تجنب الخطر"
+              }
+            ]
+          },
+          {
+            "dangerId": 5,
+            "dangerName": "حائط منخفض",
+            "controls": []
+          },
+          {
+            "dangerId": 6,
+            "dangerName": "اصطدام",
+            "controls": []
+          }
+        ]
+      }
+    ]
+  }
+}
