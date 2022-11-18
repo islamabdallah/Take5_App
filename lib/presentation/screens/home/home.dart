@@ -57,6 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
           ),
           body: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (state != HomeGetPendingTripLoading() && cubit.trip != null)
               TripCard(trip: cubit.trip!),
