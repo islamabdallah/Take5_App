@@ -5,9 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:quickalert/quickalert.dart';
-import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/presentation/screens/home/home.dart';
-
+import 'package:take5/presentation/screens/login/widgets/login_button.dart';
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
@@ -51,28 +50,28 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           if (state is LoginUserSuccess) {
             Navigator.pop(context);
-            QuickAlert.show(
-                context: context,
-                barrierDismissible: false,
-                title: "نجح!",
-                titleColor: Color(0xFF12c06a),
-                text: "تم تسجيل الدخول بنجاح",
-                type: QuickAlertType.success,
-                confirmBtnColor: AppColors.mainColor,
-                confirmBtnText: "تم",
-                onConfirmBtnTap: () {
-                  Navigator.pushNamedAndRemoveUntil(
-                      context, HomeScreen.routeName, (route) => false);
-                });
-
-            // showMessageDialog(
+            // QuickAlert.show(
             //     context: context,
-            //     isSucceeded: true,
-            //     message: 'تم تسجيل الدخول بنجاح',
-            //     onPressedOk: () {
+            //     barrierDismissible: false,
+            //     title: "نجح!",
+            //     titleColor: Color(0xFF12c06a),
+            //     text: "تم تسجيل الدخول بنجاح",
+            //     type: QuickAlertType.success,
+            //     confirmBtnColor: AppColors.mainColor,
+            //     confirmBtnText: "تم",
+            //     onConfirmBtnTap: () {
             //       Navigator.pushNamedAndRemoveUntil(
             //           context, HomeScreen.routeName, (route) => false);
             //     });
+
+            showMessageDialog(
+                context: context,
+                isSucceeded: true,
+                message: 'تم تسجيل الدخول بنجاح',
+                onPressedOk: () {
+                  Navigator.pushNamedAndRemoveUntil(
+                      context, HomeScreen.routeName, (route) => false);
+                });
           }
         },
         builder: (context, state) {
@@ -124,12 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
                               children: [
                                 MyTextFormField(
                                   controller: _cubit.phoneNumberController,
-                                  label: "phone number".tr(),
+                                  label: "Id".tr(),
                                   errorText: _cubit.errorMessage ==
                                           'رقم الهاتف غير مسجل'
                                       ? _cubit.errorMessage
                                       : null,
-                                  prefixIcon: Icons.phone,
+                                  prefixIcon: Icons.person_outline_sharp,
                                   inputFormatters: [
                                     FilteringTextInputFormatter.allow(
                                         RegExp("[0-9]")),
@@ -171,50 +170,19 @@ class _LoginScreenState extends State<LoginScreen> {
                                 SizedBox(
                                   height: 60.h,
                                   width: 334.w,
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      backgroundColor: AppColors.mainColor,
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(8.r)),
-                                    ),
-                                    onPressed: () {
-                                      // if (_formKey.currentState!
-                                      //     .validate()) {
-                                      //   _cubit.loginUser();
-                                      // }
-                                      _cubit.loginUser();
-                                    },
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'دخول',
-                                          textAlign: TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 22.sp,
-                                            fontFamily: "Cairo",
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                        ),
-                                        Container(
-                                            alignment: Alignment.center,
-                                            height: 30.h,
-                                            width: 40.w,
-                                            child: Image.asset(
-                                              AppAssets.login,
-                                              fit: BoxFit.contain,
-                                            )),
-                                      ],
-                                    ),
-                                  ),
+                                  child:LoginButton(
+                                      onPressed:  () {
+                                    // if (_formKey.currentState!
+                                    //     .validate()) {
+                                    //   _cubit.loginUser();
+                                    // }
+                                    _cubit.loginUser();
+                                  },),
                                 ),
                                 SizedBox(
                                   height: 60.h,
                                 ),
-                                PoweredByCemex()
+                                const PoweredByCemex()
                               ],
                             ),
                           ),
