@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'trip_pending_response.dart';
+part of 'user_trip_response.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,26 +14,26 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-TripPendingResponse _$TripPendingResponseFromJson(Map<String, dynamic> json) {
-  return _TripPendingResponse.fromJson(json);
+UserTripResponse _$UserTripResponseFromJson(Map<String, dynamic> json) {
+  return _UserTripResponse.fromJson(json);
 }
 
 /// @nodoc
-mixin _$TripPendingResponse {
+mixin _$UserTripResponse {
   String get message => throw _privateConstructorUsedError;
   Trip get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $TripPendingResponseCopyWith<TripPendingResponse> get copyWith =>
+  $UserTripResponseCopyWith<UserTripResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $TripPendingResponseCopyWith<$Res> {
-  factory $TripPendingResponseCopyWith(
-          TripPendingResponse value, $Res Function(TripPendingResponse) then) =
-      _$TripPendingResponseCopyWithImpl<$Res, TripPendingResponse>;
+abstract class $UserTripResponseCopyWith<$Res> {
+  factory $UserTripResponseCopyWith(
+          UserTripResponse value, $Res Function(UserTripResponse) then) =
+      _$UserTripResponseCopyWithImpl<$Res, UserTripResponse>;
   @useResult
   $Res call({String message, Trip data});
 
@@ -41,9 +41,9 @@ abstract class $TripPendingResponseCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TripPendingResponseCopyWithImpl<$Res, $Val extends TripPendingResponse>
-    implements $TripPendingResponseCopyWith<$Res> {
-  _$TripPendingResponseCopyWithImpl(this._value, this._then);
+class _$UserTripResponseCopyWithImpl<$Res, $Val extends UserTripResponse>
+    implements $UserTripResponseCopyWith<$Res> {
+  _$UserTripResponseCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -78,11 +78,11 @@ class _$TripPendingResponseCopyWithImpl<$Res, $Val extends TripPendingResponse>
 }
 
 /// @nodoc
-abstract class _$$_TripPendingResponseCopyWith<$Res>
-    implements $TripPendingResponseCopyWith<$Res> {
-  factory _$$_TripPendingResponseCopyWith(_$_TripPendingResponse value,
-          $Res Function(_$_TripPendingResponse) then) =
-      __$$_TripPendingResponseCopyWithImpl<$Res>;
+abstract class _$$_UserTripResponseCopyWith<$Res>
+    implements $UserTripResponseCopyWith<$Res> {
+  factory _$$_UserTripResponseCopyWith(
+          _$_UserTripResponse value, $Res Function(_$_UserTripResponse) then) =
+      __$$_UserTripResponseCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String message, Trip data});
@@ -92,11 +92,11 @@ abstract class _$$_TripPendingResponseCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TripPendingResponseCopyWithImpl<$Res>
-    extends _$TripPendingResponseCopyWithImpl<$Res, _$_TripPendingResponse>
-    implements _$$_TripPendingResponseCopyWith<$Res> {
-  __$$_TripPendingResponseCopyWithImpl(_$_TripPendingResponse _value,
-      $Res Function(_$_TripPendingResponse) _then)
+class __$$_UserTripResponseCopyWithImpl<$Res>
+    extends _$UserTripResponseCopyWithImpl<$Res, _$_UserTripResponse>
+    implements _$$_UserTripResponseCopyWith<$Res> {
+  __$$_UserTripResponseCopyWithImpl(
+      _$_UserTripResponse _value, $Res Function(_$_UserTripResponse) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +105,7 @@ class __$$_TripPendingResponseCopyWithImpl<$Res>
     Object? message = null,
     Object? data = null,
   }) {
-    return _then(_$_TripPendingResponse(
+    return _then(_$_UserTripResponse(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
@@ -120,11 +120,11 @@ class __$$_TripPendingResponseCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TripPendingResponse implements _TripPendingResponse {
-  const _$_TripPendingResponse({required this.message, required this.data});
+class _$_UserTripResponse implements _UserTripResponse {
+  const _$_UserTripResponse({required this.message, required this.data});
 
-  factory _$_TripPendingResponse.fromJson(Map<String, dynamic> json) =>
-      _$$_TripPendingResponseFromJson(json);
+  factory _$_UserTripResponse.fromJson(Map<String, dynamic> json) =>
+      _$$_UserTripResponseFromJson(json);
 
   @override
   final String message;
@@ -133,14 +133,14 @@ class _$_TripPendingResponse implements _TripPendingResponse {
 
   @override
   String toString() {
-    return 'TripPendingResponse(message: $message, data: $data)';
+    return 'UserTripResponse(message: $message, data: $data)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TripPendingResponse &&
+            other is _$_UserTripResponse &&
             (identical(other.message, message) || other.message == message) &&
             (identical(other.data, data) || other.data == data));
   }
@@ -152,25 +152,24 @@ class _$_TripPendingResponse implements _TripPendingResponse {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TripPendingResponseCopyWith<_$_TripPendingResponse> get copyWith =>
-      __$$_TripPendingResponseCopyWithImpl<_$_TripPendingResponse>(
-          this, _$identity);
+  _$$_UserTripResponseCopyWith<_$_UserTripResponse> get copyWith =>
+      __$$_UserTripResponseCopyWithImpl<_$_UserTripResponse>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TripPendingResponseToJson(
+    return _$$_UserTripResponseToJson(
       this,
     );
   }
 }
 
-abstract class _TripPendingResponse implements TripPendingResponse {
-  const factory _TripPendingResponse(
+abstract class _UserTripResponse implements UserTripResponse {
+  const factory _UserTripResponse(
       {required final String message,
-      required final Trip data}) = _$_TripPendingResponse;
+      required final Trip data}) = _$_UserTripResponse;
 
-  factory _TripPendingResponse.fromJson(Map<String, dynamic> json) =
-      _$_TripPendingResponse.fromJson;
+  factory _UserTripResponse.fromJson(Map<String, dynamic> json) =
+      _$_UserTripResponse.fromJson;
 
   @override
   String get message;
@@ -178,6 +177,6 @@ abstract class _TripPendingResponse implements TripPendingResponse {
   Trip get data;
   @override
   @JsonKey(ignore: true)
-  _$$_TripPendingResponseCopyWith<_$_TripPendingResponse> get copyWith =>
+  _$$_UserTripResponseCopyWith<_$_UserTripResponse> get copyWith =>
       throw _privateConstructorUsedError;
 }

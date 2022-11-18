@@ -22,7 +22,7 @@ CollectionModel _$CollectionModelFromJson(Map<String, dynamic> json) {
 mixin _$CollectionModel {
   String? get userId => throw _privateConstructorUsedError;
   int? get tripId => throw _privateConstructorUsedError;
-  int? get jobsiteId => throw _privateConstructorUsedError;
+  int? get jobsiteId => throw _privateConstructorUsedError; //todo end
   DestinationArrivedRequest? get destinationArrivedRequest =>
       throw _privateConstructorUsedError;
   StepOneCompleteRequest? get stepOneCompleteRequest =>
@@ -265,6 +265,7 @@ class _$_CollectionModel implements _CollectionModel {
   final int? tripId;
   @override
   final int? jobsiteId;
+//todo end
   @override
   final DestinationArrivedRequest? destinationArrivedRequest;
   @override
@@ -345,7 +346,7 @@ abstract class _CollectionModel implements CollectionModel {
   int? get tripId;
   @override
   int? get jobsiteId;
-  @override
+  @override //todo end
   DestinationArrivedRequest? get destinationArrivedRequest;
   @override
   StepOneCompleteRequest? get stepOneCompleteRequest;
