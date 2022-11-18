@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:take5/core/constants/app_colors.dart';
 
 showMessageDialog({
   required BuildContext context,
@@ -34,7 +36,7 @@ showMessageDialog({
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
                               color:
-                                  isSucceeded ? Colors.green : Colors.red,
+                                  isSucceeded ? AppColors.mainColor : Colors.red,
                             ),
                           ),
                           Text(
@@ -59,11 +61,11 @@ showMessageDialog({
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded
-                                        ? Colors.green
+                                        ? AppColors.mainColor
                                         : Colors.red,
                                   ),
                                   child: Text(
-                                    'Ok',
+                                    "Ok".tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),
@@ -78,7 +80,7 @@ showMessageDialog({
                     top: -50.h,
                     child: isSucceeded
                         ? CircleAvatar(
-                            backgroundColor: Colors.green,
+                            backgroundColor:AppColors.mainColor,
                             radius: 50.r,
                             child: Icon(
                               Icons.verified_user,

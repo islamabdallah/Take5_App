@@ -14,19 +14,15 @@ class TripCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-              offset: Offset(0, 4),
-              color: Colors.black26,
-              blurRadius: 8,
-              spreadRadius: 2),
-        ],
-      ),
+      decoration:const BoxDecoration(color: Colors.white, boxShadow: [
+        BoxShadow(
+            offset: Offset(0, 4),
+            color: Colors.black26,
+            blurRadius: 8,
+            spreadRadius: 2)
+      ]),
       clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 10.w),
+      margin: EdgeInsets.symmetric(vertical: 8.h, horizontal: 8.w),
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
         decoration: BoxDecoration(

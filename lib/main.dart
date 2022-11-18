@@ -4,32 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:take5/logic/home_cubit/home_states.dart';
-import 'package:take5/presentation/screens/step_one_dangers/step_one_dangers.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
-import 'package:take5/presentation/utils/helpers/helpers.dart';
 import 'core/bloc_observer.dart';
 import 'core/config/routes/routes.dart';
 import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
 import 'core/constants/app_constants.dart';
 import 'core/utils/services/background_service.dart';
-import 'core/utils/services/loaction_service.dart';
 import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
-
 import 'injection_container.dart';
 import 'logic/home_cubit/home_cubit.dart';
-
-import 'presentation/screens/home/home.dart';
 import 'presentation/screens/login/login_screen.dart';
-import 'presentation/screens/step_one_questions/step_one_questions.dart';
-import 'presentation/screens/step_two/step_two.dart';
-import 'presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
-import 'presentation/screens/trip/trip.dart';
+
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
