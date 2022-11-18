@@ -6,6 +6,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/datasources/boxes.dart';
 import 'package:take5/data/models/big_model/bid_model.dart';
+import '../../core/constants/keys.dart';
 import '../../core/utils/services/local_storage_service.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
@@ -32,16 +33,10 @@ abstract class LocalDataSource {
   TakeFiveSurvey? getCachedTakeFiveSurvey();
 
 
-  // Future<void> cacheTripStartRequest(TripStartRequest tripStartRequest);
-  // TripStartRequest? getCachedTripStartRequest();
-
-
   void cacheCollection(CollectionModel bigModel);
   CollectionModel? getCachedCollection();
   void clearCollection();
 }
-
-const CACHED_USER = 'CACHED_USER';
 
 class LocalDataSourceImpl implements LocalDataSource {
   //final LocalStorageService localStorageService;
@@ -49,7 +44,7 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<void> cacheUser(User user) async {
     final box = Boxes.getUser();
-    box.put('user', user);
+    box.put(userKey, user);
     // box.add(user);
     // print(box.getAt(0));
     //print('***');
@@ -58,8 +53,8 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   User? getCachedUser() {
     final box = Boxes.getUser();
-    print(box.get('user'));
-    return box.get('user');
+    print(box.get(userKey));
+    return box.get(userKey);
   }
 
 
@@ -72,18 +67,18 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<void> cacheTakeFiveSurvey(TakeFiveSurvey takeFiveSurvey) async {
     final box = Boxes.getTakeFiveBox();
-    box.put('takeFiveSurvey', takeFiveSurvey.toJson());
-    print(TakeFiveSurvey.fromJson(box.get('takeFiveSurvey')));
+    box.put(takeFiveSurveyKey, takeFiveSurvey.toJson());
+    print(TakeFiveSurvey.fromJson(box.get(takeFiveSurveyKey)));
   }
 
   @override
   TakeFiveSurvey? getCachedTakeFiveSurvey() {
     final box = Boxes.getTakeFiveBox();
-    if (box.get('takeFiveSurvey') == null) {
+    if (box.get(takeFiveSurveyKey) == null) {
       return null;
     } else {
       Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('takeFiveSurvey'));
+          Map<String, dynamic>.from(box.get(takeFiveSurveyKey));
       return TakeFiveSurvey.fromJson(json);
     }
   }
@@ -91,17 +86,17 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   Future<void> cacheTrip(Trip trip) async {
     final box = Boxes.getTakeFiveBox();
-    box.put('trip', trip.toJson());
-    print(box.get('trip'));
+    box.put(tripKey, trip.toJson());
+    print(box.get(tripKey));
   }
 
   @override
   Trip? getCachedTrip() {
     final box = Boxes.getTakeFiveBox();
-    if (box.get('trip') == null) {
+    if (box.get(tripKey) == null) {
       return null;
     } else {
-      Map<String, dynamic> json = Map<String, dynamic>.from(box.get('trip'));
+      Map<String, dynamic> json = Map<String, dynamic>.from(box.get(tripKey));
       return Trip.fromJson(json);
     }
   }
@@ -109,18 +104,18 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   void cacheCollection(CollectionModel bigModel) {
     final box = Boxes.getTakeFiveBox();
-    box.put('collection', bigModel.toJson());
-    print(box.get('collection'));
+    box.put(collectionKey, bigModel.toJson());
+    print(box.get(collectionKey));
   }
 
   @override
   CollectionModel? getCachedCollection() {
     final box = Boxes.getTakeFiveBox();
-    if (box.get('collection') == null) {
+    if (box.get(collectionKey) == null) {
       return null;
     } else {
       Map<String, dynamic> json =
-          Map<String, dynamic>.from(box.get('collection'));
+          Map<String, dynamic>.from(box.get(collectionKey));
       return CollectionModel.fromJson(json);
     }
   }
@@ -128,6 +123,6 @@ class LocalDataSourceImpl implements LocalDataSource {
   @override
   void clearCollection() {
     final box = Boxes.getTakeFiveBox();
-    box.delete('collection');
+    box.delete(collectionKey);
   }
 }

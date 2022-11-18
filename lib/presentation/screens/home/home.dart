@@ -48,6 +48,15 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           drawer: const DrawerWidget(),
           appBar: AppBar(
+            leading: Builder(
+              builder: (context) {
+                return IconButton(icon: Icon(Icons.menu_open),onPressed: (){
+                  Scaffold.of(context).openDrawer();
+                });
+              }
+            ),
+            toolbarHeight: 80,
+            elevation: 0,
             iconTheme: IconThemeData(color: AppColors.mainColor),
             title: Text(
               'الرحلة',

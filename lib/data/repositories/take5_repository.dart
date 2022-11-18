@@ -9,7 +9,7 @@ import '../models/requests/step_one_complete_request/step_one_complete_request.d
 import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
 import '../models/requests/step_two_start_request/step_two_start_request.dart';
 import '../models/requests/trip_start_request/trip_start_request.dart';
-import '../models/responses/trip_pending_response/trip_pending_response.dart';
+import '../models/responses/trip_pending_response/user_trip_response.dart';
 import '../models/responses/trip_start_response/trip_start_response.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 import '../../core/errors/failures.dart';
@@ -23,23 +23,25 @@ abstract class Take5Repository {
 
   Either<Failure, Unit> clearUser();
 
+  Future<Either<Failure, UserTripResponse>> getPendingTrip(
+      {required String userId});
+
+  Future<Either<Failure, TripStartResponse>> startTrip(
+      {required TripStartRequest tripStartRequest});
+
   Future<Either<Failure, Unit>> arrivedToDestination(
       {required DestinationArrivedRequest destinationArrivedRequest});
 
   Future<Either<Failure, Unit>> completeStepOne(
       {required StepOneCompleteRequest stepOneCompleteRequest});
 
-  Future<Either<Failure, Unit>> completeStepTwo(
-      {required StepTwoCompleteRequest stepTwoCompleteRequest});
-
-  Future<Either<Failure, TripPendingResponse>> getPendingTrip(
-      {required String userId});
-
   Future<Either<Failure, Unit>> startStepTwo(
       {required StepTwoStartRequest stepTwoStartRequest});
 
-  Future<Either<Failure, TripStartResponse>> startTrip(
-      {required TripStartRequest tripStartRequest});
+  Future<Either<Failure, Unit>> completeStepTwo(
+      {required StepTwoCompleteRequest stepTwoCompleteRequest});
+
+
 
   Future<Either<Failure, String>> checkTripStatus();
 
@@ -53,13 +55,11 @@ class Take5RepositoryImpl extends Take5Repository {
   final LocalDataSource localDataSource;
   final RemoteDataSource remoteDataSource;
   final DeviceConnectivity deviceConnectivity;
-  final NetworkAvailability networkAvailability;
 
   Take5RepositoryImpl({
     required this.remoteDataSource,
     required this.localDataSource,
     required this.deviceConnectivity,
-    required this.networkAvailability,
   });
 
   @override
@@ -70,8 +70,6 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Left(DeviceConnectivityFailure());
     }
     try {
-      print(await networkAvailability.isAvailable);
-      print(await deviceConnectivity.isConnected);
       UserLoginResponse result = await remoteDataSource.loginUser(
           mobileNo: mobileNo, password: password);
       localDataSource.cacheUser(result.data);
@@ -95,11 +93,11 @@ class Take5RepositoryImpl extends Take5Repository {
 
   // already online
   @override
-  Future<Either<Failure, TripPendingResponse>> getPendingTrip(
+  Future<Either<Failure, UserTripResponse>> getPendingTrip(
       {required String userId}) async {
     try {
-      TripPendingResponse result =
-          await remoteDataSource.getPendingTrip(userId: userId);
+      UserTripResponse result =
+          await remoteDataSource.getUserTrip(userId: userId);
       localDataSource.cacheTrip(result.data); //missed
       return Right(result);
     } on ServerException catch (e) {

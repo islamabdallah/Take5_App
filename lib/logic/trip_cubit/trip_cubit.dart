@@ -35,10 +35,7 @@ class TripCubit extends Cubit<TripStates> {
       if(d!=null && d!<1000 )
         {
           enableButton();
-          // if(AppConstants.mobileData==true)
-          //   {
-          //     enableButton();
-          //   }
+
         }
       emit(StartTripSuccessTripState());//setstate
     }, 100);
