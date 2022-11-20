@@ -13,6 +13,7 @@ class AppAssets {
   static const String wavingHand = 'assets/images/waving-hand 1.png';
   static const String signUp = 'assets/images/sign-up.png';
   static const String profile = 'assets/images/profile.png';
+  static const String endTrip = 'assets/images/end_trip.png';
 
   //icons
   static const String singInIcon = 'assets/icons/sign-in-icon.png';

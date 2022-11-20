@@ -9,6 +9,7 @@ import 'package:take5/core/network/device_connectivity.dart';
 
 import 'core/utils/services/signal_r_helper.dart';
 import 'data/repositories/take5_repository.dart';
+import 'logic/end_trip_cubit/end_trip_cubit.dart';
 import 'logic/home_cubit/home_cubit.dart';
 import 'logic/login_cubit/login_cubit.dart';
 import 'core/network/network_availability.dart';
@@ -30,13 +31,13 @@ Future<void> init() async {
   sl.registerFactory(() => TripCubit(take5Repository: sl()));
   sl.registerFactory(() => StepTwoCubit(take5Repository: sl()));
   sl.registerFactory(() => StepOneCubit(take5Repository: sl()));
+  sl.registerFactory(() => EndTripCubit(take5Repository: sl()));
 
 //! Repositories
   sl.registerLazySingleton<Take5Repository>(() => Take5RepositoryImpl(
         remoteDataSource: sl(),
         localDataSource: sl(),
         deviceConnectivity: sl(),
-        networkAvailability: sl(),
       ));
 
 //! Datasources

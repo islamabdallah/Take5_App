@@ -18,6 +18,7 @@ import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
 import 'logic/home_cubit/home_cubit.dart';
+import 'presentation/screens/end_trip/end_trip.dart';
 import 'presentation/screens/login/login_screen.dart';
 
 
@@ -110,13 +111,14 @@ class MyApp extends StatelessWidget {
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-            initialRoute: LoginScreen.routeName,
+            // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
             //initialRoute: StepOneDangersScreen.routeName,
             //  initialRoute: HomeScreen.routeName,
             //initialRoute: StepTwoScreen.routeName,
-            //initialRoute: TripScreen.routeName,
+            // initialRoute: TripScreen.routeName,
+            initialRoute: EndTripScreen.routeName,
           ),
         );
       },

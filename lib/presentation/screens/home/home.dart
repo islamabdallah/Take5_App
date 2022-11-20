@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             toolbarHeight: 80,
             elevation: 0,
-            iconTheme: IconThemeData(color: AppColors.mainColor),
+            iconTheme: IconThemeData(color: AppColors.redColor),
             title: Text(
               'الرحلة',
               style: TextStyle(color: AppColors.redColor),
@@ -66,8 +66,9 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
           ),
           body: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
+
             children: [
+              SizedBox(height: 16.h,),
               if (state != HomeGetPendingTripLoading() && cubit.trip != null)
               TripCard(trip: cubit.trip!),
             ],
