@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:take5/logic/home_cubit/home_states.dart';
+import 'package:take5/presentation/screens/home/home.dart';
+import 'package:take5/presentation/screens/step_two/step_two.dart';
+import 'package:take5/presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import 'core/bloc_observer.dart';
@@ -111,14 +114,15 @@ class MyApp extends StatelessWidget {
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-            // initialRoute: LoginScreen.routeName,
+             //initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
             //initialRoute: StepOneDangersScreen.routeName,
-            //  initialRoute: HomeScreen.routeName,
-            //initialRoute: StepTwoScreen.routeName,
+             initialRoute: HomeScreen.routeName,
+           // initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
-            initialRoute: EndTripScreen.routeName,
+            //initialRoute: EndTripScreen.routeName,
+            //initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );
       },

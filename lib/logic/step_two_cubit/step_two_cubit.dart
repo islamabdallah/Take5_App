@@ -41,4 +41,10 @@ class StepTwoCubit extends Cubit<StepTwoState> {
   submitQuestions() {
     print(step2Answers);
   }
+  bool isRequestStep2=true;
+  void toggleToWaitingToStepTwo()
+  {
+    isRequestStep2=false;
+    emit(StepOneToggleToWaitingToStepTwoSuccess());
+  }
 }

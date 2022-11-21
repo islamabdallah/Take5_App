@@ -23,3 +23,4 @@ class StepOneGetDangerControlsWithCategoryModelsFail extends StepOneState{
   final String message;
   StepOneGetDangerControlsWithCategoryModelsFail(this.message);
 }
+class StepOneToggleToDangersSuccess extends StepOneState {}

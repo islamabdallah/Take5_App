@@ -51,7 +51,11 @@
   "Succeeded": "Succeeded",
   "Failed": "Failed",
   "Ok": "Ok",
-  "Id": "Id"
+  "Id": "Id",
+  "next": "next",
+  "Request step 2": "Request step 2",
+  "waiting step 2": "waiting step 2",
+  "end step 1": "end step 1"
 
 
 }

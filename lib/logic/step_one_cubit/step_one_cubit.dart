@@ -5,8 +5,6 @@ import 'package:meta/meta.dart';
 import '../../data/models/answer/answer.dart';
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/repositories/take5_repository.dart';
-
-
 part 'step_one_state.dart';
 
 class StepOneCubit extends Cubit<StepOneState> {
@@ -82,5 +80,11 @@ class StepOneCubit extends Cubit<StepOneState> {
   {
     print(step1Answers);
     print(dangers);
+  }
+  bool isQuestions=true;
+  void toggleToDangers()
+  {
+    isQuestions=false;
+    emit(StepOneToggleToDangersSuccess());
   }
 }

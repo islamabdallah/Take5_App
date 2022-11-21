@@ -1,19 +1,15 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:hive/hive.dart';
-import '../../../core/constants/app_constants.dart';
-import '../../../data/datasources/boxes.dart';
-import '../../../data/models/requests/destination_arrived_request/destination_arrived_request.dart';
+import 'package:take5/presentation/screens/step_one_questions/widgets/selected_dangers.dart';
 import '../../../injection_container.dart';
-
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/true_false_question.dart';
-import '../step_one_dangers/step_one_dangers.dart';
 
 class StepOneQuestionsScreen extends StatefulWidget {
   static const routeName = 'StepOneScreen';
@@ -75,7 +71,8 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 child: FormBuilder(
                   key: _formKey,
                   autovalidateMode: AutovalidateMode.always,
-                  child: Column(
+                  child:cubit.isQuestions?
+                  Column(
                     children: [
                       state is StepOneGetQuestionsLoading
                           ? const Center(
@@ -89,13 +86,30 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                               ),
                               itemCount: cubit.step1Answers.length,
                             ),
-
+                      ElevatedButton(
+                          onPressed: () {
+                            //_formKey.currentState?.validate()==true
+                            cubit.toggleToDangers();
+                          },
+                          child:Text("next".tr())),                    ],
+                  ):
+                  Column(
+                    children: [
+                      ...List.generate(c, (index) => const Danger(),),
+                      SizedBox(
+                        height: 200,
+                        child: ListView.builder(
+                          itemCount: cubit.dangers.length,
+                          itemBuilder:(context,index)=>SelectedDangerWidget(),
+                        ),
+                      ),
                       ElevatedButton(
                           onPressed: () {
                             //_formKey.currentState?.validate()==true
                             cubit.submitAnswers();
                           },
-                          child: Text('print')),                    ],
+                          child:Text("end step 1".tr())),
+                    ],
                   ),
                 ),
               ));
