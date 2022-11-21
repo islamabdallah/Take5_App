@@ -9,6 +9,7 @@ import 'package:take5/logic/home_cubit/home_states.dart';
 import 'package:take5/presentation/screens/home/home.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
+import 'package:take5/presentation/screens/trip/trip.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import 'core/bloc_observer.dart';
@@ -23,6 +24,8 @@ import 'injection_container.dart';
 import 'logic/home_cubit/home_cubit.dart';
 import 'presentation/screens/end_trip/end_trip.dart';
 import 'presentation/screens/login/login_screen.dart';
+import 'presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
+import 'presentation/utils/helpers/helpers.dart';
 
 
 Future<void> main() async {
@@ -37,6 +40,9 @@ Future<void> main() async {
 
   await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
+
+  //todo remove this
+  getLastRoute();
 
   final service = FlutterBackgroundService();
   var isRunning = await service.isRunning();
@@ -114,15 +120,16 @@ class MyApp extends StatelessWidget {
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
             //initialRoute: getLastRoute(),
-             //initialRoute: LoginScreen.routeName,
+            //  initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
             //initialRoute: StepOneDangersScreen.routeName,
-             initialRoute: HomeScreen.routeName,
+            //  initialRoute: HomeScreen.routeName,
            // initialRoute: StepTwoScreen.routeName,
-            // initialRoute: TripScreen.routeName,
+           //  initialRoute: TripScreen.routeName,
             //initialRoute: EndTripScreen.routeName,
-            //initialRoute: StepTwoWaitingScreen.routeName,
+            initialRoute: StepTwoStartRequestScreen.routeName,
+            // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );
       },

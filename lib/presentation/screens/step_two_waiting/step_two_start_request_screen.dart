@@ -6,24 +6,28 @@ import 'package:signalr_core/signalr_core.dart';
 import 'package:take5/core/constants/app_assets.dart';
 import 'package:take5/logic/step_two_cubit/step_two_cubit.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
+import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
+import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/helpers/helpers.dart';
+import 'step_two_waiting_screen.dart';
 
-class StepTwoWaitingScreen extends StatefulWidget {
-  static const routeName = 'StepTwoWaitingScreen';
+class StepTwoStartRequestScreen extends StatefulWidget {
+  static const routeName = 'StepTwoStartRequestScreen';
 
-  const StepTwoWaitingScreen({Key? key}) : super(key: key);
+  const StepTwoStartRequestScreen({Key? key}) : super(key: key);
 
   @override
-  State<StepTwoWaitingScreen> createState() => _StepTwoWaitingScreenState();
+  State<StepTwoStartRequestScreen> createState() =>
+      _StepTwoStartRequestScreenState();
 }
 
-class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
+class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
   @override
   void initState() {
-    saveLastRoute(StepTwoWaitingScreen.routeName);
+    saveLastRoute(StepTwoStartRequestScreen.routeName);
     // var sr =  sl<SignalRHelper>();
     // sr.initiateConnection(context);
     // startSR();
@@ -55,7 +59,21 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
     return BlocProvider<StepTwoCubit>(
       create: (context) => sl<StepTwoCubit>(),
       child: BlocConsumer<StepTwoCubit, StepTwoState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is StepTwoStartRequestLoading) {
+            loadingAlertDialog(context);
+          }
+          if (state is StepTwoStartRequestSuccess) {
+            Navigator.pop(context);
+            Navigator.pushNamedAndRemoveUntil(
+                context, StepTwoWaitingScreen.routeName, (route) => false);
+          }
+          if (state is StepTwoStartRequestFail) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(
@@ -71,7 +89,7 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
               elevation: 0,
               iconTheme: const IconThemeData(color: AppColors.redColor),
               title: Text(
-                'انتظار المرحله التانيه',
+                'طلب المرحله التانيه',
                 style: const TextStyle(color: AppColors.redColor),
               ),
               backgroundColor: Colors.white,
@@ -82,18 +100,18 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
                 SizedBox(
                   height: 30.h,
                 ),
-                Image.asset(AppAssets.stepTwoWaiting),
+                Image.asset(AppAssets.stepTwoStartRequest),
                 SizedBox(
                   height: 60.h,
                 ),
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      //todo change this
+                      cubit.stepTwoStartRequest();
                     },
-                    child: Text("waiting step 2".tr()),
+                    child: Text("Request step 2".tr()),
                   ),
-                ),
+                )
               ],
             ),
           );

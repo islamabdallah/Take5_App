@@ -2,6 +2,8 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
+import 'package:take5/core/constants/app_constants.dart';
+import 'package:take5/data/models/requests/step_two_start_request/step_two_start_request.dart';
 
 import '../../data/data.dart';
 import '../../data/models/answer/answer.dart';
@@ -20,8 +22,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
 
   List<Answer> step2Answers = [];
 
-  getStepTwoQuestions() {
-    print('test');
+  void getStepTwoQuestions() {
     emit(StepTwoGetQuestionsLoading());
     final result = take5Repository.getCachedTakeFiveSurvey();
     result.fold((failure) {
@@ -29,7 +30,8 @@ class StepTwoCubit extends Cubit<StepTwoState> {
     }, (takeFiveSurvey) {
       if (takeFiveSurvey != null) {
         for (var question in takeFiveSurvey.stepTwoQuestions) {
-          step2Answers.add(Answer(id: question.id, question: question.question));
+          step2Answers
+              .add(Answer(id: question.id, question: question.question));
         }
       }
       print(takeFiveSurvey?.stepTwoQuestions.length);
@@ -38,13 +40,22 @@ class StepTwoCubit extends Cubit<StepTwoState> {
     });
   }
 
-  submitQuestions() {
+  void submitQuestions() {
     print(step2Answers);
   }
-  bool isRequestStep2=true;
-  void toggleToWaitingToStepTwo()
-  {
-    isRequestStep2=false;
-    emit(StepOneToggleToWaitingToStepTwoSuccess());
+
+  Future<void> stepTwoStartRequest() async {
+    emit(StepTwoStartRequestLoading());
+    final result = await take5Repository.startStepTwo(
+        stepTwoStartRequest: StepTwoStartRequest(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber,
+            startingDate: DateTime.now()));
+
+    result.fold(
+      (failure) => emit(StepTwoStartRequestFail(failure.message)),
+      (_) => emit(StepTwoStartRequestSuccess()),
+    );
   }
 }

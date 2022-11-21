@@ -76,9 +76,10 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
   }
 
   @override
-  Future<String> sendCollection({required CollectionModel collectionModel}) {
+  Future<String> sendCollection({required CollectionModel collectionModel}) async{
     // TODO: implement sendCollection
-    throw UnimplementedError();
+    // throw UnimplementedError();
+    return "Done";
   }
 
   @override

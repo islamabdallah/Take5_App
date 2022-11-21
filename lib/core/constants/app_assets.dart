@@ -14,6 +14,8 @@ class AppAssets {
   static const String signUp = 'assets/images/sign-up.png';
   static const String profile = 'assets/images/profile.png';
   static const String endTrip = 'assets/images/end_trip.png';
+  static const String stepTwoStartRequest = 'assets/images/step_two_start_request.png';
+  static const String stepTwoWaiting = 'assets/images/step_two_waiting.png';
 
   //icons
   static const String singInIcon = 'assets/icons/sign-in-icon.png';

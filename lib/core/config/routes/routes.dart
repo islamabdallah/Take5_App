@@ -4,6 +4,7 @@ import '../../../presentation/screens/home/home.dart';
 import '../../../presentation/screens/login/login_screen.dart';
 import '../../../presentation/screens/step_one_questions/step_one_questions.dart';
 import '../../../presentation/screens/step_two/step_two.dart';
+import '../../../presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import '../../../presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import '../../../presentation/screens/trip/trip.dart';
 
@@ -14,9 +15,6 @@ class AppRoutes {
       case LoginScreen.routeName:
         return _materialRoute(const LoginScreen(), LoginScreen.routeName);
 
-      case StepTwoWaitingScreen.routeName:
-        return _materialRoute(const StepTwoWaitingScreen(), StepTwoWaitingScreen.routeName);
-
       case HomeScreen.routeName:
         return _materialRoute(const HomeScreen(), HomeScreen.routeName);
 
@@ -25,6 +23,13 @@ class AppRoutes {
 
       case StepOneQuestionsScreen.routeName:
         return _materialRoute(const StepOneQuestionsScreen(), StepOneQuestionsScreen.routeName);
+
+      case StepTwoStartRequestScreen.routeName:
+        return _materialRoute(const StepTwoStartRequestScreen(), StepTwoStartRequestScreen.routeName);
+
+      case StepTwoWaitingScreen.routeName:
+        return _materialRoute(const StepTwoWaitingScreen(), StepTwoWaitingScreen.routeName);
+
 
       case StepTwoScreen.routeName:
         return _materialRoute(const StepTwoScreen(), StepTwoScreen.routeName);

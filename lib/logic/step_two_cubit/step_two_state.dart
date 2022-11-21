@@ -12,4 +12,11 @@ class StepTwoGetQuestionsFail extends StepTwoState {
   final String message;
   StepTwoGetQuestionsFail(this.message);
 }
-class StepOneToggleToWaitingToStepTwoSuccess extends StepTwoState {}
+
+class StepTwoStartRequestLoading extends StepTwoState {}
+class StepTwoStartRequestSuccess extends StepTwoState {}
+
+class StepTwoStartRequestFail extends StepTwoState {
+  final String message;
+  StepTwoStartRequestFail(this.message);
+}
