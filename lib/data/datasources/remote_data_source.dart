@@ -26,6 +26,9 @@ abstract class RemoteDataSource {
   Future<String> checkTripStatus(
       {CollectionModel? collectionModel});
 
+  Future<bool> getStepTwoStartRequestRespond(
+      {required String userId});
+
 }
 
 // class RemoteDataSourceImpl extends RemoteDataSource {
@@ -86,5 +89,10 @@ class FakeRemoteDataSourceImpl extends RemoteDataSource {
   Future<String> checkTripStatus({CollectionModel? collectionModel}) async {
 
     return "Done";
+  }
+
+  @override
+  Future<bool> getStepTwoStartRequestRespond({required String userId}) async{
+    return true;
   }
 }

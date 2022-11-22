@@ -126,9 +126,9 @@ class MyApp extends StatelessWidget {
             //initialRoute: StepOneDangersScreen.routeName,
             //  initialRoute: HomeScreen.routeName,
            // initialRoute: StepTwoScreen.routeName,
-           //  initialRoute: TripScreen.routeName,
+            initialRoute: TripScreen.routeName,
             //initialRoute: EndTripScreen.routeName,
-            initialRoute: StepTwoStartRequestScreen.routeName,
+            // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );
