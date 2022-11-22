@@ -104,16 +104,25 @@ class _TripScreenState extends State<TripScreen> {
                           ),
                         ),
                         SizedBox(height: 40.h,),
-                        ElevatedButton(
-                          onPressed: cubit.isButtonEnabled
-                              ? () {
-                                  Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      StepOneQuestionsScreen.routeName,
-                                      (route) => false);
-                                }
-                              : null,
-                          child: const Text('املأ الاستمارة'),
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: ElevatedButton(
+                            onPressed: cubit.isButtonEnabled
+                                ? () {
+                                    Navigator.pushNamedAndRemoveUntil(
+                                        context,
+                                        StepOneQuestionsScreen.routeName,
+                                        (route) => false);
+                                  }
+                                : null,
+                            child: const Text('املأ الاستمارة'),
+                            style: ElevatedButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.r), // <-- Radius
+                              ),
+                            ),
+                          ),
                         ),
                         SizedBox(height: 20.h),
                       ],
