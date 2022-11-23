@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:form_builder_validators/form_builder_validators.dart';
 
+import '../../core/constants/app_colors.dart';
 import '../../data/models/answer/answer.dart';
 
 class TrueFalseQuestion extends StatelessWidget {
@@ -13,9 +15,13 @@ class TrueFalseQuestion extends StatelessWidget {
     return FormBuilderRadioGroup (
       name: 'question',
       decoration:
-      InputDecoration(labelText: questionAnswer.question,
-        labelStyle:const TextStyle(
-          color: Colors.black
+      InputDecoration(
+         // enabled:false,
+          labelText: questionAnswer.question,
+        labelStyle:TextStyle(
+          color: Colors.black,
+            fontSize: 20.sp,
+          fontWeight: FontWeight.w400
         )
       ),
       onChanged: (value){

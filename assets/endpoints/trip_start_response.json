@@ -16,6 +16,31 @@
         "id": 3,
         "question": "هل جميع المخارج أمنة؟",
         "answer": null
+      },
+      {
+        "id": 4,
+        "question": "هل السيارة علي أرض مستوية",
+        "answer": null
+      },
+      {
+        "id": 5,
+        "question": "هل جميع المخارج والمداخل أمنة؟",
+        "answer": null
+      },
+      {
+        "id": 6,
+        "question": "هل جميع المخارج أمنة؟",
+        "answer": null
+      },
+      {
+        "id": 7,
+        "question": "هل جميع المخارج والمداخل أمنة؟",
+        "answer": null
+      },
+      {
+        "id": 8,
+        "question": "هل جميع المخارج أمنة؟",
+        "answer": null
       }
     ],
     "stepTwoQuestions": [

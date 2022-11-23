@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/data/datasources/local_data_source.dart';
+import 'package:take5/presentation/screens/step_one/preparing_step.dart';
 
 import '../../../core/utils/services/loaction_service.dart';
 import '../../../injection_container.dart';
@@ -11,7 +12,7 @@ import '../../../injection_container.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
 import '../../utils/helpers/helpers.dart';
-import '../step_one_questions/step_one_questions.dart';
+import '../step_one/step_one_questions.dart';
 
 class TripScreen extends StatefulWidget {
   static const routeName = 'TripScreen';
@@ -49,7 +50,7 @@ class _TripScreenState extends State<TripScreen> {
                         ? () {
                             Navigator.pushNamedAndRemoveUntil(
                                 context,
-                                StepOneQuestionsScreen.routeName,
+                                PreparingStepScreen.routeName,
                                 (route) => false);
                           }
                         : null,

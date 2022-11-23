@@ -7,6 +7,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:take5/logic/home_cubit/home_states.dart';
 import 'package:take5/presentation/screens/home/home.dart';
+import 'package:take5/presentation/screens/step_one/preparing_step.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
 import 'package:take5/presentation/screens/trip/trip.dart';
@@ -123,12 +124,13 @@ class MyApp extends StatelessWidget {
             //  initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
+           // initialRoute: PreparingStepScreen.routeName,
             //initialRoute: StepOneDangersScreen.routeName,
-            //  initialRoute: HomeScreen.routeName,
+             initialRoute: HomeScreen.routeName,
            // initialRoute: StepTwoScreen.routeName,
            //  initialRoute: TripScreen.routeName,
             //initialRoute: EndTripScreen.routeName,
-            initialRoute: StepTwoStartRequestScreen.routeName,
+            //initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );
