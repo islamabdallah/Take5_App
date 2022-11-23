@@ -20,3 +20,14 @@ class StepTwoStartRequestFail extends StepTwoState {
   final String message;
   StepTwoStartRequestFail(this.message);
 }
+
+class StepTwoGetRequestRespondLoading extends StepTwoState {}
+class StepTwoGetRequestRespondSuccess extends StepTwoState {
+  final bool isDone;
+  StepTwoGetRequestRespondSuccess(this.isDone);
+}
+
+class StepTwoGetRequestRespondFail extends StepTwoState {
+  final String message;
+  StepTwoGetRequestRespondFail(this.message);
+}

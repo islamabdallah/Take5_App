@@ -38,17 +38,17 @@ abstract class Take5Repository {
   Future<Either<Failure, Unit>> startStepTwo(
       {required StepTwoStartRequest stepTwoStartRequest});
 
+  Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
+      {required String userId});
+
   Future<Either<Failure, Unit>> completeStepTwo(
       {required StepTwoCompleteRequest stepTwoCompleteRequest});
-
-
 
   Future<Either<Failure, String>> checkTripStatus();
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
 
   Future<Either<Failure, Unit>> sendCollection();
-
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -321,8 +321,8 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       CollectionModel? collectionModel = localDataSource.getCachedCollection();
 
-      if(collectionModel!=null){
-      await remoteDataSource.sendCollection(collectionModel: collectionModel);
+      if (collectionModel != null) {
+        await remoteDataSource.sendCollection(collectionModel: collectionModel);
       }
       //done
       localDataSource.clearCollection();
@@ -338,6 +338,18 @@ class Take5RepositoryImpl extends Take5Repository {
       CollectionModel? collectionModel = localDataSource.getCachedCollection();
       String result = await remoteDataSource.checkTripStatus(
           collectionModel: collectionModel);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
+      {required String userId}) async {
+    try {
+      bool result =
+          await remoteDataSource.getStepTwoStartRequestRespond(userId: userId);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

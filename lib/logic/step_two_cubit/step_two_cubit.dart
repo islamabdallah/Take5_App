@@ -58,4 +58,15 @@ class StepTwoCubit extends Cubit<StepTwoState> {
       (_) => emit(StepTwoStartRequestSuccess()),
     );
   }
+
+  Future<void> getStepTwoStartRequestRespond() async {
+    emit(StepTwoGetRequestRespondLoading());
+    final result = await take5Repository.getStepTwoStartRequestRespond(
+      userId: AppConstants.user.userId
+    );
+    result.fold(
+      (failure) => emit(StepTwoGetRequestRespondFail(failure.message)),
+      (isDone) => emit(StepTwoGetRequestRespondSuccess(isDone)),
+    );
+  }
 }

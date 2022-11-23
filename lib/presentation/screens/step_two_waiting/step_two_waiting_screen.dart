@@ -9,6 +9,8 @@ import 'package:take5/presentation/screens/step_two/step_two.dart';
 
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
+import '../../utils/dialogs/loading_dialog.dart';
+import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 
 class StepTwoWaitingScreen extends StatefulWidget {
@@ -55,7 +57,21 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
     return BlocProvider<StepTwoCubit>(
       create: (context) => sl<StepTwoCubit>(),
       child: BlocConsumer<StepTwoCubit, StepTwoState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is StepTwoGetRequestRespondLoading) {
+            loadingAlertDialog(context);
+          }
+          if (state is StepTwoGetRequestRespondSuccess) {
+            Navigator.pop(context);
+            Navigator.pushNamedAndRemoveUntil(
+                context, StepTwoScreen.routeName, (route) => false);
+          }
+          if (state is StepTwoGetRequestRespondFail) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(
@@ -90,6 +106,7 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
                   child: ElevatedButton(
                     onPressed: () {
                       //todo change this
+                      cubit.getStepTwoStartRequestRespond();
                     },
                     child: Text("waiting step 2".tr()),
                   ),

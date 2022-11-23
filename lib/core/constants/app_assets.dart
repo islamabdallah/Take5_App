@@ -17,6 +17,9 @@ class AppAssets {
   static const String stepTwoStartRequest = 'assets/images/step_two_start_request.png';
   static const String stepTwoWaiting = 'assets/images/step_two_waiting.png';
 
+  //lottiefiles
+  static const String truck = 'assets/lottiefiles/truck.json';
+
   //icons
   static const String singInIcon = 'assets/icons/sign-in-icon.png';
 }
