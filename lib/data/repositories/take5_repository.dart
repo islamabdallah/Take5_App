@@ -17,7 +17,7 @@ import '../../core/network/device_connectivity.dart';
 
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
-      {required String mobileNo, required String password});
+      {required String serialNo, required String password});
 
   Either<Failure, Unit> clearUser();
 
@@ -62,14 +62,14 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, UserLoginResponse>> loginUser(
-      {required String mobileNo, required String password}) async {
+      {required String serialNo, required String password}) async {
     //check device connectivity
     if (await deviceConnectivity.isConnected == false) {
       return const Left(DeviceConnectivityFailure());
     }
     try {
       UserLoginResponse result = await remoteDataSource.loginUser(
-          mobileNo: mobileNo, password: password);
+          serialNo: serialNo, password: password);
       localDataSource.cacheUser(result.data);
       return Right(result);
     } on ServerException catch (e) {

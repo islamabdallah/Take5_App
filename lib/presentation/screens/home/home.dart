@@ -66,7 +66,6 @@ class _HomeScreenState extends State<HomeScreen> {
             centerTitle: true,
           ),
           body: Column(
-
             children: [
               SizedBox(height: 16.h,),
               if (state != HomeGetPendingTripLoading() && cubit.trip != null)

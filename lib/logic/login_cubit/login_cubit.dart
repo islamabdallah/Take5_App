@@ -13,7 +13,7 @@ class LoginCubit extends Cubit<LoginStates> {
 
   LoginCubit({required this.take5Repository}) : super(InitialLoginState());
 
-  TextEditingController phoneNumberController = TextEditingController();
+  TextEditingController serialNumberController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
   bool isTextVisible = false;
@@ -23,17 +23,16 @@ class LoginCubit extends Cubit<LoginStates> {
     isTextVisible = value;
     emit(ChangePasswordVisibilityState());
   }
-
   String errorMessage = '';
 
   Future<void> loginUser() async {
     emit(LoginUserLoading());
     final result = await take5Repository.loginUser(
-        mobileNo: phoneNumberController.text,
+        serialNo: serialNumberController.text,
         password: passwordController.text);
     result.fold((failure) {
       errorMessage = failure.message;
-      print(errorMessage);
+      //print(errorMessage);
       emit(LoginUserFail(failure.message));
     }, (userResponse) {
       AppConstants.user = userResponse.data;

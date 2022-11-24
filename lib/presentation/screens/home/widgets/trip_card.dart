@@ -12,7 +12,6 @@ import 'item_of_description.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
-
   const TripCard({Key? key, required this.trip}) : super(key: key);
 
   @override

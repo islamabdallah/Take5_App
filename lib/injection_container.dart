@@ -42,7 +42,7 @@ Future<void> init() async {
 
 //! Datasources
   sl.registerLazySingleton<RemoteDataSource>(
-      () => FakeRemoteDataSourceImpl());
+      () =>RemoteDataSourceImpl(client: sl()));
 
   // sl.registerLazySingleton<RemoteDataSource>(
   //     () => RemoteDataSourceImpl(client: sl()));
