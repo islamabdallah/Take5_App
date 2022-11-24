@@ -190,7 +190,7 @@ TakeFiveSurvey _$TakeFiveSurveyFromJson(Map<String, dynamic> json) {
 mixin _$TakeFiveSurvey {
   List<Answer> get stepOneQuestions => throw _privateConstructorUsedError;
   List<Answer> get stepTwoQuestions => throw _privateConstructorUsedError;
-  List<DangerControlsWithCategoryModel> get dangerControlsWithCategoryModels =>
+  List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -208,7 +208,7 @@ abstract class $TakeFiveSurveyCopyWith<$Res> {
   $Res call(
       {List<Answer> stepOneQuestions,
       List<Answer> stepTwoQuestions,
-      List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels});
+      List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels});
 }
 
 /// @nodoc
@@ -226,7 +226,7 @@ class _$TakeFiveSurveyCopyWithImpl<$Res, $Val extends TakeFiveSurvey>
   $Res call({
     Object? stepOneQuestions = null,
     Object? stepTwoQuestions = null,
-    Object? dangerControlsWithCategoryModels = null,
+    Object? dangerWithCategoryAPIModels = null,
   }) {
     return _then(_value.copyWith(
       stepOneQuestions: null == stepOneQuestions
@@ -237,10 +237,10 @@ class _$TakeFiveSurveyCopyWithImpl<$Res, $Val extends TakeFiveSurvey>
           ? _value.stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
               as List<Answer>,
-      dangerControlsWithCategoryModels: null == dangerControlsWithCategoryModels
-          ? _value.dangerControlsWithCategoryModels
-          : dangerControlsWithCategoryModels // ignore: cast_nullable_to_non_nullable
-              as List<DangerControlsWithCategoryModel>,
+      dangerWithCategoryAPIModels: null == dangerWithCategoryAPIModels
+          ? _value.dangerWithCategoryAPIModels
+          : dangerWithCategoryAPIModels // ignore: cast_nullable_to_non_nullable
+              as List<DangerWithCategoryAPIModels>,
     ) as $Val);
   }
 }
@@ -256,7 +256,7 @@ abstract class _$$_TakeFiveSurveyCopyWith<$Res>
   $Res call(
       {List<Answer> stepOneQuestions,
       List<Answer> stepTwoQuestions,
-      List<DangerControlsWithCategoryModel> dangerControlsWithCategoryModels});
+      List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels});
 }
 
 /// @nodoc
@@ -272,7 +272,7 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
   $Res call({
     Object? stepOneQuestions = null,
     Object? stepTwoQuestions = null,
-    Object? dangerControlsWithCategoryModels = null,
+    Object? dangerWithCategoryAPIModels = null,
   }) {
     return _then(_$_TakeFiveSurvey(
       stepOneQuestions: null == stepOneQuestions
@@ -283,10 +283,10 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
           ? _value._stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
               as List<Answer>,
-      dangerControlsWithCategoryModels: null == dangerControlsWithCategoryModels
-          ? _value._dangerControlsWithCategoryModels
-          : dangerControlsWithCategoryModels // ignore: cast_nullable_to_non_nullable
-              as List<DangerControlsWithCategoryModel>,
+      dangerWithCategoryAPIModels: null == dangerWithCategoryAPIModels
+          ? _value._dangerWithCategoryAPIModels
+          : dangerWithCategoryAPIModels // ignore: cast_nullable_to_non_nullable
+              as List<DangerWithCategoryAPIModels>,
     ));
   }
 }
@@ -297,11 +297,11 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   const _$_TakeFiveSurvey(
       {required final List<Answer> stepOneQuestions,
       required final List<Answer> stepTwoQuestions,
-      required final List<DangerControlsWithCategoryModel>
-          dangerControlsWithCategoryModels})
+      required final List<DangerWithCategoryAPIModels>
+          dangerWithCategoryAPIModels})
       : _stepOneQuestions = stepOneQuestions,
         _stepTwoQuestions = stepTwoQuestions,
-        _dangerControlsWithCategoryModels = dangerControlsWithCategoryModels;
+        _dangerWithCategoryAPIModels = dangerWithCategoryAPIModels;
 
   factory _$_TakeFiveSurvey.fromJson(Map<String, dynamic> json) =>
       _$$_TakeFiveSurveyFromJson(json);
@@ -320,16 +320,16 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
     return EqualUnmodifiableListView(_stepTwoQuestions);
   }
 
-  final List<DangerControlsWithCategoryModel> _dangerControlsWithCategoryModels;
+  final List<DangerWithCategoryAPIModels> _dangerWithCategoryAPIModels;
   @override
-  List<DangerControlsWithCategoryModel> get dangerControlsWithCategoryModels {
+  List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_dangerControlsWithCategoryModels);
+    return EqualUnmodifiableListView(_dangerWithCategoryAPIModels);
   }
 
   @override
   String toString() {
-    return 'TakeFiveSurvey(stepOneQuestions: $stepOneQuestions, stepTwoQuestions: $stepTwoQuestions, dangerControlsWithCategoryModels: $dangerControlsWithCategoryModels)';
+    return 'TakeFiveSurvey(stepOneQuestions: $stepOneQuestions, stepTwoQuestions: $stepTwoQuestions, dangerWithCategoryAPIModels: $dangerWithCategoryAPIModels)';
   }
 
   @override
@@ -342,8 +342,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
             const DeepCollectionEquality()
                 .equals(other._stepTwoQuestions, _stepTwoQuestions) &&
             const DeepCollectionEquality().equals(
-                other._dangerControlsWithCategoryModels,
-                _dangerControlsWithCategoryModels));
+                other._dangerWithCategoryAPIModels,
+                _dangerWithCategoryAPIModels));
   }
 
   @JsonKey(ignore: true)
@@ -352,7 +352,7 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
       runtimeType,
       const DeepCollectionEquality().hash(_stepOneQuestions),
       const DeepCollectionEquality().hash(_stepTwoQuestions),
-      const DeepCollectionEquality().hash(_dangerControlsWithCategoryModels));
+      const DeepCollectionEquality().hash(_dangerWithCategoryAPIModels));
 
   @JsonKey(ignore: true)
   @override
@@ -372,8 +372,8 @@ abstract class _TakeFiveSurvey implements TakeFiveSurvey {
   const factory _TakeFiveSurvey(
       {required final List<Answer> stepOneQuestions,
       required final List<Answer> stepTwoQuestions,
-      required final List<DangerControlsWithCategoryModel>
-          dangerControlsWithCategoryModels}) = _$_TakeFiveSurvey;
+      required final List<DangerWithCategoryAPIModels>
+          dangerWithCategoryAPIModels}) = _$_TakeFiveSurvey;
 
   factory _TakeFiveSurvey.fromJson(Map<String, dynamic> json) =
       _$_TakeFiveSurvey.fromJson;
@@ -383,37 +383,37 @@ abstract class _TakeFiveSurvey implements TakeFiveSurvey {
   @override
   List<Answer> get stepTwoQuestions;
   @override
-  List<DangerControlsWithCategoryModel> get dangerControlsWithCategoryModels;
+  List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels;
   @override
   @JsonKey(ignore: true)
   _$$_TakeFiveSurveyCopyWith<_$_TakeFiveSurvey> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
-DangerControlsWithCategoryModel _$DangerControlsWithCategoryModelFromJson(
+DangerWithCategoryAPIModels _$DangerWithCategoryAPIModelsFromJson(
     Map<String, dynamic> json) {
-  return _DangerControlsWithCategoryModel.fromJson(json);
+  return _DangerWithCategoryAPIModels.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DangerControlsWithCategoryModel {
+mixin _$DangerWithCategoryAPIModels {
   String get dangerCategory => throw _privateConstructorUsedError;
   int get dangerCategoryId => throw _privateConstructorUsedError;
   List<DangerModel> get dangerModels => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DangerControlsWithCategoryModelCopyWith<DangerControlsWithCategoryModel>
+  $DangerWithCategoryAPIModelsCopyWith<DangerWithCategoryAPIModels>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DangerControlsWithCategoryModelCopyWith<$Res> {
-  factory $DangerControlsWithCategoryModelCopyWith(
-          DangerControlsWithCategoryModel value,
-          $Res Function(DangerControlsWithCategoryModel) then) =
-      _$DangerControlsWithCategoryModelCopyWithImpl<$Res,
-          DangerControlsWithCategoryModel>;
+abstract class $DangerWithCategoryAPIModelsCopyWith<$Res> {
+  factory $DangerWithCategoryAPIModelsCopyWith(
+          DangerWithCategoryAPIModels value,
+          $Res Function(DangerWithCategoryAPIModels) then) =
+      _$DangerWithCategoryAPIModelsCopyWithImpl<$Res,
+          DangerWithCategoryAPIModels>;
   @useResult
   $Res call(
       {String dangerCategory,
@@ -422,10 +422,10 @@ abstract class $DangerControlsWithCategoryModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DangerControlsWithCategoryModelCopyWithImpl<$Res,
-        $Val extends DangerControlsWithCategoryModel>
-    implements $DangerControlsWithCategoryModelCopyWith<$Res> {
-  _$DangerControlsWithCategoryModelCopyWithImpl(this._value, this._then);
+class _$DangerWithCategoryAPIModelsCopyWithImpl<$Res,
+        $Val extends DangerWithCategoryAPIModels>
+    implements $DangerWithCategoryAPIModelsCopyWith<$Res> {
+  _$DangerWithCategoryAPIModelsCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -457,12 +457,12 @@ class _$DangerControlsWithCategoryModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_DangerControlsWithCategoryModelCopyWith<$Res>
-    implements $DangerControlsWithCategoryModelCopyWith<$Res> {
-  factory _$$_DangerControlsWithCategoryModelCopyWith(
-          _$_DangerControlsWithCategoryModel value,
-          $Res Function(_$_DangerControlsWithCategoryModel) then) =
-      __$$_DangerControlsWithCategoryModelCopyWithImpl<$Res>;
+abstract class _$$_DangerWithCategoryAPIModelsCopyWith<$Res>
+    implements $DangerWithCategoryAPIModelsCopyWith<$Res> {
+  factory _$$_DangerWithCategoryAPIModelsCopyWith(
+          _$_DangerWithCategoryAPIModels value,
+          $Res Function(_$_DangerWithCategoryAPIModels) then) =
+      __$$_DangerWithCategoryAPIModelsCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -472,13 +472,13 @@ abstract class _$$_DangerControlsWithCategoryModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DangerControlsWithCategoryModelCopyWithImpl<$Res>
-    extends _$DangerControlsWithCategoryModelCopyWithImpl<$Res,
-        _$_DangerControlsWithCategoryModel>
-    implements _$$_DangerControlsWithCategoryModelCopyWith<$Res> {
-  __$$_DangerControlsWithCategoryModelCopyWithImpl(
-      _$_DangerControlsWithCategoryModel _value,
-      $Res Function(_$_DangerControlsWithCategoryModel) _then)
+class __$$_DangerWithCategoryAPIModelsCopyWithImpl<$Res>
+    extends _$DangerWithCategoryAPIModelsCopyWithImpl<$Res,
+        _$_DangerWithCategoryAPIModels>
+    implements _$$_DangerWithCategoryAPIModelsCopyWith<$Res> {
+  __$$_DangerWithCategoryAPIModelsCopyWithImpl(
+      _$_DangerWithCategoryAPIModels _value,
+      $Res Function(_$_DangerWithCategoryAPIModels) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -488,7 +488,7 @@ class __$$_DangerControlsWithCategoryModelCopyWithImpl<$Res>
     Object? dangerCategoryId = null,
     Object? dangerModels = null,
   }) {
-    return _then(_$_DangerControlsWithCategoryModel(
+    return _then(_$_DangerWithCategoryAPIModels(
       dangerCategory: null == dangerCategory
           ? _value.dangerCategory
           : dangerCategory // ignore: cast_nullable_to_non_nullable
@@ -507,17 +507,15 @@ class __$$_DangerControlsWithCategoryModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DangerControlsWithCategoryModel
-    implements _DangerControlsWithCategoryModel {
-  const _$_DangerControlsWithCategoryModel(
+class _$_DangerWithCategoryAPIModels implements _DangerWithCategoryAPIModels {
+  const _$_DangerWithCategoryAPIModels(
       {required this.dangerCategory,
       required this.dangerCategoryId,
       required final List<DangerModel> dangerModels})
       : _dangerModels = dangerModels;
 
-  factory _$_DangerControlsWithCategoryModel.fromJson(
-          Map<String, dynamic> json) =>
-      _$$_DangerControlsWithCategoryModelFromJson(json);
+  factory _$_DangerWithCategoryAPIModels.fromJson(Map<String, dynamic> json) =>
+      _$$_DangerWithCategoryAPIModelsFromJson(json);
 
   @override
   final String dangerCategory;
@@ -532,14 +530,14 @@ class _$_DangerControlsWithCategoryModel
 
   @override
   String toString() {
-    return 'DangerControlsWithCategoryModel(dangerCategory: $dangerCategory, dangerCategoryId: $dangerCategoryId, dangerModels: $dangerModels)';
+    return 'DangerWithCategoryAPIModels(dangerCategory: $dangerCategory, dangerCategoryId: $dangerCategoryId, dangerModels: $dangerModels)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DangerControlsWithCategoryModel &&
+            other is _$_DangerWithCategoryAPIModels &&
             (identical(other.dangerCategory, dangerCategory) ||
                 other.dangerCategory == dangerCategory) &&
             (identical(other.dangerCategoryId, dangerCategoryId) ||
@@ -556,29 +554,28 @@ class _$_DangerControlsWithCategoryModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DangerControlsWithCategoryModelCopyWith<
-          _$_DangerControlsWithCategoryModel>
-      get copyWith => __$$_DangerControlsWithCategoryModelCopyWithImpl<
-          _$_DangerControlsWithCategoryModel>(this, _$identity);
+  _$$_DangerWithCategoryAPIModelsCopyWith<_$_DangerWithCategoryAPIModels>
+      get copyWith => __$$_DangerWithCategoryAPIModelsCopyWithImpl<
+          _$_DangerWithCategoryAPIModels>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DangerControlsWithCategoryModelToJson(
+    return _$$_DangerWithCategoryAPIModelsToJson(
       this,
     );
   }
 }
 
-abstract class _DangerControlsWithCategoryModel
-    implements DangerControlsWithCategoryModel {
-  const factory _DangerControlsWithCategoryModel(
+abstract class _DangerWithCategoryAPIModels
+    implements DangerWithCategoryAPIModels {
+  const factory _DangerWithCategoryAPIModels(
           {required final String dangerCategory,
           required final int dangerCategoryId,
           required final List<DangerModel> dangerModels}) =
-      _$_DangerControlsWithCategoryModel;
+      _$_DangerWithCategoryAPIModels;
 
-  factory _DangerControlsWithCategoryModel.fromJson(Map<String, dynamic> json) =
-      _$_DangerControlsWithCategoryModel.fromJson;
+  factory _DangerWithCategoryAPIModels.fromJson(Map<String, dynamic> json) =
+      _$_DangerWithCategoryAPIModels.fromJson;
 
   @override
   String get dangerCategory;
@@ -588,8 +585,7 @@ abstract class _DangerControlsWithCategoryModel
   List<DangerModel> get dangerModels;
   @override
   @JsonKey(ignore: true)
-  _$$_DangerControlsWithCategoryModelCopyWith<
-          _$_DangerControlsWithCategoryModel>
+  _$$_DangerWithCategoryAPIModelsCopyWith<_$_DangerWithCategoryAPIModels>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -602,7 +598,8 @@ mixin _$DangerModel {
   int get dangerId => throw _privateConstructorUsedError;
   String get dangerName =>
       throw _privateConstructorUsedError; //required String dangerImage,
-  List<MeasureControlApi> get controls => throw _privateConstructorUsedError;
+  List<MeasureControlApi> get measureControlAPIs =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -617,7 +614,9 @@ abstract class $DangerModelCopyWith<$Res> {
       _$DangerModelCopyWithImpl<$Res, DangerModel>;
   @useResult
   $Res call(
-      {int dangerId, String dangerName, List<MeasureControlApi> controls});
+      {int dangerId,
+      String dangerName,
+      List<MeasureControlApi> measureControlAPIs});
 }
 
 /// @nodoc
@@ -635,7 +634,7 @@ class _$DangerModelCopyWithImpl<$Res, $Val extends DangerModel>
   $Res call({
     Object? dangerId = null,
     Object? dangerName = null,
-    Object? controls = null,
+    Object? measureControlAPIs = null,
   }) {
     return _then(_value.copyWith(
       dangerId: null == dangerId
@@ -646,9 +645,9 @@ class _$DangerModelCopyWithImpl<$Res, $Val extends DangerModel>
           ? _value.dangerName
           : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
-      controls: null == controls
-          ? _value.controls
-          : controls // ignore: cast_nullable_to_non_nullable
+      measureControlAPIs: null == measureControlAPIs
+          ? _value.measureControlAPIs
+          : measureControlAPIs // ignore: cast_nullable_to_non_nullable
               as List<MeasureControlApi>,
     ) as $Val);
   }
@@ -663,7 +662,9 @@ abstract class _$$_DangerModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int dangerId, String dangerName, List<MeasureControlApi> controls});
+      {int dangerId,
+      String dangerName,
+      List<MeasureControlApi> measureControlAPIs});
 }
 
 /// @nodoc
@@ -679,7 +680,7 @@ class __$$_DangerModelCopyWithImpl<$Res>
   $Res call({
     Object? dangerId = null,
     Object? dangerName = null,
-    Object? controls = null,
+    Object? measureControlAPIs = null,
   }) {
     return _then(_$_DangerModel(
       dangerId: null == dangerId
@@ -690,9 +691,9 @@ class __$$_DangerModelCopyWithImpl<$Res>
           ? _value.dangerName
           : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
-      controls: null == controls
-          ? _value._controls
-          : controls // ignore: cast_nullable_to_non_nullable
+      measureControlAPIs: null == measureControlAPIs
+          ? _value._measureControlAPIs
+          : measureControlAPIs // ignore: cast_nullable_to_non_nullable
               as List<MeasureControlApi>,
     ));
   }
@@ -704,8 +705,8 @@ class _$_DangerModel implements _DangerModel {
   const _$_DangerModel(
       {required this.dangerId,
       required this.dangerName,
-      required final List<MeasureControlApi> controls})
-      : _controls = controls;
+      required final List<MeasureControlApi> measureControlAPIs})
+      : _measureControlAPIs = measureControlAPIs;
 
   factory _$_DangerModel.fromJson(Map<String, dynamic> json) =>
       _$$_DangerModelFromJson(json);
@@ -715,17 +716,17 @@ class _$_DangerModel implements _DangerModel {
   @override
   final String dangerName;
 //required String dangerImage,
-  final List<MeasureControlApi> _controls;
+  final List<MeasureControlApi> _measureControlAPIs;
 //required String dangerImage,
   @override
-  List<MeasureControlApi> get controls {
+  List<MeasureControlApi> get measureControlAPIs {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_controls);
+    return EqualUnmodifiableListView(_measureControlAPIs);
   }
 
   @override
   String toString() {
-    return 'DangerModel(dangerId: $dangerId, dangerName: $dangerName, controls: $controls)';
+    return 'DangerModel(dangerId: $dangerId, dangerName: $dangerName, measureControlAPIs: $measureControlAPIs)';
   }
 
   @override
@@ -737,13 +738,14 @@ class _$_DangerModel implements _DangerModel {
                 other.dangerId == dangerId) &&
             (identical(other.dangerName, dangerName) ||
                 other.dangerName == dangerName) &&
-            const DeepCollectionEquality().equals(other._controls, _controls));
+            const DeepCollectionEquality()
+                .equals(other._measureControlAPIs, _measureControlAPIs));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, dangerId, dangerName,
-      const DeepCollectionEquality().hash(_controls));
+      const DeepCollectionEquality().hash(_measureControlAPIs));
 
   @JsonKey(ignore: true)
   @override
@@ -761,9 +763,10 @@ class _$_DangerModel implements _DangerModel {
 
 abstract class _DangerModel implements DangerModel {
   const factory _DangerModel(
-      {required final int dangerId,
-      required final String dangerName,
-      required final List<MeasureControlApi> controls}) = _$_DangerModel;
+          {required final int dangerId,
+          required final String dangerName,
+          required final List<MeasureControlApi> measureControlAPIs}) =
+      _$_DangerModel;
 
   factory _DangerModel.fromJson(Map<String, dynamic> json) =
       _$_DangerModel.fromJson;
@@ -773,7 +776,7 @@ abstract class _DangerModel implements DangerModel {
   @override
   String get dangerName;
   @override //required String dangerImage,
-  List<MeasureControlApi> get controls;
+  List<MeasureControlApi> get measureControlAPIs;
   @override
   @JsonKey(ignore: true)
   _$$_DangerModelCopyWith<_$_DangerModel> get copyWith =>
@@ -786,8 +789,8 @@ MeasureControlApi _$MeasureControlApiFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MeasureControlApi {
-  int get MeasureControlId => throw _privateConstructorUsedError;
-  String get MeasureControlName => throw _privateConstructorUsedError;
+  int get measureControlId => throw _privateConstructorUsedError;
+  String get measureControlName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -801,7 +804,7 @@ abstract class $MeasureControlApiCopyWith<$Res> {
           MeasureControlApi value, $Res Function(MeasureControlApi) then) =
       _$MeasureControlApiCopyWithImpl<$Res, MeasureControlApi>;
   @useResult
-  $Res call({int MeasureControlId, String MeasureControlName});
+  $Res call({int measureControlId, String measureControlName});
 }
 
 /// @nodoc
@@ -817,17 +820,17 @@ class _$MeasureControlApiCopyWithImpl<$Res, $Val extends MeasureControlApi>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? MeasureControlId = null,
-    Object? MeasureControlName = null,
+    Object? measureControlId = null,
+    Object? measureControlName = null,
   }) {
     return _then(_value.copyWith(
-      MeasureControlId: null == MeasureControlId
-          ? _value.MeasureControlId
-          : MeasureControlId // ignore: cast_nullable_to_non_nullable
+      measureControlId: null == measureControlId
+          ? _value.measureControlId
+          : measureControlId // ignore: cast_nullable_to_non_nullable
               as int,
-      MeasureControlName: null == MeasureControlName
-          ? _value.MeasureControlName
-          : MeasureControlName // ignore: cast_nullable_to_non_nullable
+      measureControlName: null == measureControlName
+          ? _value.measureControlName
+          : measureControlName // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -841,7 +844,7 @@ abstract class _$$_MeasureControlApiCopyWith<$Res>
       __$$_MeasureControlApiCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int MeasureControlId, String MeasureControlName});
+  $Res call({int measureControlId, String measureControlName});
 }
 
 /// @nodoc
@@ -855,17 +858,17 @@ class __$$_MeasureControlApiCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? MeasureControlId = null,
-    Object? MeasureControlName = null,
+    Object? measureControlId = null,
+    Object? measureControlName = null,
   }) {
     return _then(_$_MeasureControlApi(
-      MeasureControlId: null == MeasureControlId
-          ? _value.MeasureControlId
-          : MeasureControlId // ignore: cast_nullable_to_non_nullable
+      measureControlId: null == measureControlId
+          ? _value.measureControlId
+          : measureControlId // ignore: cast_nullable_to_non_nullable
               as int,
-      MeasureControlName: null == MeasureControlName
-          ? _value.MeasureControlName
-          : MeasureControlName // ignore: cast_nullable_to_non_nullable
+      measureControlName: null == measureControlName
+          ? _value.measureControlName
+          : measureControlName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -875,19 +878,19 @@ class __$$_MeasureControlApiCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MeasureControlApi implements _MeasureControlApi {
   const _$_MeasureControlApi(
-      {required this.MeasureControlId, required this.MeasureControlName});
+      {required this.measureControlId, required this.measureControlName});
 
   factory _$_MeasureControlApi.fromJson(Map<String, dynamic> json) =>
       _$$_MeasureControlApiFromJson(json);
 
   @override
-  final int MeasureControlId;
+  final int measureControlId;
   @override
-  final String MeasureControlName;
+  final String measureControlName;
 
   @override
   String toString() {
-    return 'MeasureControlApi(MeasureControlId: $MeasureControlId, MeasureControlName: $MeasureControlName)';
+    return 'MeasureControlApi(measureControlId: $measureControlId, measureControlName: $measureControlName)';
   }
 
   @override
@@ -895,16 +898,16 @@ class _$_MeasureControlApi implements _MeasureControlApi {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MeasureControlApi &&
-            (identical(other.MeasureControlId, MeasureControlId) ||
-                other.MeasureControlId == MeasureControlId) &&
-            (identical(other.MeasureControlName, MeasureControlName) ||
-                other.MeasureControlName == MeasureControlName));
+            (identical(other.measureControlId, measureControlId) ||
+                other.measureControlId == measureControlId) &&
+            (identical(other.measureControlName, measureControlName) ||
+                other.measureControlName == measureControlName));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, MeasureControlId, MeasureControlName);
+      Object.hash(runtimeType, measureControlId, measureControlName);
 
   @JsonKey(ignore: true)
   @override
@@ -923,16 +926,16 @@ class _$_MeasureControlApi implements _MeasureControlApi {
 
 abstract class _MeasureControlApi implements MeasureControlApi {
   const factory _MeasureControlApi(
-      {required final int MeasureControlId,
-      required final String MeasureControlName}) = _$_MeasureControlApi;
+      {required final int measureControlId,
+      required final String measureControlName}) = _$_MeasureControlApi;
 
   factory _MeasureControlApi.fromJson(Map<String, dynamic> json) =
       _$_MeasureControlApi.fromJson;
 
   @override
-  int get MeasureControlId;
+  int get measureControlId;
   @override
-  String get MeasureControlName;
+  String get measureControlName;
   @override
   @JsonKey(ignore: true)
   _$$_MeasureControlApiCopyWith<_$_MeasureControlApi> get copyWith =>

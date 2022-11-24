@@ -122,10 +122,10 @@ class TripCard extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: () {
                         HomeCubit.get(context).startTrip();
-                        final service = FlutterBackgroundService();
-                        service.startService();
-                        Navigator.pushReplacementNamed(
-                            context, TripScreen.routeName);
+                        // final service = FlutterBackgroundService();
+                        // service.startService();
+                        // Navigator.pushReplacementNamed(
+                        //     context, TripScreen.routeName);
                       },
                       child: const Text('ابدأ الرحلة'),
                     ),

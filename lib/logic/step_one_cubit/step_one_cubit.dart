@@ -14,8 +14,8 @@ class StepOneCubit extends Cubit<StepOneState> {
   StepOneCubit({required this.take5Repository}) : super(StepOneInitial());
 
 
-  List<DangerControlsWithCategoryModel> dangerControlsWithCategory = [];
-  DangerControlsWithCategoryModel? selectedCategory;
+  List<DangerWithCategoryAPIModels> dangerControlsWithCategory = [];
+  DangerWithCategoryAPIModels? selectedCategory;
   DangerModel? selectedDanger;
   List<MeasureControlApi>? selectedControls;
 
@@ -23,7 +23,7 @@ class StepOneCubit extends Cubit<StepOneState> {
   List<DangerModel> dangers=[];
   List<Answer> step1Answers = [];
 
-  void onChangeSelectedCategory(DangerControlsWithCategoryModel? newCategory) {
+  void onChangeSelectedCategory(DangerWithCategoryAPIModels? newCategory) {
     selectedDanger=null;
     selectedControls = null;
     selectedCategory = newCategory;
@@ -44,7 +44,7 @@ class StepOneCubit extends Cubit<StepOneState> {
     if(selectedControls==null){
       return;
     }
-    DangerModel dangerModel = DangerModel(dangerId: selectedDanger!.dangerId, dangerName: selectedDanger!.dangerName, controls: selectedControls!);
+    DangerModel dangerModel = DangerModel(dangerId: selectedDanger!.dangerId, dangerName: selectedDanger!.dangerName, measureControlAPIs: selectedControls!);
     dangers.add(dangerModel);
 
     selectedCategory=null;
@@ -68,7 +68,7 @@ class StepOneCubit extends Cubit<StepOneState> {
       emit(StepOneGetQuestionsFail(failure.message));
     }, (takeFiveSurvey) {
       if (takeFiveSurvey != null) {
-        dangerControlsWithCategory=takeFiveSurvey.dangerControlsWithCategoryModels;
+        dangerControlsWithCategory=takeFiveSurvey.dangerWithCategoryAPIModels;
         for (var question in takeFiveSurvey.stepOneQuestions) {
           step1Answers.add(Answer(id: question.id, question: question.question));
         }

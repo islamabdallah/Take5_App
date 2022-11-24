@@ -27,9 +27,9 @@ _$_TakeFiveSurvey _$$_TakeFiveSurveyFromJson(Map json) => _$_TakeFiveSurvey(
       stepTwoQuestions: (json['stepTwoQuestions'] as List<dynamic>)
           .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
-      dangerControlsWithCategoryModels:
-          (json['dangerControlsWithCategoryModels'] as List<dynamic>)
-              .map((e) => DangerControlsWithCategoryModel.fromJson(
+      dangerWithCategoryAPIModels:
+          (json['dangerWithCategoryAPIModels'] as List<dynamic>)
+              .map((e) => DangerWithCategoryAPIModels.fromJson(
                   Map<String, dynamic>.from(e as Map)))
               .toList(),
     );
@@ -40,15 +40,13 @@ Map<String, dynamic> _$$_TakeFiveSurveyToJson(_$_TakeFiveSurvey instance) =>
           instance.stepOneQuestions.map((e) => e.toJson()).toList(),
       'stepTwoQuestions':
           instance.stepTwoQuestions.map((e) => e.toJson()).toList(),
-      'dangerControlsWithCategoryModels': instance
-          .dangerControlsWithCategoryModels
-          .map((e) => e.toJson())
-          .toList(),
+      'dangerWithCategoryAPIModels':
+          instance.dangerWithCategoryAPIModels.map((e) => e.toJson()).toList(),
     };
 
-_$_DangerControlsWithCategoryModel _$$_DangerControlsWithCategoryModelFromJson(
+_$_DangerWithCategoryAPIModels _$$_DangerWithCategoryAPIModelsFromJson(
         Map json) =>
-    _$_DangerControlsWithCategoryModel(
+    _$_DangerWithCategoryAPIModels(
       dangerCategory: json['dangerCategory'] as String,
       dangerCategoryId: json['dangerCategoryId'] as int,
       dangerModels: (json['dangerModels'] as List<dynamic>)
@@ -56,8 +54,8 @@ _$_DangerControlsWithCategoryModel _$$_DangerControlsWithCategoryModelFromJson(
           .toList(),
     );
 
-Map<String, dynamic> _$$_DangerControlsWithCategoryModelToJson(
-        _$_DangerControlsWithCategoryModel instance) =>
+Map<String, dynamic> _$$_DangerWithCategoryAPIModelsToJson(
+        _$_DangerWithCategoryAPIModels instance) =>
     <String, dynamic>{
       'dangerCategory': instance.dangerCategory,
       'dangerCategoryId': instance.dangerCategoryId,
@@ -67,7 +65,7 @@ Map<String, dynamic> _$$_DangerControlsWithCategoryModelToJson(
 _$_DangerModel _$$_DangerModelFromJson(Map json) => _$_DangerModel(
       dangerId: json['dangerId'] as int,
       dangerName: json['dangerName'] as String,
-      controls: (json['controls'] as List<dynamic>)
+      measureControlAPIs: (json['measureControlAPIs'] as List<dynamic>)
           .map((e) =>
               MeasureControlApi.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
@@ -77,18 +75,19 @@ Map<String, dynamic> _$$_DangerModelToJson(_$_DangerModel instance) =>
     <String, dynamic>{
       'dangerId': instance.dangerId,
       'dangerName': instance.dangerName,
-      'controls': instance.controls.map((e) => e.toJson()).toList(),
+      'measureControlAPIs':
+          instance.measureControlAPIs.map((e) => e.toJson()).toList(),
     };
 
 _$_MeasureControlApi _$$_MeasureControlApiFromJson(Map json) =>
     _$_MeasureControlApi(
-      MeasureControlId: json['MeasureControlId'] as int,
-      MeasureControlName: json['MeasureControlName'] as String,
+      measureControlId: json['measureControlId'] as int,
+      measureControlName: json['measureControlName'] as String,
     );
 
 Map<String, dynamic> _$$_MeasureControlApiToJson(
         _$_MeasureControlApi instance) =>
     <String, dynamic>{
-      'MeasureControlId': instance.MeasureControlId,
-      'MeasureControlName': instance.MeasureControlName,
+      'measureControlId': instance.measureControlId,
+      'measureControlName': instance.measureControlName,
     };

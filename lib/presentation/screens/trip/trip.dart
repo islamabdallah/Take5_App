@@ -63,7 +63,7 @@ class _TripScreenState extends State<TripScreen> {
                  const Spacer(),
                   Container(
                     width: 274.w,
-                    height: 400.h,
+                    height: 470.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
                       boxShadow:const [
@@ -82,9 +82,10 @@ class _TripScreenState extends State<TripScreen> {
                     Column(
                       children: [
                         Container(
+                          width: 241.w,
                           child: Lottie.asset(
                             AppAssets.truck,
-                            fit: BoxFit.scaleDown
+                            fit: BoxFit.cover
                           ),
                         ),
                         Text(

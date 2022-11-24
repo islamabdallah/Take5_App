@@ -27,11 +27,11 @@ class _DangerState extends State<Danger> {
               children: [
                 Expanded(
                   child: DropdownButtonFormField<
-                          DangerControlsWithCategoryModel>(
+                      DangerWithCategoryAPIModels>(
                       value: cubit.selectedCategory,
                       items: cubit.dangerControlsWithCategory
                           .map((d) =>
-                              DropdownMenuItem<DangerControlsWithCategoryModel>(
+                              DropdownMenuItem<DangerWithCategoryAPIModels>(
                                 value: d,
                                 child: Text(d.dangerCategory),
                               ))
@@ -56,8 +56,8 @@ class _DangerState extends State<Danger> {
               key: GlobalKey(),
               items: cubit.selectedDanger == null
                   ? []
-                  : cubit.selectedDanger!.controls
-                      .map((e) => MultiSelectItem(e, e.MeasureControlName))
+                  : cubit.selectedDanger!.measureControlAPIs
+                      .map((e) => MultiSelectItem(e, e.measureControlName))
                       .toList(),
               listType: MultiSelectListType.CHIP,
               initialValue: cubit.selectedControls,
