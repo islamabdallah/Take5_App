@@ -9,7 +9,7 @@ part of 'user_login_response.dart';
 _$_UserLoginResponse _$$_UserLoginResponseFromJson(Map json) =>
     _$_UserLoginResponse(
       message: json['message'] as String,
-      data: User.fromJson(Map<String, dynamic>.from(json['data'] as Map)),
+      data: Data.fromJson(Map<String, dynamic>.from(json['data'] as Map)),
     );
 
 Map<String, dynamic> _$$_UserLoginResponseToJson(
@@ -17,4 +17,13 @@ Map<String, dynamic> _$$_UserLoginResponseToJson(
     <String, dynamic>{
       'message': instance.message,
       'data': instance.data.toJson(),
+    };
+
+_$_Data _$$_DataFromJson(Map json) => _$_Data(
+      userAPIModel:
+          User.fromJson(Map<String, dynamic>.from(json['userAPIModel'] as Map)),
+    );
+
+Map<String, dynamic> _$$_DataToJson(_$_Data instance) => <String, dynamic>{
+      'userAPIModel': instance.userAPIModel.toJson(),
     };

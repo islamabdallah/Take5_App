@@ -9,8 +9,18 @@ part 'user_login_response.g.dart';
 class UserLoginResponse with _$UserLoginResponse{
   const factory UserLoginResponse({
     required String message,
-    required User data,
+    required Data data,
   }) = _UserLoginResponse;
 
   factory UserLoginResponse.fromJson(Map<String, dynamic> json) => _$UserLoginResponseFromJson(json);
 }
+
+@freezed
+class Data with _$Data{
+  const factory Data({
+    required User userAPIModel,
+  }) = _Data;
+
+  factory Data.fromJson(Map<String, dynamic> json) => _$DataFromJson(json);
+}
+

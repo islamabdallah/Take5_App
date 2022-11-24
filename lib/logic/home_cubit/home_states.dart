@@ -4,14 +4,14 @@ class InitialHomeState extends HomeStates {}
 
 
 
-class HomeGetPendingTripLoading extends HomeStates {}
+class HomeGetCurrentTripLoading extends HomeStates {}
 
-class HomeGetPendingTripSuccess extends HomeStates {}
+class HomeGetCurrentTripSuccess extends HomeStates {}
 
-class HomeGetPendingTripFail extends HomeStates {
+class HomeGetCurrentTripFail extends HomeStates {
   final String? message;
 
-  HomeGetPendingTripFail(this.message);
+  HomeGetCurrentTripFail(this.message);
 }
 
 

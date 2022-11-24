@@ -10,9 +10,9 @@ import '../models/responses/user_login_response/user_login_response.dart';
 
 abstract class RemoteDataSource {
   Future<UserLoginResponse> loginUser(
-      {required String serialNo, required String password});
+      {required int driverNumber, required String password});
 
-  Future<UserTripResponse> getUserTrip(
+  Future<UserTripResponse> getCurrentTrip(
       {required String userId});
 
   Future<TripStartResponse> startTrip(
@@ -50,7 +50,7 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
    RemoteDataSourceImpl({required this.client});
   @override
   Future<UserLoginResponse> loginUser({
-    required String serialNo,
+    required int driverNumber,
     required String password,
   }) async {
 
@@ -59,18 +59,21 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
     final response = await client.request(
         url: AppEndpoints.userLogin,
         method: HttpMethod.POST,
-        data: {'driverNumber': serialNo, 'password': password,'rememberMe':true});
+        data: {'driverNumber': driverNumber, 'password': password,'rememberMe':true});
     print(response.data);
     return UserLoginResponse.fromJson(response.data);
   }
 
   @override
-  Future<UserTripResponse> getUserTrip({required String userId}) async{
-    // TODO: implement getPendingTrip
-    // throw UnimplementedError();
-    String response =
-    await rootBundle.loadString('assets/endpoints/trip_response.json');
-    return UserTripResponse.fromJson(jsonDecode(response));
+  Future<UserTripResponse> getCurrentTrip({required String userId}) async{
+    final response = await client.request(
+        url: AppEndpoints.currentTrip,
+        method: HttpMethod.POST,
+        queryParameters: {
+          'userId':userId,
+        },);
+    print(response.data);
+    return UserTripResponse.fromJson(response.data);
   }
 
   @override

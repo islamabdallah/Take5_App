@@ -27,14 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     saveLastRoute(HomeScreen.routeName);
-    HomeCubit.get(context).getPendingTrip();
+    HomeCubit.get(context).getCurrentTrip();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        if (state is HomeStartTripLoading || state is HomeGetPendingTripLoading) {
+        if (state is HomeStartTripLoading || state is HomeGetCurrentTripLoading) {
           loadingAlertDialog(context);
         }
         if (state is HomeStartTripSuccess) {
@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
           body: Column(
             children: [
               SizedBox(height: 16.h,),
-              if (state != HomeGetPendingTripLoading() && cubit.trip != null)
+              if (state != HomeGetCurrentTripLoading() && cubit.trip != null)
               TripCard(trip: cubit.trip!),
             ],
           ),

@@ -6,17 +6,6 @@ class AppEndpoints {
   // e.g. can be retrieved by `LocalStorageKey.saveUserId`.
   static const String baseUrl = 'http://20.86.97.165/take5/api';
   static const String userLogin = '$baseUrl/LoginAPI/userLogin';
-  static const String allNews = '$baseUrl/News/GetAll';
-  static const String allProducts = '$baseUrl/Product/GetAll';
-  static const String statesAndJobs = '$baseUrl/MasterData/MasterData';
-  static const String userRegister = '$baseUrl/User/Register';
-  static const String userProfile = '$baseUrl/User/Profile';
-  static const String homeData = '$baseUrl/Home/Data';
-  static const String search = '$baseUrl/Question/Search';
-  static const String myQuestions = '$baseUrl/Question/CustomerQuestions';
-  static const String userToken = '$baseUrl/User/Token';
-  static const String postQuestion = '$baseUrl/Question/PostQuestion';
-
-  static const String youtubeApi = 'https://www.googleapis.com/youtube/v3/videos';
+  static const String currentTrip = '$baseUrl/LoginAPI/GetCurrentTripForDriver';
 
 }

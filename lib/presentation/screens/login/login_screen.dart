@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   keyboardType: TextInputType.number,
                                 ),
                                 MyTextFormField(
-                                  controller: _cubit.passwordController,
+                                  controller: _cubit.passwordController..text='Iop123@@',
                                   label: "password".tr(),
                                   errorText: _cubit.errorMessage ==
                                           'خطأ فى كلمة المرور'

@@ -17,11 +17,11 @@ import '../../core/network/device_connectivity.dart';
 
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
-      {required String serialNo, required String password});
+      {required int driverNumber, required String password});
 
   Either<Failure, Unit> clearUser();
 
-  Future<Either<Failure, UserTripResponse>> getPendingTrip(
+  Future<Either<Failure, UserTripResponse>> getCurrentTrip(
       {required String userId});
 
   Future<Either<Failure, TripStartResponse>> startTrip(
@@ -62,15 +62,15 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, UserLoginResponse>> loginUser(
-      {required String serialNo, required String password}) async {
+      {required int driverNumber, required String password}) async {
     //check device connectivity
     if (await deviceConnectivity.isConnected == false) {
       return const Left(DeviceConnectivityFailure());
     }
     try {
       UserLoginResponse result = await remoteDataSource.loginUser(
-          serialNo: serialNo, password: password);
-      localDataSource.cacheUser(result.data);
+          driverNumber: driverNumber, password: password);
+      localDataSource.cacheUser(result.data.userAPIModel);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -91,11 +91,11 @@ class Take5RepositoryImpl extends Take5Repository {
 
   // already online
   @override
-  Future<Either<Failure, UserTripResponse>> getPendingTrip(
+  Future<Either<Failure, UserTripResponse>> getCurrentTrip(
       {required String userId}) async {
     try {
       UserTripResponse result =
-          await remoteDataSource.getUserTrip(userId: userId);
+          await remoteDataSource.getCurrentTrip(userId: userId);
       localDataSource.cacheTrip(result.data); //missed
       return Right(result);
     } on ServerException catch (e) {
