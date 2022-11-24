@@ -122,10 +122,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             child: Column(
                               children: [
                                 MyTextFormField(
-                                  controller: _cubit.phoneNumberController,
+                                  controller: _cubit.serialNumberController,
                                   label: "Id".tr(),
                                   errorText: _cubit.errorMessage ==
-                                          'رقم الهاتف غير مسجل'
+                                          'رقم التعريفي غير مسجل'
                                       ? _cubit.errorMessage
                                       : null,
                                   prefixIcon: Icons.person_outline_sharp,

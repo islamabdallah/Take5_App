@@ -3,12 +3,14 @@ import 'package:flutter/services.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
 import 'package:take5/data/models/responses/trip_pending_response/user_trip_response.dart';
 import 'package:take5/data/models/responses/trip_start_response/trip_start_response.dart';
+import '../../core/constants/app_endpoints.dart';
+import '../../core/utils/services/dio_client.dart';
 import '../models/all_trip_steps/all_trip_steps.dart';
 import '../models/responses/user_login_response/user_login_response.dart';
 
 abstract class RemoteDataSource {
   Future<UserLoginResponse> loginUser(
-      {required String mobileNo, required String password});
+      {required String serialNo, required String password});
 
   Future<UserTripResponse> getUserTrip(
       {required String userId});
@@ -43,17 +45,23 @@ abstract class RemoteDataSource {
 //   }
 // }
 
-class FakeRemoteDataSourceImpl extends RemoteDataSource {
+class  RemoteDataSourceImpl  extends RemoteDataSource {
+  final DioClient client;
+   RemoteDataSourceImpl({required this.client});
   @override
   Future<UserLoginResponse> loginUser({
-    required String mobileNo,
+    required String serialNo,
     required String password,
   }) async {
 
-    String response =
-        await rootBundle.loadString('assets/endpoints/login_response.json');
-
-    return UserLoginResponse.fromJson(jsonDecode(response));
+    // String response =
+    //     await rootBundle.loadString('assets/endpoints/login_response.json');
+    final response = await client.request(
+        url: AppEndpoints.userLogin,
+        method: HttpMethod.POST,
+        data: {'driverNumber': serialNo, 'password': password,'rememberMe':true});
+    print(response.data);
+    return UserLoginResponse.fromJson(response.data);
   }
 
   @override
