@@ -8,6 +8,7 @@ import 'package:take5/core/constants/app_constants.dart';
 import '../../../../data/models/trip/trip.dart';
 import '../../../../logic/home_cubit/home_cubit.dart';
 import '../../trip/trip.dart';
+import 'item_of_description.dart';
 
 class TripCard extends StatelessWidget {
   final Trip trip;
@@ -40,150 +41,44 @@ class TripCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'رقم الرحلة',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
-                    ),
-                    Icon(Icons.event_note_sharp),
-                  ],
-                ),
-                Text(
-                  HomeCubit.get(context).trip!.tripNumber.toString(),
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Divider(
-                  thickness: 0.3.h,
-                  color: Colors.grey,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'حالة الرحلة',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
-                    ),
-                    Image.asset(
-                      'assets/icons/trip_status.png',
-                      color: AppColors.mainColor,
-                      height: 24.w,
-                    )
-                  ],
-                ),
-                Text(
-                  'في الانتظار',
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Divider(
-                  thickness: 0.3.h,
-                  color: Colors.grey,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'اسم السائق',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
-                    ),
-                    Icon(Icons.person),
-                  ],
-                ),
-                Text(
-                  'اسماء',
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Divider(
-                  thickness: 0.3.h,
-                  color: Colors.grey,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'مكان التوجه',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
-                    ),
-                    Icon(Icons.location_on_rounded),
-                  ],
-                ),
-                Text(
-                  'اسكندريه ميامي',
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Divider(
-                  thickness: 0.3.h,
-                  color: Colors.grey,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'حالة الشبكة',
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
-                    ),
-                    Icon(Icons.wifi),
-                  ],
-                ),
-                Text(
-                  ' يوجد شبكة',
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
-                SizedBox(
-                  height: 8.h,
-                ),
-                Divider(
-                  thickness: 0.3.h,
-                  color: Colors.grey,
-                ),
+                ItemOfTripDescription(title:'رقم الرحلة' ,icon:const Icon(Icons.event_note_sharp) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
+                ItemOfTripDescription(title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: HomeCubit.get(context).trip!.tripStatus,),
+
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                //   children: [
+                //     Text(
+                //       'حالة الرحلة',
+                //       style: TextStyle(
+                //           color: Colors.black,
+                //           fontWeight: FontWeight.w700,
+                //           fontSize: 18.sp),
+                //     ),
+                //     Image.asset(
+                //       'assets/icons/trip_status.png',
+                //       color: AppColors.mainColor,
+                //       height: 24.w,
+                //     )
+                //   ],
+                // ),
+                // Text(
+                //   'في الانتظار',
+                //   //AppConstants.user.driverName,
+                //   style: TextStyle(
+                //       color: AppColors.mainColor,
+                //       fontWeight: FontWeight.w700,
+                //       fontSize: 16.sp),
+                // ),
+                // SizedBox(
+                //   height: 8.h,
+                // ),
+                // Divider(
+                //   thickness: 0.3.h,
+                //   color: Colors.grey,
+                // ),
+                ItemOfTripDescription(title:'اسم السائق' ,icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
+                ItemOfTripDescription(title:'مكان التوجه' ,icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
+                ItemOfTripDescription(title:'حالة الشبكة' ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString(),),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -243,15 +138,4 @@ class TripCard extends StatelessWidget {
     );
   }
 }
-/*
-ElevatedButton(
-              onPressed: () {
-                HomeCubit.get(context).startTrip();
-                final service = FlutterBackgroundService();
-                service.startService();
-                Navigator.pushReplacementNamed(
-                    context, TripScreen.routeName);
-              },
-              child: const Text('ابدأ الرحلة'),
-            ),
- */
+

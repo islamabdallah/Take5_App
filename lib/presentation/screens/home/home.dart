@@ -39,8 +39,8 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (state is HomeStartTripSuccess) {
           Navigator.pop(context);
-          // Navigator.pushNamedAndRemoveUntil(
-          //     context, TripScreen.routeName, (route) => false);
+           Navigator.pushNamedAndRemoveUntil(
+              context, TripScreen.routeName, (route) => false);
         }
       },
       builder: (context, state) {

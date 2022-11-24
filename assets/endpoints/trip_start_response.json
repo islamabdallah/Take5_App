@@ -3,75 +3,27 @@
   "data": {
     "stepOneQuestions": [
       {
-        "id": 1,
-        "question": "هل السيارة علي أرض مستوية",
-        "answer": null
-      },
-      {
         "id": 2,
-        "question": "هل جميع المخارج والمداخل أمنة؟",
+        "question": "هل جميع  والمداخل أمنة؟",
+        "step": 1,
         "answer": null
       },
       {
         "id": 3,
-        "question": "هل جميع المخارج أمنة؟",
-        "answer": null
-      },
-      {
-        "id": 4,
-        "question": "هل السيارة علي أرض مستوية",
-        "answer": null
-      },
-      {
-        "id": 5,
-        "question": "هل جميع المخارج والمداخل أمنة؟",
-        "answer": null
-      },
-      {
-        "id": 6,
-        "question": "هل جميع المخارج أمنة؟",
-        "answer": null
-      },
-      {
-        "id": 7,
-        "question": "هل جميع المخارج والمداخل أمنة؟",
-        "answer": null
-      },
-      {
-        "id": 8,
-        "question": "هل جميع المخارج أمنة؟",
+        "question": "هل جميع المداخل أمنة؟",
+        "step": 1,
         "answer": null
       }
     ],
     "stepTwoQuestions": [
       {
         "id": 4,
-        "question":"هل قابلت صاحب الموقع؟",
-        "answer": null
-      },
-      {
-        "id": 5,
-        "question":"هل جمعت الادوات اللازمة؟",
+        "question": "هل قابلت صاحب العمل؟",
+        "step": 0,
         "answer": null
       }
     ],
-    "dangerControlsWithCategoryModels": [
-      {
-        "dangerCategory": "الموقع",
-        "dangerCategoryId": 1,
-        "dangerModels": [
-          {
-            "dangerId": 1,
-            "dangerName": "الاماكن الضيقة",
-            "controls": []
-          },
-          {
-            "dangerId": 2,
-            "dangerName": "استخدام الالات الحادة",
-            "controls": []
-          }
-        ]
-      },
+    "dangerWithCategoryAPIModels": [
       {
         "dangerCategory": "الصحة",
         "dangerCategoryId": 2,
@@ -79,14 +31,14 @@
           {
             "dangerId": 3,
             "dangerName": "تناول احمال لاسفل",
-            "controls": [
+            "measureControlAPIs": [
               {
-                "MeasureControlId": 5,
-                "MeasureControlName": "استخدام مهمات الوقاية الشخصية"
+                "measureControlId": 5,
+                "measureControlName": "استخدام مهمات الوقاية الشخصية"
               },
               {
-                "MeasureControlId": 6,
-                "MeasureControlName": "التعامل مع الخطر "
+                "measureControlId": 6,
+                "measureControlName": "التعامل مع الخطر "
               }
             ]
           }
@@ -99,36 +51,62 @@
           {
             "dangerId": 4,
             "dangerName": "حمل معلق",
-            "controls": [
+            "measureControlAPIs": [
               {
-                "MeasureControlId": 7,
-                "MeasureControlName": "التواصل مع المشرف"
+                "measureControlId": 7,
+                "measureControlName": "التواصل مع المشرف"
               },
               {
-                "MeasureControlId": 8,
-                "MeasureControlName": "عزل الخطر"
+                "measureControlId": 8,
+                "measureControlName": "عزل الخطر"
               },
               {
-                "MeasureControlId": 9,
-                "MeasureControlName": "التواصل مع صاحب الموقع"
+                "measureControlId": 9,
+                "measureControlName": "التواصل مع صاحب الموقع"
               },
               {
-                "MeasureControlId": 10,
-                "MeasureControlName": "تجنب الخطر"
+                "measureControlId": 10,
+                "measureControlName": "تجنب الخطر"
               }
             ]
           },
           {
             "dangerId": 5,
             "dangerName": "حائط منخفض",
-            "controls": []
+            "measureControlAPIs": []
           },
           {
-            "dangerId": 6,
-            "dangerName": "اصطدام",
-            "controls": []
+            "dangerId": 15,
+            "dangerName": "Danger1",
+            "measureControlAPIs": []
           }
         ]
+      }
+    ],
+    "drivers": [
+      {
+        "id": 666,
+        "fullName": "Driver666"
+      },
+      {
+        "id": 888,
+        "fullName": "testDriver8"
+      },
+      {
+        "id": 1003,
+        "fullName": "testDriver4"
+      },
+      {
+        "id": 1234,
+        "fullName": "Driver4"
+      },
+      {
+        "id": 2001,
+        "fullName": "testDriver2testDriver2testDriver2testDriver2"
+      },
+      {
+        "id": 2005,
+        "fullName": "Driver2"
       }
     ]
   }

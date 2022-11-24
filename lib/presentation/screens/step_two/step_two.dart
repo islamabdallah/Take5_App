@@ -59,6 +59,7 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                         child: ListView.builder(
                             itemBuilder: (context, index) => TrueFalseQuestion(
                               questionAnswer: cubit.step2Answers[index],
+                              index: index+1,
                             ),
                           itemCount: cubit.step2Answers.length,
                           ),

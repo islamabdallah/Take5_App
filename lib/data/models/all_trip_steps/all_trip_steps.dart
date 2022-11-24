@@ -5,25 +5,26 @@ import '../requests/step_one_complete_request/step_one_complete_request.dart';
 import '../requests/step_two_complete_request/step_two_complete_request.dart';
 import '../requests/step_two_start_request/step_two_start_request.dart';
 import '../requests/trip_start_request/trip_start_request.dart';
+import '../take5_together/take5_together.dart';
 
 
-part 'bid_model.freezed.dart';//same name of file
-part 'bid_model.g.dart';
+part 'all_trip_steps.freezed.dart';//same name of file
+part 'all_trip_steps.g.dart';
 
 @freezed
-class CollectionModel with _$CollectionModel{
-  const factory CollectionModel({
+class AllTripStepsModel with _$AllTripStepsModel{
+  const factory AllTripStepsModel({
     String? userId,
     int? tripId,
     int? jobsiteId,
-
     //todo end
     DestinationArrivedRequest? destinationArrivedRequest,
     StepOneCompleteRequest? stepOneCompleteRequest,
     StepTwoStartRequest? stepTwoStartRequest,
     StepTwoCompleteRequest? stepTwoCompleteRequest,
+    Take5TogetherModel? take5TogetherAPIModels,
+    String? endStatus
+  }) = _AllTripStepsModel;
 
-  }) = _CollectionModel;
-
-  factory CollectionModel.fromJson(Map<String, dynamic> json) => _$CollectionModelFromJson(json);
+  factory AllTripStepsModel.fromJson(Map<String, dynamic> json) => _$AllTripStepsModelFromJson(json);
 }

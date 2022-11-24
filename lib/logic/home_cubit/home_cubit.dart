@@ -1,10 +1,5 @@
-import 'package:bloc/bloc.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
-
-import '../../core/constants/app_constants.dart';
 import '../../data/models/trip/trip.dart';
 import '../../data/repositories/take5_repository.dart';
 import 'home_states.dart';

@@ -1,11 +1,6 @@
 import 'package:bloc/bloc.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
-
-import '../../core/constants/app_constants.dart';
 import '../../core/utils/services/loaction_service.dart';
 import '../../data/repositories/take5_repository.dart';
 import 'trip_states.dart';
@@ -21,7 +16,9 @@ class TripCubit extends Cubit<TripStates> {
   start() async {
     emit(StartTripLoadingTripState());
     var loc = LocationService();
+
     p = await loc.getCurrentLocation();
+    print(p);
     Position pp =
     Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
     d = loc.getDistance(p!, pp);
@@ -35,7 +32,6 @@ class TripCubit extends Cubit<TripStates> {
       if(d!=null && d!<1000 )
         {
           enableButton();
-
         }
       emit(StartTripSuccessTripState());//setstate
     }, 100);

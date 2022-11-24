@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:take5/core/constants/app_constants.dart';
-import 'package:take5/data/datasources/local_data_source.dart';
 import 'package:take5/presentation/widgets/drawer_widget.dart';
 import 'package:take5/presentation/widgets/powered_by_cemex.dart';
-
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
-import '../../../core/utils/services/loaction_service.dart';
 import '../../../injection_container.dart';
-
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
 import '../../utils/helpers/helpers.dart';
-import '../step_one_questions/step_one_questions.dart';
+import '../step_one/step_one_questions.dart';
+
 
 class TripScreen extends StatefulWidget {
   static const routeName = 'TripScreen';
@@ -49,15 +42,15 @@ class _TripScreenState extends State<TripScreen> {
             appBar: AppBar(
               leading: Builder(
                   builder: (context) {
-                    return IconButton(icon: Icon(Icons.menu_open),onPressed: (){
+                    return IconButton(icon:const Icon(Icons.menu_open),onPressed: (){
                       Scaffold.of(context).openDrawer();
                     });
                   }
               ),
               toolbarHeight: 80,
               elevation: 0,
-              iconTheme: IconThemeData(color: AppColors.redColor),
-              title: Text(
+              iconTheme:const IconThemeData(color: AppColors.redColor),
+              title:const Text(
                 'المسافة',
                 style: TextStyle(color: AppColors.redColor),
               ),
@@ -67,13 +60,13 @@ class _TripScreenState extends State<TripScreen> {
             body: Center(
               child: Column(
                 children: [
-                  Spacer(),
+                 const Spacer(),
                   Container(
                     width: 274.w,
                     height: 400.h,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(8),
-                      boxShadow: [
+                      boxShadow:const [
                         BoxShadow(
                           color: Color(0x3f000000),
                           blurRadius: 8,
@@ -84,8 +77,8 @@ class _TripScreenState extends State<TripScreen> {
                     ),
                     child:
                     state is StartTripLoadingTripState?
-                      Center(child: CircularProgressIndicator())
-                          :
+                     const Center(child: CircularProgressIndicator())
+                       :
                     Column(
                       children: [
                         Container(
@@ -97,7 +90,7 @@ class _TripScreenState extends State<TripScreen> {
                         Text(
                           " متبقي ${cubit.d?.toInt()} متر ",
                           textAlign: TextAlign.center,
-                          style: TextStyle(
+                          style:const TextStyle(
                             color: Color(0xff5d5d5d),
                             fontSize: 18,
                             fontWeight: FontWeight.w700,
@@ -116,7 +109,7 @@ class _TripScreenState extends State<TripScreen> {
                                         (route) => false);
                                   }
                                 : null,
-                            child: const Text('املأ الاستمارة'),
+                            child: Text('املأ الاستمارة'),
                             style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(8.r), // <-- Radius
@@ -128,8 +121,8 @@ class _TripScreenState extends State<TripScreen> {
                       ],
                     ),
                   ),
-                  Spacer(flex: 2,),
-                  PoweredByCemex(),
+                 const Spacer(flex: 2,),
+                  const PoweredByCemex(),
                   SizedBox(height: 20.h,),
                 ],
               ),

@@ -8,21 +8,46 @@ import '../../data/models/answer/answer.dart';
 
 class TrueFalseQuestion extends StatelessWidget {
   final Answer questionAnswer;
-  const TrueFalseQuestion({Key? key,required this.questionAnswer}) : super(key: key);
+  final int index;
+  const TrueFalseQuestion({Key? key,required this.questionAnswer,required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FormBuilderRadioGroup (
+    return FormBuilderRadioGroup(
       name: 'question',
       decoration:
       InputDecoration(
-         // enabled:false,
-          labelText: questionAnswer.question,
-        labelStyle:TextStyle(
-          color: Colors.black,
-            fontSize: 20.sp,
-          fontWeight: FontWeight.w400
-        )
+          border:const UnderlineInputBorder(
+              borderSide:BorderSide.none
+          ),
+          label: Row(
+            children: [
+              CircleAvatar(
+                backgroundColor: AppColors.mainColor,
+                radius:14.h ,
+                child:  Center(
+                  child: Text(
+                    index.toString(),style:const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w700
+                  ),),
+                ),),
+              SizedBox(
+                width: 10.w,
+              ),
+              Text(
+                  questionAnswer.question,style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontSize: 22.sp
+              )),
+            ],
+          ),
+         // labelText: questionAnswer.question,
+        // labelStyle:TextStyle(
+        //   color: Colors.black,
+        //     fontSize: 20.sp,
+        //   fontWeight: FontWeight.w400
+        // )
       ),
       onChanged: (value){
         questionAnswer.answer=value;
@@ -32,7 +57,10 @@ class TrueFalseQuestion extends StatelessWidget {
       options: [true,false]
           .map((ans) => FormBuilderFieldOption(
         value: ans,
-        child: Text(ans?'نعم':'لا'),
+        child: Text(ans?'نعم':'لا',style: TextStyle(
+            fontWeight: FontWeight.w400,
+            fontSize: 20.sp
+        )),
       ))
           .toList(growable: false),
     );

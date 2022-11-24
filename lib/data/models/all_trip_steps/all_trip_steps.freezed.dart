@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'bid_model.dart';
+part of 'all_trip_steps.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-CollectionModel _$CollectionModelFromJson(Map<String, dynamic> json) {
-  return _CollectionModel.fromJson(json);
+AllTripStepsModel _$AllTripStepsModelFromJson(Map<String, dynamic> json) {
+  return _AllTripStepsModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$CollectionModel {
+mixin _$AllTripStepsModel {
   String? get userId => throw _privateConstructorUsedError;
   int? get tripId => throw _privateConstructorUsedError;
   int? get jobsiteId => throw _privateConstructorUsedError; //todo end
@@ -31,18 +31,21 @@ mixin _$CollectionModel {
       throw _privateConstructorUsedError;
   StepTwoCompleteRequest? get stepTwoCompleteRequest =>
       throw _privateConstructorUsedError;
+  Take5TogetherModel? get take5TogetherAPIModels =>
+      throw _privateConstructorUsedError;
+  String? get endStatus => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $CollectionModelCopyWith<CollectionModel> get copyWith =>
+  $AllTripStepsModelCopyWith<AllTripStepsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CollectionModelCopyWith<$Res> {
-  factory $CollectionModelCopyWith(
-          CollectionModel value, $Res Function(CollectionModel) then) =
-      _$CollectionModelCopyWithImpl<$Res, CollectionModel>;
+abstract class $AllTripStepsModelCopyWith<$Res> {
+  factory $AllTripStepsModelCopyWith(
+          AllTripStepsModel value, $Res Function(AllTripStepsModel) then) =
+      _$AllTripStepsModelCopyWithImpl<$Res, AllTripStepsModel>;
   @useResult
   $Res call(
       {String? userId,
@@ -51,18 +54,21 @@ abstract class $CollectionModelCopyWith<$Res> {
       DestinationArrivedRequest? destinationArrivedRequest,
       StepOneCompleteRequest? stepOneCompleteRequest,
       StepTwoStartRequest? stepTwoStartRequest,
-      StepTwoCompleteRequest? stepTwoCompleteRequest});
+      StepTwoCompleteRequest? stepTwoCompleteRequest,
+      Take5TogetherModel? take5TogetherAPIModels,
+      String? endStatus});
 
   $DestinationArrivedRequestCopyWith<$Res>? get destinationArrivedRequest;
   $StepOneCompleteRequestCopyWith<$Res>? get stepOneCompleteRequest;
   $StepTwoStartRequestCopyWith<$Res>? get stepTwoStartRequest;
   $StepTwoCompleteRequestCopyWith<$Res>? get stepTwoCompleteRequest;
+  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
 
 /// @nodoc
-class _$CollectionModelCopyWithImpl<$Res, $Val extends CollectionModel>
-    implements $CollectionModelCopyWith<$Res> {
-  _$CollectionModelCopyWithImpl(this._value, this._then);
+class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
+    implements $AllTripStepsModelCopyWith<$Res> {
+  _$AllTripStepsModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -79,6 +85,8 @@ class _$CollectionModelCopyWithImpl<$Res, $Val extends CollectionModel>
     Object? stepOneCompleteRequest = freezed,
     Object? stepTwoStartRequest = freezed,
     Object? stepTwoCompleteRequest = freezed,
+    Object? take5TogetherAPIModels = freezed,
+    Object? endStatus = freezed,
   }) {
     return _then(_value.copyWith(
       userId: freezed == userId
@@ -109,6 +117,14 @@ class _$CollectionModelCopyWithImpl<$Res, $Val extends CollectionModel>
           ? _value.stepTwoCompleteRequest
           : stepTwoCompleteRequest // ignore: cast_nullable_to_non_nullable
               as StepTwoCompleteRequest?,
+      take5TogetherAPIModels: freezed == take5TogetherAPIModels
+          ? _value.take5TogetherAPIModels
+          : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
+              as Take5TogetherModel?,
+      endStatus: freezed == endStatus
+          ? _value.endStatus
+          : endStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 
@@ -163,14 +179,27 @@ class _$CollectionModelCopyWithImpl<$Res, $Val extends CollectionModel>
       return _then(_value.copyWith(stepTwoCompleteRequest: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels {
+    if (_value.take5TogetherAPIModels == null) {
+      return null;
+    }
+
+    return $Take5TogetherModelCopyWith<$Res>(_value.take5TogetherAPIModels!,
+        (value) {
+      return _then(_value.copyWith(take5TogetherAPIModels: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
-abstract class _$$_CollectionModelCopyWith<$Res>
-    implements $CollectionModelCopyWith<$Res> {
-  factory _$$_CollectionModelCopyWith(
-          _$_CollectionModel value, $Res Function(_$_CollectionModel) then) =
-      __$$_CollectionModelCopyWithImpl<$Res>;
+abstract class _$$_AllTripStepsModelCopyWith<$Res>
+    implements $AllTripStepsModelCopyWith<$Res> {
+  factory _$$_AllTripStepsModelCopyWith(_$_AllTripStepsModel value,
+          $Res Function(_$_AllTripStepsModel) then) =
+      __$$_AllTripStepsModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -180,7 +209,9 @@ abstract class _$$_CollectionModelCopyWith<$Res>
       DestinationArrivedRequest? destinationArrivedRequest,
       StepOneCompleteRequest? stepOneCompleteRequest,
       StepTwoStartRequest? stepTwoStartRequest,
-      StepTwoCompleteRequest? stepTwoCompleteRequest});
+      StepTwoCompleteRequest? stepTwoCompleteRequest,
+      Take5TogetherModel? take5TogetherAPIModels,
+      String? endStatus});
 
   @override
   $DestinationArrivedRequestCopyWith<$Res>? get destinationArrivedRequest;
@@ -190,14 +221,16 @@ abstract class _$$_CollectionModelCopyWith<$Res>
   $StepTwoStartRequestCopyWith<$Res>? get stepTwoStartRequest;
   @override
   $StepTwoCompleteRequestCopyWith<$Res>? get stepTwoCompleteRequest;
+  @override
+  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
 
 /// @nodoc
-class __$$_CollectionModelCopyWithImpl<$Res>
-    extends _$CollectionModelCopyWithImpl<$Res, _$_CollectionModel>
-    implements _$$_CollectionModelCopyWith<$Res> {
-  __$$_CollectionModelCopyWithImpl(
-      _$_CollectionModel _value, $Res Function(_$_CollectionModel) _then)
+class __$$_AllTripStepsModelCopyWithImpl<$Res>
+    extends _$AllTripStepsModelCopyWithImpl<$Res, _$_AllTripStepsModel>
+    implements _$$_AllTripStepsModelCopyWith<$Res> {
+  __$$_AllTripStepsModelCopyWithImpl(
+      _$_AllTripStepsModel _value, $Res Function(_$_AllTripStepsModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -210,8 +243,10 @@ class __$$_CollectionModelCopyWithImpl<$Res>
     Object? stepOneCompleteRequest = freezed,
     Object? stepTwoStartRequest = freezed,
     Object? stepTwoCompleteRequest = freezed,
+    Object? take5TogetherAPIModels = freezed,
+    Object? endStatus = freezed,
   }) {
-    return _then(_$_CollectionModel(
+    return _then(_$_AllTripStepsModel(
       userId: freezed == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -240,24 +275,34 @@ class __$$_CollectionModelCopyWithImpl<$Res>
           ? _value.stepTwoCompleteRequest
           : stepTwoCompleteRequest // ignore: cast_nullable_to_non_nullable
               as StepTwoCompleteRequest?,
+      take5TogetherAPIModels: freezed == take5TogetherAPIModels
+          ? _value.take5TogetherAPIModels
+          : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
+              as Take5TogetherModel?,
+      endStatus: freezed == endStatus
+          ? _value.endStatus
+          : endStatus // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CollectionModel implements _CollectionModel {
-  const _$_CollectionModel(
+class _$_AllTripStepsModel implements _AllTripStepsModel {
+  const _$_AllTripStepsModel(
       {this.userId,
       this.tripId,
       this.jobsiteId,
       this.destinationArrivedRequest,
       this.stepOneCompleteRequest,
       this.stepTwoStartRequest,
-      this.stepTwoCompleteRequest});
+      this.stepTwoCompleteRequest,
+      this.take5TogetherAPIModels,
+      this.endStatus});
 
-  factory _$_CollectionModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CollectionModelFromJson(json);
+  factory _$_AllTripStepsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_AllTripStepsModelFromJson(json);
 
   @override
   final String? userId;
@@ -274,17 +319,21 @@ class _$_CollectionModel implements _CollectionModel {
   final StepTwoStartRequest? stepTwoStartRequest;
   @override
   final StepTwoCompleteRequest? stepTwoCompleteRequest;
+  @override
+  final Take5TogetherModel? take5TogetherAPIModels;
+  @override
+  final String? endStatus;
 
   @override
   String toString() {
-    return 'CollectionModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, destinationArrivedRequest: $destinationArrivedRequest, stepOneCompleteRequest: $stepOneCompleteRequest, stepTwoStartRequest: $stepTwoStartRequest, stepTwoCompleteRequest: $stepTwoCompleteRequest)';
+    return 'AllTripStepsModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, destinationArrivedRequest: $destinationArrivedRequest, stepOneCompleteRequest: $stepOneCompleteRequest, stepTwoStartRequest: $stepTwoStartRequest, stepTwoCompleteRequest: $stepTwoCompleteRequest, take5TogetherAPIModels: $take5TogetherAPIModels, endStatus: $endStatus)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CollectionModel &&
+            other is _$_AllTripStepsModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobsiteId, jobsiteId) ||
@@ -297,7 +346,11 @@ class _$_CollectionModel implements _CollectionModel {
             (identical(other.stepTwoStartRequest, stepTwoStartRequest) ||
                 other.stepTwoStartRequest == stepTwoStartRequest) &&
             (identical(other.stepTwoCompleteRequest, stepTwoCompleteRequest) ||
-                other.stepTwoCompleteRequest == stepTwoCompleteRequest));
+                other.stepTwoCompleteRequest == stepTwoCompleteRequest) &&
+            (identical(other.take5TogetherAPIModels, take5TogetherAPIModels) ||
+                other.take5TogetherAPIModels == take5TogetherAPIModels) &&
+            (identical(other.endStatus, endStatus) ||
+                other.endStatus == endStatus));
   }
 
   @JsonKey(ignore: true)
@@ -310,35 +363,39 @@ class _$_CollectionModel implements _CollectionModel {
       destinationArrivedRequest,
       stepOneCompleteRequest,
       stepTwoStartRequest,
-      stepTwoCompleteRequest);
+      stepTwoCompleteRequest,
+      take5TogetherAPIModels,
+      endStatus);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CollectionModelCopyWith<_$_CollectionModel> get copyWith =>
-      __$$_CollectionModelCopyWithImpl<_$_CollectionModel>(this, _$identity);
+  _$$_AllTripStepsModelCopyWith<_$_AllTripStepsModel> get copyWith =>
+      __$$_AllTripStepsModelCopyWithImpl<_$_AllTripStepsModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CollectionModelToJson(
+    return _$$_AllTripStepsModelToJson(
       this,
     );
   }
 }
 
-abstract class _CollectionModel implements CollectionModel {
-  const factory _CollectionModel(
-          {final String? userId,
-          final int? tripId,
-          final int? jobsiteId,
-          final DestinationArrivedRequest? destinationArrivedRequest,
-          final StepOneCompleteRequest? stepOneCompleteRequest,
-          final StepTwoStartRequest? stepTwoStartRequest,
-          final StepTwoCompleteRequest? stepTwoCompleteRequest}) =
-      _$_CollectionModel;
+abstract class _AllTripStepsModel implements AllTripStepsModel {
+  const factory _AllTripStepsModel(
+      {final String? userId,
+      final int? tripId,
+      final int? jobsiteId,
+      final DestinationArrivedRequest? destinationArrivedRequest,
+      final StepOneCompleteRequest? stepOneCompleteRequest,
+      final StepTwoStartRequest? stepTwoStartRequest,
+      final StepTwoCompleteRequest? stepTwoCompleteRequest,
+      final Take5TogetherModel? take5TogetherAPIModels,
+      final String? endStatus}) = _$_AllTripStepsModel;
 
-  factory _CollectionModel.fromJson(Map<String, dynamic> json) =
-      _$_CollectionModel.fromJson;
+  factory _AllTripStepsModel.fromJson(Map<String, dynamic> json) =
+      _$_AllTripStepsModel.fromJson;
 
   @override
   String? get userId;
@@ -355,7 +412,11 @@ abstract class _CollectionModel implements CollectionModel {
   @override
   StepTwoCompleteRequest? get stepTwoCompleteRequest;
   @override
+  Take5TogetherModel? get take5TogetherAPIModels;
+  @override
+  String? get endStatus;
+  @override
   @JsonKey(ignore: true)
-  _$$_CollectionModelCopyWith<_$_CollectionModel> get copyWith =>
+  _$$_AllTripStepsModelCopyWith<_$_AllTripStepsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

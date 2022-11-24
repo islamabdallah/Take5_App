@@ -68,15 +68,15 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
               appBar: AppBar(
                 leading: Builder(
                     builder: (context) {
-                      return IconButton(icon: Icon(Icons.menu_open),onPressed: (){
+                      return IconButton(icon:const Icon(Icons.menu_open),onPressed: (){
                         Scaffold.of(context).openDrawer();
                       });
                     }
                 ),
                 toolbarHeight: 80,
                 elevation: 0,
-                iconTheme: IconThemeData(color: AppColors.redColor),
-                title: Text(
+                iconTheme:const IconThemeData(color: AppColors.redColor),
+                title:const Text(
                   'المرحله الاولى',
                   style: TextStyle(color: AppColors.redColor),
                 ),
@@ -97,9 +97,9 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                             CircleAvatar(
                               backgroundColor: AppColors.mainColor,
                               radius:14.h ,
-                              child:  Center(
+                              child:const Center(
                                 child: Text(
-                                  '3',style:const TextStyle(
+                                  '3',style:TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w700
                                 ),),
@@ -109,7 +109,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                             ),
                             Text('جاوب علي الاسئلة الاتية',style: TextStyle(
                                 fontWeight: FontWeight.w700,
-                                fontSize: 16.sp
+                                fontSize: 18.sp
                             )),
                           ],
                         ),
@@ -118,10 +118,11 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                           child: CircularProgressIndicator(),
                         )
                         :Padding(
-                            padding:EdgeInsets.symmetric(vertical: 0,horizontal:30.w ),
+                            padding:EdgeInsets.symmetric(vertical: 0,horizontal:35.w ),
                             child: Column(
                               children: List.generate(cubit.step1Answers.length, (index) => TrueFalseQuestion(
                                 questionAnswer: cubit.step1Answers[index],
+                                index: index+1,
                               ),),
                             )
                         ),
@@ -156,7 +157,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                         height: 200,
                         child: ListView.builder(
                           itemCount: cubit.dangers.length,
-                          itemBuilder:(context,index)=>SelectedDangerWidget(),
+                          itemBuilder:(context,index)=>const SelectedDangerWidget(),
                         ),
                       ),
                       ElevatedButton(

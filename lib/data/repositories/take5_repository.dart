@@ -1,9 +1,8 @@
 import 'package:dartz/dartz.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
-import '../datasources/boxes.dart';
 import '../datasources/local_data_source.dart';
-import '../models/big_model/bid_model.dart';
+import '../models/all_trip_steps/all_trip_steps.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
 import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
@@ -15,7 +14,6 @@ import '../models/responses/user_login_response/user_login_response.dart';
 import '../../core/errors/failures.dart';
 import '../datasources/remote_data_source.dart';
 import '../../core/network/device_connectivity.dart';
-import '../../core/network/network_availability.dart';
 
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
@@ -127,40 +125,40 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
+      allTripStepsModel = allTripStepsModel.copyWith(
           destinationArrivedRequest: destinationArrivedRequest);
       try {
-        await remoteDataSource.sendCollection(collectionModel: collectionModel);
+        await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
         return const Right(unit);
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheCollection(collectionModel);
+        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel collectionModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        collectionModel =AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        collectionModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       collectionModel = collectionModel.copyWith(
           destinationArrivedRequest: destinationArrivedRequest);
-      localDataSource.cacheCollection(collectionModel);
+      localDataSource.cacheAllTripStepsModel(collectionModel);
       return const Right(unit);
     }
   }
@@ -174,40 +172,40 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
+      allTripStepsModel = allTripStepsModel.copyWith(
           stepOneCompleteRequest: stepOneCompleteRequest);
       try {
-        await remoteDataSource.sendCollection(collectionModel: collectionModel);
+        await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
         return const Right(unit);
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheCollection(collectionModel);
+        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
+      allTripStepsModel = allTripStepsModel.copyWith(
           stepOneCompleteRequest: stepOneCompleteRequest);
-      localDataSource.cacheCollection(collectionModel);
+      localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right(unit);
     }
   }
@@ -221,40 +219,40 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel  allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel =
-          collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+      allTripStepsModel =
+          allTripStepsModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
       try {
-        await remoteDataSource.sendCollection(collectionModel: collectionModel);
+        await remoteDataSource.sendCollection(allTripStepsModel:  allTripStepsModel);
         //done
         localDataSource.clearCollection();
         return const Right(unit);
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheCollection(collectionModel);
+        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel =
-          collectionModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
-      localDataSource.cacheCollection(collectionModel);
+      allTripStepsModel =
+          allTripStepsModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+      localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right(unit);
     }
   }
@@ -268,40 +266,40 @@ class Take5RepositoryImpl extends Take5Repository {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
       }
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel() == null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
+      allTripStepsModel = allTripStepsModel.copyWith(
           stepTwoCompleteRequest: stepTwoCompleteRequest);
       try {
-        await remoteDataSource.sendCollection(collectionModel: collectionModel);
+        await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
         return const Right(unit);
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheCollection(collectionModel);
+        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
         return const Right(unit);
       }
     } else {
-      CollectionModel collectionModel;
-      if (localDataSource.getCachedCollection() == null) {
-        collectionModel = CollectionModel(
+      AllTripStepsModel allTripStepsModel;
+      if (localDataSource.getCachedAllTripStepsModel()== null) {
+        allTripStepsModel = AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedCollection()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
+      allTripStepsModel =allTripStepsModel.copyWith(
           stepTwoCompleteRequest: stepTwoCompleteRequest);
-      localDataSource.cacheCollection(collectionModel);
+      localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right(unit);
     }
   }
@@ -319,10 +317,10 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, Unit>> sendCollection() async {
     try {
-      CollectionModel? collectionModel = localDataSource.getCachedCollection();
+      AllTripStepsModel? collectionModel = localDataSource.getCachedAllTripStepsModel();
 
       if (collectionModel != null) {
-        await remoteDataSource.sendCollection(collectionModel: collectionModel);
+        await remoteDataSource.sendCollection(allTripStepsModel: collectionModel);
       }
       //done
       localDataSource.clearCollection();
@@ -335,9 +333,9 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, String>> checkTripStatus() async {
     try {
-      CollectionModel? collectionModel = localDataSource.getCachedCollection();
+      AllTripStepsModel? allTripStepsModel= localDataSource.getCachedAllTripStepsModel();
       String result = await remoteDataSource.checkTripStatus(
-          collectionModel: collectionModel);
+          allTripStepsModel: allTripStepsModel);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

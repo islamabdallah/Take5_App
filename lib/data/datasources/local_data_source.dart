@@ -1,21 +1,7 @@
-import 'dart:convert';
-
-import 'package:hive/hive.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-import 'package:hive_flutter/hive_flutter.dart';
-import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/datasources/boxes.dart';
-import 'package:take5/data/models/big_model/bid_model.dart';
 import '../../core/constants/keys.dart';
-import '../../core/utils/services/local_storage_service.dart';
-import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
-import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
-import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
-import '../models/requests/step_two_start_request/step_two_start_request.dart';
-import '../models/requests/trip_start_request/trip_start_request.dart';
+import '../models/all_trip_steps/all_trip_steps.dart';
 import '../models/responses/trip_start_response/trip_start_response.dart';
-import '../models/responses/user_login_response/user_login_response.dart';
-import 'package:path_provider/path_provider.dart' as path_provider;
 
 import '../models/trip/trip.dart';
 import '../models/user/user.dart';
@@ -33,8 +19,8 @@ abstract class LocalDataSource {
   TakeFiveSurvey? getCachedTakeFiveSurvey();
 
 
-  void cacheCollection(CollectionModel bigModel);
-  CollectionModel? getCachedCollection();
+  cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel);
+  AllTripStepsModel? getCachedAllTripStepsModel();
   void clearCollection();
 }
 
@@ -102,21 +88,21 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
-  void cacheCollection(CollectionModel bigModel) {
+  void cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel) {
     final box = Boxes.getTakeFiveBox();
-    box.put(collectionKey, bigModel.toJson());
+    box.put(collectionKey, allTripStepsModel.toJson());
     print(box.get(collectionKey));
   }
 
   @override
-  CollectionModel? getCachedCollection() {
+  AllTripStepsModel? getCachedAllTripStepsModel() {
     final box = Boxes.getTakeFiveBox();
     if (box.get(collectionKey) == null) {
       return null;
     } else {
       Map<String, dynamic> json =
           Map<String, dynamic>.from(box.get(collectionKey));
-      return CollectionModel.fromJson(json);
+      return AllTripStepsModel.fromJson(json);
     }
   }
 
