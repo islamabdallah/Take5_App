@@ -7,5 +7,10 @@ class AppEndpoints {
   static const String baseUrl = 'http://20.86.97.165/take5/api';
   static const String userLogin = '$baseUrl/LoginAPI/userLogin';
   static const String currentTrip = '$baseUrl/LoginAPI/GetCurrentTripForDriver';
+  static const String tripStarting = '$baseUrl/TripAPI/TripStarting';
+  static const String sendTripUpdate = '$baseUrl/TripAPI/SendTripUpdate';
+  static const String sendOfflineTripAllSteps = '$baseUrl/TripAPI/SendOfflineTripAllSteps';
+  static const String checkTripStatus = '$baseUrl/TripAPI/CheckTripStatus';
+  static const String isRequestApproved = '$baseUrl/TripAPI/IsRequestApproved';
 
 }

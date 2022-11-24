@@ -21,6 +21,7 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(HomeGetCurrentTripFail(failure.message));
     }, (tripPendingResponse) {
       trip = tripPendingResponse.data;
+      AppConstants.trip=tripPendingResponse.data;
       emit(HomeGetCurrentTripSuccess());
     });
   }
@@ -28,11 +29,10 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<void> startTrip() async {
     emit(HomeStartTripLoading());
     final result = await take5Repository.startTrip(
-        //todo change this
         tripStartRequest: TripStartRequest(
-            userId: '1',
-            tripId: 1,
-            jobsiteId: 1,
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber,
             startingDate: DateTime.now()));
     result.fold((failure) {
       emit(HomeStartTripFail(failure.message));

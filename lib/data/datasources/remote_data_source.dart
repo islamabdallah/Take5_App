@@ -78,11 +78,13 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
 
   @override
   Future<TripStartResponse> startTrip({required TripStartRequest tripStartRequest})async {
-    // TODO: implement startTrip
-    //throw UnimplementedError();
-    String response =
-    await rootBundle.loadString('assets/endpoints/trip_start_response.json');
-    return TripStartResponse.fromJson(jsonDecode(response));
+    final response = await client.request(
+      url: AppEndpoints.tripStarting,
+      method: HttpMethod.POST,
+      data: tripStartRequest
+    );
+    print(response.data);
+    return TripStartResponse.fromJson(response.data);
   }
 
   @override
