@@ -7,6 +7,7 @@ import 'package:take5/core/constants/app_constants.dart';
 
 import '../../../../data/models/trip/trip.dart';
 import '../../../../logic/home_cubit/home_cubit.dart';
+import '../../../widgets/main_button.dart';
 import '../../trip/trip.dart';
 import 'item_of_description.dart';
 
@@ -40,96 +41,29 @@ class TripCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ItemOfTripDescription(title:'رقم الرحلة' ,icon:const Icon(Icons.event_note_sharp) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
-                ItemOfTripDescription(title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: HomeCubit.get(context).trip!.tripStatus,),
-
-                // Row(
-                //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //   children: [
-                //     Text(
-                //       'حالة الرحلة',
-                //       style: TextStyle(
-                //           color: Colors.black,
-                //           fontWeight: FontWeight.w700,
-                //           fontSize: 18.sp),
-                //     ),
-                //     Image.asset(
-                //       'assets/icons/trip_status.png',
-                //       color: AppColors.mainColor,
-                //       height: 24.w,
-                //     )
-                //   ],
-                // ),
-                // Text(
-                //   'في الانتظار',
-                //   //AppConstants.user.driverName,
-                //   style: TextStyle(
-                //       color: AppColors.mainColor,
-                //       fontWeight: FontWeight.w700,
-                //       fontSize: 16.sp),
-                // ),
-                // SizedBox(
-                //   height: 8.h,
-                // ),
-                // Divider(
-                //   thickness: 0.3.h,
-                //   color: Colors.grey,
-                // ),
-                ItemOfTripDescription(title:'اسم السائق' ,icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
-                ItemOfTripDescription(title:'مكان التوجه' ,icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
-                ItemOfTripDescription(title:'حالة الشبكة' ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString(),),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'رقم الشاحنة',
+                ItemOfTripDescription(index:0,title:'رقم الرحلة' ,icon:const Icon(Icons.event_note_sharp) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
+                ItemOfTripDescription(index:1,title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: HomeCubit.get(context).trip!.tripStatus,),
+                ItemOfTripDescription(index:2,title:'اسم السائق' ,icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
+                ItemOfTripDescription(index:3,title:'مكان التوجه' ,icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
+                ItemOfTripDescription(index:4,title:'حالة الشبكة' ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString(),),
+                ItemOfTripDescription(index:5,title:'رقم الشاحنة' ,icon: Container(
+                  height: 25.h,
+                  width: 65.w,
+                  color: AppColors.mainColor,
+                  child: Center(
+                    child: Text(
+                      HomeCubit.get(context).trip!.truckNumber,
                       style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.w700,
-                          fontSize: 18.sp),
+                          color: Colors.white,
+                          fontWeight: FontWeight.w500,
+                          fontSize: 14.sp),
                     ),
-                    Container(
-                      height: 25.h,
-                      width: 65.w,
-                      color: AppColors.mainColor,
-                      child: Center(
-                        child: Text(
-                          HomeCubit.get(context).trip!.truckNumber,
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14.sp),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Text(
-                  HomeCubit.get(context).trip!.truckNumber,
-                  //AppConstants.user.driverName,
-                  style: TextStyle(
-                      color: AppColors.mainColor,
-                      fontWeight: FontWeight.w700,
-                      fontSize: 16.sp),
-                ),
+                  ),
+                ),value: HomeCubit.get(context).trip!.truckNumber.toString(),),
                 SizedBox(
                   height: 20.h,
                 ),
-                Center(
-                  child: SizedBox(
-                    width: 300.w,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        HomeCubit.get(context).startTrip();
-                        // final service = FlutterBackgroundService();
-                        // service.startService();
-                        // Navigator.pushReplacementNamed(
-                        //     context, TripScreen.routeName);
-                      },
-                      child: const Text('ابدأ الرحلة'),
-                    ),
-                  ),
-                )
+                MainButton(onPressed: () { HomeCubit.get(context).startTrip(); }, title: 'ابدأ الرحلة',),
               ],
             ),
           ),

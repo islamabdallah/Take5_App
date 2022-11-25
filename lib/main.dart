@@ -122,8 +122,8 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            initialRoute: getLastRoute(),
-            // initialRoute: LoginScreen.routeName,
+            //initialRoute: getLastRoute(),
+             initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
            // initialRoute: PreparingStepScreen.routeName,

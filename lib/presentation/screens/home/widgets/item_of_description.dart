@@ -6,8 +6,9 @@ class ItemOfTripDescription extends StatelessWidget {
   final String title;
   final Widget icon;
   final String value;
+  final int index;
 
-  const ItemOfTripDescription({Key? key,required this.title,required this.icon,required this.value}) : super(key: key);
+  const ItemOfTripDescription({Key? key,required this.title,required this.icon,required this.value,required this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +39,10 @@ class ItemOfTripDescription extends StatelessWidget {
         SizedBox(
           height: 8.h,
         ),
-        Divider(
+        index<5?Divider(
           thickness: 0.3.h,
           color: Colors.grey,
-        ),
+        ):Container(),
       ],
     );
   }

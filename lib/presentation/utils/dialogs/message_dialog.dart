@@ -31,7 +31,7 @@ showMessageDialog({
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            isSucceeded ? 'Succeeded' : 'Failed',
+                            isSucceeded ? 'Succeeded'.tr() : 'Failed'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,

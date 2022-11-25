@@ -48,13 +48,14 @@
   "Pending": "معلق",
   "Rejected": "مرفوض",
   "Succeeded": "تم بنجاح",
-  "Failed": "Failed",
+  "Failed": "خطأ",
   "Ok": "تم",
   "Id": "رقم السركى",
   "next": "التالى",
   "Request step 2": "طلب بدأ المرحله التانية",
   "waiting step 2": "ابدأ المرحلة التانية",
-  "end step 1": "انهاء المرحله الاولى"
+  "end step 1": "انهاء المرحله الاولى",
+  "Enter Valid serial Number": "ادخل رقم سركى صحيح"
 
 
 
