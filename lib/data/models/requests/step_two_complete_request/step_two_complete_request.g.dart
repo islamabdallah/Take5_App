@@ -6,8 +6,9 @@ part of 'step_two_complete_request.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_StepTwoCompleteRequest _$$_StepTwoCompleteRequestFromJson(Map json) =>
-    _$_StepTwoCompleteRequest(
+_$_SurveyStepTwoAnswersAPIModel _$$_SurveyStepTwoAnswersAPIModelFromJson(
+        Map json) =>
+    _$_SurveyStepTwoAnswersAPIModel(
       userId: json['userId'] as String,
       tripId: json['tripId'] as int,
       jobSiteId: json['jobSiteId'] as int,
@@ -17,8 +18,8 @@ _$_StepTwoCompleteRequest _$$_StepTwoCompleteRequestFromJson(Map json) =>
       createdDate: DateTime.parse(json['createdDate'] as String),
     );
 
-Map<String, dynamic> _$$_StepTwoCompleteRequestToJson(
-        _$_StepTwoCompleteRequest instance) =>
+Map<String, dynamic> _$$_SurveyStepTwoAnswersAPIModelToJson(
+        _$_SurveyStepTwoAnswersAPIModel instance) =>
     <String, dynamic>{
       'userId': instance.userId,
       'tripId': instance.tripId,

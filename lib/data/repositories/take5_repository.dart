@@ -27,26 +27,26 @@ abstract class Take5Repository {
   Future<Either<Failure, TripStartResponse>> startTrip(
       {required TripStartRequest tripStartRequest});
 
-  Future<Either<Failure, Unit>> arrivedToDestination(
-      {required DestinationArrivedRequest destinationArrivedRequest});
+  Future<Either<Failure, String>> arrivedToDestination(
+      {required TripDestinationArrivedModel tripDestinationArrivedModel});
 
-  Future<Either<Failure, Unit>> completeStepOne(
-      {required StepOneCompleteRequest stepOneCompleteRequest});
+  Future<Either<Failure, String>> completeStepOne(
+      {required SurveyStepOneAnswersAPIModel surveyStepOneAnswersAPIModel});
 
-  Future<Either<Failure, Unit>> startStepTwo(
-      {required StepTwoStartRequest stepTwoStartRequest});
+  Future<Either<Failure, String>> startStepTwo(
+      {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
   Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
       {required String userId});
 
-  Future<Either<Failure, Unit>> completeStepTwo(
-      {required StepTwoCompleteRequest stepTwoCompleteRequest});
+  Future<Either<Failure, String>> completeStepTwo(
+      {required SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel});
 
   Future<Either<Failure, String>> checkTripStatus();
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
 
-  Future<Either<Failure, Unit>> sendCollection();
+  Future<Either<Failure, String>> sendCollection();
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -119,8 +119,8 @@ class Take5RepositoryImpl extends Take5Repository {
 
 //done
   @override
-  Future<Either<Failure, Unit>> arrivedToDestination(
-      {required DestinationArrivedRequest destinationArrivedRequest}) async {
+  Future<Either<Failure, String>> arrivedToDestination(
+      {required TripDestinationArrivedModel tripDestinationArrivedModel}) async {
     if (AppConstants.trip.jobsiteHasNetworkCoverage) {
       if (await deviceConnectivity.isConnected == false) {
         return const Left(DeviceConnectivityFailure());
@@ -135,38 +135,38 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          destinationArrivedRequest: destinationArrivedRequest);
+          tripDestinationArrivedModel: tripDestinationArrivedModel,endStatus: 'DestinationArrived');
       try {
         await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right(unit);
+        return const Right('تم الحفظ');
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return const Right(unit);
+        String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+        return Right(result);
       }
     } else {
-      AllTripStepsModel collectionModel;
+      AllTripStepsModel allTripStepsModel;
       if (localDataSource.getCachedAllTripStepsModel() == null) {
-        collectionModel =AllTripStepsModel(
+        allTripStepsModel =AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
       } else {
-        collectionModel = localDataSource.getCachedAllTripStepsModel()!;
+        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
-      collectionModel = collectionModel.copyWith(
-          destinationArrivedRequest: destinationArrivedRequest);
-      localDataSource.cacheAllTripStepsModel(collectionModel);
-      return const Right(unit);
+      allTripStepsModel = allTripStepsModel.copyWith(
+          tripDestinationArrivedModel: tripDestinationArrivedModel,endStatus: 'DestinationArrived');
+      localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+      return const Right('تم الحفظ');
     }
   }
 
 //done
   @override
-  Future<Either<Failure, Unit>> completeStepOne(
-      {required StepOneCompleteRequest stepOneCompleteRequest}) async {
+  Future<Either<Failure, String>> completeStepOne(
+      {required SurveyStepOneAnswersAPIModel surveyStepOneAnswersAPIModel}) async {
     if (AppConstants.trip.jobsiteHasNetworkCoverage) {
       //check device connectivity
       if (await deviceConnectivity.isConnected == false) {
@@ -182,16 +182,16 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          stepOneCompleteRequest: stepOneCompleteRequest);
+          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
       try {
         await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right(unit);
+        return const Right('تم الحفظ');
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return const Right(unit);
+        String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+        return Right(result);
       }
     } else {
       AllTripStepsModel allTripStepsModel;
@@ -204,16 +204,16 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          stepOneCompleteRequest: stepOneCompleteRequest);
+          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right(unit);
+      return const Right('تم الحفظ');
     }
   }
 
 //done
   @override
-  Future<Either<Failure, Unit>> startStepTwo(
-      {required StepTwoStartRequest stepTwoStartRequest}) async {
+  Future<Either<Failure, String>> startStepTwo(
+      {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel}) async {
     if (AppConstants.trip.jobsiteHasNetworkCoverage) {
       //check device connectivity
       if (await deviceConnectivity.isConnected == false) {
@@ -229,16 +229,16 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =
-          allTripStepsModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
       try {
         await remoteDataSource.sendCollection(allTripStepsModel:  allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right(unit);
+        return const Right('تم الحفظ');
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return const Right(unit);
+        String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+        return Right(result);
       }
     } else {
       AllTripStepsModel allTripStepsModel;
@@ -251,16 +251,16 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =
-          allTripStepsModel.copyWith(stepTwoStartRequest: stepTwoStartRequest);
+          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right(unit);
+      return const Right('تم الحفظ');
     }
   }
 
 //done
   @override
-  Future<Either<Failure, Unit>> completeStepTwo(
-      {required StepTwoCompleteRequest stepTwoCompleteRequest}) async {
+  Future<Either<Failure, String>> completeStepTwo(
+      {required SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel}) async {
     if (AppConstants.trip.jobsiteHasNetworkCoverage) {
       //check device connectivity
       if (await deviceConnectivity.isConnected == false) {
@@ -276,16 +276,16 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          stepTwoCompleteRequest: stepTwoCompleteRequest);
+          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
       try {
         await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right(unit);
+        return const Right('تم الحفظ');
       } on ServerException catch (e) {
         //save local
-        localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return const Right(unit);
+        String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+        return Right(result);
       }
     } else {
       AllTripStepsModel allTripStepsModel;
@@ -298,9 +298,9 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =allTripStepsModel.copyWith(
-          stepTwoCompleteRequest: stepTwoCompleteRequest);
+          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right(unit);
+      return const Right('تم الحفظ');
     }
   }
 
@@ -315,7 +315,7 @@ class Take5RepositoryImpl extends Take5Repository {
   }
 
   @override
-  Future<Either<Failure, Unit>> sendCollection() async {
+  Future<Either<Failure, String>> sendCollection() async {
     try {
       AllTripStepsModel? collectionModel = localDataSource.getCachedAllTripStepsModel();
 
@@ -324,7 +324,7 @@ class Take5RepositoryImpl extends Take5Repository {
       }
       //done
       localDataSource.clearCollection();
-      return const Right(unit);
+      return const Right('تم الحفظ');
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }

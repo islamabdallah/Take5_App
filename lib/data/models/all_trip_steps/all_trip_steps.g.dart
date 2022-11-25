@@ -11,22 +11,22 @@ _$_AllTripStepsModel _$$_AllTripStepsModelFromJson(Map json) =>
       userId: json['userId'] as String?,
       tripId: json['tripId'] as int?,
       jobsiteId: json['jobsiteId'] as int?,
-      destinationArrivedRequest: json['destinationArrivedRequest'] == null
+      tripDestinationArrivedModel: json['tripDestinationArrivedModel'] == null
           ? null
-          : DestinationArrivedRequest.fromJson(Map<String, dynamic>.from(
-              json['destinationArrivedRequest'] as Map)),
-      stepOneCompleteRequest: json['stepOneCompleteRequest'] == null
+          : TripDestinationArrivedModel.fromJson(Map<String, dynamic>.from(
+              json['tripDestinationArrivedModel'] as Map)),
+      surveyStepOneAnswersAPIModel: json['surveyStepOneAnswersAPIModel'] == null
           ? null
-          : StepOneCompleteRequest.fromJson(
-              Map<String, dynamic>.from(json['stepOneCompleteRequest'] as Map)),
-      stepTwoStartRequest: json['stepTwoStartRequest'] == null
+          : SurveyStepOneAnswersAPIModel.fromJson(Map<String, dynamic>.from(
+              json['surveyStepOneAnswersAPIModel'] as Map)),
+      take5StepTwoRequestAPIModel: json['take5StepTwoRequestAPIModel'] == null
           ? null
-          : StepTwoStartRequest.fromJson(
-              Map<String, dynamic>.from(json['stepTwoStartRequest'] as Map)),
-      stepTwoCompleteRequest: json['stepTwoCompleteRequest'] == null
+          : Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic>.from(
+              json['take5StepTwoRequestAPIModel'] as Map)),
+      surveyStepTwoAnswersAPIModel: json['surveyStepTwoAnswersAPIModel'] == null
           ? null
-          : StepTwoCompleteRequest.fromJson(
-              Map<String, dynamic>.from(json['stepTwoCompleteRequest'] as Map)),
+          : SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic>.from(
+              json['surveyStepTwoAnswersAPIModel'] as Map)),
       take5TogetherAPIModels: json['take5TogetherAPIModels'] == null
           ? null
           : Take5TogetherModel.fromJson(
@@ -40,10 +40,14 @@ Map<String, dynamic> _$$_AllTripStepsModelToJson(
       'userId': instance.userId,
       'tripId': instance.tripId,
       'jobsiteId': instance.jobsiteId,
-      'destinationArrivedRequest': instance.destinationArrivedRequest?.toJson(),
-      'stepOneCompleteRequest': instance.stepOneCompleteRequest?.toJson(),
-      'stepTwoStartRequest': instance.stepTwoStartRequest?.toJson(),
-      'stepTwoCompleteRequest': instance.stepTwoCompleteRequest?.toJson(),
+      'tripDestinationArrivedModel':
+          instance.tripDestinationArrivedModel?.toJson(),
+      'surveyStepOneAnswersAPIModel':
+          instance.surveyStepOneAnswersAPIModel?.toJson(),
+      'take5StepTwoRequestAPIModel':
+          instance.take5StepTwoRequestAPIModel?.toJson(),
+      'surveyStepTwoAnswersAPIModel':
+          instance.surveyStepTwoAnswersAPIModel?.toJson(),
       'take5TogetherAPIModels': instance.take5TogetherAPIModels?.toJson(),
       'endStatus': instance.endStatus,
     };

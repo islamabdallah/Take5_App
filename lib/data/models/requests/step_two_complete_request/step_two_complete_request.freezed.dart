@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StepTwoCompleteRequest _$StepTwoCompleteRequestFromJson(
+SurveyStepTwoAnswersAPIModel _$SurveyStepTwoAnswersAPIModelFromJson(
     Map<String, dynamic> json) {
-  return _StepTwoCompleteRequest.fromJson(json);
+  return _SurveyStepTwoAnswersAPIModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepTwoCompleteRequest {
+mixin _$SurveyStepTwoAnswersAPIModel {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
   int get jobSiteId => throw _privateConstructorUsedError;
@@ -29,15 +29,17 @@ mixin _$StepTwoCompleteRequest {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StepTwoCompleteRequestCopyWith<StepTwoCompleteRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SurveyStepTwoAnswersAPIModelCopyWith<SurveyStepTwoAnswersAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepTwoCompleteRequestCopyWith<$Res> {
-  factory $StepTwoCompleteRequestCopyWith(StepTwoCompleteRequest value,
-          $Res Function(StepTwoCompleteRequest) then) =
-      _$StepTwoCompleteRequestCopyWithImpl<$Res, StepTwoCompleteRequest>;
+abstract class $SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
+  factory $SurveyStepTwoAnswersAPIModelCopyWith(
+          SurveyStepTwoAnswersAPIModel value,
+          $Res Function(SurveyStepTwoAnswersAPIModel) then) =
+      _$SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res,
+          SurveyStepTwoAnswersAPIModel>;
   @useResult
   $Res call(
       {String userId,
@@ -48,10 +50,10 @@ abstract class $StepTwoCompleteRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StepTwoCompleteRequestCopyWithImpl<$Res,
-        $Val extends StepTwoCompleteRequest>
-    implements $StepTwoCompleteRequestCopyWith<$Res> {
-  _$StepTwoCompleteRequestCopyWithImpl(this._value, this._then);
+class _$SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res,
+        $Val extends SurveyStepTwoAnswersAPIModel>
+    implements $SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
+  _$SurveyStepTwoAnswersAPIModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -93,11 +95,12 @@ class _$StepTwoCompleteRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_StepTwoCompleteRequestCopyWith<$Res>
-    implements $StepTwoCompleteRequestCopyWith<$Res> {
-  factory _$$_StepTwoCompleteRequestCopyWith(_$_StepTwoCompleteRequest value,
-          $Res Function(_$_StepTwoCompleteRequest) then) =
-      __$$_StepTwoCompleteRequestCopyWithImpl<$Res>;
+abstract class _$$_SurveyStepTwoAnswersAPIModelCopyWith<$Res>
+    implements $SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
+  factory _$$_SurveyStepTwoAnswersAPIModelCopyWith(
+          _$_SurveyStepTwoAnswersAPIModel value,
+          $Res Function(_$_SurveyStepTwoAnswersAPIModel) then) =
+      __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -109,12 +112,13 @@ abstract class _$$_StepTwoCompleteRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
-    extends _$StepTwoCompleteRequestCopyWithImpl<$Res,
-        _$_StepTwoCompleteRequest>
-    implements _$$_StepTwoCompleteRequestCopyWith<$Res> {
-  __$$_StepTwoCompleteRequestCopyWithImpl(_$_StepTwoCompleteRequest _value,
-      $Res Function(_$_StepTwoCompleteRequest) _then)
+class __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res>
+    extends _$SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res,
+        _$_SurveyStepTwoAnswersAPIModel>
+    implements _$$_SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
+  __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl(
+      _$_SurveyStepTwoAnswersAPIModel _value,
+      $Res Function(_$_SurveyStepTwoAnswersAPIModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -126,7 +130,7 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
     Object? answers = null,
     Object? createdDate = null,
   }) {
-    return _then(_$_StepTwoCompleteRequest(
+    return _then(_$_SurveyStepTwoAnswersAPIModel(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -153,8 +157,8 @@ class __$$_StepTwoCompleteRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
-  const _$_StepTwoCompleteRequest(
+class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
+  const _$_SurveyStepTwoAnswersAPIModel(
       {required this.userId,
       required this.tripId,
       required this.jobSiteId,
@@ -162,8 +166,8 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
       required this.createdDate})
       : _answers = answers;
 
-  factory _$_StepTwoCompleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_StepTwoCompleteRequestFromJson(json);
+  factory _$_SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SurveyStepTwoAnswersAPIModelFromJson(json);
 
   @override
   final String userId;
@@ -183,14 +187,14 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
 
   @override
   String toString() {
-    return 'StepTwoCompleteRequest(userId: $userId, tripId: $tripId, jobSiteId: $jobSiteId, answers: $answers, createdDate: $createdDate)';
+    return 'SurveyStepTwoAnswersAPIModel(userId: $userId, tripId: $tripId, jobSiteId: $jobSiteId, answers: $answers, createdDate: $createdDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StepTwoCompleteRequest &&
+            other is _$_SurveyStepTwoAnswersAPIModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobSiteId, jobSiteId) ||
@@ -208,28 +212,29 @@ class _$_StepTwoCompleteRequest implements _StepTwoCompleteRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StepTwoCompleteRequestCopyWith<_$_StepTwoCompleteRequest> get copyWith =>
-      __$$_StepTwoCompleteRequestCopyWithImpl<_$_StepTwoCompleteRequest>(
-          this, _$identity);
+  _$$_SurveyStepTwoAnswersAPIModelCopyWith<_$_SurveyStepTwoAnswersAPIModel>
+      get copyWith => __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<
+          _$_SurveyStepTwoAnswersAPIModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StepTwoCompleteRequestToJson(
+    return _$$_SurveyStepTwoAnswersAPIModelToJson(
       this,
     );
   }
 }
 
-abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
-  const factory _StepTwoCompleteRequest(
+abstract class _SurveyStepTwoAnswersAPIModel
+    implements SurveyStepTwoAnswersAPIModel {
+  const factory _SurveyStepTwoAnswersAPIModel(
       {required final String userId,
       required final int tripId,
       required final int jobSiteId,
       required final List<Answer> answers,
-      required final DateTime createdDate}) = _$_StepTwoCompleteRequest;
+      required final DateTime createdDate}) = _$_SurveyStepTwoAnswersAPIModel;
 
-  factory _StepTwoCompleteRequest.fromJson(Map<String, dynamic> json) =
-      _$_StepTwoCompleteRequest.fromJson;
+  factory _SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic> json) =
+      _$_SurveyStepTwoAnswersAPIModel.fromJson;
 
   @override
   String get userId;
@@ -243,6 +248,6 @@ abstract class _StepTwoCompleteRequest implements StepTwoCompleteRequest {
   DateTime get createdDate;
   @override
   @JsonKey(ignore: true)
-  _$$_StepTwoCompleteRequestCopyWith<_$_StepTwoCompleteRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SurveyStepTwoAnswersAPIModelCopyWith<_$_SurveyStepTwoAnswersAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }

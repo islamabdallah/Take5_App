@@ -47,7 +47,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
   Future<void> stepTwoStartRequest() async {
     emit(StepTwoStartRequestLoading());
     final result = await take5Repository.startStepTwo(
-        stepTwoStartRequest: StepTwoStartRequest(
+        take5StepTwoRequestAPIModel: Take5StepTwoRequestAPIModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber,

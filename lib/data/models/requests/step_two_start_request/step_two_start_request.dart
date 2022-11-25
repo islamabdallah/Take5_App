@@ -6,13 +6,13 @@ part 'step_two_start_request.freezed.dart';//same name of file
 part 'step_two_start_request.g.dart';
 
 @freezed
-class StepTwoStartRequest with _$StepTwoStartRequest{
-  const factory StepTwoStartRequest({
+class Take5StepTwoRequestAPIModel with _$Take5StepTwoRequestAPIModel{
+  const factory Take5StepTwoRequestAPIModel({
     required String userId,
     required int tripId,
     required int jobsiteId,
     required DateTime startingDate,
-  }) = _StepTwoStartRequest;
+  }) = _Take5StepTwoRequestAPIModel;
 
-  factory StepTwoStartRequest.fromJson(Map<String, dynamic> json) => _$StepTwoStartRequestFromJson(json);
+  factory Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) => _$Take5StepTwoRequestAPIModelFromJson(json);
 }

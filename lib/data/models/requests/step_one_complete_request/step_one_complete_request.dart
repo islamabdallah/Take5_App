@@ -7,16 +7,16 @@ part 'step_one_complete_request.freezed.dart';
 part 'step_one_complete_request.g.dart';
 
 @freezed
-class StepOneCompleteRequest with _$StepOneCompleteRequest {
-  const factory StepOneCompleteRequest({
+class SurveyStepOneAnswersAPIModel with _$SurveyStepOneAnswersAPIModel {
+  const factory SurveyStepOneAnswersAPIModel({
     required String userId,
     required int jobSiteId,
     required int tripId,
     required List<Answer> answers,
     required List<DangerModel> dangers,
     required DateTime createdDate,
-  }) = _StepOneCompleteRequest;
+  }) = _SurveyStepOneAnswersAPIModel;
 
-  factory StepOneCompleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$StepOneCompleteRequestFromJson(json);
+  factory SurveyStepOneAnswersAPIModel.fromJson(Map<String, dynamic> json) =>
+      _$SurveyStepOneAnswersAPIModelFromJson(json);
 }

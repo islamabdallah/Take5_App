@@ -14,13 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StepOneCompleteRequest _$StepOneCompleteRequestFromJson(
+SurveyStepOneAnswersAPIModel _$SurveyStepOneAnswersAPIModelFromJson(
     Map<String, dynamic> json) {
-  return _StepOneCompleteRequest.fromJson(json);
+  return _SurveyStepOneAnswersAPIModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepOneCompleteRequest {
+mixin _$SurveyStepOneAnswersAPIModel {
   String get userId => throw _privateConstructorUsedError;
   int get jobSiteId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
@@ -30,15 +30,17 @@ mixin _$StepOneCompleteRequest {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StepOneCompleteRequestCopyWith<StepOneCompleteRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $SurveyStepOneAnswersAPIModelCopyWith<SurveyStepOneAnswersAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepOneCompleteRequestCopyWith<$Res> {
-  factory $StepOneCompleteRequestCopyWith(StepOneCompleteRequest value,
-          $Res Function(StepOneCompleteRequest) then) =
-      _$StepOneCompleteRequestCopyWithImpl<$Res, StepOneCompleteRequest>;
+abstract class $SurveyStepOneAnswersAPIModelCopyWith<$Res> {
+  factory $SurveyStepOneAnswersAPIModelCopyWith(
+          SurveyStepOneAnswersAPIModel value,
+          $Res Function(SurveyStepOneAnswersAPIModel) then) =
+      _$SurveyStepOneAnswersAPIModelCopyWithImpl<$Res,
+          SurveyStepOneAnswersAPIModel>;
   @useResult
   $Res call(
       {String userId,
@@ -50,10 +52,10 @@ abstract class $StepOneCompleteRequestCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$StepOneCompleteRequestCopyWithImpl<$Res,
-        $Val extends StepOneCompleteRequest>
-    implements $StepOneCompleteRequestCopyWith<$Res> {
-  _$StepOneCompleteRequestCopyWithImpl(this._value, this._then);
+class _$SurveyStepOneAnswersAPIModelCopyWithImpl<$Res,
+        $Val extends SurveyStepOneAnswersAPIModel>
+    implements $SurveyStepOneAnswersAPIModelCopyWith<$Res> {
+  _$SurveyStepOneAnswersAPIModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -100,11 +102,12 @@ class _$StepOneCompleteRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_StepOneCompleteRequestCopyWith<$Res>
-    implements $StepOneCompleteRequestCopyWith<$Res> {
-  factory _$$_StepOneCompleteRequestCopyWith(_$_StepOneCompleteRequest value,
-          $Res Function(_$_StepOneCompleteRequest) then) =
-      __$$_StepOneCompleteRequestCopyWithImpl<$Res>;
+abstract class _$$_SurveyStepOneAnswersAPIModelCopyWith<$Res>
+    implements $SurveyStepOneAnswersAPIModelCopyWith<$Res> {
+  factory _$$_SurveyStepOneAnswersAPIModelCopyWith(
+          _$_SurveyStepOneAnswersAPIModel value,
+          $Res Function(_$_SurveyStepOneAnswersAPIModel) then) =
+      __$$_SurveyStepOneAnswersAPIModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -117,12 +120,13 @@ abstract class _$$_StepOneCompleteRequestCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
-    extends _$StepOneCompleteRequestCopyWithImpl<$Res,
-        _$_StepOneCompleteRequest>
-    implements _$$_StepOneCompleteRequestCopyWith<$Res> {
-  __$$_StepOneCompleteRequestCopyWithImpl(_$_StepOneCompleteRequest _value,
-      $Res Function(_$_StepOneCompleteRequest) _then)
+class __$$_SurveyStepOneAnswersAPIModelCopyWithImpl<$Res>
+    extends _$SurveyStepOneAnswersAPIModelCopyWithImpl<$Res,
+        _$_SurveyStepOneAnswersAPIModel>
+    implements _$$_SurveyStepOneAnswersAPIModelCopyWith<$Res> {
+  __$$_SurveyStepOneAnswersAPIModelCopyWithImpl(
+      _$_SurveyStepOneAnswersAPIModel _value,
+      $Res Function(_$_SurveyStepOneAnswersAPIModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -135,7 +139,7 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
     Object? dangers = null,
     Object? createdDate = null,
   }) {
-    return _then(_$_StepOneCompleteRequest(
+    return _then(_$_SurveyStepOneAnswersAPIModel(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -166,8 +170,8 @@ class __$$_StepOneCompleteRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
-  const _$_StepOneCompleteRequest(
+class _$_SurveyStepOneAnswersAPIModel implements _SurveyStepOneAnswersAPIModel {
+  const _$_SurveyStepOneAnswersAPIModel(
       {required this.userId,
       required this.jobSiteId,
       required this.tripId,
@@ -177,8 +181,8 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
       : _answers = answers,
         _dangers = dangers;
 
-  factory _$_StepOneCompleteRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_StepOneCompleteRequestFromJson(json);
+  factory _$_SurveyStepOneAnswersAPIModel.fromJson(Map<String, dynamic> json) =>
+      _$$_SurveyStepOneAnswersAPIModelFromJson(json);
 
   @override
   final String userId;
@@ -205,14 +209,14 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
 
   @override
   String toString() {
-    return 'StepOneCompleteRequest(userId: $userId, jobSiteId: $jobSiteId, tripId: $tripId, answers: $answers, dangers: $dangers, createdDate: $createdDate)';
+    return 'SurveyStepOneAnswersAPIModel(userId: $userId, jobSiteId: $jobSiteId, tripId: $tripId, answers: $answers, dangers: $dangers, createdDate: $createdDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StepOneCompleteRequest &&
+            other is _$_SurveyStepOneAnswersAPIModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.jobSiteId, jobSiteId) ||
                 other.jobSiteId == jobSiteId) &&
@@ -237,29 +241,30 @@ class _$_StepOneCompleteRequest implements _StepOneCompleteRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StepOneCompleteRequestCopyWith<_$_StepOneCompleteRequest> get copyWith =>
-      __$$_StepOneCompleteRequestCopyWithImpl<_$_StepOneCompleteRequest>(
-          this, _$identity);
+  _$$_SurveyStepOneAnswersAPIModelCopyWith<_$_SurveyStepOneAnswersAPIModel>
+      get copyWith => __$$_SurveyStepOneAnswersAPIModelCopyWithImpl<
+          _$_SurveyStepOneAnswersAPIModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StepOneCompleteRequestToJson(
+    return _$$_SurveyStepOneAnswersAPIModelToJson(
       this,
     );
   }
 }
 
-abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
-  const factory _StepOneCompleteRequest(
+abstract class _SurveyStepOneAnswersAPIModel
+    implements SurveyStepOneAnswersAPIModel {
+  const factory _SurveyStepOneAnswersAPIModel(
       {required final String userId,
       required final int jobSiteId,
       required final int tripId,
       required final List<Answer> answers,
       required final List<DangerModel> dangers,
-      required final DateTime createdDate}) = _$_StepOneCompleteRequest;
+      required final DateTime createdDate}) = _$_SurveyStepOneAnswersAPIModel;
 
-  factory _StepOneCompleteRequest.fromJson(Map<String, dynamic> json) =
-      _$_StepOneCompleteRequest.fromJson;
+  factory _SurveyStepOneAnswersAPIModel.fromJson(Map<String, dynamic> json) =
+      _$_SurveyStepOneAnswersAPIModel.fromJson;
 
   @override
   String get userId;
@@ -275,6 +280,6 @@ abstract class _StepOneCompleteRequest implements StepOneCompleteRequest {
   DateTime get createdDate;
   @override
   @JsonKey(ignore: true)
-  _$$_StepOneCompleteRequestCopyWith<_$_StepOneCompleteRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_SurveyStepOneAnswersAPIModelCopyWith<_$_SurveyStepOneAnswersAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }

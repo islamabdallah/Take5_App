@@ -14,12 +14,13 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StepTwoStartRequest _$StepTwoStartRequestFromJson(Map<String, dynamic> json) {
-  return _StepTwoStartRequest.fromJson(json);
+Take5StepTwoRequestAPIModel _$Take5StepTwoRequestAPIModelFromJson(
+    Map<String, dynamic> json) {
+  return _Take5StepTwoRequestAPIModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StepTwoStartRequest {
+mixin _$Take5StepTwoRequestAPIModel {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
   int get jobsiteId => throw _privateConstructorUsedError;
@@ -27,23 +28,26 @@ mixin _$StepTwoStartRequest {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StepTwoStartRequestCopyWith<StepTwoStartRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $Take5StepTwoRequestAPIModelCopyWith<Take5StepTwoRequestAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StepTwoStartRequestCopyWith<$Res> {
-  factory $StepTwoStartRequestCopyWith(
-          StepTwoStartRequest value, $Res Function(StepTwoStartRequest) then) =
-      _$StepTwoStartRequestCopyWithImpl<$Res, StepTwoStartRequest>;
+abstract class $Take5StepTwoRequestAPIModelCopyWith<$Res> {
+  factory $Take5StepTwoRequestAPIModelCopyWith(
+          Take5StepTwoRequestAPIModel value,
+          $Res Function(Take5StepTwoRequestAPIModel) then) =
+      _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
+          Take5StepTwoRequestAPIModel>;
   @useResult
   $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
 }
 
 /// @nodoc
-class _$StepTwoStartRequestCopyWithImpl<$Res, $Val extends StepTwoStartRequest>
-    implements $StepTwoStartRequestCopyWith<$Res> {
-  _$StepTwoStartRequestCopyWithImpl(this._value, this._then);
+class _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
+        $Val extends Take5StepTwoRequestAPIModel>
+    implements $Take5StepTwoRequestAPIModelCopyWith<$Res> {
+  _$Take5StepTwoRequestAPIModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -80,22 +84,25 @@ class _$StepTwoStartRequestCopyWithImpl<$Res, $Val extends StepTwoStartRequest>
 }
 
 /// @nodoc
-abstract class _$$_StepTwoStartRequestCopyWith<$Res>
-    implements $StepTwoStartRequestCopyWith<$Res> {
-  factory _$$_StepTwoStartRequestCopyWith(_$_StepTwoStartRequest value,
-          $Res Function(_$_StepTwoStartRequest) then) =
-      __$$_StepTwoStartRequestCopyWithImpl<$Res>;
+abstract class _$$_Take5StepTwoRequestAPIModelCopyWith<$Res>
+    implements $Take5StepTwoRequestAPIModelCopyWith<$Res> {
+  factory _$$_Take5StepTwoRequestAPIModelCopyWith(
+          _$_Take5StepTwoRequestAPIModel value,
+          $Res Function(_$_Take5StepTwoRequestAPIModel) then) =
+      __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
 }
 
 /// @nodoc
-class __$$_StepTwoStartRequestCopyWithImpl<$Res>
-    extends _$StepTwoStartRequestCopyWithImpl<$Res, _$_StepTwoStartRequest>
-    implements _$$_StepTwoStartRequestCopyWith<$Res> {
-  __$$_StepTwoStartRequestCopyWithImpl(_$_StepTwoStartRequest _value,
-      $Res Function(_$_StepTwoStartRequest) _then)
+class __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>
+    extends _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
+        _$_Take5StepTwoRequestAPIModel>
+    implements _$$_Take5StepTwoRequestAPIModelCopyWith<$Res> {
+  __$$_Take5StepTwoRequestAPIModelCopyWithImpl(
+      _$_Take5StepTwoRequestAPIModel _value,
+      $Res Function(_$_Take5StepTwoRequestAPIModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +113,7 @@ class __$$_StepTwoStartRequestCopyWithImpl<$Res>
     Object? jobsiteId = null,
     Object? startingDate = null,
   }) {
-    return _then(_$_StepTwoStartRequest(
+    return _then(_$_Take5StepTwoRequestAPIModel(
       userId: null == userId
           ? _value.userId
           : userId // ignore: cast_nullable_to_non_nullable
@@ -129,15 +136,15 @@ class __$$_StepTwoStartRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StepTwoStartRequest implements _StepTwoStartRequest {
-  const _$_StepTwoStartRequest(
+class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
+  const _$_Take5StepTwoRequestAPIModel(
       {required this.userId,
       required this.tripId,
       required this.jobsiteId,
       required this.startingDate});
 
-  factory _$_StepTwoStartRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_StepTwoStartRequestFromJson(json);
+  factory _$_Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =>
+      _$$_Take5StepTwoRequestAPIModelFromJson(json);
 
   @override
   final String userId;
@@ -150,14 +157,14 @@ class _$_StepTwoStartRequest implements _StepTwoStartRequest {
 
   @override
   String toString() {
-    return 'StepTwoStartRequest(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, startingDate: $startingDate)';
+    return 'Take5StepTwoRequestAPIModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, startingDate: $startingDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StepTwoStartRequest &&
+            other is _$_Take5StepTwoRequestAPIModel &&
             (identical(other.userId, userId) || other.userId == userId) &&
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobsiteId, jobsiteId) ||
@@ -174,27 +181,28 @@ class _$_StepTwoStartRequest implements _StepTwoStartRequest {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StepTwoStartRequestCopyWith<_$_StepTwoStartRequest> get copyWith =>
-      __$$_StepTwoStartRequestCopyWithImpl<_$_StepTwoStartRequest>(
-          this, _$identity);
+  _$$_Take5StepTwoRequestAPIModelCopyWith<_$_Take5StepTwoRequestAPIModel>
+      get copyWith => __$$_Take5StepTwoRequestAPIModelCopyWithImpl<
+          _$_Take5StepTwoRequestAPIModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StepTwoStartRequestToJson(
+    return _$$_Take5StepTwoRequestAPIModelToJson(
       this,
     );
   }
 }
 
-abstract class _StepTwoStartRequest implements StepTwoStartRequest {
-  const factory _StepTwoStartRequest(
+abstract class _Take5StepTwoRequestAPIModel
+    implements Take5StepTwoRequestAPIModel {
+  const factory _Take5StepTwoRequestAPIModel(
       {required final String userId,
       required final int tripId,
       required final int jobsiteId,
-      required final DateTime startingDate}) = _$_StepTwoStartRequest;
+      required final DateTime startingDate}) = _$_Take5StepTwoRequestAPIModel;
 
-  factory _StepTwoStartRequest.fromJson(Map<String, dynamic> json) =
-      _$_StepTwoStartRequest.fromJson;
+  factory _Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =
+      _$_Take5StepTwoRequestAPIModel.fromJson;
 
   @override
   String get userId;
@@ -206,6 +214,6 @@ abstract class _StepTwoStartRequest implements StepTwoStartRequest {
   DateTime get startingDate;
   @override
   @JsonKey(ignore: true)
-  _$$_StepTwoStartRequestCopyWith<_$_StepTwoStartRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_Take5StepTwoRequestAPIModelCopyWith<_$_Take5StepTwoRequestAPIModel>
+      get copyWith => throw _privateConstructorUsedError;
 }

@@ -123,7 +123,7 @@ class BackgroundService{
 
          if(d<1000){
            //todo save local
-           DestinationArrivedRequest destinationArrivedRequest = DestinationArrivedRequest(userId: "5", tripId: 5, jobsiteId: 5, destinationArrivedDate: DateTime.now());
+           TripDestinationArrivedModel destinationArrivedRequest = TripDestinationArrivedModel(destinationArrivedDate: DateTime.now());
 
            SharedPreferences preferences = await SharedPreferences.getInstance();
            // await preferences.reload();

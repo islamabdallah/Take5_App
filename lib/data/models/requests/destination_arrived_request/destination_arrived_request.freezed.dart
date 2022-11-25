@@ -14,42 +14,37 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-DestinationArrivedRequest _$DestinationArrivedRequestFromJson(
+TripDestinationArrivedModel _$TripDestinationArrivedModelFromJson(
     Map<String, dynamic> json) {
-  return _DestinationArrivedRequest.fromJson(json);
+  return _TripDestinationArrivedModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$DestinationArrivedRequest {
-  String get userId => throw _privateConstructorUsedError;
-  int get tripId => throw _privateConstructorUsedError;
-  int get jobsiteId => throw _privateConstructorUsedError;
+mixin _$TripDestinationArrivedModel {
   DateTime get destinationArrivedDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $DestinationArrivedRequestCopyWith<DestinationArrivedRequest> get copyWith =>
-      throw _privateConstructorUsedError;
+  $TripDestinationArrivedModelCopyWith<TripDestinationArrivedModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $DestinationArrivedRequestCopyWith<$Res> {
-  factory $DestinationArrivedRequestCopyWith(DestinationArrivedRequest value,
-          $Res Function(DestinationArrivedRequest) then) =
-      _$DestinationArrivedRequestCopyWithImpl<$Res, DestinationArrivedRequest>;
+abstract class $TripDestinationArrivedModelCopyWith<$Res> {
+  factory $TripDestinationArrivedModelCopyWith(
+          TripDestinationArrivedModel value,
+          $Res Function(TripDestinationArrivedModel) then) =
+      _$TripDestinationArrivedModelCopyWithImpl<$Res,
+          TripDestinationArrivedModel>;
   @useResult
-  $Res call(
-      {String userId,
-      int tripId,
-      int jobsiteId,
-      DateTime destinationArrivedDate});
+  $Res call({DateTime destinationArrivedDate});
 }
 
 /// @nodoc
-class _$DestinationArrivedRequestCopyWithImpl<$Res,
-        $Val extends DestinationArrivedRequest>
-    implements $DestinationArrivedRequestCopyWith<$Res> {
-  _$DestinationArrivedRequestCopyWithImpl(this._value, this._then);
+class _$TripDestinationArrivedModelCopyWithImpl<$Res,
+        $Val extends TripDestinationArrivedModel>
+    implements $TripDestinationArrivedModelCopyWith<$Res> {
+  _$TripDestinationArrivedModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -59,24 +54,9 @@ class _$DestinationArrivedRequestCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobsiteId = null,
     Object? destinationArrivedDate = null,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobsiteId: null == jobsiteId
-          ? _value.jobsiteId
-          : jobsiteId // ignore: cast_nullable_to_non_nullable
-              as int,
       destinationArrivedDate: null == destinationArrivedDate
           ? _value.destinationArrivedDate
           : destinationArrivedDate // ignore: cast_nullable_to_non_nullable
@@ -86,52 +66,33 @@ class _$DestinationArrivedRequestCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_DestinationArrivedRequestCopyWith<$Res>
-    implements $DestinationArrivedRequestCopyWith<$Res> {
-  factory _$$_DestinationArrivedRequestCopyWith(
-          _$_DestinationArrivedRequest value,
-          $Res Function(_$_DestinationArrivedRequest) then) =
-      __$$_DestinationArrivedRequestCopyWithImpl<$Res>;
+abstract class _$$_TripDestinationArrivedModelCopyWith<$Res>
+    implements $TripDestinationArrivedModelCopyWith<$Res> {
+  factory _$$_TripDestinationArrivedModelCopyWith(
+          _$_TripDestinationArrivedModel value,
+          $Res Function(_$_TripDestinationArrivedModel) then) =
+      __$$_TripDestinationArrivedModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String userId,
-      int tripId,
-      int jobsiteId,
-      DateTime destinationArrivedDate});
+  $Res call({DateTime destinationArrivedDate});
 }
 
 /// @nodoc
-class __$$_DestinationArrivedRequestCopyWithImpl<$Res>
-    extends _$DestinationArrivedRequestCopyWithImpl<$Res,
-        _$_DestinationArrivedRequest>
-    implements _$$_DestinationArrivedRequestCopyWith<$Res> {
-  __$$_DestinationArrivedRequestCopyWithImpl(
-      _$_DestinationArrivedRequest _value,
-      $Res Function(_$_DestinationArrivedRequest) _then)
+class __$$_TripDestinationArrivedModelCopyWithImpl<$Res>
+    extends _$TripDestinationArrivedModelCopyWithImpl<$Res,
+        _$_TripDestinationArrivedModel>
+    implements _$$_TripDestinationArrivedModelCopyWith<$Res> {
+  __$$_TripDestinationArrivedModelCopyWithImpl(
+      _$_TripDestinationArrivedModel _value,
+      $Res Function(_$_TripDestinationArrivedModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobsiteId = null,
     Object? destinationArrivedDate = null,
   }) {
-    return _then(_$_DestinationArrivedRequest(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobsiteId: null == jobsiteId
-          ? _value.jobsiteId
-          : jobsiteId // ignore: cast_nullable_to_non_nullable
-              as int,
+    return _then(_$_TripDestinationArrivedModel(
       destinationArrivedDate: null == destinationArrivedDate
           ? _value.destinationArrivedDate
           : destinationArrivedDate // ignore: cast_nullable_to_non_nullable
@@ -142,84 +103,61 @@ class __$$_DestinationArrivedRequestCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_DestinationArrivedRequest implements _DestinationArrivedRequest {
-  const _$_DestinationArrivedRequest(
-      {required this.userId,
-      required this.tripId,
-      required this.jobsiteId,
-      required this.destinationArrivedDate});
+class _$_TripDestinationArrivedModel implements _TripDestinationArrivedModel {
+  const _$_TripDestinationArrivedModel({required this.destinationArrivedDate});
 
-  factory _$_DestinationArrivedRequest.fromJson(Map<String, dynamic> json) =>
-      _$$_DestinationArrivedRequestFromJson(json);
+  factory _$_TripDestinationArrivedModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TripDestinationArrivedModelFromJson(json);
 
-  @override
-  final String userId;
-  @override
-  final int tripId;
-  @override
-  final int jobsiteId;
   @override
   final DateTime destinationArrivedDate;
 
   @override
   String toString() {
-    return 'DestinationArrivedRequest(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, destinationArrivedDate: $destinationArrivedDate)';
+    return 'TripDestinationArrivedModel(destinationArrivedDate: $destinationArrivedDate)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DestinationArrivedRequest &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            (identical(other.jobsiteId, jobsiteId) ||
-                other.jobsiteId == jobsiteId) &&
+            other is _$_TripDestinationArrivedModel &&
             (identical(other.destinationArrivedDate, destinationArrivedDate) ||
                 other.destinationArrivedDate == destinationArrivedDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, userId, tripId, jobsiteId, destinationArrivedDate);
+  int get hashCode => Object.hash(runtimeType, destinationArrivedDate);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DestinationArrivedRequestCopyWith<_$_DestinationArrivedRequest>
-      get copyWith => __$$_DestinationArrivedRequestCopyWithImpl<
-          _$_DestinationArrivedRequest>(this, _$identity);
+  _$$_TripDestinationArrivedModelCopyWith<_$_TripDestinationArrivedModel>
+      get copyWith => __$$_TripDestinationArrivedModelCopyWithImpl<
+          _$_TripDestinationArrivedModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_DestinationArrivedRequestToJson(
+    return _$$_TripDestinationArrivedModelToJson(
       this,
     );
   }
 }
 
-abstract class _DestinationArrivedRequest implements DestinationArrivedRequest {
-  const factory _DestinationArrivedRequest(
-          {required final String userId,
-          required final int tripId,
-          required final int jobsiteId,
-          required final DateTime destinationArrivedDate}) =
-      _$_DestinationArrivedRequest;
+abstract class _TripDestinationArrivedModel
+    implements TripDestinationArrivedModel {
+  const factory _TripDestinationArrivedModel(
+          {required final DateTime destinationArrivedDate}) =
+      _$_TripDestinationArrivedModel;
 
-  factory _DestinationArrivedRequest.fromJson(Map<String, dynamic> json) =
-      _$_DestinationArrivedRequest.fromJson;
+  factory _TripDestinationArrivedModel.fromJson(Map<String, dynamic> json) =
+      _$_TripDestinationArrivedModel.fromJson;
 
-  @override
-  String get userId;
-  @override
-  int get tripId;
-  @override
-  int get jobsiteId;
   @override
   DateTime get destinationArrivedDate;
   @override
   @JsonKey(ignore: true)
-  _$$_DestinationArrivedRequestCopyWith<_$_DestinationArrivedRequest>
+  _$$_TripDestinationArrivedModelCopyWith<_$_TripDestinationArrivedModel>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -6,13 +6,10 @@ part 'destination_arrived_request.freezed.dart';//same name of file
 part 'destination_arrived_request.g.dart';
 
 @freezed
-class DestinationArrivedRequest with _$DestinationArrivedRequest{
-  const factory DestinationArrivedRequest({
-    required String userId,
-    required int tripId,
-    required int jobsiteId,
+class TripDestinationArrivedModel with _$TripDestinationArrivedModel{
+  const factory TripDestinationArrivedModel({
     required DateTime destinationArrivedDate,
-  }) = _DestinationArrivedRequest;
+  }) = _TripDestinationArrivedModel;
 
-  factory DestinationArrivedRequest.fromJson(Map<String, dynamic> json) => _$DestinationArrivedRequestFromJson(json);
+  factory TripDestinationArrivedModel.fromJson(Map<String, dynamic> json) => _$TripDestinationArrivedModelFromJson(json);
 }

@@ -17,12 +17,13 @@ class AllTripStepsModel with _$AllTripStepsModel{
     String? userId,
     int? tripId,
     int? jobsiteId,
-    //todo end
-    DestinationArrivedRequest? destinationArrivedRequest,
-    StepOneCompleteRequest? stepOneCompleteRequest,
-    StepTwoStartRequest? stepTwoStartRequest,
-    StepTwoCompleteRequest? stepTwoCompleteRequest,
+
+    TripDestinationArrivedModel? tripDestinationArrivedModel,
+    SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
+    Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
+    SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
     Take5TogetherModel? take5TogetherAPIModels,
+
     String? endStatus
   }) = _AllTripStepsModel;
 

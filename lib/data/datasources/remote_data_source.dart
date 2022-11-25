@@ -89,9 +89,14 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
 
   @override
   Future<String> sendCollection({required AllTripStepsModel allTripStepsModel}) async{
-    // TODO: implement sendCollection
-    // throw UnimplementedError();
-    return "Done";
+    print(allTripStepsModel.toString());
+    final response = await client.request(
+        url: AppEndpoints.sendTripUpdate,
+        method: HttpMethod.POST,
+        data: allTripStepsModel.toJson()
+    );
+    print(response.data);
+    return response.data['data'];
   }
 
   @override

@@ -22,14 +22,14 @@ AllTripStepsModel _$AllTripStepsModelFromJson(Map<String, dynamic> json) {
 mixin _$AllTripStepsModel {
   String? get userId => throw _privateConstructorUsedError;
   int? get tripId => throw _privateConstructorUsedError;
-  int? get jobsiteId => throw _privateConstructorUsedError; //todo end
-  DestinationArrivedRequest? get destinationArrivedRequest =>
+  int? get jobsiteId => throw _privateConstructorUsedError;
+  TripDestinationArrivedModel? get tripDestinationArrivedModel =>
       throw _privateConstructorUsedError;
-  StepOneCompleteRequest? get stepOneCompleteRequest =>
+  SurveyStepOneAnswersAPIModel? get surveyStepOneAnswersAPIModel =>
       throw _privateConstructorUsedError;
-  StepTwoStartRequest? get stepTwoStartRequest =>
+  Take5StepTwoRequestAPIModel? get take5StepTwoRequestAPIModel =>
       throw _privateConstructorUsedError;
-  StepTwoCompleteRequest? get stepTwoCompleteRequest =>
+  SurveyStepTwoAnswersAPIModel? get surveyStepTwoAnswersAPIModel =>
       throw _privateConstructorUsedError;
   Take5TogetherModel? get take5TogetherAPIModels =>
       throw _privateConstructorUsedError;
@@ -51,17 +51,17 @@ abstract class $AllTripStepsModelCopyWith<$Res> {
       {String? userId,
       int? tripId,
       int? jobsiteId,
-      DestinationArrivedRequest? destinationArrivedRequest,
-      StepOneCompleteRequest? stepOneCompleteRequest,
-      StepTwoStartRequest? stepTwoStartRequest,
-      StepTwoCompleteRequest? stepTwoCompleteRequest,
+      TripDestinationArrivedModel? tripDestinationArrivedModel,
+      SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
+      Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
+      SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
       Take5TogetherModel? take5TogetherAPIModels,
       String? endStatus});
 
-  $DestinationArrivedRequestCopyWith<$Res>? get destinationArrivedRequest;
-  $StepOneCompleteRequestCopyWith<$Res>? get stepOneCompleteRequest;
-  $StepTwoStartRequestCopyWith<$Res>? get stepTwoStartRequest;
-  $StepTwoCompleteRequestCopyWith<$Res>? get stepTwoCompleteRequest;
+  $TripDestinationArrivedModelCopyWith<$Res>? get tripDestinationArrivedModel;
+  $SurveyStepOneAnswersAPIModelCopyWith<$Res>? get surveyStepOneAnswersAPIModel;
+  $Take5StepTwoRequestAPIModelCopyWith<$Res>? get take5StepTwoRequestAPIModel;
+  $SurveyStepTwoAnswersAPIModelCopyWith<$Res>? get surveyStepTwoAnswersAPIModel;
   $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
 
@@ -81,10 +81,10 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
     Object? userId = freezed,
     Object? tripId = freezed,
     Object? jobsiteId = freezed,
-    Object? destinationArrivedRequest = freezed,
-    Object? stepOneCompleteRequest = freezed,
-    Object? stepTwoStartRequest = freezed,
-    Object? stepTwoCompleteRequest = freezed,
+    Object? tripDestinationArrivedModel = freezed,
+    Object? surveyStepOneAnswersAPIModel = freezed,
+    Object? take5StepTwoRequestAPIModel = freezed,
+    Object? surveyStepTwoAnswersAPIModel = freezed,
     Object? take5TogetherAPIModels = freezed,
     Object? endStatus = freezed,
   }) {
@@ -101,22 +101,22 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int?,
-      destinationArrivedRequest: freezed == destinationArrivedRequest
-          ? _value.destinationArrivedRequest
-          : destinationArrivedRequest // ignore: cast_nullable_to_non_nullable
-              as DestinationArrivedRequest?,
-      stepOneCompleteRequest: freezed == stepOneCompleteRequest
-          ? _value.stepOneCompleteRequest
-          : stepOneCompleteRequest // ignore: cast_nullable_to_non_nullable
-              as StepOneCompleteRequest?,
-      stepTwoStartRequest: freezed == stepTwoStartRequest
-          ? _value.stepTwoStartRequest
-          : stepTwoStartRequest // ignore: cast_nullable_to_non_nullable
-              as StepTwoStartRequest?,
-      stepTwoCompleteRequest: freezed == stepTwoCompleteRequest
-          ? _value.stepTwoCompleteRequest
-          : stepTwoCompleteRequest // ignore: cast_nullable_to_non_nullable
-              as StepTwoCompleteRequest?,
+      tripDestinationArrivedModel: freezed == tripDestinationArrivedModel
+          ? _value.tripDestinationArrivedModel
+          : tripDestinationArrivedModel // ignore: cast_nullable_to_non_nullable
+              as TripDestinationArrivedModel?,
+      surveyStepOneAnswersAPIModel: freezed == surveyStepOneAnswersAPIModel
+          ? _value.surveyStepOneAnswersAPIModel
+          : surveyStepOneAnswersAPIModel // ignore: cast_nullable_to_non_nullable
+              as SurveyStepOneAnswersAPIModel?,
+      take5StepTwoRequestAPIModel: freezed == take5StepTwoRequestAPIModel
+          ? _value.take5StepTwoRequestAPIModel
+          : take5StepTwoRequestAPIModel // ignore: cast_nullable_to_non_nullable
+              as Take5StepTwoRequestAPIModel?,
+      surveyStepTwoAnswersAPIModel: freezed == surveyStepTwoAnswersAPIModel
+          ? _value.surveyStepTwoAnswersAPIModel
+          : surveyStepTwoAnswersAPIModel // ignore: cast_nullable_to_non_nullable
+              as SurveyStepTwoAnswersAPIModel?,
       take5TogetherAPIModels: freezed == take5TogetherAPIModels
           ? _value.take5TogetherAPIModels
           : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
@@ -130,53 +130,57 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $DestinationArrivedRequestCopyWith<$Res>? get destinationArrivedRequest {
-    if (_value.destinationArrivedRequest == null) {
+  $TripDestinationArrivedModelCopyWith<$Res>? get tripDestinationArrivedModel {
+    if (_value.tripDestinationArrivedModel == null) {
       return null;
     }
 
-    return $DestinationArrivedRequestCopyWith<$Res>(
-        _value.destinationArrivedRequest!, (value) {
-      return _then(_value.copyWith(destinationArrivedRequest: value) as $Val);
+    return $TripDestinationArrivedModelCopyWith<$Res>(
+        _value.tripDestinationArrivedModel!, (value) {
+      return _then(_value.copyWith(tripDestinationArrivedModel: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StepOneCompleteRequestCopyWith<$Res>? get stepOneCompleteRequest {
-    if (_value.stepOneCompleteRequest == null) {
+  $SurveyStepOneAnswersAPIModelCopyWith<$Res>?
+      get surveyStepOneAnswersAPIModel {
+    if (_value.surveyStepOneAnswersAPIModel == null) {
       return null;
     }
 
-    return $StepOneCompleteRequestCopyWith<$Res>(_value.stepOneCompleteRequest!,
-        (value) {
-      return _then(_value.copyWith(stepOneCompleteRequest: value) as $Val);
+    return $SurveyStepOneAnswersAPIModelCopyWith<$Res>(
+        _value.surveyStepOneAnswersAPIModel!, (value) {
+      return _then(
+          _value.copyWith(surveyStepOneAnswersAPIModel: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StepTwoStartRequestCopyWith<$Res>? get stepTwoStartRequest {
-    if (_value.stepTwoStartRequest == null) {
+  $Take5StepTwoRequestAPIModelCopyWith<$Res>? get take5StepTwoRequestAPIModel {
+    if (_value.take5StepTwoRequestAPIModel == null) {
       return null;
     }
 
-    return $StepTwoStartRequestCopyWith<$Res>(_value.stepTwoStartRequest!,
-        (value) {
-      return _then(_value.copyWith(stepTwoStartRequest: value) as $Val);
+    return $Take5StepTwoRequestAPIModelCopyWith<$Res>(
+        _value.take5StepTwoRequestAPIModel!, (value) {
+      return _then(_value.copyWith(take5StepTwoRequestAPIModel: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $StepTwoCompleteRequestCopyWith<$Res>? get stepTwoCompleteRequest {
-    if (_value.stepTwoCompleteRequest == null) {
+  $SurveyStepTwoAnswersAPIModelCopyWith<$Res>?
+      get surveyStepTwoAnswersAPIModel {
+    if (_value.surveyStepTwoAnswersAPIModel == null) {
       return null;
     }
 
-    return $StepTwoCompleteRequestCopyWith<$Res>(_value.stepTwoCompleteRequest!,
-        (value) {
-      return _then(_value.copyWith(stepTwoCompleteRequest: value) as $Val);
+    return $SurveyStepTwoAnswersAPIModelCopyWith<$Res>(
+        _value.surveyStepTwoAnswersAPIModel!, (value) {
+      return _then(
+          _value.copyWith(surveyStepTwoAnswersAPIModel: value) as $Val);
     });
   }
 
@@ -206,21 +210,21 @@ abstract class _$$_AllTripStepsModelCopyWith<$Res>
       {String? userId,
       int? tripId,
       int? jobsiteId,
-      DestinationArrivedRequest? destinationArrivedRequest,
-      StepOneCompleteRequest? stepOneCompleteRequest,
-      StepTwoStartRequest? stepTwoStartRequest,
-      StepTwoCompleteRequest? stepTwoCompleteRequest,
+      TripDestinationArrivedModel? tripDestinationArrivedModel,
+      SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
+      Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
+      SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
       Take5TogetherModel? take5TogetherAPIModels,
       String? endStatus});
 
   @override
-  $DestinationArrivedRequestCopyWith<$Res>? get destinationArrivedRequest;
+  $TripDestinationArrivedModelCopyWith<$Res>? get tripDestinationArrivedModel;
   @override
-  $StepOneCompleteRequestCopyWith<$Res>? get stepOneCompleteRequest;
+  $SurveyStepOneAnswersAPIModelCopyWith<$Res>? get surveyStepOneAnswersAPIModel;
   @override
-  $StepTwoStartRequestCopyWith<$Res>? get stepTwoStartRequest;
+  $Take5StepTwoRequestAPIModelCopyWith<$Res>? get take5StepTwoRequestAPIModel;
   @override
-  $StepTwoCompleteRequestCopyWith<$Res>? get stepTwoCompleteRequest;
+  $SurveyStepTwoAnswersAPIModelCopyWith<$Res>? get surveyStepTwoAnswersAPIModel;
   @override
   $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
@@ -239,10 +243,10 @@ class __$$_AllTripStepsModelCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? tripId = freezed,
     Object? jobsiteId = freezed,
-    Object? destinationArrivedRequest = freezed,
-    Object? stepOneCompleteRequest = freezed,
-    Object? stepTwoStartRequest = freezed,
-    Object? stepTwoCompleteRequest = freezed,
+    Object? tripDestinationArrivedModel = freezed,
+    Object? surveyStepOneAnswersAPIModel = freezed,
+    Object? take5StepTwoRequestAPIModel = freezed,
+    Object? surveyStepTwoAnswersAPIModel = freezed,
     Object? take5TogetherAPIModels = freezed,
     Object? endStatus = freezed,
   }) {
@@ -259,22 +263,22 @@ class __$$_AllTripStepsModelCopyWithImpl<$Res>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int?,
-      destinationArrivedRequest: freezed == destinationArrivedRequest
-          ? _value.destinationArrivedRequest
-          : destinationArrivedRequest // ignore: cast_nullable_to_non_nullable
-              as DestinationArrivedRequest?,
-      stepOneCompleteRequest: freezed == stepOneCompleteRequest
-          ? _value.stepOneCompleteRequest
-          : stepOneCompleteRequest // ignore: cast_nullable_to_non_nullable
-              as StepOneCompleteRequest?,
-      stepTwoStartRequest: freezed == stepTwoStartRequest
-          ? _value.stepTwoStartRequest
-          : stepTwoStartRequest // ignore: cast_nullable_to_non_nullable
-              as StepTwoStartRequest?,
-      stepTwoCompleteRequest: freezed == stepTwoCompleteRequest
-          ? _value.stepTwoCompleteRequest
-          : stepTwoCompleteRequest // ignore: cast_nullable_to_non_nullable
-              as StepTwoCompleteRequest?,
+      tripDestinationArrivedModel: freezed == tripDestinationArrivedModel
+          ? _value.tripDestinationArrivedModel
+          : tripDestinationArrivedModel // ignore: cast_nullable_to_non_nullable
+              as TripDestinationArrivedModel?,
+      surveyStepOneAnswersAPIModel: freezed == surveyStepOneAnswersAPIModel
+          ? _value.surveyStepOneAnswersAPIModel
+          : surveyStepOneAnswersAPIModel // ignore: cast_nullable_to_non_nullable
+              as SurveyStepOneAnswersAPIModel?,
+      take5StepTwoRequestAPIModel: freezed == take5StepTwoRequestAPIModel
+          ? _value.take5StepTwoRequestAPIModel
+          : take5StepTwoRequestAPIModel // ignore: cast_nullable_to_non_nullable
+              as Take5StepTwoRequestAPIModel?,
+      surveyStepTwoAnswersAPIModel: freezed == surveyStepTwoAnswersAPIModel
+          ? _value.surveyStepTwoAnswersAPIModel
+          : surveyStepTwoAnswersAPIModel // ignore: cast_nullable_to_non_nullable
+              as SurveyStepTwoAnswersAPIModel?,
       take5TogetherAPIModels: freezed == take5TogetherAPIModels
           ? _value.take5TogetherAPIModels
           : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
@@ -294,10 +298,10 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       {this.userId,
       this.tripId,
       this.jobsiteId,
-      this.destinationArrivedRequest,
-      this.stepOneCompleteRequest,
-      this.stepTwoStartRequest,
-      this.stepTwoCompleteRequest,
+      this.tripDestinationArrivedModel,
+      this.surveyStepOneAnswersAPIModel,
+      this.take5StepTwoRequestAPIModel,
+      this.surveyStepTwoAnswersAPIModel,
       this.take5TogetherAPIModels,
       this.endStatus});
 
@@ -310,15 +314,14 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
   final int? tripId;
   @override
   final int? jobsiteId;
-//todo end
   @override
-  final DestinationArrivedRequest? destinationArrivedRequest;
+  final TripDestinationArrivedModel? tripDestinationArrivedModel;
   @override
-  final StepOneCompleteRequest? stepOneCompleteRequest;
+  final SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel;
   @override
-  final StepTwoStartRequest? stepTwoStartRequest;
+  final Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel;
   @override
-  final StepTwoCompleteRequest? stepTwoCompleteRequest;
+  final SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel;
   @override
   final Take5TogetherModel? take5TogetherAPIModels;
   @override
@@ -326,7 +329,7 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
 
   @override
   String toString() {
-    return 'AllTripStepsModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, destinationArrivedRequest: $destinationArrivedRequest, stepOneCompleteRequest: $stepOneCompleteRequest, stepTwoStartRequest: $stepTwoStartRequest, stepTwoCompleteRequest: $stepTwoCompleteRequest, take5TogetherAPIModels: $take5TogetherAPIModels, endStatus: $endStatus)';
+    return 'AllTripStepsModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, tripDestinationArrivedModel: $tripDestinationArrivedModel, surveyStepOneAnswersAPIModel: $surveyStepOneAnswersAPIModel, take5StepTwoRequestAPIModel: $take5StepTwoRequestAPIModel, surveyStepTwoAnswersAPIModel: $surveyStepTwoAnswersAPIModel, take5TogetherAPIModels: $take5TogetherAPIModels, endStatus: $endStatus)';
   }
 
   @override
@@ -338,15 +341,22 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobsiteId, jobsiteId) ||
                 other.jobsiteId == jobsiteId) &&
-            (identical(other.destinationArrivedRequest,
-                    destinationArrivedRequest) ||
-                other.destinationArrivedRequest == destinationArrivedRequest) &&
-            (identical(other.stepOneCompleteRequest, stepOneCompleteRequest) ||
-                other.stepOneCompleteRequest == stepOneCompleteRequest) &&
-            (identical(other.stepTwoStartRequest, stepTwoStartRequest) ||
-                other.stepTwoStartRequest == stepTwoStartRequest) &&
-            (identical(other.stepTwoCompleteRequest, stepTwoCompleteRequest) ||
-                other.stepTwoCompleteRequest == stepTwoCompleteRequest) &&
+            (identical(other.tripDestinationArrivedModel,
+                    tripDestinationArrivedModel) ||
+                other.tripDestinationArrivedModel ==
+                    tripDestinationArrivedModel) &&
+            (identical(other.surveyStepOneAnswersAPIModel,
+                    surveyStepOneAnswersAPIModel) ||
+                other.surveyStepOneAnswersAPIModel ==
+                    surveyStepOneAnswersAPIModel) &&
+            (identical(other.take5StepTwoRequestAPIModel,
+                    take5StepTwoRequestAPIModel) ||
+                other.take5StepTwoRequestAPIModel ==
+                    take5StepTwoRequestAPIModel) &&
+            (identical(other.surveyStepTwoAnswersAPIModel,
+                    surveyStepTwoAnswersAPIModel) ||
+                other.surveyStepTwoAnswersAPIModel ==
+                    surveyStepTwoAnswersAPIModel) &&
             (identical(other.take5TogetherAPIModels, take5TogetherAPIModels) ||
                 other.take5TogetherAPIModels == take5TogetherAPIModels) &&
             (identical(other.endStatus, endStatus) ||
@@ -360,10 +370,10 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       userId,
       tripId,
       jobsiteId,
-      destinationArrivedRequest,
-      stepOneCompleteRequest,
-      stepTwoStartRequest,
-      stepTwoCompleteRequest,
+      tripDestinationArrivedModel,
+      surveyStepOneAnswersAPIModel,
+      take5StepTwoRequestAPIModel,
+      surveyStepTwoAnswersAPIModel,
       take5TogetherAPIModels,
       endStatus);
 
@@ -387,10 +397,10 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
       {final String? userId,
       final int? tripId,
       final int? jobsiteId,
-      final DestinationArrivedRequest? destinationArrivedRequest,
-      final StepOneCompleteRequest? stepOneCompleteRequest,
-      final StepTwoStartRequest? stepTwoStartRequest,
-      final StepTwoCompleteRequest? stepTwoCompleteRequest,
+      final TripDestinationArrivedModel? tripDestinationArrivedModel,
+      final SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
+      final Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
+      final SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
       final Take5TogetherModel? take5TogetherAPIModels,
       final String? endStatus}) = _$_AllTripStepsModel;
 
@@ -403,14 +413,14 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
   int? get tripId;
   @override
   int? get jobsiteId;
-  @override //todo end
-  DestinationArrivedRequest? get destinationArrivedRequest;
   @override
-  StepOneCompleteRequest? get stepOneCompleteRequest;
+  TripDestinationArrivedModel? get tripDestinationArrivedModel;
   @override
-  StepTwoStartRequest? get stepTwoStartRequest;
+  SurveyStepOneAnswersAPIModel? get surveyStepOneAnswersAPIModel;
   @override
-  StepTwoCompleteRequest? get stepTwoCompleteRequest;
+  Take5StepTwoRequestAPIModel? get take5StepTwoRequestAPIModel;
+  @override
+  SurveyStepTwoAnswersAPIModel? get surveyStepTwoAnswersAPIModel;
   @override
   Take5TogetherModel? get take5TogetherAPIModels;
   @override
