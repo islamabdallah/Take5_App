@@ -64,6 +64,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = StepOneCubit.get(context);
+          print(cubit.step1Answers);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             drawer: const DrawerWidget(),

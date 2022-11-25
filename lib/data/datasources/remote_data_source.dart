@@ -72,6 +72,7 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
         queryParameters: {
           'userId':userId,
         },);
+    print(userId);
     print(response.data);
     return UserTripResponse.fromJson(response.data);
   }
