@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:quickalert/quickalert.dart';
 import 'package:take5/presentation/screens/home/home.dart';
-import 'package:take5/presentation/screens/login/widgets/login_button.dart';
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../core/constants/app_strings.dart';
@@ -15,6 +13,7 @@ import '../../../logic/login_cubit/login_cubit.dart';
 import '../../../logic/login_cubit/login_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/dialogs/message_dialog.dart';
+import '../../widgets/main_button.dart';
 import '../../widgets/my_text_form_field.dart';
 import '../../widgets/powered_by_cemex.dart';
 
@@ -83,8 +82,11 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Scaffold(
                 // backgroundColor: backgroundColor,
                 body: SafeArea(
-                  child: SingleChildScrollView(
-                    child: Padding(
+                  child: CustomScrollView(
+                      slivers: [
+                      SliverFillRemaining(
+                      hasScrollBody: false,
+                      child: Padding(
                       padding: EdgeInsets.symmetric(horizontal: 16.w),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -125,7 +127,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   controller: _cubit.serialNumberController,
                                   label: "Id".tr(),
                                   errorText: _cubit.errorMessage ==
-                                          'رقم التعريفي غير مسجل'
+                                          'رقم السركى غير مسجل'
                                       ? _cubit.errorMessage
                                       : null,
                                   prefixIcon: Icons.person_outline_sharp,
@@ -135,17 +137,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ],
                                   validator: (String? value) {
                                     if (value!.isEmpty) return "required".tr();
-                                    String pattern = r'(^01[0125][0-9]{8}$)';
-                                    RegExp regex = RegExp(pattern);
-                                    if (!regex.hasMatch(value)) {
-                                      return 'Enter Valid Phone Number';
-                                    }
-                                    return null;
+                                    // String pattern = r'(^01[0125][0-9]{8}$)';
+                                    // RegExp regex = RegExp(pattern);
+                                    // if (!regex.hasMatch(value)) {
+                                    //   print(_cubit.serialNumberController.text);
+                                    //   return "Enter Valid serial Number".tr();
+                                    // }
+                                    // return null;
                                   },
                                   keyboardType: TextInputType.number,
                                 ),
                                 MyTextFormField(
-                                  controller: _cubit.passwordController..text='Iop123@@',
+                                  controller: _cubit.passwordController,
                                   label: "password".tr(),
                                   errorText: _cubit.errorMessage ==
                                           'خطأ فى كلمة المرور'
@@ -167,29 +170,25 @@ class _LoginScreenState extends State<LoginScreen> {
                                 SizedBox(
                                   height: 60.h,
                                 ),
-                                SizedBox(
-                                  height: 60.h,
-                                  width: 334.w,
-                                  child:LoginButton(
-                                      onPressed:  () {
-                                    // if (_formKey.currentState!
-                                    //     .validate()) {
-                                    //   _cubit.loginUser();
-                                    // }
-                                    _cubit.loginUser();
-                                  },),
-                                ),
-                                SizedBox(
-                                  height: 60.h,
-                                ),
-                                const PoweredByCemex()
+                                MainButton(
+                                  onPressed: () {
+                                  if(_formKey.currentState!.validate())
+                                    {
+                                      _cubit.loginUser();
+                                    }
+                                  }, title: 'دخول',),
                               ],
                             ),
+                          ),
+                          const Spacer(),
+                          const Center(child: PoweredByCemex()),
+                          SizedBox(
+                            height: 10.h,
                           ),
                         ],
                       ),
                     ),
-                  ),
+                  )]),
                 ),
               ),
             ),
