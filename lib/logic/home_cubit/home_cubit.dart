@@ -1,8 +1,15 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
+import 'package:take5/presentation/screens/step_one/step_one_questions.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/models/trip/trip.dart';
 import '../../data/repositories/take5_repository.dart';
+import '../../presentation/screens/end_trip/end_trip.dart';
+import '../../presentation/screens/step_two/step_two.dart';
+import '../../presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
+import '../../presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
+import '../../presentation/screens/trip/trip.dart';
 import 'home_states.dart';
 
 class HomeCubit extends Cubit<HomeStates> {
@@ -16,12 +23,12 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<void> getCurrentTrip() async {
     emit(HomeGetCurrentTripLoading());
     final result =
-        await take5Repository.getCurrentTrip(userId: AppConstants.user.userId);
+    await take5Repository.getCurrentTrip(userId: AppConstants.user.userId);
     result.fold((failure) {
       emit(HomeGetCurrentTripFail(failure.message));
     }, (tripPendingResponse) {
       trip = tripPendingResponse.data;
-      AppConstants.trip=tripPendingResponse.data;
+      AppConstants.trip = tripPendingResponse.data;
       emit(HomeGetCurrentTripSuccess());
     });
   }
@@ -39,6 +46,32 @@ class HomeCubit extends Cubit<HomeStates> {
     }, (startTripResponse) {
       emit(HomeStartTripSuccess());
     });
+  }
+
+  void continueTrip(BuildContext context) async {
+    switch (trip!.tripStatus) {
+      case 'Started':
+        Navigator.pushReplacementNamed(context, TripScreen.routeName);
+        break;
+      case 'DestinationArrived':
+        Navigator.pushReplacementNamed(context, StepOneQuestionsScreen.routeName);
+        break;
+      case 'SurveyStepOneCompleted':
+        Navigator.pushReplacementNamed(context, StepTwoStartRequestScreen.routeName);
+        break;
+      case 'StepTwoRequested':
+        Navigator.pushReplacementNamed(context, StepTwoWaitingScreen.routeName);
+        break;
+      case 'StepTwoResponsed':
+        Navigator.pushReplacementNamed(context, StepTwoScreen.routeName);
+        break;
+        //todo change this to take5together and add one for end trip screen
+      case 'SurveyStepTwoCompleted':
+        Navigator.pushReplacementNamed(context, EndTripScreen.routeName);
+        break;
+
+      default:
+    }
   }
 
   Future<void> checkTripStatus() async {

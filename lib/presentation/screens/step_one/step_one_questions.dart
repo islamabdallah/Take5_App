@@ -11,6 +11,7 @@ import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
+import '../../widgets/drawer_widget.dart';
 import '../../widgets/true_false_question.dart';
 
 class StepOneQuestionsScreen extends StatefulWidget {
@@ -65,6 +66,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           var cubit = StepOneCubit.get(context);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
+            drawer: const DrawerWidget(),
               appBar: AppBar(
                 leading: Builder(
                     builder: (context) {
