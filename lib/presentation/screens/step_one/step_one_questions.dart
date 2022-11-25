@@ -6,6 +6,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/presentation/screens/step_one/widgets/selected_dangers.dart';
+import 'package:take5/presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
+import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
+import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
@@ -43,8 +46,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
     super.initState();
   }
 
-  stopService()async
-  {
+  stopService() async {
     final service = FlutterBackgroundService();
     var isRunning = await service.isRunning();
     if (isRunning == true) {
@@ -56,123 +58,149 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
     // Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
     // print(DestinationArrivedRequest.fromJson(json));
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<StepOneCubit>()..getStepOneQuestions(),
       child: BlocConsumer<StepOneCubit, StepOneState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is StepOneSubmitAnswerLoading) {
+            loadingAlertDialog(context);
+          }
+          if (state is StepOneSubmitAnswerSuccess) {
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(
+                context, StepTwoStartRequestScreen.routeName);
+          }
+          if (state is StepOneSubmitAnswerFail) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = StepOneCubit.get(context);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             drawer: const DrawerWidget(),
-              appBar: AppBar(
-                leading: Builder(
-                    builder: (context) {
-                      return IconButton(icon:const Icon(Icons.menu_open),onPressed: (){
-                        Scaffold.of(context).openDrawer();
-                      });
-                    }
-                ),
-                toolbarHeight: 80,
-                elevation: 0,
-                iconTheme:const IconThemeData(color: AppColors.redColor),
-                title:const Text(
-                  'المرحله الاولى',
-                  style: TextStyle(color: AppColors.redColor),
-                ),
-                backgroundColor: Colors.white,
-                centerTitle: true,
+            appBar: AppBar(
+              leading: Builder(builder: (context) {
+                return IconButton(
+                    icon: const Icon(Icons.menu_open),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    });
+              }),
+              toolbarHeight: 80,
+              elevation: 0,
+              iconTheme: const IconThemeData(color: AppColors.redColor),
+              title: const Text(
+                'المرحله الاولى',
+                style: TextStyle(color: AppColors.redColor),
               ),
-              body: SingleChildScrollView(
-                child: FormBuilder(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.always,
-                  child:cubit.isQuestions?
-                  Padding(
-                    padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
-                    child: Column(
-                      children: [
-                        Row(
+              backgroundColor: Colors.white,
+              centerTitle: true,
+            ),
+            body: SingleChildScrollView(
+              child: FormBuilder(
+                key: _formKey,
+                autovalidateMode: AutovalidateMode.always,
+                child: cubit.isQuestions
+                    ? Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.h, horizontal: 15.w),
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.mainColor,
-                              radius:14.h ,
-                              child:const Center(
-                                child: Text(
-                                  '3',style:TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700
-                                ),),
-                              ),),
-                            SizedBox(
-                              width: 10.w,
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: AppColors.mainColor,
+                                  radius: 14.h,
+                                  child: const Center(
+                                    child: Text(
+                                      '3',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Text('جاوب علي الاسئلة الاتية',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18.sp)),
+                              ],
                             ),
-                            Text('جاوب علي الاسئلة الاتية',style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18.sp
-                            )),
+                            state is StepOneGetQuestionsLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0, horizontal: 35.w),
+                                    child: Column(
+                                      children: List.generate(
+                                        cubit.step1Answers.length,
+                                        (index) => TrueFalseQuestion(
+                                          questionAnswer:
+                                              cubit.step1Answers[index],
+                                          index: index + 1,
+                                        ),
+                                      ),
+                                    )),
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 45.h,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState?.validate() ==
+                                        true) {
+                                      cubit.toggleToDangers();
+                                    }
+                                  },
+                                  child: Text("next".tr()),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30.h,
+                            ),
                           ],
                         ),
-                        state is StepOneGetQuestionsLoading
-                            ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                        :Padding(
-                            padding:EdgeInsets.symmetric(vertical: 0,horizontal:35.w ),
-                            child: Column(
-                              children: List.generate(cubit.step1Answers.length, (index) => TrueFalseQuestion(
-                                questionAnswer: cubit.step1Answers[index],
-                                index: index+1,
-                              ),),
-                            )
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 45.h,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if(_formKey.currentState?.validate()==true)
-                                  {
-                                    cubit.toggleToDangers();
-                                  }
-                              },
-                              child: Text("next".tr()),
+                      )
+                    : Column(
+                        children: [
+                          ...List.generate(
+                            c,
+                            (index) => const Danger(),
+                          ),
+                          SizedBox(
+                            height: 200,
+                            child: ListView.builder(
+                              itemCount: cubit.dangers.length,
+                              itemBuilder: (context, index) =>
+                                  const SelectedDangerWidget(),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                      ],
-                    ),
-                  ):
-                  Column(
-                    children: [
-                      ...List.generate(c, (index) => const Danger(),),
-                      SizedBox(
-                        height: 200,
-                        child: ListView.builder(
-                          itemCount: cubit.dangers.length,
-                          itemBuilder:(context,index)=>const SelectedDangerWidget(),
-                        ),
+                          ElevatedButton(
+                              onPressed: () {
+                                //_formKey.currentState?.validate()==true
+                                cubit.submitAnswers();
+                              },
+                              child: Text("end step 1".tr())),
+                        ],
                       ),
-                      ElevatedButton(
-                          onPressed: () {
-                            //_formKey.currentState?.validate()==true
-                            cubit.submitAnswers();
-                          },
-                          child:Text("end step 1".tr())),
-                    ],
-                  ),
-                ),
               ),
-              );
+            ),
+          );
         },
       ),
     );

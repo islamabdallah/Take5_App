@@ -182,7 +182,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
+          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,endStatus: 'SurveyStepOneCompleted');
       try {
         await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
@@ -204,7 +204,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
+          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,endStatus: 'SurveyStepOneCompleted');
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right('تم الحفظ');
     }

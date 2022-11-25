@@ -12,7 +12,7 @@ class SurveyStepTwoAnswersAPIModel with _$SurveyStepTwoAnswersAPIModel {
    required String userId,
    required int tripId,
     required int jobSiteId,
-   required List<Answer> answers,
+   required List<QuestionAnswerModel> answers,
    required DateTime createdDate,
   }) = _SurveyStepTwoAnswersAPIModel;
 

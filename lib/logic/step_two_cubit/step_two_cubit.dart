@@ -20,7 +20,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
 
   StepTwoCubit({required this.take5Repository}) : super(StepTwoInitial());
 
-  List<Answer> step2Answers = [];
+  List<QuestionAnswerModel> step2Answers = [];
 
   void getStepTwoQuestions() {
     emit(StepTwoGetQuestionsLoading());
@@ -29,10 +29,11 @@ class StepTwoCubit extends Cubit<StepTwoState> {
       emit(StepTwoGetQuestionsFail(failure.message));
     }, (takeFiveSurvey) {
       if (takeFiveSurvey != null) {
-        for (var question in takeFiveSurvey.stepTwoQuestions) {
-          step2Answers
-              .add(Answer(id: question.id, question: question.question));
-        }
+        step2Answers = takeFiveSurvey.stepTwoQuestions;
+        // for (var question in takeFiveSurvey.stepTwoQuestions) {
+        //   step2Answers
+        //       .add(Answer(id: question.id, question: question.question));
+        // }
       }
       print(takeFiveSurvey?.stepTwoQuestions.length);
       print(step2Answers.length);

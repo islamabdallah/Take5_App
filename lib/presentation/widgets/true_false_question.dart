@@ -7,7 +7,7 @@ import '../../core/constants/app_colors.dart';
 import '../../data/models/answer/answer.dart';
 
 class TrueFalseQuestion extends StatelessWidget {
-  final Answer questionAnswer;
+  final QuestionAnswerModel questionAnswer;
   final int index;
   const TrueFalseQuestion({Key? key,required this.questionAnswer,required this.index}) : super(key: key);
 

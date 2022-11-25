@@ -13,7 +13,8 @@ _$_SurveyStepTwoAnswersAPIModel _$$_SurveyStepTwoAnswersAPIModelFromJson(
       tripId: json['tripId'] as int,
       jobSiteId: json['jobSiteId'] as int,
       answers: (json['answers'] as List<dynamic>)
-          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) =>
+              QuestionAnswerModel.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       createdDate: DateTime.parse(json['createdDate'] as String),
     );

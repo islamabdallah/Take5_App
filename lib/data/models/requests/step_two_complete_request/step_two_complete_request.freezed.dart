@@ -24,7 +24,7 @@ mixin _$SurveyStepTwoAnswersAPIModel {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
   int get jobSiteId => throw _privateConstructorUsedError;
-  List<Answer> get answers => throw _privateConstructorUsedError;
+  List<QuestionAnswerModel> get answers => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,7 +45,7 @@ abstract class $SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
       {String userId,
       int tripId,
       int jobSiteId,
-      List<Answer> answers,
+      List<QuestionAnswerModel> answers,
       DateTime createdDate});
 }
 
@@ -85,7 +85,7 @@ class _$SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res,
       answers: null == answers
           ? _value.answers
           : answers // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -107,7 +107,7 @@ abstract class _$$_SurveyStepTwoAnswersAPIModelCopyWith<$Res>
       {String userId,
       int tripId,
       int jobSiteId,
-      List<Answer> answers,
+      List<QuestionAnswerModel> answers,
       DateTime createdDate});
 }
 
@@ -146,7 +146,7 @@ class __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res>
       answers: null == answers
           ? _value._answers
           : answers // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -162,7 +162,7 @@ class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
       {required this.userId,
       required this.tripId,
       required this.jobSiteId,
-      required final List<Answer> answers,
+      required final List<QuestionAnswerModel> answers,
       required this.createdDate})
       : _answers = answers;
 
@@ -175,9 +175,9 @@ class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
   final int tripId;
   @override
   final int jobSiteId;
-  final List<Answer> _answers;
+  final List<QuestionAnswerModel> _answers;
   @override
-  List<Answer> get answers {
+  List<QuestionAnswerModel> get answers {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_answers);
   }
@@ -230,7 +230,7 @@ abstract class _SurveyStepTwoAnswersAPIModel
       {required final String userId,
       required final int tripId,
       required final int jobSiteId,
-      required final List<Answer> answers,
+      required final List<QuestionAnswerModel> answers,
       required final DateTime createdDate}) = _$_SurveyStepTwoAnswersAPIModel;
 
   factory _SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic> json) =
@@ -243,7 +243,7 @@ abstract class _SurveyStepTwoAnswersAPIModel
   @override
   int get jobSiteId;
   @override
-  List<Answer> get answers;
+  List<QuestionAnswerModel> get answers;
   @override
   DateTime get createdDate;
   @override

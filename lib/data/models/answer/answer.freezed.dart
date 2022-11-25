@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Answer _$AnswerFromJson(Map<String, dynamic> json) {
-  return _Answer.fromJson(json);
+QuestionAnswerModel _$QuestionAnswerModelFromJson(Map<String, dynamic> json) {
+  return _QuestionAnswerModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Answer {
+mixin _$QuestionAnswerModel {
   @HiveField(0)
   int get id => throw _privateConstructorUsedError;
   @HiveField(1)
@@ -31,13 +31,15 @@ mixin _$Answer {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $AnswerCopyWith<Answer> get copyWith => throw _privateConstructorUsedError;
+  $QuestionAnswerModelCopyWith<QuestionAnswerModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AnswerCopyWith<$Res> {
-  factory $AnswerCopyWith(Answer value, $Res Function(Answer) then) =
-      _$AnswerCopyWithImpl<$Res, Answer>;
+abstract class $QuestionAnswerModelCopyWith<$Res> {
+  factory $QuestionAnswerModelCopyWith(
+          QuestionAnswerModel value, $Res Function(QuestionAnswerModel) then) =
+      _$QuestionAnswerModelCopyWithImpl<$Res, QuestionAnswerModel>;
   @useResult
   $Res call(
       {@HiveField(0) int id,
@@ -46,9 +48,9 @@ abstract class $AnswerCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
-    implements $AnswerCopyWith<$Res> {
-  _$AnswerCopyWithImpl(this._value, this._then);
+class _$QuestionAnswerModelCopyWithImpl<$Res, $Val extends QuestionAnswerModel>
+    implements $QuestionAnswerModelCopyWith<$Res> {
+  _$QuestionAnswerModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -80,9 +82,11 @@ class _$AnswerCopyWithImpl<$Res, $Val extends Answer>
 }
 
 /// @nodoc
-abstract class _$$_AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
-  factory _$$_AnswerCopyWith(_$_Answer value, $Res Function(_$_Answer) then) =
-      __$$_AnswerCopyWithImpl<$Res>;
+abstract class _$$_QuestionAnswerModelCopyWith<$Res>
+    implements $QuestionAnswerModelCopyWith<$Res> {
+  factory _$$_QuestionAnswerModelCopyWith(_$_QuestionAnswerModel value,
+          $Res Function(_$_QuestionAnswerModel) then) =
+      __$$_QuestionAnswerModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -92,10 +96,11 @@ abstract class _$$_AnswerCopyWith<$Res> implements $AnswerCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_AnswerCopyWithImpl<$Res>
-    extends _$AnswerCopyWithImpl<$Res, _$_Answer>
-    implements _$$_AnswerCopyWith<$Res> {
-  __$$_AnswerCopyWithImpl(_$_Answer _value, $Res Function(_$_Answer) _then)
+class __$$_QuestionAnswerModelCopyWithImpl<$Res>
+    extends _$QuestionAnswerModelCopyWithImpl<$Res, _$_QuestionAnswerModel>
+    implements _$$_QuestionAnswerModelCopyWith<$Res> {
+  __$$_QuestionAnswerModelCopyWithImpl(_$_QuestionAnswerModel _value,
+      $Res Function(_$_QuestionAnswerModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -105,7 +110,7 @@ class __$$_AnswerCopyWithImpl<$Res>
     Object? question = null,
     Object? answer = freezed,
   }) {
-    return _then(_$_Answer(
+    return _then(_$_QuestionAnswerModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -124,14 +129,14 @@ class __$$_AnswerCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Answer implements _Answer {
-  _$_Answer(
+class _$_QuestionAnswerModel implements _QuestionAnswerModel {
+  _$_QuestionAnswerModel(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.question,
       @HiveField(2) this.answer});
 
-  factory _$_Answer.fromJson(Map<String, dynamic> json) =>
-      _$$_AnswerFromJson(json);
+  factory _$_QuestionAnswerModel.fromJson(Map<String, dynamic> json) =>
+      _$$_QuestionAnswerModelFromJson(json);
 
   @override
   @HiveField(0)
@@ -145,30 +150,32 @@ class _$_Answer implements _Answer {
 
   @override
   String toString() {
-    return 'Answer(id: $id, question: $question, answer: $answer)';
+    return 'QuestionAnswerModel(id: $id, question: $question, answer: $answer)';
   }
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AnswerCopyWith<_$_Answer> get copyWith =>
-      __$$_AnswerCopyWithImpl<_$_Answer>(this, _$identity);
+  _$$_QuestionAnswerModelCopyWith<_$_QuestionAnswerModel> get copyWith =>
+      __$$_QuestionAnswerModelCopyWithImpl<_$_QuestionAnswerModel>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AnswerToJson(
+    return _$$_QuestionAnswerModelToJson(
       this,
     );
   }
 }
 
-abstract class _Answer implements Answer {
-  factory _Answer(
+abstract class _QuestionAnswerModel implements QuestionAnswerModel {
+  factory _QuestionAnswerModel(
       {@HiveField(0) required final int id,
       @HiveField(1) required final String question,
-      @HiveField(2) bool? answer}) = _$_Answer;
+      @HiveField(2) bool? answer}) = _$_QuestionAnswerModel;
 
-  factory _Answer.fromJson(Map<String, dynamic> json) = _$_Answer.fromJson;
+  factory _QuestionAnswerModel.fromJson(Map<String, dynamic> json) =
+      _$_QuestionAnswerModel.fromJson;
 
   @override
   @HiveField(0)
@@ -183,6 +190,6 @@ abstract class _Answer implements Answer {
   set answer(bool? value);
   @override
   @JsonKey(ignore: true)
-  _$$_AnswerCopyWith<_$_Answer> get copyWith =>
+  _$$_QuestionAnswerModelCopyWith<_$_QuestionAnswerModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
