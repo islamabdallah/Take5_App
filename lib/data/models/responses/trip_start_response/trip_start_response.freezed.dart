@@ -188,8 +188,10 @@ TakeFiveSurvey _$TakeFiveSurveyFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TakeFiveSurvey {
-  List<Answer> get stepOneQuestions => throw _privateConstructorUsedError;
-  List<Answer> get stepTwoQuestions => throw _privateConstructorUsedError;
+  List<QuestionAnswerModel> get stepOneQuestions =>
+      throw _privateConstructorUsedError;
+  List<QuestionAnswerModel> get stepTwoQuestions =>
+      throw _privateConstructorUsedError;
   List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels =>
       throw _privateConstructorUsedError;
   List<Driver> get drivers => throw _privateConstructorUsedError;
@@ -207,8 +209,8 @@ abstract class $TakeFiveSurveyCopyWith<$Res> {
       _$TakeFiveSurveyCopyWithImpl<$Res, TakeFiveSurvey>;
   @useResult
   $Res call(
-      {List<Answer> stepOneQuestions,
-      List<Answer> stepTwoQuestions,
+      {List<QuestionAnswerModel> stepOneQuestions,
+      List<QuestionAnswerModel> stepTwoQuestions,
       List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels,
       List<Driver> drivers});
 }
@@ -235,11 +237,11 @@ class _$TakeFiveSurveyCopyWithImpl<$Res, $Val extends TakeFiveSurvey>
       stepOneQuestions: null == stepOneQuestions
           ? _value.stepOneQuestions
           : stepOneQuestions // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       stepTwoQuestions: null == stepTwoQuestions
           ? _value.stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       dangerWithCategoryAPIModels: null == dangerWithCategoryAPIModels
           ? _value.dangerWithCategoryAPIModels
           : dangerWithCategoryAPIModels // ignore: cast_nullable_to_non_nullable
@@ -261,8 +263,8 @@ abstract class _$$_TakeFiveSurveyCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Answer> stepOneQuestions,
-      List<Answer> stepTwoQuestions,
+      {List<QuestionAnswerModel> stepOneQuestions,
+      List<QuestionAnswerModel> stepTwoQuestions,
       List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels,
       List<Driver> drivers});
 }
@@ -287,11 +289,11 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
       stepOneQuestions: null == stepOneQuestions
           ? _value._stepOneQuestions
           : stepOneQuestions // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       stepTwoQuestions: null == stepTwoQuestions
           ? _value._stepTwoQuestions
           : stepTwoQuestions // ignore: cast_nullable_to_non_nullable
-              as List<Answer>,
+              as List<QuestionAnswerModel>,
       dangerWithCategoryAPIModels: null == dangerWithCategoryAPIModels
           ? _value._dangerWithCategoryAPIModels
           : dangerWithCategoryAPIModels // ignore: cast_nullable_to_non_nullable
@@ -308,8 +310,8 @@ class __$$_TakeFiveSurveyCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   const _$_TakeFiveSurvey(
-      {required final List<Answer> stepOneQuestions,
-      required final List<Answer> stepTwoQuestions,
+      {required final List<QuestionAnswerModel> stepOneQuestions,
+      required final List<QuestionAnswerModel> stepTwoQuestions,
       required final List<DangerWithCategoryAPIModels>
           dangerWithCategoryAPIModels,
       required final List<Driver> drivers})
@@ -321,16 +323,16 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   factory _$_TakeFiveSurvey.fromJson(Map<String, dynamic> json) =>
       _$$_TakeFiveSurveyFromJson(json);
 
-  final List<Answer> _stepOneQuestions;
+  final List<QuestionAnswerModel> _stepOneQuestions;
   @override
-  List<Answer> get stepOneQuestions {
+  List<QuestionAnswerModel> get stepOneQuestions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepOneQuestions);
   }
 
-  final List<Answer> _stepTwoQuestions;
+  final List<QuestionAnswerModel> _stepTwoQuestions;
   @override
-  List<Answer> get stepTwoQuestions {
+  List<QuestionAnswerModel> get stepTwoQuestions {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepTwoQuestions);
   }
@@ -394,8 +396,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
 
 abstract class _TakeFiveSurvey implements TakeFiveSurvey {
   const factory _TakeFiveSurvey(
-      {required final List<Answer> stepOneQuestions,
-      required final List<Answer> stepTwoQuestions,
+      {required final List<QuestionAnswerModel> stepOneQuestions,
+      required final List<QuestionAnswerModel> stepTwoQuestions,
       required final List<DangerWithCategoryAPIModels>
           dangerWithCategoryAPIModels,
       required final List<Driver> drivers}) = _$_TakeFiveSurvey;
@@ -404,9 +406,9 @@ abstract class _TakeFiveSurvey implements TakeFiveSurvey {
       _$_TakeFiveSurvey.fromJson;
 
   @override
-  List<Answer> get stepOneQuestions;
+  List<QuestionAnswerModel> get stepOneQuestions;
   @override
-  List<Answer> get stepTwoQuestions;
+  List<QuestionAnswerModel> get stepTwoQuestions;
   @override
   List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels;
   @override

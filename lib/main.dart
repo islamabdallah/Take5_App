@@ -103,11 +103,10 @@ class MyApp extends StatelessWidget {
             builder: (_, child) {
               return BlocListener<HomeCubit, HomeStates>(
                 listener: (context, state) {
-                var context= AppConstants.navigatorKey.currentContext!;
+                  var context = AppConstants.navigatorKey.currentContext!;
                   // final context = navigatorKey.currentState!.overlay!.context;
                   if (state is HomeCheckTripStatusLoading) {
-                    loadingAlertDialog(
-                        context);
+                    loadingAlertDialog(context);
                   }
                   if (state is HomeCheckTripStatusSuccess) {
                     // final context = navigatorKey.currentState!.overlay!.context;
@@ -149,17 +148,17 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            //initialRoute: getLastRoute(),
-            initialRoute: LoginScreen.routeName,
+            initialRoute: getLastRoute(),
+            // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
             // initialRoute: PreparingStepScreen.routeName,
-            //initialRoute: StepOneDangersScreen.routeName,
+            // initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             // initialRoute: StepTwoScreen.routeName,
-            //  initialRoute: TripScreen.routeName,
-            //initialRoute: EndTripScreen.routeName,
-            //initialRoute: StepTwoStartRequestScreen.routeName,
+            // initialRoute: TripScreen.routeName,
+            // initialRoute: EndTripScreen.routeName,
+            // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );
