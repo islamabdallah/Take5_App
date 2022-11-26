@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -87,11 +86,10 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 centerTitle: true,
               ),
               body: SingleChildScrollView(
-                child: FormBuilder(
+                child:cubit.isQuestions? FormBuilder(
                   key: _formKey,
-                  autovalidateMode: AutovalidateMode.always,
-                  child:cubit.isQuestions?
-                  Padding(
+                  autovalidateMode: AutovalidateMode.disabled,
+                  child:Padding(
                     padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
                     child: Column(
                       children: [
@@ -99,7 +97,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                           children: [
                             CircleAvatar(
                               backgroundColor: AppColors.mainColor,
-                              radius:14.h ,
+                              radius:14.h,
                               child:const Center(
                                 child: Text(
                                   '3',style:TextStyle(
@@ -152,8 +150,9 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                         ),
                       ],
                     ),
-                  ):
-                  Column(
+                  )
+                ):
+                 Column(
                     children: [
                       ...List.generate(c, (index) => const Danger(),),
                       SizedBox(
@@ -172,7 +171,6 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                     ],
                   ),
                 ),
-              ),
               );
         },
       ),
