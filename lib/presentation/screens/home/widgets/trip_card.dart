@@ -70,6 +70,7 @@ class TripCard extends StatelessWidget {
                   }, title: 'ابدأ الرحلة',):
                 MainButton(onPressed: () {
                   HomeCubit.get(context).continueTrip(context);
+                  print(AppConstants.trip.tripStatus);
                 }, title: 'استكمال الرحلة',)
               ],
             ),

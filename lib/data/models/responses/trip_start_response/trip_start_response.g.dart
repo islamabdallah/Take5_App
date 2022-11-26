@@ -34,6 +34,9 @@ _$_TakeFiveSurvey _$$_TakeFiveSurveyFromJson(Map json) => _$_TakeFiveSurvey(
               .map((e) => DangerWithCategoryAPIModels.fromJson(
                   Map<String, dynamic>.from(e as Map)))
               .toList(),
+      drivers: (json['drivers'] as List<dynamic>)
+          .map((e) => Driver.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_TakeFiveSurveyToJson(_$_TakeFiveSurvey instance) =>
@@ -44,6 +47,7 @@ Map<String, dynamic> _$$_TakeFiveSurveyToJson(_$_TakeFiveSurvey instance) =>
           instance.stepTwoQuestions.map((e) => e.toJson()).toList(),
       'dangerWithCategoryAPIModels':
           instance.dangerWithCategoryAPIModels.map((e) => e.toJson()).toList(),
+      'drivers': instance.drivers.map((e) => e.toJson()).toList(),
     };
 
 _$_DangerWithCategoryAPIModels _$$_DangerWithCategoryAPIModelsFromJson(

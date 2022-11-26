@@ -1,6 +1,8 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:take5/data/models/answer/answer.dart';
 
+import '../../driver/driver.dart';
+
 
 part 'trip_start_response.freezed.dart';
 part 'trip_start_response.g.dart';
@@ -21,6 +23,7 @@ class TakeFiveSurvey with _$TakeFiveSurvey {
    required List<QuestionAnswerModel> stepOneQuestions,
    required List<QuestionAnswerModel> stepTwoQuestions,
    required List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels,
+    required List<Driver>drivers,
   }) = _TakeFiveSurvey;
 
   factory TakeFiveSurvey.fromJson(Map<String, dynamic> json) => _$TakeFiveSurveyFromJson(json);
