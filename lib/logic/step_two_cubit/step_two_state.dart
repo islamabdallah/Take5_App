@@ -31,3 +31,10 @@ class StepTwoGetRequestRespondFail extends StepTwoState {
   final String message;
   StepTwoGetRequestRespondFail(this.message);
 }
+
+class StepTwoSubmitAnswerLoading extends StepTwoState{}
+class StepTwoSubmitAnswerSuccess extends StepTwoState{}
+class StepTwoSubmitAnswerFail extends StepTwoState{
+  final String message;
+  StepTwoSubmitAnswerFail(this.message);
+}

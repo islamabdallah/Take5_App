@@ -15,10 +15,10 @@ class EndTripCubit extends Cubit<EndTripState> {
 
   Future<void> endTrip() async {
     emit(EndTripLoading());
-    final result = await take5Repository.sendCollection();
+    final result = await take5Repository.endTrip();
     result.fold((failure) {
       emit(EndTripFail(failure.message));
-    }, (startTripResponse) {
+    }, (r) {
       emit(EndTripSuccess());
     });
   }

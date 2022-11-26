@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
+import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
 import 'package:take5/data/models/responses/trip_pending_response/user_trip_response.dart';
 import 'package:take5/data/models/responses/trip_start_response/trip_start_response.dart';
@@ -25,7 +26,7 @@ abstract class RemoteDataSource {
       {AllTripStepsModel? allTripStepsModel});
 
   Future<bool> getStepTwoStartRequestRespond(
-      {required String userId});
+      {AllTripStepsModel? allTripStepsModel});
 
 }
 
@@ -91,9 +92,9 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
   Future<String> sendCollection({required AllTripStepsModel allTripStepsModel}) async{
     print(allTripStepsModel.toString());
     final response = await client.request(
-        url: AppEndpoints.sendTripUpdate,
+        url: AppConstants.trip.jobsiteHasNetworkCoverage? AppEndpoints.sendTripUpdate:AppEndpoints.sendOfflineTripAllSteps,
         method: HttpMethod.POST,
-        data: allTripStepsModel.toJson()
+        data: allTripStepsModel
     );
     print(response.data);
     return response.data['data'];
@@ -101,12 +102,24 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
 
   @override
   Future<String> checkTripStatus({AllTripStepsModel? allTripStepsModel}) async {
-
-    return "Done";
+    print(allTripStepsModel.toString());
+    final response = await client.request(
+        url: AppEndpoints.checkTripStatus,
+        method: HttpMethod.POST,
+        data: allTripStepsModel
+    );
+    print(response.data);
+    return response.data['data'];
   }
 
   @override
-  Future<bool> getStepTwoStartRequestRespond({required String userId}) async{
-    return true;
+  Future<bool> getStepTwoStartRequestRespond({AllTripStepsModel? allTripStepsModel}) async{
+    final response = await client.request(
+        url: AppEndpoints.isRequestApproved,
+        method: HttpMethod.POST,
+        data: allTripStepsModel
+    );
+    print(response.data);
+    return response.data['data'];
   }
 }

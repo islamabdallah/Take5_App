@@ -37,7 +37,7 @@ abstract class Take5Repository {
       {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
   Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
-      {required String userId});
+      {AllTripStepsModel? allTripStepsModel});
 
   Future<Either<Failure, String>> completeStepTwo(
       {required SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel});
@@ -46,7 +46,10 @@ abstract class Take5Repository {
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
 
+  Future<Either<Failure, String>> endTrip();
+
   Future<Either<Failure, String>> sendCollection();
+
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -229,7 +232,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =
-          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
+          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,endStatus: 'StepTwoRequested');
       try {
         await remoteDataSource.sendCollection(allTripStepsModel:  allTripStepsModel);
         //done
@@ -251,7 +254,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =
-          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
+          allTripStepsModel.copyWith(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,endStatus: 'StepTwoRequested');
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right('تم الحفظ');
     }
@@ -276,7 +279,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
+          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,endStatus: 'SurveyStepTwoCompleted');
       try {
         await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
         //done
@@ -298,7 +301,7 @@ class Take5RepositoryImpl extends Take5Repository {
         allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
       }
       allTripStepsModel =allTripStepsModel.copyWith(
-          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
+          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,endStatus: 'SurveyStepTwoCompleted');
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
       return const Right('تم الحفظ');
     }
@@ -308,6 +311,27 @@ class Take5RepositoryImpl extends Take5Repository {
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey() {
     try {
       TakeFiveSurvey? result = localDataSource.getCachedTakeFiveSurvey();
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> endTrip() async {
+    try {
+      AllTripStepsModel? allTripStepsModel = localDataSource.getCachedAllTripStepsModel();
+      allTripStepsModel ??= AllTripStepsModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+
+      allTripStepsModel =allTripStepsModel.copyWith(endStatus: 'TripCompleted');
+
+
+      String result =  await remoteDataSource.sendCollection(allTripStepsModel: allTripStepsModel);
+      //done
+      localDataSource.clearCollection();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -334,6 +358,11 @@ class Take5RepositoryImpl extends Take5Repository {
   Future<Either<Failure, String>> checkTripStatus() async {
     try {
       AllTripStepsModel? allTripStepsModel= localDataSource.getCachedAllTripStepsModel();
+      allTripStepsModel ??= AllTripStepsModel(
+          userId: AppConstants.user.userId,
+          tripId: AppConstants.trip.tripNumber,
+          jobsiteId: AppConstants.trip.jobsiteNumber);
+
       String result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
       return Right(result);
@@ -344,10 +373,10 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
-      {required String userId}) async {
+      {AllTripStepsModel? allTripStepsModel}) async {
     try {
       bool result =
-          await remoteDataSource.getStepTwoStartRequestRespond(userId: userId);
+          await remoteDataSource.getStepTwoStartRequestRespond(allTripStepsModel: allTripStepsModel);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));

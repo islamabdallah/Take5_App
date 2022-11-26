@@ -21,10 +21,9 @@ SurveyStepTwoAnswersAPIModel _$SurveyStepTwoAnswersAPIModelFromJson(
 
 /// @nodoc
 mixin _$SurveyStepTwoAnswersAPIModel {
-  String get userId => throw _privateConstructorUsedError;
-  int get tripId => throw _privateConstructorUsedError;
-  int get jobSiteId => throw _privateConstructorUsedError;
-  List<QuestionAnswerModel> get answers => throw _privateConstructorUsedError;
+  List<QuestionAnswerModel> get questionAnswerModels =>
+      throw _privateConstructorUsedError;
+  List<DangerModel> get dangerAPIs => throw _privateConstructorUsedError;
   DateTime get createdDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -42,10 +41,8 @@ abstract class $SurveyStepTwoAnswersAPIModelCopyWith<$Res> {
           SurveyStepTwoAnswersAPIModel>;
   @useResult
   $Res call(
-      {String userId,
-      int tripId,
-      int jobSiteId,
-      List<QuestionAnswerModel> answers,
+      {List<QuestionAnswerModel> questionAnswerModels,
+      List<DangerModel> dangerAPIs,
       DateTime createdDate});
 }
 
@@ -63,29 +60,19 @@ class _$SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobSiteId = null,
-    Object? answers = null,
+    Object? questionAnswerModels = null,
+    Object? dangerAPIs = null,
     Object? createdDate = null,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobSiteId: null == jobSiteId
-          ? _value.jobSiteId
-          : jobSiteId // ignore: cast_nullable_to_non_nullable
-              as int,
-      answers: null == answers
-          ? _value.answers
-          : answers // ignore: cast_nullable_to_non_nullable
+      questionAnswerModels: null == questionAnswerModels
+          ? _value.questionAnswerModels
+          : questionAnswerModels // ignore: cast_nullable_to_non_nullable
               as List<QuestionAnswerModel>,
+      dangerAPIs: null == dangerAPIs
+          ? _value.dangerAPIs
+          : dangerAPIs // ignore: cast_nullable_to_non_nullable
+              as List<DangerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -104,10 +91,8 @@ abstract class _$$_SurveyStepTwoAnswersAPIModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
-      int tripId,
-      int jobSiteId,
-      List<QuestionAnswerModel> answers,
+      {List<QuestionAnswerModel> questionAnswerModels,
+      List<DangerModel> dangerAPIs,
       DateTime createdDate});
 }
 
@@ -124,29 +109,19 @@ class __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobSiteId = null,
-    Object? answers = null,
+    Object? questionAnswerModels = null,
+    Object? dangerAPIs = null,
     Object? createdDate = null,
   }) {
     return _then(_$_SurveyStepTwoAnswersAPIModel(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobSiteId: null == jobSiteId
-          ? _value.jobSiteId
-          : jobSiteId // ignore: cast_nullable_to_non_nullable
-              as int,
-      answers: null == answers
-          ? _value._answers
-          : answers // ignore: cast_nullable_to_non_nullable
+      questionAnswerModels: null == questionAnswerModels
+          ? _value._questionAnswerModels
+          : questionAnswerModels // ignore: cast_nullable_to_non_nullable
               as List<QuestionAnswerModel>,
+      dangerAPIs: null == dangerAPIs
+          ? _value._dangerAPIs
+          : dangerAPIs // ignore: cast_nullable_to_non_nullable
+              as List<DangerModel>,
       createdDate: null == createdDate
           ? _value.createdDate
           : createdDate // ignore: cast_nullable_to_non_nullable
@@ -159,27 +134,28 @@ class __$$_SurveyStepTwoAnswersAPIModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
   const _$_SurveyStepTwoAnswersAPIModel(
-      {required this.userId,
-      required this.tripId,
-      required this.jobSiteId,
-      required final List<QuestionAnswerModel> answers,
+      {required final List<QuestionAnswerModel> questionAnswerModels,
+      final List<DangerModel> dangerAPIs = const [],
       required this.createdDate})
-      : _answers = answers;
+      : _questionAnswerModels = questionAnswerModels,
+        _dangerAPIs = dangerAPIs;
 
   factory _$_SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic> json) =>
       _$$_SurveyStepTwoAnswersAPIModelFromJson(json);
 
+  final List<QuestionAnswerModel> _questionAnswerModels;
   @override
-  final String userId;
-  @override
-  final int tripId;
-  @override
-  final int jobSiteId;
-  final List<QuestionAnswerModel> _answers;
-  @override
-  List<QuestionAnswerModel> get answers {
+  List<QuestionAnswerModel> get questionAnswerModels {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_answers);
+    return EqualUnmodifiableListView(_questionAnswerModels);
+  }
+
+  final List<DangerModel> _dangerAPIs;
+  @override
+  @JsonKey()
+  List<DangerModel> get dangerAPIs {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_dangerAPIs);
   }
 
   @override
@@ -187,7 +163,7 @@ class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
 
   @override
   String toString() {
-    return 'SurveyStepTwoAnswersAPIModel(userId: $userId, tripId: $tripId, jobSiteId: $jobSiteId, answers: $answers, createdDate: $createdDate)';
+    return 'SurveyStepTwoAnswersAPIModel(questionAnswerModels: $questionAnswerModels, dangerAPIs: $dangerAPIs, createdDate: $createdDate)';
   }
 
   @override
@@ -195,19 +171,21 @@ class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_SurveyStepTwoAnswersAPIModel &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            (identical(other.jobSiteId, jobSiteId) ||
-                other.jobSiteId == jobSiteId) &&
-            const DeepCollectionEquality().equals(other._answers, _answers) &&
+            const DeepCollectionEquality()
+                .equals(other._questionAnswerModels, _questionAnswerModels) &&
+            const DeepCollectionEquality()
+                .equals(other._dangerAPIs, _dangerAPIs) &&
             (identical(other.createdDate, createdDate) ||
                 other.createdDate == createdDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, userId, tripId, jobSiteId,
-      const DeepCollectionEquality().hash(_answers), createdDate);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_questionAnswerModels),
+      const DeepCollectionEquality().hash(_dangerAPIs),
+      createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -227,23 +205,17 @@ class _$_SurveyStepTwoAnswersAPIModel implements _SurveyStepTwoAnswersAPIModel {
 abstract class _SurveyStepTwoAnswersAPIModel
     implements SurveyStepTwoAnswersAPIModel {
   const factory _SurveyStepTwoAnswersAPIModel(
-      {required final String userId,
-      required final int tripId,
-      required final int jobSiteId,
-      required final List<QuestionAnswerModel> answers,
+      {required final List<QuestionAnswerModel> questionAnswerModels,
+      final List<DangerModel> dangerAPIs,
       required final DateTime createdDate}) = _$_SurveyStepTwoAnswersAPIModel;
 
   factory _SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic> json) =
       _$_SurveyStepTwoAnswersAPIModel.fromJson;
 
   @override
-  String get userId;
+  List<QuestionAnswerModel> get questionAnswerModels;
   @override
-  int get tripId;
-  @override
-  int get jobSiteId;
-  @override
-  List<QuestionAnswerModel> get answers;
+  List<DangerModel> get dangerAPIs;
   @override
   DateTime get createdDate;
   @override

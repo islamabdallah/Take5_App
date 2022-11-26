@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:take5/core/constants/app_constants.dart';
+import 'package:take5/data/models/all_trip_steps/all_trip_steps.dart';
 import 'package:take5/data/models/requests/step_two_start_request/step_two_start_request.dart';
 
 import '../../data/data.dart';
 import '../../data/models/answer/answer.dart';
+import '../../data/models/requests/step_two_complete_request/step_two_complete_request.dart';
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/repositories/take5_repository.dart';
 import '../../presentation/widgets/danger.dart';
@@ -41,19 +43,29 @@ class StepTwoCubit extends Cubit<StepTwoState> {
     });
   }
 
-  void submitQuestions() {
-    print(step2Answers);
+  void submitAnswers() async {
+    emit(StepTwoSubmitAnswerLoading());
+
+    SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel =
+        SurveyStepTwoAnswersAPIModel(
+      questionAnswerModels: step2Answers,
+      createdDate: DateTime.now(),
+    );
+    print(surveyStepTwoAnswersAPIModel.toJson());
+
+    var result = await take5Repository.completeStepTwo(
+        surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
+    result.fold((l) => emit(StepTwoSubmitAnswerFail(l.message)), (r) {
+      print(r);
+      emit(StepTwoSubmitAnswerSuccess());
+    });
   }
 
   Future<void> stepTwoStartRequest() async {
     emit(StepTwoStartRequestLoading());
     final result = await take5Repository.startStepTwo(
-        take5StepTwoRequestAPIModel: Take5StepTwoRequestAPIModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber,
-            startingDate: DateTime.now()));
-
+        take5StepTwoRequestAPIModel:
+            Take5StepTwoRequestAPIModel(requestDate: DateTime.now()));
     result.fold(
       (failure) => emit(StepTwoStartRequestFail(failure.message)),
       (_) => emit(StepTwoStartRequestSuccess()),
@@ -63,7 +75,10 @@ class StepTwoCubit extends Cubit<StepTwoState> {
   Future<void> getStepTwoStartRequestRespond() async {
     emit(StepTwoGetRequestRespondLoading());
     final result = await take5Repository.getStepTwoStartRequestRespond(
-      userId: AppConstants.user.userId
+      allTripStepsModel: AllTripStepsModel(
+          userId: AppConstants.user.userId,
+          tripId: AppConstants.trip.tripNumber,
+          jobsiteId: AppConstants.trip.jobsiteNumber),
     );
     result.fold(
       (failure) => emit(StepTwoGetRequestRespondFail(failure.message)),
