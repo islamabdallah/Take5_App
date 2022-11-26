@@ -20,8 +20,8 @@ class TripStartResponse with _$TripStartResponse {
 @freezed
 class TakeFiveSurvey with _$TakeFiveSurvey {
   const factory TakeFiveSurvey({
-   required List<Answer> stepOneQuestions,
-   required List<Answer> stepTwoQuestions,
+   required List<QuestionAnswerModel> stepOneQuestions,
+   required List<QuestionAnswerModel> stepTwoQuestions,
    required List<DangerWithCategoryAPIModels> dangerWithCategoryAPIModels,
     required List<Driver>drivers,
   }) = _TakeFiveSurvey;

@@ -29,7 +29,6 @@ import 'presentation/screens/login/login_screen.dart';
 import 'presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import 'presentation/utils/helpers/helpers.dart';
 
-
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
@@ -87,7 +86,6 @@ class MyApp extends StatelessWidget {
             BlocProvider<HomeCubit>(create: (context) => sl<HomeCubit>()),
           ],
           child: MaterialApp(
-
             navigatorKey: AppConstants.navigatorKey,
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
@@ -102,37 +100,65 @@ class MyApp extends StatelessWidget {
               // textTheme: Typography.englishLike2018.apply(fontSizeFactor: 1.sp),
               // useMaterial3: true,
             ),
-            builder: (context, child) {
+            builder: (_, child) {
               return BlocListener<HomeCubit, HomeStates>(
-                  listener: (context, state) {
-              // final context = navigatorKey.currentState!.overlay!.context;
-                if (state is HomeCheckTripStatusLoading) {
-                  loadingAlertDialog(AppConstants.navigatorKey.currentContext!);
-                }
-                if (state is HomeCheckTripStatusSuccess) {
+                listener: (context, state) {
+                  var context = AppConstants.navigatorKey.currentContext!;
                   // final context = navigatorKey.currentState!.overlay!.context;
-                  Navigator.pop(AppConstants.navigatorKey.currentContext!);
-                  showMessageDialog(
-                      context: AppConstants.navigatorKey.currentContext!,
-                      isSucceeded: true,
-                      message: state.status);
-                }
-              },
+                  if (state is HomeCheckTripStatusLoading) {
+                    loadingAlertDialog(context);
+                  }
+                  if (state is HomeCheckTripStatusSuccess) {
+                    // final context = navigatorKey.currentState!.overlay!.context;
+                    Navigator.pop(context);
+                    switch (state.status) {
+                      case 'Done':
+                        showMessageDialog(
+                          context: context,
+                          isSucceeded: true,
+                          message: 'لا يوجد تغيير في الرحلة',
+                        );
+                        break;
+                      case 'Cancelled':
+                        showMessageDialog(
+                            context: context,
+                            isSucceeded: true,
+                            message: 'تم الغاء الرحلة',
+                            onPressedOk: () {
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  HomeScreen.routeName, (route) => false);
+                            });
+
+                        break;
+                      case 'Converted':
+                        showMessageDialog(
+                            context: context,
+                            isSucceeded: true,
+                            message: 'تم تحويل الرحلة',
+                            onPressedOk: () {
+                              Navigator.pushNamedAndRemoveUntil(context,
+                                  HomeScreen.routeName, (route) => false);
+                            });
+                        break;
+                      default:
+                    }
+                  }
+                },
                 child: child,
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-           initialRoute: getLastRoute(),
-            //initialRoute: LoginScreen.routeName,
+            initialRoute: getLastRoute(),
+            // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            //initialRoute: StepOneQuestionsScreen.routeName,
-           // initialRoute: PreparingStepScreen.routeName,
-            //initialRoute: StepOneDangersScreen.routeName,
+            // initialRoute: StepOneQuestionsScreen.routeName,
+            // initialRoute: PreparingStepScreen.routeName,
+            // initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,
-           // initialRoute: StepTwoScreen.routeName,
-           //  initialRoute: TripScreen.routeName,
-            //initialRoute: EndTripScreen.routeName,
-            //initialRoute: StepTwoStartRequestScreen.routeName,
+            // initialRoute: StepTwoScreen.routeName,
+            // initialRoute: TripScreen.routeName,
+            // initialRoute: EndTripScreen.routeName,
+            // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );

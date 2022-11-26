@@ -63,8 +63,13 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           }
           if (state is StepTwoGetRequestRespondSuccess) {
             Navigator.pop(context);
+            if(state.isDone){
             Navigator.pushNamedAndRemoveUntil(
                 context, StepTwoScreen.routeName, (route) => false);
+            } else {
+              showMessageDialog(
+                  context: context, isSucceeded: false, message: "لم يتم الرد بعد!");
+            }
           }
           if (state is StepTwoGetRequestRespondFail) {
             Navigator.pop(context);
@@ -105,7 +110,6 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
                 Center(
                   child: ElevatedButton(
                     onPressed: () {
-                      //todo change this
                       cubit.getStepTwoStartRequestRespond();
                     },
                     child: Text("waiting step 2".tr()),

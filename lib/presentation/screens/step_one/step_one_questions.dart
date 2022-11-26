@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/presentation/screens/step_one/widgets/selected_dangers.dart';
+import 'package:take5/presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
+import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
+import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../../logic/step_one_cubit/step_one_cubit.dart';
@@ -42,8 +46,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
     super.initState();
   }
 
-  stopService()async
-  {
+  stopService() async {
     final service = FlutterBackgroundService();
     var isRunning = await service.isRunning();
     if (isRunning == true) {
@@ -55,12 +58,27 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
     // Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
     // print(DestinationArrivedRequest.fromJson(json));
   }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => sl<StepOneCubit>()..getStepOneQuestions(),
       child: BlocConsumer<StepOneCubit, StepOneState>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is StepOneSubmitAnswerLoading) {
+            loadingAlertDialog(context);
+          }
+          if (state is StepOneSubmitAnswerSuccess) {
+            Navigator.pop(context);
+            Navigator.pushReplacementNamed(
+                context, StepTwoStartRequestScreen.routeName);
+          }
+          if (state is StepOneSubmitAnswerFail) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = StepOneCubit.get(context);
           print(cubit.step1Answers);

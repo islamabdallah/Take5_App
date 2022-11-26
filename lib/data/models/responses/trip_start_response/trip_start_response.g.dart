@@ -22,10 +22,12 @@ Map<String, dynamic> _$$_TripStartResponseToJson(
 
 _$_TakeFiveSurvey _$$_TakeFiveSurveyFromJson(Map json) => _$_TakeFiveSurvey(
       stepOneQuestions: (json['stepOneQuestions'] as List<dynamic>)
-          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) =>
+              QuestionAnswerModel.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       stepTwoQuestions: (json['stepTwoQuestions'] as List<dynamic>)
-          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+          .map((e) =>
+              QuestionAnswerModel.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       dangerWithCategoryAPIModels:
           (json['dangerWithCategoryAPIModels'] as List<dynamic>)

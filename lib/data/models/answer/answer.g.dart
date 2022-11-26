@@ -6,17 +6,17 @@ part of 'answer.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AnswerAdapter extends TypeAdapter<Answer> {
+class QuestionAnswerModelAdapter extends TypeAdapter<QuestionAnswerModel> {
   @override
   final int typeId = 1;
 
   @override
-  Answer read(BinaryReader reader) {
+  QuestionAnswerModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return Answer(
+    return QuestionAnswerModel(
       id: fields[0] as int,
       question: fields[1] as String,
       answer: fields[2] as bool?,
@@ -24,7 +24,7 @@ class AnswerAdapter extends TypeAdapter<Answer> {
   }
 
   @override
-  void write(BinaryWriter writer, Answer obj) {
+  void write(BinaryWriter writer, QuestionAnswerModel obj) {
     writer
       ..writeByte(3)
       ..writeByte(0)
@@ -41,7 +41,7 @@ class AnswerAdapter extends TypeAdapter<Answer> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is AnswerAdapter &&
+      other is QuestionAnswerModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
@@ -50,13 +50,16 @@ class AnswerAdapter extends TypeAdapter<Answer> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Answer _$$_AnswerFromJson(Map json) => _$_Answer(
+_$_QuestionAnswerModel _$$_QuestionAnswerModelFromJson(Map json) =>
+    _$_QuestionAnswerModel(
       id: json['id'] as int,
       question: json['question'] as String,
       answer: json['answer'] as bool?,
     );
 
-Map<String, dynamic> _$$_AnswerToJson(_$_Answer instance) => <String, dynamic>{
+Map<String, dynamic> _$$_QuestionAnswerModelToJson(
+        _$_QuestionAnswerModel instance) =>
+    <String, dynamic>{
       'id': instance.id,
       'question': instance.question,
       'answer': instance.answer,

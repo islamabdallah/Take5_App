@@ -21,6 +21,7 @@ class HomeCubit extends Cubit<HomeStates> {
   Trip? trip;
 
   Future<void> getCurrentTrip() async {
+    trip=null;
     emit(HomeGetCurrentTripLoading());
     final result =
     await take5Repository.getCurrentTrip(userId: AppConstants.user.userId);

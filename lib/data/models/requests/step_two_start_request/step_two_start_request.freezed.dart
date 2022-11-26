@@ -21,10 +21,7 @@ Take5StepTwoRequestAPIModel _$Take5StepTwoRequestAPIModelFromJson(
 
 /// @nodoc
 mixin _$Take5StepTwoRequestAPIModel {
-  String get userId => throw _privateConstructorUsedError;
-  int get tripId => throw _privateConstructorUsedError;
-  int get jobsiteId => throw _privateConstructorUsedError;
-  DateTime get startingDate => throw _privateConstructorUsedError;
+  DateTime get requestDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -40,7 +37,7 @@ abstract class $Take5StepTwoRequestAPIModelCopyWith<$Res> {
       _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
           Take5StepTwoRequestAPIModel>;
   @useResult
-  $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
+  $Res call({DateTime requestDate});
 }
 
 /// @nodoc
@@ -57,27 +54,12 @@ class _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobsiteId = null,
-    Object? startingDate = null,
+    Object? requestDate = null,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobsiteId: null == jobsiteId
-          ? _value.jobsiteId
-          : jobsiteId // ignore: cast_nullable_to_non_nullable
-              as int,
-      startingDate: null == startingDate
-          ? _value.startingDate
-          : startingDate // ignore: cast_nullable_to_non_nullable
+      requestDate: null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ) as $Val);
   }
@@ -92,7 +74,7 @@ abstract class _$$_Take5StepTwoRequestAPIModelCopyWith<$Res>
       __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
+  $Res call({DateTime requestDate});
 }
 
 /// @nodoc
@@ -108,27 +90,12 @@ class __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? tripId = null,
-    Object? jobsiteId = null,
-    Object? startingDate = null,
+    Object? requestDate = null,
   }) {
     return _then(_$_Take5StepTwoRequestAPIModel(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      tripId: null == tripId
-          ? _value.tripId
-          : tripId // ignore: cast_nullable_to_non_nullable
-              as int,
-      jobsiteId: null == jobsiteId
-          ? _value.jobsiteId
-          : jobsiteId // ignore: cast_nullable_to_non_nullable
-              as int,
-      startingDate: null == startingDate
-          ? _value.startingDate
-          : startingDate // ignore: cast_nullable_to_non_nullable
+      requestDate: null == requestDate
+          ? _value.requestDate
+          : requestDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
     ));
   }
@@ -137,27 +104,17 @@ class __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
-  const _$_Take5StepTwoRequestAPIModel(
-      {required this.userId,
-      required this.tripId,
-      required this.jobsiteId,
-      required this.startingDate});
+  const _$_Take5StepTwoRequestAPIModel({required this.requestDate});
 
   factory _$_Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =>
       _$$_Take5StepTwoRequestAPIModelFromJson(json);
 
   @override
-  final String userId;
-  @override
-  final int tripId;
-  @override
-  final int jobsiteId;
-  @override
-  final DateTime startingDate;
+  final DateTime requestDate;
 
   @override
   String toString() {
-    return 'Take5StepTwoRequestAPIModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, startingDate: $startingDate)';
+    return 'Take5StepTwoRequestAPIModel(requestDate: $requestDate)';
   }
 
   @override
@@ -165,18 +122,13 @@ class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_Take5StepTwoRequestAPIModel &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.tripId, tripId) || other.tripId == tripId) &&
-            (identical(other.jobsiteId, jobsiteId) ||
-                other.jobsiteId == jobsiteId) &&
-            (identical(other.startingDate, startingDate) ||
-                other.startingDate == startingDate));
+            (identical(other.requestDate, requestDate) ||
+                other.requestDate == requestDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, userId, tripId, jobsiteId, startingDate);
+  int get hashCode => Object.hash(runtimeType, requestDate);
 
   @JsonKey(ignore: true)
   @override
@@ -196,22 +148,13 @@ class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
 abstract class _Take5StepTwoRequestAPIModel
     implements Take5StepTwoRequestAPIModel {
   const factory _Take5StepTwoRequestAPIModel(
-      {required final String userId,
-      required final int tripId,
-      required final int jobsiteId,
-      required final DateTime startingDate}) = _$_Take5StepTwoRequestAPIModel;
+      {required final DateTime requestDate}) = _$_Take5StepTwoRequestAPIModel;
 
   factory _Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =
       _$_Take5StepTwoRequestAPIModel.fromJson;
 
   @override
-  String get userId;
-  @override
-  int get tripId;
-  @override
-  int get jobsiteId;
-  @override
-  DateTime get startingDate;
+  DateTime get requestDate;
   @override
   @JsonKey(ignore: true)
   _$$_Take5StepTwoRequestAPIModelCopyWith<_$_Take5StepTwoRequestAPIModel>

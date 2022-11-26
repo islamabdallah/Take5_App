@@ -9,13 +9,11 @@ part of 'step_one_complete_request.dart';
 _$_SurveyStepOneAnswersAPIModel _$$_SurveyStepOneAnswersAPIModelFromJson(
         Map json) =>
     _$_SurveyStepOneAnswersAPIModel(
-      userId: json['userId'] as String,
-      jobSiteId: json['jobSiteId'] as int,
-      tripId: json['tripId'] as int,
-      answers: (json['answers'] as List<dynamic>)
-          .map((e) => Answer.fromJson(Map<String, dynamic>.from(e as Map)))
+      questionAnswerModels: (json['questionAnswerModels'] as List<dynamic>)
+          .map((e) =>
+              QuestionAnswerModel.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
-      dangers: (json['dangers'] as List<dynamic>)
+      dangerAPIs: (json['dangerAPIs'] as List<dynamic>)
           .map((e) => DangerModel.fromJson(Map<String, dynamic>.from(e as Map)))
           .toList(),
       createdDate: DateTime.parse(json['createdDate'] as String),
@@ -24,10 +22,8 @@ _$_SurveyStepOneAnswersAPIModel _$$_SurveyStepOneAnswersAPIModelFromJson(
 Map<String, dynamic> _$$_SurveyStepOneAnswersAPIModelToJson(
         _$_SurveyStepOneAnswersAPIModel instance) =>
     <String, dynamic>{
-      'userId': instance.userId,
-      'jobSiteId': instance.jobSiteId,
-      'tripId': instance.tripId,
-      'answers': instance.answers.map((e) => e.toJson()).toList(),
-      'dangers': instance.dangers.map((e) => e.toJson()).toList(),
+      'questionAnswerModels':
+          instance.questionAnswerModels.map((e) => e.toJson()).toList(),
+      'dangerAPIs': instance.dangerAPIs.map((e) => e.toJson()).toList(),
       'createdDate': instance.createdDate.toIso8601String(),
     };
