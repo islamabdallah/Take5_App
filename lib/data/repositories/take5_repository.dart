@@ -3,6 +3,7 @@ import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
 import '../datasources/local_data_source.dart';
 import '../models/all_trip_steps/all_trip_steps.dart';
+import '../models/driver/driver.dart';
 import '../models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../models/requests/step_one_complete_request/step_one_complete_request.dart';
 import '../models/requests/step_two_complete_request/step_two_complete_request.dart';
@@ -45,6 +46,8 @@ abstract class Take5Repository {
   Future<Either<Failure, String>> checkTripStatus();
 
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey();
+
+  Either<Failure, List<Driver>?> getCachedDrivers();
 
   Future<Either<Failure, String>> endTrip();
 
@@ -98,7 +101,9 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       UserTripResponse result =
           await remoteDataSource.getCurrentTrip(userId: userId);
-      localDataSource.cacheTrip(result.data); //missed
+      localDataSource.cacheTrip(result.data.tripAPIModel); //missed
+      localDataSource.cacheTakeFiveSurvey(result.data.allSurveyModel);
+     // print(result.data.ALLSurveyModel);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -112,7 +117,6 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       TripStartResponse result =
           await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
-      localDataSource.cacheTakeFiveSurvey(result.data);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
@@ -335,6 +339,15 @@ class Take5RepositoryImpl extends Take5Repository {
       return Left(ServerFailure(e.message));
     }
   }
+  @override
+  Either<Failure, List<Driver>?> getCachedDrivers(){
+    try{
+      List<Driver>?result = localDataSource.getCachedDrivers();
+      return Right(result);
+    }on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
+  }
 
   @override
   Future<Either<Failure, String>> endTrip() async {
@@ -405,7 +418,6 @@ class Take5RepositoryImpl extends Take5Repository {
           userId: AppConstants.user.userId,
           tripId: AppConstants.trip.tripNumber,
           jobsiteId: AppConstants.trip.jobsiteNumber);
-
       if (!AppConstants.trip.jobsiteHasNetworkCoverage ||
           allTripStepsModel.take5StepTwoRequestAPIModel != null) {
         return const Right(true);

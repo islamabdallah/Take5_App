@@ -48,6 +48,7 @@ class MyTextFormField extends StatelessWidget {
         inputFormatters: inputFormatters,
         obscureText: obscureText,
         decoration: InputDecoration(
+          alignLabelWithHint: true,
           errorText:errorText,
           labelText: label.tr(),
           labelStyle:

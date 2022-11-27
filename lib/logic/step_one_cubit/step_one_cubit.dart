@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import '../../data/models/answer/answer.dart';
 import '../../data/models/requests/step_one_complete_request/step_one_complete_request.dart';
+import '../../data/models/responses/trip_pending_response/user_trip_response.dart';
 import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/repositories/take5_repository.dart';
 

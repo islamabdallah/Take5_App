@@ -31,7 +31,7 @@ mixin _$AllTripStepsModel {
       throw _privateConstructorUsedError;
   SurveyStepTwoAnswersAPIModel? get surveyStepTwoAnswersAPIModel =>
       throw _privateConstructorUsedError;
-  Take5TogetherModel? get take5TogetherAPIModels =>
+  List<Take5TogetherModel>? get take5TogetherAPIModels =>
       throw _privateConstructorUsedError;
   String? get endStatus => throw _privateConstructorUsedError;
 
@@ -55,14 +55,13 @@ abstract class $AllTripStepsModelCopyWith<$Res> {
       SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
       SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
-      Take5TogetherModel? take5TogetherAPIModels,
+      List<Take5TogetherModel>? take5TogetherAPIModels,
       String? endStatus});
 
   $TripDestinationArrivedModelCopyWith<$Res>? get tripDestinationArrivedModel;
   $SurveyStepOneAnswersAPIModelCopyWith<$Res>? get surveyStepOneAnswersAPIModel;
   $Take5StepTwoRequestAPIModelCopyWith<$Res>? get take5StepTwoRequestAPIModel;
   $SurveyStepTwoAnswersAPIModelCopyWith<$Res>? get surveyStepTwoAnswersAPIModel;
-  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
 
 /// @nodoc
@@ -120,7 +119,7 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
       take5TogetherAPIModels: freezed == take5TogetherAPIModels
           ? _value.take5TogetherAPIModels
           : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
-              as Take5TogetherModel?,
+              as List<Take5TogetherModel>?,
       endStatus: freezed == endStatus
           ? _value.endStatus
           : endStatus // ignore: cast_nullable_to_non_nullable
@@ -183,19 +182,6 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
           _value.copyWith(surveyStepTwoAnswersAPIModel: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels {
-    if (_value.take5TogetherAPIModels == null) {
-      return null;
-    }
-
-    return $Take5TogetherModelCopyWith<$Res>(_value.take5TogetherAPIModels!,
-        (value) {
-      return _then(_value.copyWith(take5TogetherAPIModels: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -214,7 +200,7 @@ abstract class _$$_AllTripStepsModelCopyWith<$Res>
       SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
       SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
-      Take5TogetherModel? take5TogetherAPIModels,
+      List<Take5TogetherModel>? take5TogetherAPIModels,
       String? endStatus});
 
   @override
@@ -225,8 +211,6 @@ abstract class _$$_AllTripStepsModelCopyWith<$Res>
   $Take5StepTwoRequestAPIModelCopyWith<$Res>? get take5StepTwoRequestAPIModel;
   @override
   $SurveyStepTwoAnswersAPIModelCopyWith<$Res>? get surveyStepTwoAnswersAPIModel;
-  @override
-  $Take5TogetherModelCopyWith<$Res>? get take5TogetherAPIModels;
 }
 
 /// @nodoc
@@ -280,9 +264,9 @@ class __$$_AllTripStepsModelCopyWithImpl<$Res>
           : surveyStepTwoAnswersAPIModel // ignore: cast_nullable_to_non_nullable
               as SurveyStepTwoAnswersAPIModel?,
       take5TogetherAPIModels: freezed == take5TogetherAPIModels
-          ? _value.take5TogetherAPIModels
+          ? _value._take5TogetherAPIModels
           : take5TogetherAPIModels // ignore: cast_nullable_to_non_nullable
-              as Take5TogetherModel?,
+              as List<Take5TogetherModel>?,
       endStatus: freezed == endStatus
           ? _value.endStatus
           : endStatus // ignore: cast_nullable_to_non_nullable
@@ -302,8 +286,9 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       this.surveyStepOneAnswersAPIModel,
       this.take5StepTwoRequestAPIModel,
       this.surveyStepTwoAnswersAPIModel,
-      this.take5TogetherAPIModels,
-      this.endStatus});
+      final List<Take5TogetherModel>? take5TogetherAPIModels,
+      this.endStatus})
+      : _take5TogetherAPIModels = take5TogetherAPIModels;
 
   factory _$_AllTripStepsModel.fromJson(Map<String, dynamic> json) =>
       _$$_AllTripStepsModelFromJson(json);
@@ -322,8 +307,15 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
   final Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel;
   @override
   final SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel;
+  final List<Take5TogetherModel>? _take5TogetherAPIModels;
   @override
-  final Take5TogetherModel? take5TogetherAPIModels;
+  List<Take5TogetherModel>? get take5TogetherAPIModels {
+    final value = _take5TogetherAPIModels;
+    if (value == null) return null;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   final String? endStatus;
 
@@ -357,8 +349,8 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
                     surveyStepTwoAnswersAPIModel) ||
                 other.surveyStepTwoAnswersAPIModel ==
                     surveyStepTwoAnswersAPIModel) &&
-            (identical(other.take5TogetherAPIModels, take5TogetherAPIModels) ||
-                other.take5TogetherAPIModels == take5TogetherAPIModels) &&
+            const DeepCollectionEquality().equals(
+                other._take5TogetherAPIModels, _take5TogetherAPIModels) &&
             (identical(other.endStatus, endStatus) ||
                 other.endStatus == endStatus));
   }
@@ -374,7 +366,7 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       surveyStepOneAnswersAPIModel,
       take5StepTwoRequestAPIModel,
       surveyStepTwoAnswersAPIModel,
-      take5TogetherAPIModels,
+      const DeepCollectionEquality().hash(_take5TogetherAPIModels),
       endStatus);
 
   @JsonKey(ignore: true)
@@ -401,7 +393,7 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
       final SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       final Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
       final SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
-      final Take5TogetherModel? take5TogetherAPIModels,
+      final List<Take5TogetherModel>? take5TogetherAPIModels,
       final String? endStatus}) = _$_AllTripStepsModel;
 
   factory _AllTripStepsModel.fromJson(Map<String, dynamic> json) =
@@ -422,7 +414,7 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
   @override
   SurveyStepTwoAnswersAPIModel? get surveyStepTwoAnswersAPIModel;
   @override
-  Take5TogetherModel? get take5TogetherAPIModels;
+  List<Take5TogetherModel>? get take5TogetherAPIModels;
   @override
   String? get endStatus;
   @override

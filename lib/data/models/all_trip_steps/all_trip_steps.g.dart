@@ -27,10 +27,10 @@ _$_AllTripStepsModel _$$_AllTripStepsModelFromJson(Map json) =>
           ? null
           : SurveyStepTwoAnswersAPIModel.fromJson(Map<String, dynamic>.from(
               json['surveyStepTwoAnswersAPIModel'] as Map)),
-      take5TogetherAPIModels: json['take5TogetherAPIModels'] == null
-          ? null
-          : Take5TogetherModel.fromJson(
-              Map<String, dynamic>.from(json['take5TogetherAPIModels'] as Map)),
+      take5TogetherAPIModels: (json['take5TogetherAPIModels'] as List<dynamic>?)
+          ?.map((e) =>
+              Take5TogetherModel.fromJson(Map<String, dynamic>.from(e as Map)))
+          .toList(),
       endStatus: json['endStatus'] as String?,
     );
 
@@ -48,6 +48,7 @@ Map<String, dynamic> _$$_AllTripStepsModelToJson(
           instance.take5StepTwoRequestAPIModel?.toJson(),
       'surveyStepTwoAnswersAPIModel':
           instance.surveyStepTwoAnswersAPIModel?.toJson(),
-      'take5TogetherAPIModels': instance.take5TogetherAPIModels?.toJson(),
+      'take5TogetherAPIModels':
+          instance.take5TogetherAPIModels?.map((e) => e.toJson()).toList(),
       'endStatus': instance.endStatus,
     };

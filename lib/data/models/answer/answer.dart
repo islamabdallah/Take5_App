@@ -12,7 +12,9 @@ class QuestionAnswerModel with _$QuestionAnswerModel  {
     required final int id,
     @HiveField(1)
     required final String question,
-    @HiveField(2)
+     @HiveField(2)
+     required final int step,
+    @HiveField(3)
      bool? answer,
   }) = _QuestionAnswerModel;
   factory  QuestionAnswerModel.fromJson(Map<String, dynamic> json) => _$QuestionAnswerModelFromJson(json);

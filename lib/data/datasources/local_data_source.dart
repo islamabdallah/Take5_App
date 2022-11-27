@@ -1,6 +1,8 @@
 import 'package:take5/data/datasources/boxes.dart';
 import '../../core/constants/keys.dart';
 import '../models/all_trip_steps/all_trip_steps.dart';
+import '../models/driver/driver.dart';
+import '../models/responses/trip_pending_response/user_trip_response.dart';
 import '../models/responses/trip_start_response/trip_start_response.dart';
 
 import '../models/trip/trip.dart';
@@ -18,6 +20,8 @@ abstract class LocalDataSource {
   Future<void> cacheTakeFiveSurvey(TakeFiveSurvey takeFiveSurvey);
   TakeFiveSurvey? getCachedTakeFiveSurvey();
 
+  Future<void> cacheDrivers(List<Driver> drivers);
+ List<Driver>? getCachedDrivers();
 
   cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel);
   AllTripStepsModel? getCachedAllTripStepsModel();
@@ -66,6 +70,33 @@ class LocalDataSourceImpl implements LocalDataSource {
       Map<String, dynamic> json =
           Map<String, dynamic>.from(box.get(takeFiveSurveyKey));
       return TakeFiveSurvey.fromJson(json);
+    }
+  }
+  @override
+  Future<void> cacheDrivers(List<Driver>drivers ) async {
+    final box = Boxes.getTakeFiveBox();
+    List<Map<String,dynamic>>mappedDrivers=[];
+    for(var driver in drivers)
+      {
+        mappedDrivers.add(driver.toJson());
+      }
+    box.put(driversKey, mappedDrivers);
+    print(mappedDrivers);
+  }
+
+  @override
+  List<Driver>? getCachedDrivers() {
+    final box = Boxes.getTakeFiveBox();
+    if (box.get(driversKey) == null) {
+      return null;
+    } else {
+      List<Driver>drivers=[];
+      for(var driver in box.get(driversKey))
+      {
+        Map<String, dynamic> json =Map<String, dynamic>.from(driver);
+        drivers.add(Driver.fromJson(json));
+      }
+      return drivers;
     }
   }
 

@@ -104,7 +104,8 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 centerTitle: true,
               ),
               body: SingleChildScrollView(
-                child:cubit.isQuestions? FormBuilder(
+                child:cubit.isQuestions?
+                FormBuilder(
                   key: _formKey,
                   autovalidateMode: AutovalidateMode.disabled,
                   child:Padding(

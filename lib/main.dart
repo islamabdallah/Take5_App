@@ -11,6 +11,7 @@ import 'package:take5/presentation/screens/step_one/preparing_step.dart';
 import 'package:take5/presentation/screens/step_one/step_one_questions.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
+import 'package:take5/presentation/screens/take5_together/take5_together.dart';
 import 'package:take5/presentation/screens/trip/trip.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
@@ -38,7 +39,6 @@ Future<void> main() async {
   Hive.registerAdapter(UserAdapter());
   await Hive.openBox<User>('user');
   await Hive.openBox('route');
-
   await Hive.openBox('takeFiveSurvey');
   await BackgroundService.initializeService();
 
@@ -148,15 +148,16 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            initialRoute: getLastRoute(),
-            // initialRoute: LoginScreen.routeName,
+           // initialRoute: getLastRoute(),
+           initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            // initialRoute: StepOneQuestionsScreen.routeName,
+            //initialRoute: StepOneQuestionsScreen.routeName,
             // initialRoute: PreparingStepScreen.routeName,
             // initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             // initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
+           //initialRoute: Take5TogetherScreen.routeName,
             // initialRoute: EndTripScreen.routeName,
             // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,

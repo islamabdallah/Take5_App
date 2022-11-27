@@ -22,7 +22,7 @@ class AllTripStepsModel with _$AllTripStepsModel{
     SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
     Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
     SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
-    Take5TogetherModel? take5TogetherAPIModels,
+    List<Take5TogetherModel>? take5TogetherAPIModels,
 
     String? endStatus
   }) = _AllTripStepsModel;

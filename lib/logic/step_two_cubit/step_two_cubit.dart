@@ -5,14 +5,9 @@ import 'package:meta/meta.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/models/all_trip_steps/all_trip_steps.dart';
 import 'package:take5/data/models/requests/step_two_start_request/step_two_start_request.dart';
-
-import '../../data/data.dart';
 import '../../data/models/answer/answer.dart';
 import '../../data/models/requests/step_two_complete_request/step_two_complete_request.dart';
-import '../../data/models/responses/trip_start_response/trip_start_response.dart';
 import '../../data/repositories/take5_repository.dart';
-import '../../presentation/widgets/danger.dart';
-
 part 'step_two_state.dart';
 
 class StepTwoCubit extends Cubit<StepTwoState> {

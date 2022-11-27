@@ -1,7 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-
 import '../../answer/answer.dart';
-import '../../responses/trip_start_response/trip_start_response.dart';
+import '../../responses/trip_pending_response/user_trip_response.dart';
 
 part 'step_two_complete_request.freezed.dart';
 part 'step_two_complete_request.g.dart';

@@ -25,8 +25,10 @@ mixin _$QuestionAnswerModel {
   @HiveField(1)
   String get question => throw _privateConstructorUsedError;
   @HiveField(2)
+  int get step => throw _privateConstructorUsedError;
+  @HiveField(3)
   bool? get answer => throw _privateConstructorUsedError;
-  @HiveField(2)
+  @HiveField(3)
   set answer(bool? value) => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +46,8 @@ abstract class $QuestionAnswerModelCopyWith<$Res> {
   $Res call(
       {@HiveField(0) int id,
       @HiveField(1) String question,
-      @HiveField(2) bool? answer});
+      @HiveField(2) int step,
+      @HiveField(3) bool? answer});
 }
 
 /// @nodoc
@@ -62,6 +65,7 @@ class _$QuestionAnswerModelCopyWithImpl<$Res, $Val extends QuestionAnswerModel>
   $Res call({
     Object? id = null,
     Object? question = null,
+    Object? step = null,
     Object? answer = freezed,
   }) {
     return _then(_value.copyWith(
@@ -73,6 +77,10 @@ class _$QuestionAnswerModelCopyWithImpl<$Res, $Val extends QuestionAnswerModel>
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
               as String,
+      step: null == step
+          ? _value.step
+          : step // ignore: cast_nullable_to_non_nullable
+              as int,
       answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
@@ -92,7 +100,8 @@ abstract class _$$_QuestionAnswerModelCopyWith<$Res>
   $Res call(
       {@HiveField(0) int id,
       @HiveField(1) String question,
-      @HiveField(2) bool? answer});
+      @HiveField(2) int step,
+      @HiveField(3) bool? answer});
 }
 
 /// @nodoc
@@ -108,6 +117,7 @@ class __$$_QuestionAnswerModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? question = null,
+    Object? step = null,
     Object? answer = freezed,
   }) {
     return _then(_$_QuestionAnswerModel(
@@ -119,6 +129,10 @@ class __$$_QuestionAnswerModelCopyWithImpl<$Res>
           ? _value.question
           : question // ignore: cast_nullable_to_non_nullable
               as String,
+      step: null == step
+          ? _value.step
+          : step // ignore: cast_nullable_to_non_nullable
+              as int,
       answer: freezed == answer
           ? _value.answer
           : answer // ignore: cast_nullable_to_non_nullable
@@ -133,7 +147,8 @@ class _$_QuestionAnswerModel implements _QuestionAnswerModel {
   _$_QuestionAnswerModel(
       {@HiveField(0) required this.id,
       @HiveField(1) required this.question,
-      @HiveField(2) this.answer});
+      @HiveField(2) required this.step,
+      @HiveField(3) this.answer});
 
   factory _$_QuestionAnswerModel.fromJson(Map<String, dynamic> json) =>
       _$$_QuestionAnswerModelFromJson(json);
@@ -146,11 +161,14 @@ class _$_QuestionAnswerModel implements _QuestionAnswerModel {
   final String question;
   @override
   @HiveField(2)
+  final int step;
+  @override
+  @HiveField(3)
   bool? answer;
 
   @override
   String toString() {
-    return 'QuestionAnswerModel(id: $id, question: $question, answer: $answer)';
+    return 'QuestionAnswerModel(id: $id, question: $question, step: $step, answer: $answer)';
   }
 
   @JsonKey(ignore: true)
@@ -172,7 +190,8 @@ abstract class _QuestionAnswerModel implements QuestionAnswerModel {
   factory _QuestionAnswerModel(
       {@HiveField(0) required final int id,
       @HiveField(1) required final String question,
-      @HiveField(2) bool? answer}) = _$_QuestionAnswerModel;
+      @HiveField(2) required final int step,
+      @HiveField(3) bool? answer}) = _$_QuestionAnswerModel;
 
   factory _QuestionAnswerModel.fromJson(Map<String, dynamic> json) =
       _$_QuestionAnswerModel.fromJson;
@@ -185,8 +204,11 @@ abstract class _QuestionAnswerModel implements QuestionAnswerModel {
   String get question;
   @override
   @HiveField(2)
+  int get step;
+  @override
+  @HiveField(3)
   bool? get answer;
-  @HiveField(2)
+  @HiveField(3)
   set answer(bool? value);
   @override
   @JsonKey(ignore: true)

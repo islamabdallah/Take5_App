@@ -5,13 +5,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:signalr_core/signalr_core.dart';
 import 'package:take5/core/constants/app_assets.dart';
 import 'package:take5/logic/step_two_cubit/step_two_cubit.dart';
-import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/helpers/helpers.dart';
+import '../../widgets/main_button.dart';
 import 'step_two_waiting_screen.dart';
 
 class StepTwoStartRequestScreen extends StatefulWidget {
@@ -104,14 +103,13 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
                 SizedBox(
                   height: 60.h,
                 ),
-                Center(
-                  child: ElevatedButton(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: MainButton(
                     onPressed: () {
                       cubit.stepTwoStartRequest();
-                    },
-                    child: Text("Request step 2".tr()),
-                  ),
-                )
+                    }, title:"Request step 2".tr(),),
+                ),
               ],
             ),
           );

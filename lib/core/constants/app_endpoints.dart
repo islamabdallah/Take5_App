@@ -6,7 +6,7 @@ class AppEndpoints {
   // e.g. can be retrieved by `LocalStorageKey.saveUserId`.
   static const String baseUrl = 'http://20.86.97.165/take5/api';
   static const String userLogin = '$baseUrl/LoginAPI/userLogin';
-  static const String currentTrip = '$baseUrl/LoginAPI/GetCurrentTripForDriver';
+  static const String currentTrip = '$baseUrl/TripAPI/GetCurrentTripForDriver';
   static const String tripStarting = '$baseUrl/TripAPI/TripStarting';
   static const String sendTripUpdate = '$baseUrl/TripAPI/SendTripUpdate';
   static const String sendOfflineTripAllSteps = '$baseUrl/TripAPI/SendOfflineTripAllSteps';

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:take5/data/models/driver/driver.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
 import 'package:take5/presentation/screens/step_one/step_one_questions.dart';
+import 'package:take5/presentation/screens/take5_together/take5_together.dart';
 import '../../core/constants/app_constants.dart';
 import '../../data/models/trip/trip.dart';
 import '../../data/repositories/take5_repository.dart';
@@ -17,10 +19,14 @@ class HomeCubit extends Cubit<HomeStates> {
   final Take5Repository take5Repository;
 
   HomeCubit({required this.take5Repository}) : super(InitialHomeState());
+  TextEditingController coWorkerController = TextEditingController();
+  TextEditingController whoStartConversationController = TextEditingController();
+  TextEditingController notesController = TextEditingController();
 
   Trip? trip;
-
-  Future<void> getCurrentTrip() async {
+  List<Driver>drivers=[];
+//done
+  Future<void> getCurrentTrip() async{
     trip=null;
     emit(HomeGetCurrentTripLoading());
     final result =
@@ -28,8 +34,9 @@ class HomeCubit extends Cubit<HomeStates> {
     result.fold((failure) {
       emit(HomeGetCurrentTripFail(failure.message));
     }, (tripPendingResponse) {
-      trip = tripPendingResponse.data;
-      AppConstants.trip = tripPendingResponse.data;
+      trip = tripPendingResponse.data.tripAPIModel;
+      AppConstants.trip = tripPendingResponse.data.tripAPIModel;
+      drivers=tripPendingResponse.data.drivers;
       emit(HomeGetCurrentTripSuccess());
     });
   }
@@ -68,9 +75,8 @@ class HomeCubit extends Cubit<HomeStates> {
         break;
         //todo change this to take5together and add one for end trip screen
       case 'SurveyStepTwoCompleted':
-        Navigator.pushReplacementNamed(context, EndTripScreen.routeName);
+        Navigator.pushReplacementNamed(context, Take5TogetherScreen.routeName);
         break;
-
       default:
     }
   }

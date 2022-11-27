@@ -7,6 +7,7 @@ import '../../../presentation/screens/step_one/step_one_questions.dart';
 import '../../../presentation/screens/step_two/step_two.dart';
 import '../../../presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import '../../../presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
+import '../../../presentation/screens/take5_together/take5_together.dart';
 import '../../../presentation/screens/trip/trip.dart';
 
 class AppRoutes {
@@ -35,6 +36,9 @@ class AppRoutes {
 
       case StepTwoScreen.routeName:
         return _materialRoute(const StepTwoScreen(), StepTwoScreen.routeName);
+
+      case Take5TogetherScreen.routeName:
+        return _materialRoute(const Take5TogetherScreen(), Take5TogetherScreen.routeName);
 
       case EndTripScreen.routeName:
         return _materialRoute(const EndTripScreen(), EndTripScreen.routeName);

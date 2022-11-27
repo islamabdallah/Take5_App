@@ -12,6 +12,7 @@ import '../../../injection_container.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
+import '../../widgets/main_button.dart';
 
 class StepTwoWaitingScreen extends StatefulWidget {
   static const routeName = 'StepTwoWaitingScreen';
@@ -107,13 +108,12 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
                 SizedBox(
                   height: 60.h,
                 ),
-                Center(
-                  child: ElevatedButton(
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 16.w),
+                  child: MainButton(
                     onPressed: () {
                       cubit.getStepTwoStartRequestRespond();
-                    },
-                    child: Text("waiting step 2".tr()),
-                  ),
+                    }, title:"waiting step 2".tr(),),
                 ),
               ],
             ),
