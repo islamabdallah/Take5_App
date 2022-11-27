@@ -6,6 +6,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/network/device_connectivity.dart';
+import 'package:take5/logic/take5_together_cubit/take5_together_cubit.dart';
 
 import 'core/utils/services/signal_r_helper.dart';
 import 'data/repositories/take5_repository.dart';
@@ -29,8 +30,9 @@ Future<void> init() async {
   sl.registerFactory(() => LoginCubit(take5Repository: sl()));
   sl.registerFactory(() => HomeCubit(take5Repository: sl()));
   sl.registerFactory(() => TripCubit(take5Repository: sl()));
-  sl.registerFactory(() => StepTwoCubit(take5Repository: sl()));
   sl.registerFactory(() => StepOneCubit(take5Repository: sl()));
+  sl.registerFactory(() => StepTwoCubit(take5Repository: sl()));
+  sl.registerFactory(() => Take5TogetherCubit(take5Repository: sl()));
   sl.registerFactory(() => EndTripCubit(take5Repository: sl()));
 
 //! Repositories

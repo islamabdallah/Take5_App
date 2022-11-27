@@ -19,12 +19,8 @@ class HomeCubit extends Cubit<HomeStates> {
   final Take5Repository take5Repository;
 
   HomeCubit({required this.take5Repository}) : super(InitialHomeState());
-  TextEditingController coWorkerController = TextEditingController();
-  TextEditingController whoStartConversationController = TextEditingController();
-  TextEditingController notesController = TextEditingController();
 
   Trip? trip;
-  List<Driver>drivers=[];
 //done
   Future<void> getCurrentTrip() async{
     trip=null;
@@ -36,7 +32,6 @@ class HomeCubit extends Cubit<HomeStates> {
     }, (tripPendingResponse) {
       trip = tripPendingResponse.data.tripAPIModel;
       AppConstants.trip = tripPendingResponse.data.tripAPIModel;
-      drivers=tripPendingResponse.data.drivers;
       emit(HomeGetCurrentTripSuccess());
     });
   }

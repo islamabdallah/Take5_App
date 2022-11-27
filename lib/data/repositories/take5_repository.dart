@@ -103,6 +103,7 @@ class Take5RepositoryImpl extends Take5Repository {
           await remoteDataSource.getCurrentTrip(userId: userId);
       localDataSource.cacheTrip(result.data.tripAPIModel); //missed
       localDataSource.cacheTakeFiveSurvey(result.data.allSurveyModel);
+      localDataSource.cacheDrivers(result.data.drivers);
      // print(result.data.ALLSurveyModel);
       return Right(result);
     } on ServerException catch (e) {

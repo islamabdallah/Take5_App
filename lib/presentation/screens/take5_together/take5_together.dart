@@ -3,21 +3,28 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:take5/logic/home_cubit/home_cubit.dart';
+import 'package:take5/presentation/screens/take5_together/widgets/note.dart';
 import '../../../core/constants/app_colors.dart';
+import '../../../data/models/take5_together/take5_together.dart';
+import '../../../injection_container.dart';
 import '../../../logic/home_cubit/home_states.dart';
+import '../../../logic/take5_together_cubit/take5_together_cubit.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/my_text_form_field.dart';
-class Take5TogetherScreen extends StatelessWidget {
+class Take5TogetherScreen extends StatefulWidget {
   static const routeName = 'Take5TogetherScreen';
   const Take5TogetherScreen({Key? key}) : super(key: key);
 
   @override
+  State<Take5TogetherScreen> createState() => _Take5TogetherScreenState();
+}
+
+class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
+  @override
   Widget build(BuildContext context) {
     final List<String> items = [
-      'Item1',
-      'Item2',
-      'Item3',
-      'Item4',
+      'أنا',
+      'الزميل',
     ];
     String? selectedValue;
     return Scaffold(
@@ -30,7 +37,10 @@ class Take5TogetherScreen extends StatelessWidget {
             }
         ),
         actions: [
-          TextButton(onPressed: (){}, child: Text('حفظ'))
+          TextButton(onPressed: (){}, child:Text('حفظ',style: TextStyle(
+            color: AppColors.redColor,
+            fontSize: 20.sp
+          ),))
         ],
         toolbarHeight: 80,
         elevation: 0,
@@ -42,12 +52,13 @@ class Take5TogetherScreen extends StatelessWidget {
         backgroundColor: Colors.white,
         centerTitle: true,
       ),
-      body:
-      BlocConsumer<HomeCubit,HomeStates>(
+      body:BlocProvider(
+    create: (context) => sl<Take5TogetherCubit>()..getDrivers(),
+    child: BlocConsumer<HomeCubit,HomeStates>(
         listener: (context,state){},
         builder: (context,state)
         {
-          var cubit=HomeCubit.get(context);
+          var cubit=Take5TogetherCubit.get(context);
           return SingleChildScrollView(
             child: Padding(
                 padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
@@ -100,9 +111,9 @@ class Take5TogetherScreen extends StatelessWidget {
                             onChanged: (value) {
                               cubit.coWorkerController.text=value!;
                             },
-                            buttonHeight: 40,
-                            buttonWidth: 140,
-                            itemHeight: 40,
+                            buttonHeight: 60.h,
+                            buttonWidth: 200.w,
+                            itemHeight: 40.h,
                           ),
 
                         ),
@@ -133,7 +144,7 @@ class Take5TogetherScreen extends StatelessWidget {
                         child: DropdownButtonHideUnderline(
                           child: DropdownButton2(
                             hint: Text(
-                              'حدد البادئ',
+                              'من الذى بدأ المحادثة',
                               style: TextStyle(
                                 fontSize: 14,
                                 color: Theme
@@ -197,12 +208,26 @@ class Take5TogetherScreen extends StatelessWidget {
                     ),
                     MainButton(
                       onPressed: () {
-
-                      }, title: 'اضافه',),
+                        cubit.addToNotes(Take5TogetherModel(notes: cubit.notesController.text.toString(),participantDriverId: 1,whoStartDriverId: 1));
+                      print(cubit.notes.length);
+                        }, title: 'اضافه',),
+                    SizedBox(
+                      height: 20.h,
+                    ),
+                    Column(
+                      children:cubit.notes.map((e) => Column(
+                        children: [
+                          Note(),
+                          SizedBox(
+                            height: 10.h,
+                          )
+                        ],
+                      )).toList()
+                    )
                   ],)),
           );
         },
-      )
+      ))
     );
   }
 }
