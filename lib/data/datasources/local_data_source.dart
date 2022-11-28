@@ -1,4 +1,5 @@
 import 'package:take5/data/datasources/boxes.dart';
+import 'package:take5/data/models/take5_together/take5_together.dart';
 import '../../core/constants/keys.dart';
 import '../models/all_trip_steps/all_trip_steps.dart';
 import '../models/driver/driver.dart';
@@ -22,6 +23,8 @@ abstract class LocalDataSource {
 
   Future<void> cacheDrivers(List<Driver> drivers);
  List<Driver>? getCachedDrivers();
+  Future<void> cacheTake5Together(List<Take5TogetherModel> notes);
+  List<Take5TogetherModel>? getCachedTake5Together();
 
   cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel);
   AllTripStepsModel? getCachedAllTripStepsModel();
@@ -99,7 +102,35 @@ class LocalDataSourceImpl implements LocalDataSource {
       return drivers;
     }
   }
+  @override
+  Future<void> cacheTake5Together(List<Take5TogetherModel> notes)async
+  {
+    final box = Boxes.getTakeFiveBox();
+    List<Map<String,dynamic>>mappedNotes=[];
+    for(var note in notes)
+    {
+      mappedNotes.add(note.toJson());
+    }
+    box.put(notesKey,mappedNotes);
+    print(mappedNotes);
+  }
 
+  @override
+  List<Take5TogetherModel>? getCachedTake5Together()
+  {
+    final box = Boxes.getTakeFiveBox();
+    if (box.get(notesKey) == null) {
+      return null;
+    } else {
+      List<Take5TogetherModel>notes=[];
+      for(var note in box.get(notesKey))
+      {
+        Map<String, dynamic> json =Map<String, dynamic>.from(note);
+        notes.add(Take5TogetherModel.fromJson(json));
+      }
+      return notes;
+    }
+  }
   @override
   Future<void> cacheTrip(Trip trip) async {
     final box = Boxes.getTakeFiveBox();

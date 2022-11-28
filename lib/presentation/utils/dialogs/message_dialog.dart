@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_colors.dart';
+import 'package:take5/presentation/screens/end_trip/end_trip.dart';
 
 showMessageDialog({
   required BuildContext context,
@@ -31,7 +32,7 @@ showMessageDialog({
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            isSucceeded ? 'Succeeded'.tr() : 'Failed'.tr(),
+                            isSucceeded ? 'Succeeded'.tr() :message=='لا يوجد اى ملاحظات!'?'انذار': 'Failed'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
@@ -56,8 +57,15 @@ showMessageDialog({
                                 height: 50.h,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    Navigator.of(context).pop();
-                                    onPressedOk?.call();
+                                    if(message=='لا يوجد اى ملاحظات!') {
+                                      Navigator.of(context).pop();
+                                      Navigator.pushNamed(context,EndTripScreen.routeName);
+                                    }
+                                    else
+                                    {
+                                      Navigator.of(context).pop();
+                                      onPressedOk?.call();
+                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded

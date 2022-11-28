@@ -16,6 +16,7 @@ class AppAssets {
   static const String endTrip = 'assets/images/end_trip.png';
   static const String stepTwoStartRequest = 'assets/images/step_two_start_request.png';
   static const String stepTwoWaiting = 'assets/images/step_two_waiting.png';
+  static const String noTrip = 'assets/images/no_trip.png';
 
   //lottiefiles
   static const String truck = 'assets/lottiefiles/truck.json';

@@ -15,6 +15,7 @@ import '../models/responses/user_login_response/user_login_response.dart';
 import '../../core/errors/failures.dart';
 import '../datasources/remote_data_source.dart';
 import '../../core/network/device_connectivity.dart';
+import '../models/take5_together/take5_together.dart';
 
 abstract class Take5Repository {
   Future<Either<Failure, UserLoginResponse>> loginUser(
@@ -42,6 +43,8 @@ abstract class Take5Repository {
 
   Future<Either<Failure, String>> completeStepTwo(
       {required SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel});
+  Future<Either<Failure, String>> take5Together(
+      {required List<Take5TogetherModel>notes});
 
   Future<Either<Failure, String>> checkTripStatus();
 
@@ -330,6 +333,25 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Right('تم الحفظ');
     }
   }
+  @override
+  Future<Either<Failure, String>> take5Together(
+      {required List<Take5TogetherModel>notes})async
+  {
+    AllTripStepsModel allTripStepsModel;
+    if (localDataSource.getCachedAllTripStepsModel() == null) {
+      allTripStepsModel = AllTripStepsModel(
+          userId: AppConstants.user.userId,
+          tripId: AppConstants.trip.tripNumber,
+          jobsiteId: AppConstants.trip.jobsiteNumber);
+    } else {
+      allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
+    }
+    allTripStepsModel = allTripStepsModel.copyWith(
+        take5TogetherAPIModels: notes);
+    localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+    return const Right('تم الحفظ');
+  }
+
 
   @override
   Either<Failure, TakeFiveSurvey?> getCachedTakeFiveSurvey() {
@@ -359,10 +381,8 @@ class Take5RepositoryImpl extends Take5Repository {
           userId: AppConstants.user.userId,
           tripId: AppConstants.trip.tripNumber,
           jobsiteId: AppConstants.trip.jobsiteNumber);
-
       allTripStepsModel =
           allTripStepsModel.copyWith(endStatus: 'TripCompleted');
-
       String result = await remoteDataSource.sendCollection(
           allTripStepsModel: allTripStepsModel);
       //done

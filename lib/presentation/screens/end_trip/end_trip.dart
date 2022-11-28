@@ -8,6 +8,7 @@ import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../../logic/end_trip_cubit/end_trip_cubit.dart';
+import '../../widgets/main_button.dart';
 import '../home/home.dart';
 
 class EndTripScreen extends StatelessWidget {
@@ -43,18 +44,9 @@ class EndTripScreen extends StatelessWidget {
           var cubit = EndTripCubit.get(context);
           return Scaffold(
             appBar: AppBar(
-              leading: Builder(
-                  builder: (context) {
-                    return IconButton(
-                        icon: Icon(Icons.menu_open), onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    });
-                  }
-              ),
               toolbarHeight: 80,
               elevation: 0,
-              iconTheme: IconThemeData(color: AppColors.mainColor),
-              title: Text(
+              title:const Text(
                 'انهاء الرحلة',
                 style: TextStyle(color: AppColors.redColor),
               ),
@@ -65,10 +57,13 @@ class EndTripScreen extends StatelessWidget {
               child: Column(
                 children: [
                   Image.asset(AppAssets.endTrip,height: 330.h),
-                  SizedBox(height: 16.h,),
-                  ElevatedButton(
-                    onPressed: cubit.endTrip,
-                    child: const Text('انهاء الرحلة'),
+                  SizedBox(
+                    height: 60.h,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                    child: MainButton(
+                      onPressed: cubit.endTrip, title: 'انهاء الرحلة',),
                   ),
 
                 ],

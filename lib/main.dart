@@ -25,6 +25,7 @@ import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
 import 'logic/home_cubit/home_cubit.dart';
+import 'logic/take5_together_cubit/take5_together_cubit.dart';
 import 'presentation/screens/end_trip/end_trip.dart';
 import 'presentation/screens/login/login_screen.dart';
 import 'presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
@@ -84,6 +85,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<HomeCubit>(create: (context) => sl<HomeCubit>()),
+            BlocProvider<Take5TogetherCubit>(create: (context) => sl<Take5TogetherCubit>()),
           ],
           child: MaterialApp(
             navigatorKey: AppConstants.navigatorKey,

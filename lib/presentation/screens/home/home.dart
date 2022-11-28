@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,9 +8,11 @@ import 'package:take5/logic/home_cubit/home_cubit.dart';
 import 'package:take5/presentation/screens/home/widgets/trip_card.dart';
 import 'package:take5/presentation/screens/trip/trip.dart';
 import 'package:take5/presentation/utils/helpers/helpers.dart';
+import '../../../core/constants/app_assets.dart';
 import '../../../logic/home_cubit/home_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../widgets/drawer_widget.dart';
+import '../../widgets/main_button.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = 'HomeScreen';
@@ -67,7 +70,26 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               SizedBox(height: 16.h,),
               if (state != HomeGetCurrentTripLoading() && cubit.trip != null)
-              TripCard(trip: cubit.trip!),
+              TripCard(trip: cubit.trip!)
+              else if (cubit.trip == null)
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 30.h,
+                    ),
+                    Image.asset(AppAssets.noTrip),
+                    SizedBox(
+                      height: 60.h,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 16.w),
+                      child: MainButton(
+                        onPressed: () {
+                          cubit.getCurrentTrip();
+                        }, title:'اعادة البحث',),
+                    ),
+                  ],
+                )
             ],
           ),
         );
