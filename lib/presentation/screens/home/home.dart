@@ -71,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 16.h,),
               if (state != HomeGetCurrentTripLoading() && cubit.trip != null)
               TripCard(trip: cubit.trip!)
-              else if (cubit.trip == null)
+              else if(cubit.trip==null)
                 Column(
                   children: [
                     SizedBox(

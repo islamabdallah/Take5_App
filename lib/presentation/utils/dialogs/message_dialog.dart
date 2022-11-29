@@ -73,12 +73,40 @@ showMessageDialog({
                                         : Colors.red,
                                   ),
                                   child: Text(
-                                    "Ok".tr(),
+                                    message=='لا يوجد اى ملاحظات!'?"التالي":"Ok".tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),
                                 ),
                               ),
+                              message=='لا يوجد اى ملاحظات!'?const Spacer():Container(),
+                              message=='لا يوجد اى ملاحظات!'?SizedBox(
+                                width: 100.w,
+                                height: 50.h,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if(message=='لا يوجد اى ملاحظات!') {
+                                      Navigator.of(context).pop();
+                                      Navigator.pushNamed(context,EndTripScreen.routeName);
+                                    }
+                                    else
+                                    {
+                                      Navigator.of(context).pop();
+                                      onPressedOk?.call();
+                                    }
+                                  },
+                                  style: ElevatedButton.styleFrom(
+                                    primary: isSucceeded
+                                        ? AppColors.mainColor
+                                        : Colors.red,
+                                  ),
+                                  child: Text(
+                                    "Ok".tr(),
+                                    style: TextStyle(
+                                        color: Colors.white, fontSize: 16.sp),
+                                  ),
+                                ),
+                              ):Container(),
                             ],
                           )
                         ]),
