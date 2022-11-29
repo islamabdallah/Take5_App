@@ -22,7 +22,11 @@ Take5TogetherModel _$Take5TogetherModelFromJson(Map<String, dynamic> json) {
 mixin _$Take5TogetherModel {
   int? get participantDriverId => throw _privateConstructorUsedError;
   int? get whoStartDriverId => throw _privateConstructorUsedError;
-  String? get notes => throw _privateConstructorUsedError;
+  String? get notes => throw _privateConstructorUsedError; //UI matters
+  @JsonKey(ignore: true)
+  String? get participantDriverName => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get whoStartDriverName => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +40,12 @@ abstract class $Take5TogetherModelCopyWith<$Res> {
           Take5TogetherModel value, $Res Function(Take5TogetherModel) then) =
       _$Take5TogetherModelCopyWithImpl<$Res, Take5TogetherModel>;
   @useResult
-  $Res call({int? participantDriverId, int? whoStartDriverId, String? notes});
+  $Res call(
+      {int? participantDriverId,
+      int? whoStartDriverId,
+      String? notes,
+      @JsonKey(ignore: true) String? participantDriverName,
+      @JsonKey(ignore: true) String? whoStartDriverName});
 }
 
 /// @nodoc
@@ -55,6 +64,8 @@ class _$Take5TogetherModelCopyWithImpl<$Res, $Val extends Take5TogetherModel>
     Object? participantDriverId = freezed,
     Object? whoStartDriverId = freezed,
     Object? notes = freezed,
+    Object? participantDriverName = freezed,
+    Object? whoStartDriverName = freezed,
   }) {
     return _then(_value.copyWith(
       participantDriverId: freezed == participantDriverId
@@ -69,6 +80,14 @@ class _$Take5TogetherModelCopyWithImpl<$Res, $Val extends Take5TogetherModel>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      participantDriverName: freezed == participantDriverName
+          ? _value.participantDriverName
+          : participantDriverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      whoStartDriverName: freezed == whoStartDriverName
+          ? _value.whoStartDriverName
+          : whoStartDriverName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -81,7 +100,12 @@ abstract class _$$_Take5TogetherModelCopyWith<$Res>
       __$$_Take5TogetherModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int? participantDriverId, int? whoStartDriverId, String? notes});
+  $Res call(
+      {int? participantDriverId,
+      int? whoStartDriverId,
+      String? notes,
+      @JsonKey(ignore: true) String? participantDriverName,
+      @JsonKey(ignore: true) String? whoStartDriverName});
 }
 
 /// @nodoc
@@ -98,6 +122,8 @@ class __$$_Take5TogetherModelCopyWithImpl<$Res>
     Object? participantDriverId = freezed,
     Object? whoStartDriverId = freezed,
     Object? notes = freezed,
+    Object? participantDriverName = freezed,
+    Object? whoStartDriverName = freezed,
   }) {
     return _then(_$_Take5TogetherModel(
       participantDriverId: freezed == participantDriverId
@@ -112,6 +138,14 @@ class __$$_Take5TogetherModelCopyWithImpl<$Res>
           ? _value.notes
           : notes // ignore: cast_nullable_to_non_nullable
               as String?,
+      participantDriverName: freezed == participantDriverName
+          ? _value.participantDriverName
+          : participantDriverName // ignore: cast_nullable_to_non_nullable
+              as String?,
+      whoStartDriverName: freezed == whoStartDriverName
+          ? _value.whoStartDriverName
+          : whoStartDriverName // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -120,7 +154,11 @@ class __$$_Take5TogetherModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Take5TogetherModel implements _Take5TogetherModel {
   const _$_Take5TogetherModel(
-      {this.participantDriverId, this.whoStartDriverId, this.notes});
+      {this.participantDriverId,
+      this.whoStartDriverId,
+      this.notes,
+      @JsonKey(ignore: true) this.participantDriverName,
+      @JsonKey(ignore: true) this.whoStartDriverName});
 
   factory _$_Take5TogetherModel.fromJson(Map<String, dynamic> json) =>
       _$$_Take5TogetherModelFromJson(json);
@@ -131,10 +169,17 @@ class _$_Take5TogetherModel implements _Take5TogetherModel {
   final int? whoStartDriverId;
   @override
   final String? notes;
+//UI matters
+  @override
+  @JsonKey(ignore: true)
+  final String? participantDriverName;
+  @override
+  @JsonKey(ignore: true)
+  final String? whoStartDriverName;
 
   @override
   String toString() {
-    return 'Take5TogetherModel(participantDriverId: $participantDriverId, whoStartDriverId: $whoStartDriverId, notes: $notes)';
+    return 'Take5TogetherModel(participantDriverId: $participantDriverId, whoStartDriverId: $whoStartDriverId, notes: $notes, participantDriverName: $participantDriverName, whoStartDriverName: $whoStartDriverName)';
   }
 
   @override
@@ -146,13 +191,17 @@ class _$_Take5TogetherModel implements _Take5TogetherModel {
                 other.participantDriverId == participantDriverId) &&
             (identical(other.whoStartDriverId, whoStartDriverId) ||
                 other.whoStartDriverId == whoStartDriverId) &&
-            (identical(other.notes, notes) || other.notes == notes));
+            (identical(other.notes, notes) || other.notes == notes) &&
+            (identical(other.participantDriverName, participantDriverName) ||
+                other.participantDriverName == participantDriverName) &&
+            (identical(other.whoStartDriverName, whoStartDriverName) ||
+                other.whoStartDriverName == whoStartDriverName));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, participantDriverId, whoStartDriverId, notes);
+  int get hashCode => Object.hash(runtimeType, participantDriverId,
+      whoStartDriverId, notes, participantDriverName, whoStartDriverName);
 
   @JsonKey(ignore: true)
   @override
@@ -171,9 +220,12 @@ class _$_Take5TogetherModel implements _Take5TogetherModel {
 
 abstract class _Take5TogetherModel implements Take5TogetherModel {
   const factory _Take5TogetherModel(
-      {final int? participantDriverId,
-      final int? whoStartDriverId,
-      final String? notes}) = _$_Take5TogetherModel;
+          {final int? participantDriverId,
+          final int? whoStartDriverId,
+          final String? notes,
+          @JsonKey(ignore: true) final String? participantDriverName,
+          @JsonKey(ignore: true) final String? whoStartDriverName}) =
+      _$_Take5TogetherModel;
 
   factory _Take5TogetherModel.fromJson(Map<String, dynamic> json) =
       _$_Take5TogetherModel.fromJson;
@@ -184,6 +236,12 @@ abstract class _Take5TogetherModel implements Take5TogetherModel {
   int? get whoStartDriverId;
   @override
   String? get notes;
+  @override //UI matters
+  @JsonKey(ignore: true)
+  String? get participantDriverName;
+  @override
+  @JsonKey(ignore: true)
+  String? get whoStartDriverName;
   @override
   @JsonKey(ignore: true)
   _$$_Take5TogetherModelCopyWith<_$_Take5TogetherModel> get copyWith =>

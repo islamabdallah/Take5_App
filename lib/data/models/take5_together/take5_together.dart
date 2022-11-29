@@ -1,15 +1,20 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-part 'take5_together.freezed.dart';//same name of file
+
+part 'take5_together.freezed.dart'; //same name of file
 part 'take5_together.g.dart';
 
 @freezed
-class Take5TogetherModel with _$Take5TogetherModel{
+class Take5TogetherModel with _$Take5TogetherModel {
   const factory Take5TogetherModel({
     int? participantDriverId,
-    int? whoStartDriverId ,
-    String? notes
+    int? whoStartDriverId,
+    String? notes,
 
+    //UI matters
+    @JsonKey(ignore: true) String? participantDriverName,
+    @JsonKey(ignore: true) String? whoStartDriverName,
   }) = _Take5TogetherModel;
 
-  factory Take5TogetherModel.fromJson(Map<String, dynamic> json) => _$Take5TogetherModelFromJson(json);
+  factory Take5TogetherModel.fromJson(Map<String, dynamic> json) =>
+      _$Take5TogetherModelFromJson(json);
 }

@@ -91,7 +91,7 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
 
   @override
   Future<String> sendCollection({required AllTripStepsModel allTripStepsModel}) async{
-    print(allTripStepsModel.toString());
+    print(jsonEncode(allTripStepsModel.toJson()));
     final response = await client.request(
         url: AppConstants.trip.jobsiteHasNetworkCoverage? AppEndpoints.sendTripUpdate:AppEndpoints.sendOfflineTripAllSteps,
         method: HttpMethod.POST,
