@@ -181,31 +181,35 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                           ],
                         ),
                       ))
-                  : Column(
-                      children: [
-                        ...List.generate(
-                          c,
-                          (index) => const Danger(),
-                        ),
-                        SizedBox(
-                          height: 200,
-                          child: ListView.builder(
-                            itemCount: cubit.dangers.length,
-                            itemBuilder: (context, index) =>
-                                const SelectedDangerWidget(),
+                  : Padding(
+                padding:
+                EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
+                    child: Column(
+                        children: [
+                          ...List.generate(
+                            c,
+                            (index) => const Danger(),
                           ),
-                        ),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          child: MainButton(
-                            onPressed: () {
-                              cubit.submitAnswers();
-                            },
-                            title: "end step 1".tr(),
-                          ),
-                        ),
-                      ],
-                    ),
+                          // SizedBox(
+                          //   height: 200,
+                          //   child: ListView.builder(
+                          //     itemCount: cubit.dangers.length,
+                          //     itemBuilder: (context, index) =>
+                          //         const SelectedDangerWidget(),
+                          //   ),
+                          // ),
+                          // Padding(
+                          //   padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          //   child: MainButton(
+                          //     onPressed: () {
+                          //       cubit.submitAnswers();
+                          //     },
+                          //     title: "end step 1".tr(),
+                          //   ),
+                          // ),
+                        ],
+                      ),
+                  ),
             ),
           );
         },

@@ -10,6 +10,7 @@ import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/helpers/helpers.dart';
+import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
 import 'step_two_waiting_screen.dart';
 
@@ -76,6 +77,7 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
         builder: (context, state) {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(
+            drawer:  const DrawerWidget(),
             appBar: AppBar(
               leading: Builder(builder: (context) {
                 return IconButton(
