@@ -26,7 +26,7 @@ abstract class LocalDataSource {
   Future<void> cacheTake5Together(List<Take5TogetherModel> notes);
   List<Take5TogetherModel>? getCachedTake5Together();
 
-  cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel);
+  String cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel);
   AllTripStepsModel? getCachedAllTripStepsModel();
   void clearCollection();
 }
@@ -150,10 +150,11 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
-  void cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel) {
+  String cacheAllTripStepsModel(AllTripStepsModel allTripStepsModel) {
     final box = Boxes.getTakeFiveBox();
     box.put(collectionKey, allTripStepsModel.toJson());
     print(box.get(collectionKey));
+    return "Done";
   }
 
   @override

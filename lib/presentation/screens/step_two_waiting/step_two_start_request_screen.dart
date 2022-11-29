@@ -88,7 +88,7 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
               elevation: 0,
               iconTheme: const IconThemeData(color: AppColors.redColor),
               title: Text(
-                'طلب المرحله التانيه',
+                'طلب المرحله الثانية',
                 style: const TextStyle(color: AppColors.redColor),
               ),
               backgroundColor: Colors.white,

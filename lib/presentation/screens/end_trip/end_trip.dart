@@ -8,13 +8,26 @@ import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../../logic/end_trip_cubit/end_trip_cubit.dart';
+import '../../utils/helpers/helpers.dart';
 import '../../widgets/main_button.dart';
 import '../home/home.dart';
 
-class EndTripScreen extends StatelessWidget {
+class EndTripScreen extends StatefulWidget {
   static const routeName = 'EndTripScreen';
 
   const EndTripScreen({Key? key}) : super(key: key);
+
+  @override
+  State<EndTripScreen> createState() => _EndTripScreenState();
+}
+
+class _EndTripScreenState extends State<EndTripScreen> {
+
+  @override
+  void initState() {
+    saveLastRoute(EndTripScreen.routeName);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -15,6 +15,11 @@ class Take5TogetherCubit extends Cubit<Take5TogetherStates> {
   String?coWorkerController;
   String?whoStartConversationController;
   List<Driver>drivers=[];
+  final List<String> items = [
+    'أنا',
+    'الزميل',
+  ];
+
   getDrivers() {
     print('test');
     emit(Take5TogetherGetDriversLoading());
@@ -24,6 +29,8 @@ class Take5TogetherCubit extends Cubit<Take5TogetherStates> {
     }, (driversResponse) {
       if (driversResponse!= null){
         drivers = driversResponse;
+        coWorkerController =drivers[0].fullName;
+        whoStartConversationController = items[0];
         print(drivers);
       }
       emit(Take5TogetherGetDriversSuccess());

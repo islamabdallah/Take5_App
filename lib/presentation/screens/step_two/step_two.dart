@@ -19,6 +19,7 @@ import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
+import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/true_false_question.dart';
 import '../take5_together/take5_together.dart';
@@ -74,6 +75,7 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
           var cubit = StepTwoCubit.get(context);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
+            drawer: const DrawerWidget(),
               appBar: AppBar(
                 leading: Builder(
                     builder: (context) {
@@ -150,7 +152,7 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                             {
                               cubit.submitAnswers();
                             }
-                          }, title: "next".tr(),),
+                          }, title: "end step 2".tr(),),
                         SizedBox(
                           height: 30.h,
                         ),

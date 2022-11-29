@@ -15,6 +15,7 @@ import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/drawer_widget.dart';
+import '../../widgets/main_button.dart';
 import '../../widgets/true_false_question.dart';
 
 class StepOneQuestionsScreen extends StatefulWidget {
@@ -85,112 +86,128 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             drawer: const DrawerWidget(),
-              appBar: AppBar(
-                leading: Builder(
-                    builder: (context) {
-                      return IconButton(icon:const Icon(Icons.menu_open),onPressed: (){
-                        Scaffold.of(context).openDrawer();
-                      });
-                    }
-                ),
-                toolbarHeight: 80,
-                elevation: 0,
-                iconTheme:const IconThemeData(color: AppColors.redColor),
-                title:const Text(
-                  'المرحله الاولى',
-                  style: TextStyle(color: AppColors.redColor),
-                ),
-                backgroundColor: Colors.white,
-                centerTitle: true,
+            appBar: AppBar(
+              leading: Builder(builder: (context) {
+                return IconButton(
+                    icon: const Icon(Icons.menu_open),
+                    onPressed: () {
+                      Scaffold.of(context).openDrawer();
+                    });
+              }),
+              toolbarHeight: 80,
+              elevation: 0,
+              iconTheme: const IconThemeData(color: AppColors.redColor),
+              title: const Text(
+                'المرحله الاولى',
+                style: TextStyle(color: AppColors.redColor),
               ),
-              body: SingleChildScrollView(
-                child:cubit.isQuestions?
-                FormBuilder(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  child:Padding(
-                    padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
-                    child: Column(
-                      children: [
-                        Row(
+              backgroundColor: Colors.white,
+              centerTitle: true,
+            ),
+            body: SingleChildScrollView(
+              child: cubit.isQuestions
+                  ? FormBuilder(
+                      key: _formKey,
+                      autovalidateMode: AutovalidateMode.disabled,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: 10.h, horizontal: 15.w),
+                        child: Column(
                           children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.mainColor,
-                              radius:14.h,
-                              child:const Center(
-                                child: Text(
-                                  '3',style:TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700
-                                ),),
-                              ),),
-                            SizedBox(
-                              width: 10.w,
+                            Row(
+                              children: [
+                                CircleAvatar(
+                                  backgroundColor: AppColors.mainColor,
+                                  radius: 14.h,
+                                  child: const Center(
+                                    child: Text(
+                                      '3',
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 10.w,
+                                ),
+                                Text('جاوب علي الاسئلة الاتية',
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 18.sp)),
+                              ],
                             ),
-                            Text('جاوب علي الاسئلة الاتية',style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18.sp
-                            )),
+                            state is StepOneGetQuestionsLoading
+                                ? const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
+                                : Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: 0, horizontal: 35.w),
+                                    child: ListView.builder(
+                                      key: GlobalKey(),
+                                      shrinkWrap: true,
+                                      itemBuilder:
+                                          (BuildContext context, int index) =>
+                                              TrueFalseQuestion(
+                                        questionAnswer:
+                                            cubit.step1Answers[index],
+                                        index: index+1,
+                                      ),
+                                      itemCount: cubit.step1Answers.length,
+                                    ),
+                                  ),
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            Center(
+                              child: SizedBox(
+                                width: double.infinity,
+                                height: 45.h,
+                                child: ElevatedButton(
+                                  onPressed: () {
+                                    if (_formKey.currentState?.validate() ==
+                                        true) {
+                                      cubit.toggleToDangers();
+                                    }
+                                  },
+                                  child: Text("next".tr()),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              height: 30.h,
+                            ),
                           ],
                         ),
-                        state is StepOneGetQuestionsLoading
-                            ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                        :Padding(
-                            padding:EdgeInsets.symmetric(vertical: 0,horizontal:35.w ),
-                            child: Column(
-                              children: List.generate(cubit.step1Answers.length, (index) => TrueFalseQuestion(
-                                questionAnswer: cubit.step1Answers[index],
-                                index: index+1,
-                              ),),
-                            )
+                      ))
+                  : Column(
+                      children: [
+                        ...List.generate(
+                          c,
+                          (index) => const Danger(),
                         ),
                         SizedBox(
-                          height: 30.h,
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: double.infinity,
-                            height: 45.h,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                if(_formKey.currentState?.validate()==true)
-                                  {
-                                    cubit.toggleToDangers();
-                                  }
-                              },
-                              child: Text("next".tr()),
-                            ),
+                          height: 200,
+                          child: ListView.builder(
+                            itemCount: cubit.dangers.length,
+                            itemBuilder: (context, index) =>
+                                const SelectedDangerWidget(),
                           ),
                         ),
-                        SizedBox(
-                          height: 30.h,
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 16.w),
+                          child: MainButton(
+                            onPressed: () {
+                              cubit.submitAnswers();
+                            },
+                            title: "end step 1".tr(),
+                          ),
                         ),
                       ],
                     ),
-                  )
-                ):
-                 Column(
-                    children: [
-                      ...List.generate(c, (index) => const Danger(),),
-                      SizedBox(
-                        height: 200,
-                        child: ListView.builder(
-                          itemCount: cubit.dangers.length,
-                          itemBuilder:(context,index)=>const SelectedDangerWidget(),
-                        ),
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            //_formKey.currentState?.validate()==true
-                            cubit.submitAnswers();
-                          },
-                          child:Text("end step 1".tr())),
-                    ],
-                  ),
-                ),
-              );
+            ),
+          );
         },
       ),
     );

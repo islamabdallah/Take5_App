@@ -30,8 +30,10 @@ class HomeCubit extends Cubit<HomeStates> {
     result.fold((failure) {
       emit(HomeGetCurrentTripFail(failure.message));
     }, (tripPendingResponse) {
-      trip = tripPendingResponse.data.tripAPIModel;
-      AppConstants.trip = tripPendingResponse.data.tripAPIModel;
+      if(tripPendingResponse.data!=null){
+      trip = tripPendingResponse.data!.tripAPIModel;
+      AppConstants.trip = tripPendingResponse.data!.tripAPIModel;
+      }
       emit(HomeGetCurrentTripSuccess());
     });
   }

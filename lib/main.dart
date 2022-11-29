@@ -85,7 +85,7 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider<HomeCubit>(create: (context) => sl<HomeCubit>()),
-            BlocProvider<Take5TogetherCubit>(create: (context) => sl<Take5TogetherCubit>()),
+            // BlocProvider<Take5TogetherCubit>(create: (context) => sl<Take5TogetherCubit>()),
           ],
           child: MaterialApp(
             navigatorKey: AppConstants.navigatorKey,
@@ -150,8 +150,8 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-           // initialRoute: getLastRoute(),
-           initialRoute: LoginScreen.routeName,
+           initialRoute: getLastRoute(),
+           // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             //initialRoute: StepOneQuestionsScreen.routeName,
             // initialRoute: PreparingStepScreen.routeName,
@@ -160,7 +160,7 @@ class MyApp extends StatelessWidget {
             // initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
            //initialRoute: Take5TogetherScreen.routeName,
-            // initialRoute: EndTripScreen.routeName,
+           //  initialRoute: EndTripScreen.routeName,
             // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
