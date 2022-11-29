@@ -12,7 +12,7 @@ part 'user_trip_response.g.dart';
 class UserTripResponse with _$UserTripResponse{
   const factory UserTripResponse({
     required String message,
-    required TripWithSurveyMode data,
+    TripWithSurveyMode? data,
   }) = _UserTripResponse;
   factory UserTripResponse.fromJson(Map<String, dynamic> json) => _$UserTripResponseFromJson(json);
 }

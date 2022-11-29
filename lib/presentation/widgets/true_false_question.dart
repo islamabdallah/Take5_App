@@ -14,7 +14,8 @@ class TrueFalseQuestion extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormBuilderRadioGroup(
-      name: 'question',
+      initialValue: questionAnswer.answer,
+      name: index.toString(),
       decoration:
       InputDecoration(
           border:const UnderlineInputBorder(
@@ -52,6 +53,7 @@ class TrueFalseQuestion extends StatelessWidget {
       onChanged: (value){
         questionAnswer.answer=value;
       },
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       validator:FormBuilderValidators.required(errorText: "لم يتم الاجابه على هذا السؤال "),
       // orientation: OptionsOrientation.vertical,
       options: [true,false]

@@ -21,7 +21,7 @@ UserTripResponse _$UserTripResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserTripResponse {
   String get message => throw _privateConstructorUsedError;
-  TripWithSurveyMode get data => throw _privateConstructorUsedError;
+  TripWithSurveyMode? get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,9 +35,9 @@ abstract class $UserTripResponseCopyWith<$Res> {
           UserTripResponse value, $Res Function(UserTripResponse) then) =
       _$UserTripResponseCopyWithImpl<$Res, UserTripResponse>;
   @useResult
-  $Res call({String message, TripWithSurveyMode data});
+  $Res call({String message, TripWithSurveyMode? data});
 
-  $TripWithSurveyModeCopyWith<$Res> get data;
+  $TripWithSurveyModeCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -54,24 +54,28 @@ class _$UserTripResponseCopyWithImpl<$Res, $Val extends UserTripResponse>
   @override
   $Res call({
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_value.copyWith(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TripWithSurveyMode,
+              as TripWithSurveyMode?,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TripWithSurveyModeCopyWith<$Res> get data {
-    return $TripWithSurveyModeCopyWith<$Res>(_value.data, (value) {
+  $TripWithSurveyModeCopyWith<$Res>? get data {
+    if (_value.data == null) {
+      return null;
+    }
+
+    return $TripWithSurveyModeCopyWith<$Res>(_value.data!, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -85,10 +89,10 @@ abstract class _$$_UserTripResponseCopyWith<$Res>
       __$$_UserTripResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, TripWithSurveyMode data});
+  $Res call({String message, TripWithSurveyMode? data});
 
   @override
-  $TripWithSurveyModeCopyWith<$Res> get data;
+  $TripWithSurveyModeCopyWith<$Res>? get data;
 }
 
 /// @nodoc
@@ -103,17 +107,17 @@ class __$$_UserTripResponseCopyWithImpl<$Res>
   @override
   $Res call({
     Object? message = null,
-    Object? data = null,
+    Object? data = freezed,
   }) {
     return _then(_$_UserTripResponse(
       message: null == message
           ? _value.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
-      data: null == data
+      data: freezed == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TripWithSurveyMode,
+              as TripWithSurveyMode?,
     ));
   }
 }
@@ -121,7 +125,7 @@ class __$$_UserTripResponseCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_UserTripResponse implements _UserTripResponse {
-  const _$_UserTripResponse({required this.message, required this.data});
+  const _$_UserTripResponse({required this.message, this.data});
 
   factory _$_UserTripResponse.fromJson(Map<String, dynamic> json) =>
       _$$_UserTripResponseFromJson(json);
@@ -129,7 +133,7 @@ class _$_UserTripResponse implements _UserTripResponse {
   @override
   final String message;
   @override
-  final TripWithSurveyMode data;
+  final TripWithSurveyMode? data;
 
   @override
   String toString() {
@@ -166,7 +170,7 @@ class _$_UserTripResponse implements _UserTripResponse {
 abstract class _UserTripResponse implements UserTripResponse {
   const factory _UserTripResponse(
       {required final String message,
-      required final TripWithSurveyMode data}) = _$_UserTripResponse;
+      final TripWithSurveyMode? data}) = _$_UserTripResponse;
 
   factory _UserTripResponse.fromJson(Map<String, dynamic> json) =
       _$_UserTripResponse.fromJson;
@@ -174,7 +178,7 @@ abstract class _UserTripResponse implements UserTripResponse {
   @override
   String get message;
   @override
-  TripWithSurveyMode get data;
+  TripWithSurveyMode? get data;
   @override
   @JsonKey(ignore: true)
   _$$_UserTripResponseCopyWith<_$_UserTripResponse> get copyWith =>

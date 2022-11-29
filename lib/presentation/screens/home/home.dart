@@ -35,12 +35,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
-        if (state is HomeStartTripLoading || state is HomeGetCurrentTripLoading) {
+        if (state is HomeStartTripLoading) {
           loadingAlertDialog(context);
         }
         if (state is HomeStartTripSuccess) {
           Navigator.pop(context);
-           Navigator.pushNamedAndRemoveUntil(
+          Navigator.pushNamedAndRemoveUntil(
               context, TripScreen.routeName, (route) => false);
         }
       },
@@ -49,13 +49,13 @@ class _HomeScreenState extends State<HomeScreen> {
         return Scaffold(
           drawer: const DrawerWidget(),
           appBar: AppBar(
-            leading: Builder(
-              builder: (context) {
-                return IconButton(icon: Icon(Icons.menu_open),onPressed: (){
-                  Scaffold.of(context).openDrawer();
-                });
-              }
-            ),
+            leading: Builder(builder: (context) {
+              return IconButton(
+                  icon: Icon(Icons.menu_open),
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  });
+            }),
             toolbarHeight: 80,
             elevation: 0,
             iconTheme: IconThemeData(color: AppColors.redColor),
@@ -68,28 +68,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           body: Column(
             children: [
-              SizedBox(height: 16.h,),
-              if (state != HomeGetCurrentTripLoading() && cubit.trip != null)
-              TripCard(trip: cubit.trip!)
-              else if(cubit.trip==null)
-                Column(
-                  children: [
-                    SizedBox(
-                      height: 30.h,
-                    ),
-                    Image.asset(AppAssets.noTrip),
-                    SizedBox(
-                      height: 60.h,
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 16.w),
-                      child: MainButton(
-                        onPressed: () {
-                          cubit.getCurrentTrip();
-                        }, title:'اعادة البحث',),
-                    ),
-                  ],
-                )
+              SizedBox(
+                height: 16.h,
+              ),
+              state is HomeGetCurrentTripLoading
+                  ? Expanded(child: Center(child: CircularProgressIndicator()))
+                  : cubit.trip == null
+                      ? Column(
+                          children: [
+                            SizedBox(
+                              height: 30.h,
+                            ),
+                            Image.asset(AppAssets.noTrip),
+                            SizedBox(
+                              height: 60.h,
+                            ),
+                            Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 16.w),
+                              child: MainButton(
+                                onPressed: () {
+                                  cubit.getCurrentTrip();
+                                },
+                                title: 'اعادة البحث',
+                              ),
+                            ),
+                          ],
+                        )
+                      : TripCard(trip: cubit.trip!),
             ],
           ),
         );

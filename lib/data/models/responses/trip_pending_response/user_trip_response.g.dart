@@ -9,14 +9,16 @@ part of 'user_trip_response.dart';
 _$_UserTripResponse _$$_UserTripResponseFromJson(Map json) =>
     _$_UserTripResponse(
       message: json['message'] as String,
-      data: TripWithSurveyMode.fromJson(
-          Map<String, dynamic>.from(json['data'] as Map)),
+      data: json['data'] == null
+          ? null
+          : TripWithSurveyMode.fromJson(
+              Map<String, dynamic>.from(json['data'] as Map)),
     );
 
 Map<String, dynamic> _$$_UserTripResponseToJson(_$_UserTripResponse instance) =>
     <String, dynamic>{
       'message': instance.message,
-      'data': instance.data.toJson(),
+      'data': instance.data?.toJson(),
     };
 
 _$_TripWithSurveyMode _$$_TripWithSurveyModeFromJson(Map json) =>

@@ -104,9 +104,11 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       UserTripResponse result =
           await remoteDataSource.getCurrentTrip(userId: userId);
-      localDataSource.cacheTrip(result.data.tripAPIModel); //missed
-      localDataSource.cacheTakeFiveSurvey(result.data.allSurveyModel);
-      localDataSource.cacheDrivers(result.data.drivers);
+      if(result.data!=null){
+      localDataSource.cacheTrip(result.data!.tripAPIModel); //missed
+      localDataSource.cacheTakeFiveSurvey(result.data!.allSurveyModel);
+      localDataSource.cacheDrivers(result.data!.drivers);
+      }
      // print(result.data.ALLSurveyModel);
       return Right(result);
     } on ServerException catch (e) {
@@ -374,6 +376,9 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, String>> endTrip() async {
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
     try {
       AllTripStepsModel? allTripStepsModel =
           localDataSource.getCachedAllTripStepsModel();
@@ -432,6 +437,11 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel}) async {
+
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
     try {
       AllTripStepsModel? allTripStepsModel =
           localDataSource.getCachedAllTripStepsModel();
