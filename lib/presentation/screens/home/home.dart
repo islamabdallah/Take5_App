@@ -1,6 +1,4 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_colors.dart';
@@ -51,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
           appBar: AppBar(
             leading: Builder(
               builder: (context) {
-                return IconButton(icon: Icon(Icons.menu_open),onPressed: (){
+                return IconButton(icon:Icon(Icons.menu_open),onPressed: (){
                   Scaffold.of(context).openDrawer();
                 });
               }
