@@ -52,6 +52,7 @@ class StepOneCubit extends Cubit<StepOneState> {
     DangerModel dangerModel = DangerModel(
         dangerId: selectedDanger!.dangerId,
         dangerName: selectedDanger!.dangerName,
+        category: selectedCategory!.dangerCategory,
         measureControlAPIs: selectedControls!);
     dangers.add(dangerModel);
 

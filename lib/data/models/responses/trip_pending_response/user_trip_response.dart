@@ -54,6 +54,7 @@ class DangerModel with _$DangerModel {
   const factory DangerModel({
     required int dangerId,
     required String dangerName,
+    @JsonKey(ignore: true)String? category,
     //required String dangerImage,
     required List<MeasureControlApi> measureControlAPIs,
   }) = _DangerModel;

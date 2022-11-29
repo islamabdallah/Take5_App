@@ -810,7 +810,9 @@ DangerModel _$DangerModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$DangerModel {
   int get dangerId => throw _privateConstructorUsedError;
-  String get dangerName =>
+  String get dangerName => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  String? get category =>
       throw _privateConstructorUsedError; //required String dangerImage,
   List<MeasureControlApi> get measureControlAPIs =>
       throw _privateConstructorUsedError;
@@ -830,6 +832,7 @@ abstract class $DangerModelCopyWith<$Res> {
   $Res call(
       {int dangerId,
       String dangerName,
+      @JsonKey(ignore: true) String? category,
       List<MeasureControlApi> measureControlAPIs});
 }
 
@@ -848,6 +851,7 @@ class _$DangerModelCopyWithImpl<$Res, $Val extends DangerModel>
   $Res call({
     Object? dangerId = null,
     Object? dangerName = null,
+    Object? category = freezed,
     Object? measureControlAPIs = null,
   }) {
     return _then(_value.copyWith(
@@ -859,6 +863,10 @@ class _$DangerModelCopyWithImpl<$Res, $Val extends DangerModel>
           ? _value.dangerName
           : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
       measureControlAPIs: null == measureControlAPIs
           ? _value.measureControlAPIs
           : measureControlAPIs // ignore: cast_nullable_to_non_nullable
@@ -878,6 +886,7 @@ abstract class _$$_DangerModelCopyWith<$Res>
   $Res call(
       {int dangerId,
       String dangerName,
+      @JsonKey(ignore: true) String? category,
       List<MeasureControlApi> measureControlAPIs});
 }
 
@@ -894,6 +903,7 @@ class __$$_DangerModelCopyWithImpl<$Res>
   $Res call({
     Object? dangerId = null,
     Object? dangerName = null,
+    Object? category = freezed,
     Object? measureControlAPIs = null,
   }) {
     return _then(_$_DangerModel(
@@ -905,6 +915,10 @@ class __$$_DangerModelCopyWithImpl<$Res>
           ? _value.dangerName
           : dangerName // ignore: cast_nullable_to_non_nullable
               as String,
+      category: freezed == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as String?,
       measureControlAPIs: null == measureControlAPIs
           ? _value._measureControlAPIs
           : measureControlAPIs // ignore: cast_nullable_to_non_nullable
@@ -919,6 +933,7 @@ class _$_DangerModel implements _DangerModel {
   const _$_DangerModel(
       {required this.dangerId,
       required this.dangerName,
+      @JsonKey(ignore: true) this.category,
       required final List<MeasureControlApi> measureControlAPIs})
       : _measureControlAPIs = measureControlAPIs;
 
@@ -929,6 +944,9 @@ class _$_DangerModel implements _DangerModel {
   final int dangerId;
   @override
   final String dangerName;
+  @override
+  @JsonKey(ignore: true)
+  final String? category;
 //required String dangerImage,
   final List<MeasureControlApi> _measureControlAPIs;
 //required String dangerImage,
@@ -940,7 +958,7 @@ class _$_DangerModel implements _DangerModel {
 
   @override
   String toString() {
-    return 'DangerModel(dangerId: $dangerId, dangerName: $dangerName, measureControlAPIs: $measureControlAPIs)';
+    return 'DangerModel(dangerId: $dangerId, dangerName: $dangerName, category: $category, measureControlAPIs: $measureControlAPIs)';
   }
 
   @override
@@ -952,13 +970,15 @@ class _$_DangerModel implements _DangerModel {
                 other.dangerId == dangerId) &&
             (identical(other.dangerName, dangerName) ||
                 other.dangerName == dangerName) &&
+            (identical(other.category, category) ||
+                other.category == category) &&
             const DeepCollectionEquality()
                 .equals(other._measureControlAPIs, _measureControlAPIs));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, dangerId, dangerName,
+  int get hashCode => Object.hash(runtimeType, dangerId, dangerName, category,
       const DeepCollectionEquality().hash(_measureControlAPIs));
 
   @JsonKey(ignore: true)
@@ -979,6 +999,7 @@ abstract class _DangerModel implements DangerModel {
   const factory _DangerModel(
           {required final int dangerId,
           required final String dangerName,
+          @JsonKey(ignore: true) final String? category,
           required final List<MeasureControlApi> measureControlAPIs}) =
       _$_DangerModel;
 
@@ -989,6 +1010,9 @@ abstract class _DangerModel implements DangerModel {
   int get dangerId;
   @override
   String get dangerName;
+  @override
+  @JsonKey(ignore: true)
+  String? get category;
   @override //required String dangerImage,
   List<MeasureControlApi> get measureControlAPIs;
   @override
