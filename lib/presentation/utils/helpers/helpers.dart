@@ -4,6 +4,7 @@ import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/repositories/take5_repository.dart';
+import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 
 import '../../../core/firebase/push_notification_service.dart';
 import '../../../data/datasources/boxes.dart';
@@ -24,13 +25,18 @@ void logOut(BuildContext context) {
   // SharedPreferences.getInstance().then((value) => value.remove(CACHED_USER));
   sl<Take5Repository>()
       .sendCollection()
-      .then((value) => value.fold((l) => print(l.message), (r) {
+      .then((value) => value.fold((l) {
+        print(l.message);
+        showMessageDialog(context: context, isSucceeded: false,message: "لا يمكنك تسجيل الخروج");
+      }, (r) {
             sl<Take5Repository>().clearUser().fold((l) => print(l.message),
                 (r) {
               print("success logout");
-              //Navigate to login screen
-              Navigator.of(context).pushNamedAndRemoveUntil(
-                  LoginScreen.routeName, (Route<dynamic> route) => false);
+              showMessageDialog(context: context, isSucceeded: true,message: "تم تسجيل الخروج بنجاح!",onPressedOk: (){
+                //Navigate to login screen
+                Navigator.of(AppConstants.navigatorKey.currentContext!).pushNamedAndRemoveUntil(
+                    LoginScreen.routeName, (Route<dynamic> route) => false);
+              });
             });
           }));
 }

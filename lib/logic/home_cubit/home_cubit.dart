@@ -87,4 +87,24 @@ class HomeCubit extends Cubit<HomeStates> {
       emit(HomeCheckTripStatusSuccess(status));
     });
   }
+
+ // void logout() async {
+ //   final result = await take5Repository
+ //        .sendCollection();
+ //
+ //   result.fold((l) {
+ //     return null;
+ //   }, (r) {
+ //     return null;
+ //   })
+ //        .then((value) => value.fold((l) => print(l.message), (r) {
+ //      sl<Take5Repository>().clearUser().fold((l) => print(l.message),
+ //              (r) {
+ //            print("success logout");
+ //            //Navigate to login screen
+ //            Navigator.of(context).pushNamedAndRemoveUntil(
+ //                LoginScreen.routeName, (Route<dynamic> route) => false);
+ //          });
+ //    }));
+ //  }
 }
