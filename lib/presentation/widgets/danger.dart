@@ -9,6 +9,7 @@ import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
 import '../../core/constants/app_colors.dart';
 import '../../data/models/responses/trip_pending_response/user_trip_response.dart';
+import '../utils/dialogs/message_dialog.dart';
 import 'main_button.dart';
 
 class Danger extends StatefulWidget {
@@ -23,7 +24,15 @@ class _DangerState extends State<Danger> {
   Widget build(BuildContext context) {
     var cubit = StepOneCubit.get(context);
     final _formKey = GlobalKey<FormState>();
-    return BlocBuilder<StepOneCubit, StepOneState>(
+    return BlocConsumer<StepOneCubit, StepOneState>(
+      listener: (context,state)
+      {
+        if(state is StepOneAddDangerDublicated)
+        {
+          showMessageDialog(
+              context: context, message:'قمت باضافه هذا الخطر من قبل' , isSucceeded: false);
+        }
+      },
       builder: (context, state) {
         return Form(
           key: _formKey,
@@ -153,9 +162,8 @@ class _DangerState extends State<Danger> {
                     child: MainButton(
                       onPressed: () {
                         print(cubit.dangers);
-
                         if (_formKey.currentState!.validate()) {
-                          cubit.addDanger();
+                           cubit.addDanger();
                         }
                       },
                       title: 'اضافه',

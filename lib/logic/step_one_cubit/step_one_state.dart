@@ -6,6 +6,7 @@ abstract class StepOneState {}
 class StepOneInitial extends StepOneState {}
 
 class StepOneAddDanger extends StepOneState {}
+class StepOneAddDangerDublicated extends StepOneState {}
 
 class StepOneRemoveDanger extends StepOneState {}
 

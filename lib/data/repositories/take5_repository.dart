@@ -404,11 +404,9 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Left(DeviceConnectivityFailure());
     }
 
-    if(!AppConstants.trip.jobsiteHasNetworkCoverage && AppConstants.trip.tripStatus!="Pending"){
-      return const Left(DeviceConnectivityFailure());
-    }
-
-
+    // if(!AppConstants.trip.jobsiteHasNetworkCoverage && AppConstants.trip.tripStatus!="Pending"){
+    //   return const Left(DeviceConnectivityFailure());
+    // }
     try {
       AllTripStepsModel? collectionModel =
           localDataSource.getCachedAllTripStepsModel();
