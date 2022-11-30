@@ -12,6 +12,7 @@ import '../../utils/dialogs/loading_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
+import '../home/home.dart';
 import 'step_two_waiting_screen.dart';
 
 class StepTwoStartRequestScreen extends StatefulWidget {
@@ -64,16 +65,47 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
             loadingAlertDialog(context);
           }
           if (state is StepTwoStartRequestSuccess) {
-            Navigator.pop(context);
-            Navigator.pushNamedAndRemoveUntil(
-                context, StepTwoWaitingScreen.routeName, (route) => false);
+            switch (state.message) {
+              case 'Done':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'لا يوجد تغيير في الرحلة',
+                    onPressedOk: () {
+                      Navigator.pop(context);
+                      Navigator.pushNamedAndRemoveUntil(
+                          context, StepTwoWaitingScreen.routeName, (route) => false);
+                    }
+                );
+                break;
+              case 'Cancelled':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم الغاء الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              case 'Converted':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم تحويل الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              default:
           }
           if (state is StepTwoStartRequestFail) {
             Navigator.pop(context);
             showMessageDialog(
                 context: context, isSucceeded: false, message: state.message);
           }
-        },
+        }},
         builder: (context, state) {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(

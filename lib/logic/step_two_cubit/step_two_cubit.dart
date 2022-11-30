@@ -52,7 +52,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
         surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel);
     result.fold((l) => emit(StepTwoSubmitAnswerFail(l.message)), (r) {
       print(r);
-      emit(StepTwoSubmitAnswerSuccess());
+      emit(StepTwoSubmitAnswerSuccess(r));
     });
   }
 
@@ -63,7 +63,7 @@ class StepTwoCubit extends Cubit<StepTwoState> {
             Take5StepTwoRequestAPIModel(requestDate: DateTime.now()));
     result.fold(
       (failure) => emit(StepTwoStartRequestFail(failure.message)),
-      (_) => emit(StepTwoStartRequestSuccess()),
+      (r) => emit(StepTwoStartRequestSuccess(r)),
     );
   }
 

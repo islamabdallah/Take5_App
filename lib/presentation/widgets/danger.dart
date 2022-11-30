@@ -9,6 +9,7 @@ import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
 import '../../core/constants/app_colors.dart';
 import '../../data/models/responses/trip_pending_response/user_trip_response.dart';
+import '../screens/home/home.dart';
 import '../utils/dialogs/message_dialog.dart';
 import 'main_button.dart';
 
@@ -25,12 +26,38 @@ class _DangerState extends State<Danger> {
     var cubit = StepOneCubit.get(context);
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<StepOneCubit, StepOneState>(
-      listener: (context,state)
-      {
-        if(state is StepOneAddDangerDublicated)
-        {
-          showMessageDialog(
-              context: context, message:'قمت باضافه هذا الخطر من قبل' , isSucceeded: false);
+      listener: (context,state) {
+        if (state is StepOneSubmitAnswerSuccess) {
+          switch (state.message) {
+            case 'Cancelled':
+              showMessageDialog(
+                  context: context,
+                  isSucceeded: true,
+                  message: 'تم الغاء الرحلة',
+                  onPressedOk: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        HomeScreen.routeName, (route) => false);
+                  });
+
+              break;
+            case 'Converted':
+              showMessageDialog(
+                  context: context,
+                  isSucceeded: true,
+                  message: 'تم تحويل الرحلة',
+                  onPressedOk: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        HomeScreen.routeName, (route) => false);
+                  });
+              break;
+            default:
+          }
+          if (state is StepOneAddDangerDublicated) {
+            showMessageDialog(
+                context: context,
+                message: 'قمت باضافه هذا الخطر من قبل',
+                isSucceeded: false);
+          }
         }
       },
       builder: (context, state) {
@@ -151,6 +178,42 @@ class _DangerState extends State<Danger> {
                     child: MainButton(
                       onPressed: () {
                         cubit.submitAnswers();
+                        if (state is StepOneSubmitAnswerSuccess) {
+                          switch (state.message) {
+                            case 'Done':
+                              showMessageDialog(
+                                context: context,
+                                isSucceeded: true,
+                                message: 'لا يوجد تغيير في الرحلة',
+                                  onPressedOk: () {
+                                    Navigator.pushNamedAndRemoveUntil(context,
+                                        HomeScreen.routeName, (route) => false);
+                                  }
+                              );
+                              break;
+                            case 'Cancelled':
+                              showMessageDialog(
+                                  context: context,
+                                  isSucceeded: true,
+                                  message: 'تم الغاء الرحلة',
+                                  onPressedOk: () {
+                                    Navigator.pushNamedAndRemoveUntil(context,
+                                        HomeScreen.routeName, (route) => false);
+                                  });
+                              break;
+                            case 'Converted':
+                              showMessageDialog(
+                                  context: context,
+                                  isSucceeded: true,
+                                  message: 'تم تحويل الرحلة',
+                                  onPressedOk: () {
+                                    Navigator.pushNamedAndRemoveUntil(context,
+                                        HomeScreen.routeName, (route) => false);
+                                  });
+                              break;
+                            default:
+                          }
+                        }
                       },
                       title: "انهاء".tr(),
                     ),
@@ -164,6 +227,12 @@ class _DangerState extends State<Danger> {
                         print(cubit.dangers);
                         if (_formKey.currentState!.validate()) {
                            cubit.addDanger();
+                           if (state is StepOneAddDangerDublicated) {
+                             showMessageDialog(
+                                 context: context,
+                                 message: 'قمت اضافه هذا الخطر من قبل',
+                                 isSucceeded: false);
+                           }
                         }
                       },
                       title: 'اضافه',

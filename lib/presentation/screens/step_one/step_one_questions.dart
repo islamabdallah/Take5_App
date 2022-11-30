@@ -17,6 +17,7 @@ import '../../widgets/danger.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/true_false_question.dart';
+import '../home/home.dart';
 
 class StepOneQuestionsScreen extends StatefulWidget {
   static const routeName = 'StepOneScreen';
@@ -70,9 +71,42 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
             loadingAlertDialog(context);
           }
           if (state is StepOneSubmitAnswerSuccess) {
-            Navigator.pop(context);
-            Navigator.pushReplacementNamed(
-                context, StepTwoStartRequestScreen.routeName);
+            switch (state.message) {
+              case 'Done':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'لا يوجد تغيير في الرحلة',
+                    onPressedOk: () {
+                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(
+                          context, StepTwoStartRequestScreen.routeName);
+                    }
+                );
+                break;
+              case 'Cancelled':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم الغاء الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              case 'Converted':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم تحويل الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              default:
+            }
+
           }
           if (state is StepOneSubmitAnswerFail) {
             Navigator.pop(context);

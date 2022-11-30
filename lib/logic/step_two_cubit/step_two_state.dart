@@ -1,6 +1,5 @@
 part of 'step_two_cubit.dart';
 
-@immutable
 abstract class StepTwoState {}
 
 class StepTwoInitial extends StepTwoState {}
@@ -14,7 +13,10 @@ class StepTwoGetQuestionsFail extends StepTwoState {
 }
 
 class StepTwoStartRequestLoading extends StepTwoState {}
-class StepTwoStartRequestSuccess extends StepTwoState {}
+class StepTwoStartRequestSuccess extends StepTwoState {
+  String message;
+  StepTwoStartRequestSuccess(this.message);
+}
 
 class StepTwoStartRequestFail extends StepTwoState {
   final String message;
@@ -33,7 +35,10 @@ class StepTwoGetRequestRespondFail extends StepTwoState {
 }
 
 class StepTwoSubmitAnswerLoading extends StepTwoState{}
-class StepTwoSubmitAnswerSuccess extends StepTwoState{}
+class StepTwoSubmitAnswerSuccess extends StepTwoState{
+  final String message;
+  StepTwoSubmitAnswerSuccess(this.message);
+}
 class StepTwoSubmitAnswerFail extends StepTwoState{
   final String message;
   StepTwoSubmitAnswerFail(this.message);
