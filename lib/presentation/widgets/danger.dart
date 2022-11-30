@@ -7,11 +7,8 @@ import 'package:multi_select_flutter/dialog/multi_select_dialog_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
 import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
-
 import '../../core/constants/app_colors.dart';
 import '../../data/models/responses/trip_pending_response/user_trip_response.dart';
-import '../../data/models/responses/trip_start_response/trip_start_response.dart';
-import '../../data/data.dart';
 import 'main_button.dart';
 
 class Danger extends StatefulWidget {
