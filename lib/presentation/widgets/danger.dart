@@ -39,27 +39,25 @@ class _DangerState extends State<Danger> {
               SizedBox(
                 height: 10.w,
               ),
-              InputDecorator(
+              DropdownButtonFormField<DangerWithCategoryAPIModels>(
                   decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 16.w),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.r),
-                          borderSide: BorderSide(width: 10.w))),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButtonFormField<DangerWithCategoryAPIModels>(
-                      validator:(value) => value == null ? 'field required' : null ,
-                        value: cubit.selectedCategory,
-                        items: cubit.dangerControlsWithCategory
-                            .map((d) =>
-                                DropdownMenuItem<DangerWithCategoryAPIModels>(
-                                  value: d,
-                                  child: Text(d.dangerCategory),
-                                ))
-                            .toList(),
-                        onChanged: cubit.onChangeSelectedCategory),
-                  )),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 0, horizontal: 16.w),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(width: 10.w),
+                    ),
+                  ),
+                  validator:(value) => value == null ? 'مطلوب' : null ,
+                  value: cubit.selectedCategory,
+                  items: cubit.dangerControlsWithCategory
+                      .map((d) =>
+                          DropdownMenuItem<DangerWithCategoryAPIModels>(
+                            value: d,
+                            child: Text(d.dangerCategory),
+                          ))
+                      .toList(),
+                  onChanged: cubit.onChangeSelectedCategory),
               SizedBox(
                 height: 20.w,
               ),
@@ -73,27 +71,25 @@ class _DangerState extends State<Danger> {
               SizedBox(
                 height: 10.w,
               ),
-              InputDecorator(
+              DropdownButtonFormField<DangerModel>(
+                  key: GlobalKey(),
+                  validator:(value) => value == null ? 'مطلوب' : null ,
                   decoration: InputDecoration(
-                      isDense: true,
-                      contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 16.w),
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.r),
-                          borderSide: BorderSide(width: 10.w))),
-                  child: DropdownButtonHideUnderline(
-                    child: DropdownButtonFormField<DangerModel>(
-                        key: GlobalKey(),
-                        validator:(value) => value == null ? 'مطلوب' : null ,
-                        value: cubit.selectedDanger,
-                        items: cubit.selectedCategory?.dangerModels
-                            .map((d) => DropdownMenuItem<DangerModel>(
-                                  child: Text(d.dangerName),
-                                  value: d,
-                                ))
-                            .toList(),
-                        onChanged: cubit.onChangeSelectedDanger),
-                  )),
+                    contentPadding: EdgeInsets.symmetric(
+                        vertical: 0, horizontal: 16.w),
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10.r),
+                      borderSide: BorderSide(width: 10.w),
+                    ),
+                  ),
+                  value: cubit.selectedDanger,
+                  items: cubit.selectedCategory?.dangerModels
+                      .map((d) => DropdownMenuItem<DangerModel>(
+                            child: Text(d.dangerName),
+                            value: d,
+                          ))
+                      .toList(),
+                  onChanged: cubit.onChangeSelectedDanger),
               SizedBox(
                 height: 20.w,
               ),

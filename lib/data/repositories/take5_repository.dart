@@ -400,6 +400,15 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, String>> sendCollection() async {
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
+    if(!AppConstants.trip.jobsiteHasNetworkCoverage && AppConstants.trip.tripStatus!="Pending"){
+      return const Left(DeviceConnectivityFailure());
+    }
+
+
     try {
       AllTripStepsModel? collectionModel =
           localDataSource.getCachedAllTripStepsModel();
@@ -410,7 +419,7 @@ class Take5RepositoryImpl extends Take5Repository {
       }
       //done
       localDataSource.clearCollection();
-      return const Right('تم الحفظ');
+      return const Right('تم الارسال');
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
@@ -418,6 +427,9 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, String>> checkTripStatus() async {
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
     try {
       AllTripStepsModel? allTripStepsModel =
           localDataSource.getCachedAllTripStepsModel();

@@ -14,6 +14,7 @@ class Take5TogetherAddToNotesSuccess extends Take5TogetherStates{}
 class Take5TogetherOnchangeDriverSuccess extends Take5TogetherStates{}
 class Take5TogetherOnChangeWhoStartedConversationSuccess extends Take5TogetherStates{}
 
+class Take5TogetherRemoveNoteSuccess extends Take5TogetherStates{}
 
 class Take5TogetherStoreNotesToAllStepsLoading extends Take5TogetherStates{}
 class Take5TogetherStoreNotesToAllStepsSuccess extends Take5TogetherStates{}
