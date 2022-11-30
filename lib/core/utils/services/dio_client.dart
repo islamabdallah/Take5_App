@@ -90,6 +90,8 @@ class DioClient {
         } else {
           throw ServerException("Something went wrong");
         }
+        } on ServerException catch(e){
+          throw ServerException(e.message);
         } catch(e){
           throw ServerException("Something went wrong");
         }

@@ -65,18 +65,25 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           }
           if (state is StepTwoGetRequestRespondSuccess) {
             Navigator.pop(context);
-            if(state.isDone){
-            Navigator.pushNamedAndRemoveUntil(
-                context, StepTwoScreen.routeName, (route) => false);
+            if (state.isDone) {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, StepTwoScreen.routeName, (route) => false);
             } else {
               showMessageDialog(
-                  context: context, isSucceeded: false, message: "لم يتم الرد بعد!");
+                  context: context,
+                  isSucceeded: false,
+                  message: "لم يتم الرد بعد!");
             }
           }
           if (state is StepTwoGetRequestRespondFail) {
             Navigator.pop(context);
-            showMessageDialog(
-                context: context, isSucceeded: false, message: state.message);
+            if (state.message == "Connection Timed Out!") {
+              Navigator.pushNamedAndRemoveUntil(
+                  context, StepTwoScreen.routeName, (route) => false);
+            } else {
+              showMessageDialog(
+                  context: context, isSucceeded: false, message: state.message);
+            }
           }
         },
         builder: (context, state) {
@@ -115,7 +122,9 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
                   child: MainButton(
                     onPressed: () {
                       cubit.getStepTwoStartRequestRespond();
-                    }, title:"waiting step 2".tr(),),
+                    },
+                    title: "waiting step 2".tr(),
+                  ),
                 ),
               ],
             ),

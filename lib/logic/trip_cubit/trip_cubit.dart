@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
@@ -13,38 +14,59 @@ class TripCubit extends Cubit<TripStates> {
 
   //final InternetBloc internetBloc;
   TripCubit({required this.take5Repository}) : super(InitialTripState());
-  Position? p;
   double? d;
   var sub;
 
   start() async {
     emit(StartTripLoadingTripState());
-    var loc = LocationService();
+    await LocationService().checkPermission();
+    //run background service defined in main
+    final service = FlutterBackgroundService();
+    // await service.startService();
+    // service.invoke('stopService');
+    // await service.startService();
+    service.invoke('startTrip',AppConstants.trip.toJson());
 
-    p = await loc.getCurrentLocation();
-    print(p);
-    Position pp =
-        Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
-    d = loc.getDistance(p!, pp);
-    emit(StartTripSuccessTripState()); //setstate
-    sub = loc.subscribeEvent((p) async {
-      this.p = p;
-      Position pp =
-          Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
-      d = loc.getDistance(p, pp);
+
+    var loc = LocationService();
+    //
+    // p = await loc.getCurrentLocation();
+    // print(p);
+    // Position pp =
+    //     Position.fromMap({'latitude': 27.1790981, 'longitude': 31.0220375});
+    // d = loc.getDistance(p!, pp);
+    // emit(StartTripSuccessTripState()); //setstate
+    //
+    //
+    sub = loc.subscribeEvent((currentPosition) async {
+
+      Position destination =
+          Position.fromMap({'latitude': AppConstants.trip.latituide, 'longitude': AppConstants.trip.longitude});
+      d = loc.getDistance(currentPosition, destination);
       // d=100;
-      if (d != null && d! < 1000) {
+      if (d != null && d! <= 1000) {
         var result = await take5Repository.arrivedToDestination(
           tripDestinationArrivedModel: TripDestinationArrivedModel(
               destinationArrivedDate: DateTime.now()),
         );
-        result.fold((l) => null, (r) {
+        result.fold((l) => null, (r) async {
+          stopService();
           print(r);
           enableButton();
+          await sub?.cancel();
         });
       }
       emit(StartTripSuccessTripState()); //setstate
-    }, 100);
+    }, 400);  //كل 400 متر بيحسب
+  }
+
+  stopService()async
+  {
+    final service = FlutterBackgroundService();
+    var isRunning = await service.isRunning();
+    if (isRunning == true) {
+      service.invoke("stopService");
+    }
   }
 
   bool isButtonEnabled = false;

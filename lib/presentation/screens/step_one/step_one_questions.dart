@@ -43,22 +43,9 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
   @override
   void initState() {
     saveLastRoute(StepOneQuestionsScreen.routeName);
-    stopService();
     super.initState();
   }
 
-  stopService() async {
-    final service = FlutterBackgroundService();
-    var isRunning = await service.isRunning();
-    if (isRunning == true) {
-      service.invoke("stopService");
-    }
-    // await Hive.openBox('destinationArrivedRequest');
-    // final box = Boxes.getDestinationArrivedRequestBox();
-    // Map<String, dynamic> json =
-    // Map<String, dynamic>.from(box.get('destinationArrivedRequest'));
-    // print(DestinationArrivedRequest.fromJson(json));
-  }
 
   @override
   Widget build(BuildContext context) {

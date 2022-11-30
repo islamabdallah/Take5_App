@@ -1,4 +1,3 @@
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
@@ -22,6 +21,7 @@ import 'data/datasources/local_data_source.dart';
 import 'logic/step_one_cubit/step_one_cubit.dart';
 import 'logic/step_two_cubit/step_two_cubit.dart';
 import 'logic/trip_cubit/trip_cubit.dart';
+
 final sl = GetIt.instance;
 
 Future<void> init() async {
@@ -44,26 +44,31 @@ Future<void> init() async {
 
 //! Datasources
   sl.registerLazySingleton<RemoteDataSource>(
-      () =>RemoteDataSourceImpl(client: sl()));
+      () => RemoteDataSourceImpl(client: sl()));
 
   // sl.registerLazySingleton<RemoteDataSource>(
   //     () => RemoteDataSourceImpl(client: sl()));
 
-  sl.registerLazySingleton<LocalDataSource>(
-      () => LocalDataSourceImpl());
+  sl.registerLazySingleton<LocalDataSource>(() => LocalDataSourceImpl());
 
 //! Core
   sl.registerLazySingleton(() => DioClient(sl()));
   sl.registerLazySingleton(() => LocalStorageService(sl()));
-  sl.registerLazySingleton<NetworkAvailability>(() => NetworkAvailabilityImpl(sl()));
-  sl.registerLazySingleton<DeviceConnectivity>(() => DeviceConnectivityImpl(sl()));
+  sl.registerLazySingleton<NetworkAvailability>(
+      () => NetworkAvailabilityImpl(sl()));
+  sl.registerLazySingleton<DeviceConnectivity>(
+      () => DeviceConnectivityImpl(sl()));
   sl.registerLazySingleton(() => AttachmentsService(sl()));
   sl.registerFactory(() => SignalRHelper('http://localhost:5000/chatHub'));
 
 //! External
   final sharedPreferences = await SharedPreferences.getInstance();
   sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => Dio());
+  sl.registerLazySingleton(() => Dio(BaseOptions(
+        receiveDataWhenStatusError: true,
+        connectTimeout: 60 * 1000,
+        receiveTimeout: 60 * 1000,
+      )));
   sl.registerLazySingleton(() => InternetConnectionChecker());
   sl.registerLazySingleton(() => Connectivity());
   sl.registerLazySingleton(() => ImagePicker());

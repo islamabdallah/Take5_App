@@ -11,6 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 
+import '../../../data/models/trip/trip.dart';
 import 'loaction_service.dart';
 
 class BackgroundService{
@@ -93,55 +94,101 @@ class BackgroundService{
       service.stopSelf();
     });
 
+    Trip? trip;
+
+    service.on('startTrip').listen((data) {
+      // print('yes');
+      trip = Trip.fromJson(data!);
+      print(trip);
+    });
+
+    // if (service is AndroidServiceInstance) {
+    //   if (await service.isForegroundService()) {
+    //     double d =0;
+    //     var loc = LocationService();
+    //     var sub;
+    //     sub = loc.subscribeEvent((currentPosition) async {
+    //
+    //       Position destination =
+    //       Position.fromMap({'latitude': trip.latituide, 'longitude': trip.longitude});
+    //
+    //       d = loc.getDistance(currentPosition, destination);
+    //       // d=100;
+    //       if(d<=1000){
+    //         //todo save local
+    //         TripDestinationArrivedModel destinationArrivedRequest = TripDestinationArrivedModel(destinationArrivedDate: DateTime.now());
+    //
+    //         SharedPreferences preferences = await SharedPreferences.getInstance();
+    //         // await preferences.reload();
+    //         await preferences.setString("destination", jsonEncode(destinationArrivedRequest.toJson()));
+    //         print(preferences.get("destination"));
+    //         //todo stop timer or service
+    //         await sub?.cancel();
+    //         service.stopSelf();
+    //       }
+    //     }, 400);  //
+    //
+    //     service.setForegroundNotificationInfo(
+    //       title: "My App Service",
+    //       content: "distance: ${d.toInt()} m",
+    //     );
+    //   }
+    // }
     // final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
     // FlutterLocalNotificationsPlugin();
 
     // bring to foreground
     Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (service is AndroidServiceInstance) {
-        if (await service.isForegroundService()) {
-          // flutterLocalNotificationsPlugin.show(
-          //   notificationId,
-          //   'COOL SERVICE',
-          //   'Awesome ${DateTime.now()}',
-          //   const NotificationDetails(
-          //     android: AndroidNotificationDetails(
-          //       notificationChannelId,
-          //       'MY FOREGROUND SERVICE',
-          //       icon: 'ic_bg_service_small',
-          //       ongoing: true,
-          //     ),
-          //   ),
-          // );
-          // if you don't using custom notification, uncomment this
-          var loc = LocationService();
-          Position p = await loc.getCurrentLocation();
-          print(p);
-          Position pp = Position.fromMap(
-              {'latitude': 27.1790981, 'longitude': 31.0220375});
-         double d=loc.getDistance(p, pp);
+        if (await service.isForegroundService()){
+          if(trip!=null){
+            // flutterLocalNotificationsPlugin.show(
+            //   notificationId,
+            //   'COOL SERVICE',
+            //   'Awesome ${DateTime.now()}',
+            //   const NotificationDetails(
+            //     android: AndroidNotificationDetails(
+            //       notificationChannelId,
+            //       'MY FOREGROUND SERVICE',
+            //       icon: 'ic_bg_service_small',
+            //       ongoing: true,
+            //     ),
+            //   ),
+            // );
+            // if you don't using custom notification, uncomment this
+            var loc = LocationService();
+            Position p = await loc.getCurrentLocation();
+            print(p);
+            Position pp = Position.fromMap(
+                {'latitude': trip!.latituide, 'longitude': trip!.longitude});
+            double d=loc.getDistance(p, pp);
 
-         if(d<1000){
-           //todo save local
-           TripDestinationArrivedModel destinationArrivedRequest = TripDestinationArrivedModel(destinationArrivedDate: DateTime.now());
+            if(d<=1000){
+              //todo save local
+              TripDestinationArrivedModel destinationArrivedRequest = TripDestinationArrivedModel(destinationArrivedDate: DateTime.now());
 
-           SharedPreferences preferences = await SharedPreferences.getInstance();
-           // await preferences.reload();
-           await preferences.setString("destination", jsonEncode(destinationArrivedRequest.toJson()));
-           print(preferences.get("destination"));
-           //todo stop timer or service
-           timer.cancel();
-          service.stopSelf();
-         }
+              SharedPreferences preferences = await SharedPreferences.getInstance();
+              // await preferences.reload();
+              await preferences.setString("destination", jsonEncode(destinationArrivedRequest.toJson()));
+              print(preferences.get("destination"));
+              //todo stop timer or service
+              timer.cancel();
+              service.stopSelf();
+            }
 
 
-          service.setForegroundNotificationInfo(
-            title: "My App Service",
-            content: "distance: ${d.toInt()} m",
-          );
+            service.setForegroundNotificationInfo(
+              title: "My App Service",
+              content: "distance: ${d.toInt()} m",
+            );
+          }
         }
       }
     });
+
+
+
+
 
   }
 
