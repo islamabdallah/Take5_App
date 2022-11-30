@@ -55,12 +55,18 @@ class StepOneCubit extends Cubit<StepOneState> {
         dangerName: selectedDanger!.dangerName,
         category: selectedCategory!.dangerCategory,
         measureControlAPIs: selectedControls!);
-    dangers.add(dangerModel);
-
-    selectedCategory = null;
-    selectedDanger = null;
-    selectedControls = null;
-    emit(StepOneAddDanger());
+    if(dangers.contains(dangerModel))
+      {
+        emit( StepOneAddDangerDublicated());
+      }
+    else
+      {
+        dangers.add(dangerModel);
+        selectedCategory = null;
+        selectedDanger = null;
+        selectedControls = null;
+        emit(StepOneAddDanger());
+      }
   }
 
   void removeDanger(DangerModel danger) {

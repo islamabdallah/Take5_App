@@ -22,6 +22,7 @@ import '../../widgets/danger.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/true_false_question.dart';
+import '../home/home.dart';
 import '../take5_together/take5_together.dart';
 
 class StepTwoScreen extends StatefulWidget {
@@ -61,14 +62,46 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
             loadingAlertDialog(context);
           }
           if (state is StepTwoSubmitAnswerSuccess) {
-            Navigator.pop(context);
-            Navigator.pushReplacementNamed(
-                context, Take5TogetherScreen.routeName);
-          }
-          if (state is StepTwoSubmitAnswerFail) {
-            Navigator.pop(context);
-            showMessageDialog(
-                context: context, isSucceeded: false, message: state.message);
+            switch (state.message) {
+              case 'Done':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'لا يوجد تغيير في الرحلة',
+                    onPressedOk: () {
+                      Navigator.pop(context);
+                      Navigator.pushReplacementNamed(
+                          context, Take5TogetherScreen.routeName);
+                    }
+                );
+                break;
+              case 'Cancelled':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم الغاء الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              case 'Converted':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: 'تم تحويل الرحلة',
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              default:
+            }
+            if (state is StepTwoSubmitAnswerFail) {
+              Navigator.pop(context);
+              showMessageDialog(
+                  context: context, isSucceeded: false, message: state.message);
+            }
           }
         },
         builder: (context, state) {

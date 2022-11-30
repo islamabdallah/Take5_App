@@ -151,11 +151,11 @@ class Take5RepositoryImpl extends Take5Repository {
           tripDestinationArrivedModel: tripDestinationArrivedModel,
           endStatus: 'DestinationArrived');
       try {
-        await remoteDataSource.sendCollection(
+        String result =await remoteDataSource.sendCollection(
             allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right('تم الحفظ');
+        return const Right('result');
       } on ServerException catch (e) {
         //save local
         String result =
@@ -255,11 +255,11 @@ class Take5RepositoryImpl extends Take5Repository {
           take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,
           endStatus: 'StepTwoRequested');
       try {
-        await remoteDataSource.sendCollection(
+        String result =await remoteDataSource.sendCollection(
             allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right('تم الحفظ');
+        return Right(result);
       } on ServerException catch (e) {
         //save local
         String result =
@@ -307,11 +307,11 @@ class Take5RepositoryImpl extends Take5Repository {
           surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,
           endStatus: 'SurveyStepTwoCompleted');
       try {
-        await remoteDataSource.sendCollection(
+        String result =await remoteDataSource.sendCollection(
             allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right('تم الحفظ');
+        return Right(result);
       } on ServerException catch (e) {
         //save local
         String result =
@@ -404,11 +404,9 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Left(DeviceConnectivityFailure());
     }
 
-    if(!AppConstants.trip.jobsiteHasNetworkCoverage && AppConstants.trip.tripStatus!="Pending"){
-      return const Left(DeviceConnectivityFailure());
-    }
-
-
+    // if(!AppConstants.trip.jobsiteHasNetworkCoverage && AppConstants.trip.tripStatus!="Pending"){
+    //   return const Left(DeviceConnectivityFailure());
+    // }
     try {
       AllTripStepsModel? collectionModel =
           localDataSource.getCachedAllTripStepsModel();
