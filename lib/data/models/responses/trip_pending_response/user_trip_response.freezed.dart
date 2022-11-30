@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'user_trip_response.dart';
 
@@ -332,6 +332,7 @@ class _$_TripWithSurveyMode implements _TripWithSurveyMode {
   final List<Driver> _drivers;
   @override
   List<Driver> get drivers {
+    if (_drivers is EqualUnmodifiableListView) return _drivers;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_drivers);
   }
@@ -523,6 +524,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   final List<QuestionAnswerModel> _stepOneQuestions;
   @override
   List<QuestionAnswerModel> get stepOneQuestions {
+    if (_stepOneQuestions is EqualUnmodifiableListView)
+      return _stepOneQuestions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepOneQuestions);
   }
@@ -530,6 +533,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   final List<QuestionAnswerModel> _stepTwoQuestions;
   @override
   List<QuestionAnswerModel> get stepTwoQuestions {
+    if (_stepTwoQuestions is EqualUnmodifiableListView)
+      return _stepTwoQuestions;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_stepTwoQuestions);
   }
@@ -537,6 +542,8 @@ class _$_TakeFiveSurvey implements _TakeFiveSurvey {
   final List<DangerWithCategoryAPIModels> _dangerWithCategoryAPIModels;
   @override
   List<DangerWithCategoryAPIModels> get dangerWithCategoryAPIModels {
+    if (_dangerWithCategoryAPIModels is EqualUnmodifiableListView)
+      return _dangerWithCategoryAPIModels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dangerWithCategoryAPIModels);
   }
@@ -738,6 +745,7 @@ class _$_DangerWithCategoryAPIModels implements _DangerWithCategoryAPIModels {
   final List<DangerModel> _dangerModels;
   @override
   List<DangerModel> get dangerModels {
+    if (_dangerModels is EqualUnmodifiableListView) return _dangerModels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_dangerModels);
   }
@@ -952,6 +960,8 @@ class _$_DangerModel implements _DangerModel {
 //required String dangerImage,
   @override
   List<MeasureControlApi> get measureControlAPIs {
+    if (_measureControlAPIs is EqualUnmodifiableListView)
+      return _measureControlAPIs;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_measureControlAPIs);
   }

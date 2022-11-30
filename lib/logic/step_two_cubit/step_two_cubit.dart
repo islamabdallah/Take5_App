@@ -77,7 +77,10 @@ class StepTwoCubit extends Cubit<StepTwoState> {
           jobsiteId: AppConstants.trip.jobsiteNumber),
     );
     result.fold(
-      (failure) => emit(StepTwoGetRequestRespondFail(failure.message)),
+      (failure) {
+        emit(StepTwoGetRequestRespondFail(failure.message));
+        take5Repository.startStepTwoOffline(take5StepTwoRequestAPIModel: Take5StepTwoRequestAPIModel(responseDate: DateTime.now()));
+      },
       (isDone) => emit(StepTwoGetRequestRespondSuccess(isDone)),
     );
   }

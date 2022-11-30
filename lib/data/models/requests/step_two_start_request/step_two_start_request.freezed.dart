@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'step_two_start_request.dart';
 
@@ -21,7 +21,10 @@ Take5StepTwoRequestAPIModel _$Take5StepTwoRequestAPIModelFromJson(
 
 /// @nodoc
 mixin _$Take5StepTwoRequestAPIModel {
-  DateTime get requestDate => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  DateTime? get requestDate => throw _privateConstructorUsedError;
+  @JsonKey(includeIfNull: false)
+  DateTime? get responseDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +40,9 @@ abstract class $Take5StepTwoRequestAPIModelCopyWith<$Res> {
       _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
           Take5StepTwoRequestAPIModel>;
   @useResult
-  $Res call({DateTime requestDate});
+  $Res call(
+      {@JsonKey(includeIfNull: false) DateTime? requestDate,
+      @JsonKey(includeIfNull: false) DateTime? responseDate});
 }
 
 /// @nodoc
@@ -54,13 +59,18 @@ class _$Take5StepTwoRequestAPIModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requestDate = null,
+    Object? requestDate = freezed,
+    Object? responseDate = freezed,
   }) {
     return _then(_value.copyWith(
-      requestDate: null == requestDate
+      requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
+      responseDate: freezed == responseDate
+          ? _value.responseDate
+          : responseDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -74,7 +84,9 @@ abstract class _$$_Take5StepTwoRequestAPIModelCopyWith<$Res>
       __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime requestDate});
+  $Res call(
+      {@JsonKey(includeIfNull: false) DateTime? requestDate,
+      @JsonKey(includeIfNull: false) DateTime? responseDate});
 }
 
 /// @nodoc
@@ -90,13 +102,18 @@ class __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? requestDate = null,
+    Object? requestDate = freezed,
+    Object? responseDate = freezed,
   }) {
     return _then(_$_Take5StepTwoRequestAPIModel(
-      requestDate: null == requestDate
+      requestDate: freezed == requestDate
           ? _value.requestDate
           : requestDate // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
+      responseDate: freezed == responseDate
+          ? _value.responseDate
+          : responseDate // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -104,17 +121,23 @@ class __$$_Take5StepTwoRequestAPIModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
-  const _$_Take5StepTwoRequestAPIModel({required this.requestDate});
+  const _$_Take5StepTwoRequestAPIModel(
+      {@JsonKey(includeIfNull: false) this.requestDate,
+      @JsonKey(includeIfNull: false) this.responseDate});
 
   factory _$_Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =>
       _$$_Take5StepTwoRequestAPIModelFromJson(json);
 
   @override
-  final DateTime requestDate;
+  @JsonKey(includeIfNull: false)
+  final DateTime? requestDate;
+  @override
+  @JsonKey(includeIfNull: false)
+  final DateTime? responseDate;
 
   @override
   String toString() {
-    return 'Take5StepTwoRequestAPIModel(requestDate: $requestDate)';
+    return 'Take5StepTwoRequestAPIModel(requestDate: $requestDate, responseDate: $responseDate)';
   }
 
   @override
@@ -123,12 +146,14 @@ class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
         (other.runtimeType == runtimeType &&
             other is _$_Take5StepTwoRequestAPIModel &&
             (identical(other.requestDate, requestDate) ||
-                other.requestDate == requestDate));
+                other.requestDate == requestDate) &&
+            (identical(other.responseDate, responseDate) ||
+                other.responseDate == responseDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, requestDate);
+  int get hashCode => Object.hash(runtimeType, requestDate, responseDate);
 
   @JsonKey(ignore: true)
   @override
@@ -148,13 +173,19 @@ class _$_Take5StepTwoRequestAPIModel implements _Take5StepTwoRequestAPIModel {
 abstract class _Take5StepTwoRequestAPIModel
     implements Take5StepTwoRequestAPIModel {
   const factory _Take5StepTwoRequestAPIModel(
-      {required final DateTime requestDate}) = _$_Take5StepTwoRequestAPIModel;
+          {@JsonKey(includeIfNull: false) final DateTime? requestDate,
+          @JsonKey(includeIfNull: false) final DateTime? responseDate}) =
+      _$_Take5StepTwoRequestAPIModel;
 
   factory _Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) =
       _$_Take5StepTwoRequestAPIModel.fromJson;
 
   @override
-  DateTime get requestDate;
+  @JsonKey(includeIfNull: false)
+  DateTime? get requestDate;
+  @override
+  @JsonKey(includeIfNull: false)
+  DateTime? get responseDate;
   @override
   @JsonKey(ignore: true)
   _$$_Take5StepTwoRequestAPIModelCopyWith<_$_Take5StepTwoRequestAPIModel>

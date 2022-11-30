@@ -52,12 +52,6 @@ class _DangerState extends State<Danger> {
               break;
             default:
           }
-          if (state is StepOneAddDangerDublicated) {
-            showMessageDialog(
-                context: context,
-                message: 'قمت باضافه هذا الخطر من قبل',
-                isSucceeded: false);
-          }
         }
       },
       builder: (context, state) {
@@ -227,12 +221,6 @@ class _DangerState extends State<Danger> {
                         print(cubit.dangers);
                         if (_formKey.currentState!.validate()) {
                            cubit.addDanger();
-                           if (state is StepOneAddDangerDublicated) {
-                             showMessageDialog(
-                                 context: context,
-                                 message: 'قمت اضافه هذا الخطر من قبل',
-                                 isSucceeded: false);
-                           }
                         }
                       },
                       title: 'اضافه',

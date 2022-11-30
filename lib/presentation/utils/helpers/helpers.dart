@@ -1,5 +1,6 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:hive/hive.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/constants/app_constants.dart';
@@ -25,20 +26,29 @@ void logOut(BuildContext context) {
   // SharedPreferences.getInstance().then((value) => value.remove(CACHED_USER));
   sl<Take5Repository>()
       .sendCollection()
-      .then((value) => value.fold((l) {
+      .then((value) =>
+      value.fold((l) {
         print(l.message);
-        showMessageDialog(context: context, isSucceeded: false,message: "لا يمكنك تسجيل الخروج");
+        showMessageDialog(context: context,
+            isSucceeded: false,
+            message: "لا يمكنك تسجيل الخروج");
       }, (r) {
-            sl<Take5Repository>().clearUser().fold((l) => print(l.message),
+        sl<Take5Repository>().clearUser().fold((l) => print(l.message),
                 (r) {
+              final service = FlutterBackgroundService();
+              service.invoke('stopService');
               print("success logout");
-              showMessageDialog(context: context, isSucceeded: true,message: "تم تسجيل الخروج بنجاح!",onPressedOk: (){
-                //Navigate to login screen
-                Navigator.of(AppConstants.navigatorKey.currentContext!).pushNamedAndRemoveUntil(
-                    LoginScreen.routeName, (Route<dynamic> route) => false);
-              });
+              showMessageDialog(context: context,
+                  isSucceeded: true,
+                  message: "تم تسجيل الخروج بنجاح!",
+                  onPressedOk: () {
+                    //Navigate to login screen
+                    Navigator.of(AppConstants.navigatorKey.currentContext!)
+                        .pushNamedAndRemoveUntil(
+                        LoginScreen.routeName, (Route<dynamic> route) => false);
+                  });
             });
-          }));
+      }));
 }
 
 Future<void> saveLastRoute(String route) async {

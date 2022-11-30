@@ -9,11 +9,25 @@ part of 'step_two_start_request.dart';
 _$_Take5StepTwoRequestAPIModel _$$_Take5StepTwoRequestAPIModelFromJson(
         Map json) =>
     _$_Take5StepTwoRequestAPIModel(
-      requestDate: DateTime.parse(json['requestDate'] as String),
+      requestDate: json['requestDate'] == null
+          ? null
+          : DateTime.parse(json['requestDate'] as String),
+      responseDate: json['responseDate'] == null
+          ? null
+          : DateTime.parse(json['responseDate'] as String),
     );
 
 Map<String, dynamic> _$$_Take5StepTwoRequestAPIModelToJson(
-        _$_Take5StepTwoRequestAPIModel instance) =>
-    <String, dynamic>{
-      'requestDate': instance.requestDate.toIso8601String(),
-    };
+    _$_Take5StepTwoRequestAPIModel instance) {
+  final val = <String, dynamic>{};
+
+  void writeNotNull(String key, dynamic value) {
+    if (value != null) {
+      val[key] = value;
+    }
+  }
+
+  writeNotNull('requestDate', instance.requestDate?.toIso8601String());
+  writeNotNull('responseDate', instance.responseDate?.toIso8601String());
+  return val;
+}

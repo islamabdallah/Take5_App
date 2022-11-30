@@ -91,7 +91,7 @@ Future<void> initializeService() async {
     ),
   );
 
-  service.startService();
+  // service.startService();
 }
 
 // to ensure this is executed
@@ -141,11 +141,16 @@ void onStart(ServiceInstance service) async {
   });
 
   Trip? trip;
+  User? user;
 
   service.on('startTrip').listen((data) {
     // print('yes');
-    trip = Trip.fromJson(data!);
+    if(data!=null){
+    trip = Trip.fromJson(data["trip"]);
+    user = User.fromJson(data["user"]);
+    }
     print(trip);
+    print(user);
   });
   // bring to foreground
   Timer.periodic(const Duration(seconds: 1), (timer) async {
@@ -155,7 +160,7 @@ void onStart(ServiceInstance service) async {
         /// the notification id must be equals with AndroidConfiguration when you call configure() method.
 
         double d = 0;
-        if (trip != null) {
+        if (trip != null && user!=null) {
           var loc = LocationService();
           Position p = await loc.getCurrentLocation();
           print(p);
@@ -183,12 +188,13 @@ void onStart(ServiceInstance service) async {
                 Response response = await dio.post(
                   AppEndpoints.sendTripUpdate,
                   data: AllTripStepsModel(
-                      userId: AppConstants.user.userId,
-                      tripId: AppConstants.trip.tripNumber,
-                      jobsiteId: AppConstants.trip.jobsiteNumber,
+                      userId: user!.userId,
+                      tripId: trip!.tripNumber,
+                      jobsiteId: trip!.jobsiteNumber,
                       tripDestinationArrivedModel: destinationArrivedRequest,
                       endStatus: 'DestinationArrived'),
                 );
+                await preferences.setBool('isArrived', true);
               } on DioError catch (e) {
               } catch (e) {}
             }
@@ -337,7 +343,7 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            initialRoute: getLastRoute(),
+            // initialRoute: getLastRoute(),
             // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
@@ -348,7 +354,7 @@ class MyApp extends StatelessWidget {
             // initialRoute: TripScreen.routeName,
             //initialRoute: Take5TogetherScreen.routeName,
             //  initialRoute: EndTripScreen.routeName,
-            // initialRoute: StepTwoStartRequestScreen.routeName,
+            initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );

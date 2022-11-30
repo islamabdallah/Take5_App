@@ -5,6 +5,8 @@ import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/presentation/screens/step_one/widgets/selected_dangers.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
@@ -44,9 +46,16 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
   @override
   void initState() {
     saveLastRoute(StepOneQuestionsScreen.routeName);
+    AppConstants.stopService();
+    clearSharedPreferences();
     super.initState();
   }
 
+  clearSharedPreferences() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+    preferences.clear();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +63,13 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
       create: (context) => sl<StepOneCubit>()..getStepOneQuestions(),
       child: BlocConsumer<StepOneCubit, StepOneState>(
         listener: (context, state) {
+          if (state is StepOneAddDangerDublicated) {
+            showMessageDialog(
+                context: context,
+                message: 'قمت اضافه هذا الخطر من قبل',
+                isSucceeded: false);
+          }
+
           if (state is StepOneSubmitAnswerLoading) {
             loadingAlertDialog(context);
           }

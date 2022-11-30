@@ -55,18 +55,19 @@ class StepOneCubit extends Cubit<StepOneState> {
         dangerName: selectedDanger!.dangerName,
         category: selectedCategory!.dangerCategory,
         measureControlAPIs: selectedControls!);
-    if(dangers.contains(dangerModel))
-      {
-        emit( StepOneAddDangerDublicated());
-      }
-    else
-      {
-        dangers.add(dangerModel);
-        selectedCategory = null;
-        selectedDanger = null;
-        selectedControls = null;
-        emit(StepOneAddDanger());
-      }
+
+    bool isDoublicated =
+        dangers.any((element) => element.dangerId == dangerModel.dangerId);
+
+    if (isDoublicated) {
+      emit(StepOneAddDangerDublicated());
+    } else {
+      dangers.add(dangerModel);
+      selectedCategory = null;
+      selectedDanger = null;
+      selectedControls = null;
+      emit(StepOneAddDanger());
+    }
   }
 
   void removeDanger(DangerModel danger) {

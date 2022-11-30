@@ -1,7 +1,10 @@
+import 'dart:convert';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/data/models/requests/destination_arrived_request/destination_arrived_request.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/utils/services/loaction_service.dart';
@@ -20,13 +23,8 @@ class TripCubit extends Cubit<TripStates> {
   start() async {
     emit(StartTripLoadingTripState());
     await LocationService().checkPermission();
-    //run background service defined in main
-    final service = FlutterBackgroundService();
-    // await service.startService();
-    // service.invoke('stopService');
-    // await service.startService();
-    service.invoke('startTrip',AppConstants.trip.toJson());
 
+    // AppConstants.backgroundService.invoke("stopService");
 
     var loc = LocationService();
     //
@@ -38,10 +36,42 @@ class TripCubit extends Cubit<TripStates> {
     // emit(StartTripSuccessTripState()); //setstate
     //
     //
-    sub = loc.subscribeEvent((currentPosition) async {
+    //todo code to check background service
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+   bool? isArrived = preferences.getBool('isArrived');
+   if(isArrived!=null&& isArrived){
+     enableButton();
+     emit(ArrivedSuccessTripState());
+     return;
+   }
 
-      Position destination =
-          Position.fromMap({'latitude': AppConstants.trip.latituide, 'longitude': AppConstants.trip.longitude});
+
+    await preferences.reload();
+    String? destination = preferences.getString("destination");
+    if (destination != null) {
+     var result = await take5Repository.arrivedToDestination(
+          tripDestinationArrivedModel:
+              TripDestinationArrivedModel.fromJson(jsonDecode(destination)));
+
+     result.fold((l) => null, (r) {
+       enableButton();
+       emit(ArrivedSuccessTripState());
+       return;
+     });
+    }
+
+    if(destination==null){
+      AppConstants.startBackgroundService();
+      Future.delayed(Duration(seconds: 5), () {
+        AppConstants.sendDataToBackgroudnService();
+      });
+    }
+
+    sub = loc.subscribeEvent((currentPosition) async {
+      Position destination = Position.fromMap({
+        'latitude': AppConstants.trip.latituide,
+        'longitude': AppConstants.trip.longitude
+      });
       d = loc.getDistance(currentPosition, destination);
       // d=100;
       if (d != null && d! <= 1000) {
@@ -54,14 +84,16 @@ class TripCubit extends Cubit<TripStates> {
           print(r);
           enableButton();
           await sub?.cancel();
+      emit(ArrivedSuccessTripState());
+      return;
         });
       }
-      emit(StartTripSuccessTripState()); //setstate
-    }, 400);  //كل 400 متر بيحسب
+
+      emit(StartTripSuccessTripState());
+    }, 400); //كل 400 متر بيحسب
   }
 
-  stopService()async
-  {
+  stopService() async {
     final service = FlutterBackgroundService();
     var isRunning = await service.isRunning();
     if (isRunning == true) {

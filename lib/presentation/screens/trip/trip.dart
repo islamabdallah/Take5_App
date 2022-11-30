@@ -26,6 +26,9 @@ class _TripScreenState extends State<TripScreen> {
   @override
   void initState() {
     saveLastRoute(TripScreen.routeName);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+
+    });
     super.initState();
   }
 
@@ -89,6 +92,9 @@ class _TripScreenState extends State<TripScreen> {
                           ),
                         ),
                         Text(
+                          state is ArrivedSuccessTripState?
+                            'تم التوصيل'
+                                :
                           " متبقي ${cubit.d?.toInt()} متر ",
                           textAlign: TextAlign.center,
                           style:const TextStyle(

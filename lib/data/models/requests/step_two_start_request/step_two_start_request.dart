@@ -8,7 +8,8 @@ part 'step_two_start_request.g.dart';
 @freezed
 class Take5StepTwoRequestAPIModel with _$Take5StepTwoRequestAPIModel{
   const factory Take5StepTwoRequestAPIModel({
-    required DateTime requestDate,
+    @JsonKey(includeIfNull: false) DateTime? requestDate,
+    @JsonKey(includeIfNull: false) DateTime? responseDate,
   }) = _Take5StepTwoRequestAPIModel;
 
   factory Take5StepTwoRequestAPIModel.fromJson(Map<String, dynamic> json) => _$Take5StepTwoRequestAPIModelFromJson(json);
