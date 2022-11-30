@@ -203,11 +203,11 @@ class Take5RepositoryImpl extends Take5Repository {
           surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,
           endStatus: 'SurveyStepOneCompleted');
       try {
-        await remoteDataSource.sendCollection(
+       String result =  await remoteDataSource.sendCollection(
             allTripStepsModel: allTripStepsModel);
         //done
         localDataSource.clearCollection();
-        return const Right('تم الحفظ');
+        return Right(result);
       } on ServerException catch (e) {
         //save local
         String result =

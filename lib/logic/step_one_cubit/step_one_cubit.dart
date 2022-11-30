@@ -49,6 +49,7 @@ class StepOneCubit extends Cubit<StepOneState> {
     if (selectedControls == null) {
       return;
     }
+
     DangerModel dangerModel = DangerModel(
         dangerId: selectedDanger!.dangerId,
         dangerName: selectedDanger!.dangerName,
@@ -100,9 +101,10 @@ class StepOneCubit extends Cubit<StepOneState> {
 
     var result = await take5Repository.completeStepOne(
         surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
+
     result.fold((l) => emit(StepOneSubmitAnswerFail(l.message)), (r) {
       print(r);
-      emit(StepOneSubmitAnswerSuccess());
+      emit(StepOneSubmitAnswerSuccess(r));
     });
   }
 

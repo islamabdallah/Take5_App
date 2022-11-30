@@ -26,7 +26,11 @@ class StepOneGetDangerControlsWithCategoryModelsFail extends StepOneState{
 class StepOneToggleToDangersSuccess extends StepOneState {}
 
 class StepOneSubmitAnswerLoading extends StepOneState{}
-class StepOneSubmitAnswerSuccess extends StepOneState{}
+class StepOneSubmitAnswerSuccess extends StepOneState{
+  String message;
+
+  StepOneSubmitAnswerSuccess(this.message);
+}
 class StepOneSubmitAnswerFail extends StepOneState{
   final String message;
   StepOneSubmitAnswerFail(this.message);
