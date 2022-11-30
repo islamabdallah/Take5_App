@@ -193,6 +193,8 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 150.h,
                         child: MyTextFormField(
+                          validator: (value) =>
+                          value!.isEmpty? 'مطلوب' : null,
                           controller: cubit.notesController,
                           label: "الملاحظات",
                           maxLines: 5,
@@ -201,7 +203,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           //     ? _cubit.errorMessage
                           //     : null,
                           // prefixIcon: Icons.person_outline_sharp,
-                          keyboardType: TextInputType.text,
+                          keyboardType: TextInputType.multiline,
                         ),
                       ),
                       SizedBox(
@@ -245,8 +247,13 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           ),
                         ],
                       ),
+
                       SizedBox(
-                        height: 20.h,
+                        height: 25.h,
+                      ),
+                      Text(
+                        ' عدد المحادثات (${cubit.notes.length})',
+                        style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
                       ),
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),

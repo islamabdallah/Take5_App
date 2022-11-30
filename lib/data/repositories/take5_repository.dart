@@ -461,8 +461,14 @@ class Take5RepositoryImpl extends Take5Repository {
           userId: AppConstants.user.userId,
           tripId: AppConstants.trip.tripNumber,
           jobsiteId: AppConstants.trip.jobsiteNumber);
+
+      //لو مفيش تغطية للانترنت في الرحلة
+      //لو الrequest متبعتش و خزناه لوكال في case ال inbetween
+      //لو عمل استكمال للرحلة و كانت الtripStatus ب Responsed يعني اتعمل approve قبل كدا
       if (!AppConstants.trip.jobsiteHasNetworkCoverage ||
-          allTripStepsModel.take5StepTwoRequestAPIModel != null) {
+          allTripStepsModel.take5StepTwoRequestAPIModel != null||
+      AppConstants.trip.tripStatus=="StepTwoResponsed"
+      ) {
         return const Right(true);
       }
 

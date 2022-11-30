@@ -150,10 +150,10 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-           // initialRoute: getLastRoute(),
+           initialRoute: getLastRoute(),
            // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            initialRoute: StepOneQuestionsScreen.routeName,
+            // initialRoute: StepOneQuestionsScreen.routeName,
             // initialRoute: PreparingStepScreen.routeName,
             // initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,

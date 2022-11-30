@@ -41,7 +41,7 @@ class Take5TogetherCard extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    '$indexالمحادثة ',
+                    'المحادثة $index',
                     style: TextStyle(
                       color: AppColors.mainColor,
                       fontSize: 20.sp,
@@ -52,7 +52,7 @@ class Take5TogetherCard extends StatelessWidget {
                   Spacer(),
                   IconButton(
                     onPressed:removeNote,
-                    icon: Icon(Icons.delete_forever),
+                    icon: Icon(Icons.delete_forever,color: AppColors.redColor,),
                   )
                 ],
               ),

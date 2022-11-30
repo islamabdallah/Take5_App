@@ -81,7 +81,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             Image.asset(AppAssets.noTrip),
                             SizedBox(
-                              height: 60.h,
+                              height: 20.h,
+                            ),
+                            Text('لا يوجد رحلة',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28.sp),),
+                            SizedBox(
+                              height: 40.h,
                             ),
                             Padding(
                               padding: EdgeInsets.symmetric(horizontal: 16.w),

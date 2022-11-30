@@ -68,7 +68,7 @@ class HomeCubit extends Cubit<HomeStates> {
         Navigator.pushReplacementNamed(context, StepTwoWaitingScreen.routeName);
         break;
       case 'StepTwoResponsed':
-        Navigator.pushReplacementNamed(context, StepTwoScreen.routeName);
+        Navigator.pushReplacementNamed(context, StepTwoWaitingScreen.routeName);
         break;
         //todo change this to take5together and add one for end trip screen
       case 'SurveyStepTwoCompleted':

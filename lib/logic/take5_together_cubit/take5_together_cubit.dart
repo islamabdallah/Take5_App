@@ -67,7 +67,7 @@ class Take5TogetherCubit extends Cubit<Take5TogetherStates> {
         whoStartDriverName: selectWhoStartedConversation,
         whoStartDriverId: selectWhoStartedConversation == 'أنا' ? AppConstants.user.driverId : selectedDriver!.id);
     notes.add(take5TogetherModel);
-
+    drivers.remove(selectedDriver);
     selectedDriver = null;
     selectWhoStartedConversation=null;
     notesController.clear();
@@ -76,6 +76,7 @@ class Take5TogetherCubit extends Cubit<Take5TogetherStates> {
 
   void removeNote(Take5TogetherModel note) {
     notes.remove(note);
+    drivers.add(Driver(id: note.participantDriverId,fullName: note.participantDriverName));
     emit(Take5TogetherRemoveNoteSuccess());
   }
 
