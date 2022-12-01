@@ -7,6 +7,7 @@ import 'package:take5/core/constants/app_constants.dart';
 
 import '../../../../data/models/trip/trip.dart';
 import '../../../../logic/home_cubit/home_cubit.dart';
+import '../../../utils/helpers/helpers.dart';
 import '../../../widgets/main_button.dart';
 import '../../trip/trip.dart';
 import 'item_of_description.dart';
@@ -41,8 +42,8 @@ class TripCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ItemOfTripDescription(index:0,title:'رقم الرحلة' ,icon:const Icon(Icons.event_note_sharp) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
-                ItemOfTripDescription(index:1,title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: HomeCubit.get(context).trip!.tripStatus,),
+                ItemOfTripDescription(index:0,title:'رقم الرحلة' ,icon:const Icon(Icons.numbers) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
+                ItemOfTripDescription(index:1,title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: tripStatusArabic(HomeCubit.get(context).trip!.tripStatus),),
                 ItemOfTripDescription(index:2,title:'اسم السائق' ,icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
                 ItemOfTripDescription(index:3,title:'مكان التوجه' ,icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
                 ItemOfTripDescription(index:4,title:'حالة الشبكة' ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString(),),

@@ -208,7 +208,7 @@ void onStart(ServiceInstance service) async {
         flutterLocalNotificationsPlugin.show(
           888,
           ' المسافة المتبقية',
-          '${d.toInt()}متر ',
+          " ${(d/1000).toStringAsFixed(2)} كم ",
           // 'Awesome ${DateTime.now()}',
           const NotificationDetails(
             android: AndroidNotificationDetails(

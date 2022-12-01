@@ -95,7 +95,7 @@ class _TripScreenState extends State<TripScreen> {
                           state is ArrivedSuccessTripState?
                             'تم التوصيل'
                                 :
-                          " متبقي ${cubit.d?.toInt()} متر ",
+                          " متبقي ${(cubit.d!/1000).toStringAsFixed(2)} كم ",
                           textAlign: TextAlign.center,
                           style:const TextStyle(
                             color: Color(0xff5d5d5d),
