@@ -338,12 +338,22 @@ class MyApp extends StatelessWidget {
                       default:
                     }
                   }
+                  if (state is HomeCheckTripStatusFail) {
+                    // final context = navigatorKey.currentState!.overlay!.context;
+                    Navigator.pop(context);
+                    showMessageDialog(
+                    context: context,
+        isSucceeded: false,
+        message: 'لا يمكن معرفة حالة الرحلة',
+        );
+                    }
+
                 },
                 child: child,
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            // initialRoute: getLastRoute(),
+            //initialRoute: getLastRoute(),
             initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,

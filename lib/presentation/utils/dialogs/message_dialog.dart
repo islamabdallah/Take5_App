@@ -87,7 +87,6 @@ showMessageDialog({
                                   onPressed: () {
                                     if(message=='لا يوجد اى ملاحظات!') {
                                       Navigator.of(context).pop();
-                                      Navigator.pushNamed(context,EndTripScreen.routeName);
                                     }
                                     else
                                     {
@@ -101,7 +100,7 @@ showMessageDialog({
                                         : Colors.red,
                                   ),
                                   child: Text(
-                                    "Ok".tr(),
+                                    "اضافة",
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),

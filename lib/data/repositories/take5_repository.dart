@@ -447,6 +447,7 @@ class Take5RepositoryImpl extends Take5Repository {
 
       String result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
+      localDataSource.clearCollection();
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
