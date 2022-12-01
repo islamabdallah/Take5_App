@@ -64,16 +64,8 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
           if (state is StepTwoSubmitAnswerSuccess) {
             switch (state.message) {
               case 'Done':
-                showMessageDialog(
-                    context: context,
-                    isSucceeded: true,
-                    message: 'لا يوجد تغيير في الرحلة',
-                    onPressedOk: () {
-                      Navigator.pop(context);
-                      Navigator.pushReplacementNamed(
-                          context, Take5TogetherScreen.routeName);
-                    }
-                );
+                Navigator.pushReplacementNamed(
+                    context, Take5TogetherScreen.routeName);
                 break;
               case 'Cancelled':
                 showMessageDialog(

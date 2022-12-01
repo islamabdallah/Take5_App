@@ -76,16 +76,8 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           if (state is StepOneSubmitAnswerSuccess) {
             switch (state.message) {
               case 'Done':
-                showMessageDialog(
-                    context: context,
-                    isSucceeded: true,
-                    message: 'لا يوجد تغيير في الرحلة',
-                    onPressedOk: () {
-                      Navigator.pop(context);
-                      Navigator.pushReplacementNamed(
-                          context, StepTwoStartRequestScreen.routeName);
-                    }
-                );
+                Navigator.pushReplacementNamed(
+                    context, StepTwoStartRequestScreen.routeName);
                 break;
               case 'Cancelled':
                 showMessageDialog(
