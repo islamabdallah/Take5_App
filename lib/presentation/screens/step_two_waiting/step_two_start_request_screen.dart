@@ -66,18 +66,6 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
           }
           if (state is StepTwoStartRequestSuccess) {
             switch (state.message) {
-              case 'Done':
-                showMessageDialog(
-                    context: context,
-                    isSucceeded: true,
-                    message: 'لا يوجد تغيير في الرحلة',
-                    onPressedOk: () {
-                      Navigator.pop(context);
-                      Navigator.pushNamedAndRemoveUntil(
-                          context, StepTwoWaitingScreen.routeName, (route) => false);
-                    }
-                );
-                break;
               case 'Cancelled':
                 showMessageDialog(
                     context: context,
@@ -99,6 +87,8 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
                     });
                 break;
               default:
+                Navigator.pushNamedAndRemoveUntil(
+                    context, StepTwoWaitingScreen.routeName, (route) => false);
           }
           if (state is StepTwoStartRequestFail) {
             Navigator.pop(context);

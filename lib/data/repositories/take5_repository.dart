@@ -456,7 +456,8 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel}) async {
-    if (await deviceConnectivity.isConnected == false) {
+    if (AppConstants.trip.jobsiteHasNetworkCoverage &&
+        await deviceConnectivity.isConnected == false) {
       return const Left(DeviceConnectivityFailure());
     }
 

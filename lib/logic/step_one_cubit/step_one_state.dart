@@ -28,7 +28,7 @@ class StepOneToggleToDangersSuccess extends StepOneState {}
 
 class StepOneSubmitAnswerLoading extends StepOneState{}
 class StepOneSubmitAnswerSuccess extends StepOneState{
-  String message;
+  final String message;
 
   StepOneSubmitAnswerSuccess(this.message);
 }
