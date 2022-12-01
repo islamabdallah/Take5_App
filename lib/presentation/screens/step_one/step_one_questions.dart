@@ -66,7 +66,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           if (state is StepOneAddDangerDublicated) {
             showMessageDialog(
                 context: context,
-                message: 'قمت اضافه هذا الخطر من قبل',
+                message: 'قمت باضافه هذا الخطر من قبل',
                 isSucceeded: false);
           }
 

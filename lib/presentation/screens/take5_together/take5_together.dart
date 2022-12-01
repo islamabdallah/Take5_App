@@ -242,7 +242,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                                   print(cubit.notes);
                                 }
                               },
-                              title: 'اضافه',
+                              title: 'الرجوع',
                             ),
                           ),
                         ],
