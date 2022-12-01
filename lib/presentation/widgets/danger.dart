@@ -27,32 +27,6 @@ class _DangerState extends State<Danger> {
     final _formKey = GlobalKey<FormState>();
     return BlocConsumer<StepOneCubit, StepOneState>(
       listener: (context,state) {
-        if (state is StepOneSubmitAnswerSuccess) {
-          switch (state.message) {
-            case 'Cancelled':
-              showMessageDialog(
-                  context: context,
-                  isSucceeded: true,
-                  message: 'تم الغاء الرحلة',
-                  onPressedOk: () {
-                    Navigator.pushNamedAndRemoveUntil(context,
-                        HomeScreen.routeName, (route) => false);
-                  });
-
-              break;
-            case 'Converted':
-              showMessageDialog(
-                  context: context,
-                  isSucceeded: true,
-                  message: 'تم تحويل الرحلة',
-                  onPressedOk: () {
-                    Navigator.pushNamedAndRemoveUntil(context,
-                        HomeScreen.routeName, (route) => false);
-                  });
-              break;
-            default:
-          }
-        }
       },
       builder: (context, state) {
         return Form(

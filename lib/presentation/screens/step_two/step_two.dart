@@ -63,10 +63,6 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
           }
           if (state is StepTwoSubmitAnswerSuccess) {
             switch (state.message) {
-              case 'Done':
-                Navigator.pushReplacementNamed(
-                    context, Take5TogetherScreen.routeName);
-                break;
               case 'Cancelled':
                 showMessageDialog(
                     context: context,
@@ -88,6 +84,8 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                     });
                 break;
               default:
+                Navigator.pushReplacementNamed(
+                    context, Take5TogetherScreen.routeName);
             }
             if (state is StepTwoSubmitAnswerFail) {
               Navigator.pop(context);

@@ -75,10 +75,6 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           }
           if (state is StepOneSubmitAnswerSuccess) {
             switch (state.message) {
-              case 'Done':
-                Navigator.pushReplacementNamed(
-                    context, StepTwoStartRequestScreen.routeName);
-                break;
               case 'Cancelled':
                 showMessageDialog(
                     context: context,
@@ -100,6 +96,8 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                     });
                 break;
               default:
+                Navigator.pushReplacementNamed(
+                    context, StepTwoStartRequestScreen.routeName);
             }
 
           }
