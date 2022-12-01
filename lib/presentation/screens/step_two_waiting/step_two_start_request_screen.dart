@@ -90,12 +90,13 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
                 Navigator.pushNamedAndRemoveUntil(
                     context, StepTwoWaitingScreen.routeName, (route) => false);
           }
+        }
           if (state is StepTwoStartRequestFail) {
             Navigator.pop(context);
             showMessageDialog(
                 context: context, isSucceeded: false, message: state.message);
           }
-        }},
+          },
         builder: (context, state) {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(

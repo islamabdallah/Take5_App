@@ -87,11 +87,11 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                 Navigator.pushReplacementNamed(
                     context, Take5TogetherScreen.routeName);
             }
-            if (state is StepTwoSubmitAnswerFail) {
-              Navigator.pop(context);
-              showMessageDialog(
-                  context: context, isSucceeded: false, message: state.message);
-            }
+          }
+          if (state is StepTwoSubmitAnswerFail) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
           }
         },
         builder: (context, state) {
