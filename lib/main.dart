@@ -11,6 +11,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/logic/home_cubit/home_states.dart';
 import 'package:take5/presentation/screens/home/home.dart';
@@ -71,7 +72,7 @@ Future<void> initializeService() async {
       onStart: onStart,
 
       // auto start service
-      autoStart: false,
+      autoStart: true,
       isForegroundMode: true,
 
       notificationChannelId: 'my_foreground',
@@ -110,6 +111,7 @@ Future<bool> onIosBackground(ServiceInstance service) async {
 
   return true;
 }
+
 
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) async {
@@ -159,7 +161,7 @@ void onStart(ServiceInstance service) async {
         /// OPTIONAL for use custom notification
         /// the notification id must be equals with AndroidConfiguration when you call configure() method.
 
-        double d = 0;
+        double d = double.maxFinite;
         if (trip != null && user!=null) {
           var loc = LocationService();
           Position p = await loc.getCurrentLocation();
@@ -208,7 +210,7 @@ void onStart(ServiceInstance service) async {
         flutterLocalNotificationsPlugin.show(
           888,
           ' المسافة المتبقية',
-          '${d.toInt()}متر ',
+          " ${(d/1000).toStringAsFixed(2)} كم ",
           // 'Awesome ${DateTime.now()}',
           const NotificationDetails(
             android: AndroidNotificationDetails(
@@ -241,7 +243,31 @@ Future<void> main() async {
   await Hive.openBox('route');
   await Hive.openBox('takeFiveSurvey');
   // await BackgroundService().initializeService();
-  await initializeService();
+  // await initializeService();
+
+
+  Location location =  Location();
+
+  bool _serviceEnabled;
+  PermissionStatus _permissionGranted;
+  LocationData _locationData;
+
+  _serviceEnabled = await location.serviceEnabled();
+  if (!_serviceEnabled) {
+    _serviceEnabled = await location.requestService();
+    if (!_serviceEnabled) {
+      return;
+    }
+  }
+
+  _permissionGranted = await location.hasPermission();
+  if (_permissionGranted == PermissionStatus.denied) {
+    _permissionGranted = await location.requestPermission();
+    if (_permissionGranted != PermissionStatus.granted) {
+      return;
+    }
+  }
+
   //todo remove this
   getLastRoute();
 

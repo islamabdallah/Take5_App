@@ -55,6 +55,7 @@ class TripCubit extends Cubit<TripStates> {
 
      result.fold((l) => null, (r) {
        enableButton();
+       stopService();
        emit(ArrivedSuccessTripState());
        return;
      });

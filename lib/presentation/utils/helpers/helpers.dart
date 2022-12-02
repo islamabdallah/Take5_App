@@ -77,6 +77,27 @@ String getLastRoute() {
   return lastRoute;
 }
 
+String tripStatusArabic(String triStatus) {
+  switch (triStatus) {
+    case 'Pending':
+      return 'لم يتم بدأ الرحلة بعد';
+    case 'Started':
+      return 'تم بدأ الرحلة';
+    case 'DestinationArrived':
+      return 'تم الوصول للموقع';
+    case 'SurveyStepOneCompleted':
+      return 'تم انهاء المرحلة الاولي';
+    case 'StepTwoRequested':
+      return 'تم ارسال طلب البدأ في المرحلة الثانية';
+    case 'StepTwoResponse':
+      return 'تم الاستجابة علي طلب البدأ في المرحلة الثانية';
+    case 'SurveyStepTwoCompleted':
+      return 'تم انهاء المرحلة الثانية';
+    default:
+      return '';
+  }
+}
+
 // Future<bool> checkDeviceConnectivity() async {
 //   var connectivityResult = await Connectivity().checkConnectivity();
 //   if (connectivityResult == ConnectivityResult.mobile ||

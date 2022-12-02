@@ -83,7 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             SizedBox(
                               height: 20.h,
                             ),
-                            Text('لا يوجد رحلة',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28.sp),),
+                            Text(
+                              'لا يوجد رحلة',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 28.sp),
+                            ),
                             SizedBox(
                               height: 40.h,
                             ),
