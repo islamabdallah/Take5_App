@@ -20,7 +20,9 @@ import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/drawer_widget.dart';
+import '../../widgets/headline_step.dart';
 import '../../widgets/main_button.dart';
+import '../../widgets/my_app_bar.dart';
 import '../../widgets/true_false_question.dart';
 import '../home/home.dart';
 import '../take5_together/take5_together.dart';
@@ -99,90 +101,55 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             drawer: const DrawerWidget(),
-              appBar: AppBar(
-                leading: Builder(
-                    builder: (context) {
-                      return IconButton(icon:const Icon(Icons.menu_open),onPressed: (){
-                        Scaffold.of(context).openDrawer();
-                      });
-                    }
-                ),
-                toolbarHeight: 80,
-                elevation: 0,
-                iconTheme:const IconThemeData(color: AppColors.redColor),
-                title:const Text(
-                  'المرحلة التانية',
-                  style: TextStyle(color: AppColors.redColor),
-                ),
-                backgroundColor: Colors.white,
-                centerTitle: true,
-              ),
+              appBar: MyAppBar(title:'المرحلة الثانية',),
               body: state is StepTwoGetQuestionsLoading
                   ?const Center(
                       child: CircularProgressIndicator(),
                     )
-                  : FormBuilder(
-                  key: _formKey,
-                  autovalidateMode: AutovalidateMode.disabled,
-                  child:Padding(
-                    padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            CircleAvatar(
-                              backgroundColor: AppColors.mainColor,
-                              radius:14.h,
-                              child:const Center(
-                                child: Text(
-                                  '3',style:TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w700
-                                ),),
-                              ),),
-                            SizedBox(
-                              width: 10.w,
-                            ),
-                            Text('جاوب علي الاسئلة الاتية',style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                                fontSize: 18.sp
-                            )),
-                          ],
-                        ),
-                        state is StepTwoGetQuestionsLoading
-                            ? const Center(
-                          child: CircularProgressIndicator(),
-                        )
-                            :Padding(
-                            padding:EdgeInsets.symmetric(vertical: 0,horizontal:35.w ),
-                            child: Column(
-                              children: List.generate(cubit.step2Answers.length, (index) => TrueFalseQuestion(
-                                questionAnswer: cubit.step2Answers[index],
-                                index: index+1,
-                              ),),
-                            )
-                        ),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                        MainButton(
-                          onPressed: () {
-                           //  LocalDataSource  localDataSource = sl<LocalDataSource>();
-                           //  //act
-                           //  localDataSource.cacheDrivers([Driver(id:1,fullName: "asmaa"),Driver(id:2,fullName: "ahmed")]);
-                           // print(localDataSource.getCachedDrivers());
-                            if(_formKey.currentState?.validate()==true)
-                            {
-                              cubit.submitAnswers();
-                            }
-                          }, title: "end step 2".tr(),),
-                        SizedBox(
-                          height: 30.h,
-                        ),
-                      ],
-                    ),
-                  )
-              ));
+                  : SingleChildScrollView(
+                    child: FormBuilder(
+                    key: _formKey,
+                    autovalidateMode: AutovalidateMode.disabled,
+                    child:Padding(
+                      padding:EdgeInsets.symmetric(vertical: 10.h,horizontal:15.w ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          const Headline(number: '5', title: 'جاوب علي الاسئلة الاتية',),
+                          state is StepTwoGetQuestionsLoading
+                              ? const Center(child: CircularProgressIndicator(),)
+                              :Padding(
+                              padding:EdgeInsets.symmetric(vertical: 0,horizontal:35.w ),
+                              child: ListView.builder(
+                                physics: NeverScrollableScrollPhysics(),
+                                key: GlobalKey(),
+                                shrinkWrap: true,
+                                itemBuilder:
+                                    (BuildContext context, int index) =>
+                                    TrueFalseQuestion(
+                                      questionAnswer:
+                                      cubit.step2Answers[index],
+                                      index: index+1,
+                                    ),
+                                itemCount: cubit.step2Answers.length,
+                              )
+                          ),
+                        // Spacer(),
+                          MainButton(
+                            onPressed: () {
+                              if(_formKey.currentState?.validate()==true)
+                              {
+                                cubit.submitAnswers();
+                              }
+                            }, title: "next".tr(),),
+                          SizedBox(
+                            height: 30.h,
+                          ),
+                        ],
+                      ),
+                    )
+              ),
+                  ));
         },
       ),
     );

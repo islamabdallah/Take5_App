@@ -15,7 +15,9 @@ class TrueFalseQuestion extends StatelessWidget {
   Widget build(BuildContext context) {
     return FormBuilderRadioGroup(
       initialValue: questionAnswer.answer,
+      wrapSpacing:30.w,
       name: index.toString(),
+      activeColor: AppColors.mainColor,
       decoration:
       InputDecoration(
           border:const UnderlineInputBorder(
@@ -25,7 +27,7 @@ class TrueFalseQuestion extends StatelessWidget {
             children: [
               CircleAvatar(
                 backgroundColor: AppColors.mainColor,
-                radius:14.h ,
+                radius:15.r ,
                 child:  Center(
                   child: Text(
                     index.toString(),style:const TextStyle(
@@ -36,13 +38,17 @@ class TrueFalseQuestion extends StatelessWidget {
               SizedBox(
                 width: 10.w,
               ),
-              Text(
+              Expanded(
+                child: Text(
                   questionAnswer.question,style: TextStyle(
                   fontWeight: FontWeight.w700,
-                  fontSize: 22.sp
-              )),
+                  fontSize: 22.sp,
+                    height: 1.4.h
+                ),
+                ),
+              ),
             ],
-          ),
+          )
          // labelText: questionAnswer.question,
         // labelStyle:TextStyle(
         //   color: Colors.black,
@@ -59,10 +65,13 @@ class TrueFalseQuestion extends StatelessWidget {
       options: [true,false]
           .map((ans) => FormBuilderFieldOption(
         value: ans,
-        child: Text(ans?'نعم':'لا',style: TextStyle(
-            fontWeight: FontWeight.w400,
-            fontSize: 20.sp
-        )),
+        child: Padding(
+          padding:EdgeInsets.symmetric(vertical: 30.h),
+          child: Text(ans?'نعم':'لا',style: TextStyle(
+              fontWeight: FontWeight.w400,
+              fontSize: 20.sp
+          )),
+        ),
       ))
           .toList(growable: false),
     );

@@ -38,7 +38,6 @@ class _EndTripScreenState extends State<EndTripScreen> {
           if (state is EndTripLoading) {
             loadingAlertDialog(context);
           }
-
           if (state is EndTripSuccess) {
             Navigator.pop(context);
             showMessageDialog(context: context, isSucceeded: true,message: "انتهت الرحلة!", onPressedOk: (){
@@ -46,7 +45,6 @@ class _EndTripScreenState extends State<EndTripScreen> {
                   context, HomeScreen.routeName, (route) => false);
             });
           }
-
           if (state is EndTripFail) {
             Navigator.pop(context);
             showMessageDialog(context: context, isSucceeded: false,message: state.message, onPressedOk: (){

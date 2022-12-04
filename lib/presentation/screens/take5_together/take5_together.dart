@@ -2,20 +2,16 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:take5/data/models/driver/driver.dart';
-import 'package:take5/logic/home_cubit/home_cubit.dart';
 import 'package:take5/presentation/screens/end_trip/end_trip.dart';
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
-import '../../../logic/home_cubit/home_states.dart';
 import '../../../logic/take5_together_cubit/take5_together_cubit.dart';
 import '../../../logic/take5_together_cubit/take5_together_states.dart';
 import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
-import '../../widgets/my_drop_down_form_field.dart';
 import '../../widgets/my_text_form_field.dart';
 import '../../widgets/take5toghther_card.dart';
 
@@ -242,7 +238,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                                   print(cubit.notes);
                                 }
                               },
-                              title: 'الرجوع',
+                              title: 'اضافة',
                             ),
                           ),
                         ],
@@ -251,10 +247,16 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 25.h,
                       ),
-                      Text(
+                      cubit.notes.isNotEmpty?Divider(
+                        indent: 0,
+                        endIndent: 0,
+                        color: Colors.grey,
+                        thickness: 0.5.h,
+                      ):Container(),
+                      cubit.notes.isNotEmpty?Text(
                         ' عدد المحادثات (${cubit.notes.length})',
                         style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
-                      ),
+                      ):Container(),
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         reverse: true,

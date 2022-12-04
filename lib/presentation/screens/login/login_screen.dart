@@ -75,12 +75,8 @@ class _LoginScreenState extends State<LoginScreen> {
         },
         builder: (context, state) {
           var _cubit = LoginCubit.get(context);
-          return Container(
-            color: AppColors.backgroundColor,
-            child: GestureDetector(
-              onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-              child: Scaffold(
-                // backgroundColor: backgroundColor,
+          return  Scaffold(
+               backgroundColor: AppColors.backgroundColor,
                 body: SafeArea(
                   child: CustomScrollView(
                       slivers: [
@@ -148,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   keyboardType: TextInputType.number,
                                 ),
                                 MyTextFormField(
-                                  controller: _cubit.passwordController..text='Iop123@@',
+                                  controller: _cubit.passwordController,
                                   label: "password".tr(),
                                   errorText: _cubit.errorMessage ==
                                           'خطأ فى كلمة المرور'
@@ -190,9 +186,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   )]),
                 ),
-              ),
-            ),
-          );
+              );
         },
       ),
     );

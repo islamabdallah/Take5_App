@@ -13,6 +13,7 @@ import '../../../logic/home_cubit/home_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
+import '../../widgets/my_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = 'HomeScreen';
@@ -48,31 +49,14 @@ class _HomeScreenState extends State<HomeScreen> {
         var cubit = HomeCubit.get(context);
         return Scaffold(
           drawer: const DrawerWidget(),
-          appBar: AppBar(
-            leading: Builder(builder: (context) {
-              return IconButton(
-                  icon: Icon(Icons.menu_open),
-                  onPressed: () {
-                    Scaffold.of(context).openDrawer();
-                  });
-            }),
-            toolbarHeight: 80,
-            elevation: 0,
-            iconTheme: IconThemeData(color: AppColors.redColor),
-            title: Text(
-              'الرحلة',
-              style: TextStyle(color: AppColors.redColor),
-            ),
-            backgroundColor: Colors.white,
-            centerTitle: true,
-          ),
+          appBar: MyAppBar(title: 'الرحلة',),
           body: Column(
             children: [
               SizedBox(
                 height: 16.h,
               ),
               state is HomeGetCurrentTripLoading
-                  ? Expanded(child: Center(child: CircularProgressIndicator()))
+                  ?const Expanded(child: Center(child: CircularProgressIndicator()))
                   : cubit.trip == null
                       ? Column(
                           children: [

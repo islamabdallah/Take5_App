@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_colors.dart';
 import 'package:take5/presentation/screens/end_trip/end_trip.dart';
+import 'package:take5/presentation/screens/step_two/step_two.dart';
 
 showMessageDialog({
   required BuildContext context,
@@ -32,12 +33,11 @@ showMessageDialog({
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            isSucceeded ? 'Succeeded'.tr() :message=='لا يوجد اى ملاحظات!'?'انذار': 'Failed'.tr(),
+                            isSucceeded ? 'Succeeded'.tr() :message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?'انذار': 'Failed'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
-                              color:
-                                  isSucceeded ? AppColors.mainColor : Colors.red,
+                              color: isSucceeded ? AppColors.mainColor :  AppColors.redColor,
                             ),
                           ),
                           Text(
@@ -48,7 +48,7 @@ showMessageDialog({
                             softWrap: true,
                             maxLines: 3,
                           ),
-                          Spacer(),
+                          const Spacer(),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
@@ -61,6 +61,11 @@ showMessageDialog({
                                       Navigator.of(context).pop();
                                       Navigator.pushNamed(context,EndTripScreen.routeName);
                                     }
+                                    else if(message=='لا يوجد اى مخاطر!')
+                                      {
+                                        Navigator.of(context).pop();
+                                        Navigator.pushNamed(context,StepTwoScreen.routeName);
+                                      }
                                     else
                                     {
                                       Navigator.of(context).pop();
@@ -70,17 +75,17 @@ showMessageDialog({
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded
                                         ? AppColors.mainColor
-                                        : Colors.red,
+                                        : AppColors.redColor,
                                   ),
                                   child: Text(
-                                    message=='لا يوجد اى ملاحظات!'?"التالي":"Ok".tr(),
+                                    message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?"التالي":"Ok".tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),
                                 ),
                               ),
-                              message=='لا يوجد اى ملاحظات!'?const Spacer():Container(),
-                              message=='لا يوجد اى ملاحظات!'?SizedBox(
+                              message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?const Spacer():Container(),
+                              message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?SizedBox(
                                 width: 100.w,
                                 height: 50.h,
                                 child: ElevatedButton(
@@ -97,7 +102,7 @@ showMessageDialog({
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded
                                         ? AppColors.mainColor
-                                        : Colors.red,
+                                        :  AppColors.redColor,
                                   ),
                                   child: Text(
                                     "الرجوع",
@@ -124,7 +129,7 @@ showMessageDialog({
                             ),
                           )
                         : CircleAvatar(
-                            backgroundColor: Colors.red,
+                            backgroundColor: AppColors.redColor,
                             radius: 50.r,
                             child: Icon(
                               Icons.privacy_tip,

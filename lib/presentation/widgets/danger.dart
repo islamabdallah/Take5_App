@@ -145,45 +145,19 @@ class _DangerState extends State<Danger> {
                   Expanded(
                     child: MainButton(
                       onPressed: () {
-                        cubit.submitAnswers();
-                        if (state is StepOneSubmitAnswerSuccess) {
-                          switch (state.message) {
-                            case 'Done':
-                              showMessageDialog(
-                                context: context,
-                                isSucceeded: true,
-                                message: 'لا يوجد تغيير في الرحلة',
-                                  onPressedOk: () {
-                                    Navigator.pushNamedAndRemoveUntil(context,
-                                        HomeScreen.routeName, (route) => false);
-                                  }
-                              );
-                              break;
-                            case 'Cancelled':
-                              showMessageDialog(
-                                  context: context,
-                                  isSucceeded: true,
-                                  message: 'تم الغاء الرحلة',
-                                  onPressedOk: () {
-                                    Navigator.pushNamedAndRemoveUntil(context,
-                                        HomeScreen.routeName, (route) => false);
-                                  });
-                              break;
-                            case 'Converted':
-                              showMessageDialog(
-                                  context: context,
-                                  isSucceeded: true,
-                                  message: 'تم تحويل الرحلة',
-                                  onPressedOk: () {
-                                    Navigator.pushNamedAndRemoveUntil(context,
-                                        HomeScreen.routeName, (route) => false);
-                                  });
-                              break;
-                            default:
-                          }
+                        if(cubit.dangers.isEmpty)
+                        {
+                          showMessageDialog(
+                              context: context,
+                              message: 'لا يوجد اى مخاطر!',
+                              isSucceeded: false);
+                        }
+                        else
+                        {
+                          cubit.submitAnswers();
                         }
                       },
-                      title: "انهاء".tr(),
+                      title: "next".tr(),
                     ),
                   ),
                   SizedBox(
@@ -194,10 +168,10 @@ class _DangerState extends State<Danger> {
                       onPressed: () {
                         print(cubit.dangers);
                         if (_formKey.currentState!.validate()) {
-                           cubit.addDanger();
+                          cubit.addDanger();
                         }
                       },
-                      title: 'اضافه',
+                      title: 'اضافة',
                     ),
                   ),
                 ],
@@ -205,140 +179,149 @@ class _DangerState extends State<Danger> {
               SizedBox(
                 height: 25.h,
               ),
-              Text(
+              cubit.dangers.isNotEmpty?Divider(
+                indent: 0,
+                endIndent: 0,
+                color: Colors.grey,
+                thickness: 0.8.h,
+              ):Container(),
+              SizedBox(
+                height: 25.h,
+              ),
+              cubit.dangers.isNotEmpty?Text(
                 ' عدد المخاطر (${cubit.dangers.length})',
                 style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
-              ),
+              ):Container(),
               Column(
                 children: List.generate(
                     cubit.dangers.length,
-                    (index) => Card(
-                          elevation: 5,
-                          clipBehavior: Clip.antiAlias,
-                          margin: EdgeInsets.symmetric(
-                              vertical: 20.h, horizontal: 0),
-                          child: Container(
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                border: Border(
-                                  right: BorderSide(
-                                      width: 5.0, color: AppColors.mainColor),
-                                  left: BorderSide(
-                                    width: 2.0,
-                                    color: Color(0xFFE7E7E7),
-                                  ),
-                                ),
+                        (index) => Card(
+                      elevation: 5,
+                      clipBehavior: Clip.antiAlias,
+                      margin: EdgeInsets.symmetric(
+                          vertical: 20.h, horizontal: 0),
+                      child: Container(
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            border: Border(
+                              right: BorderSide(
+                                  width: 5.0, color: AppColors.mainColor),
+                              left: BorderSide(
+                                width: 2.0,
+                                color: Color(0xFFE7E7E7),
                               ),
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                            ),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisAlignment:
+                              MainAxisAlignment.spaceBetween,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
                                   children: [
-                                    Row(
-                                      children: [
-                                        Text(
-                                          ' رقم الخطر ${index + 1}',
-                                          style: TextStyle(
-                                            color: AppColors.mainColor,
-                                            fontSize: 20.sp,
-                                            fontWeight: FontWeight.w600,
-                                          ),
-                                          overflow: TextOverflow.ellipsis,
-                                        ),
-                                        const Spacer(),
-                                        IconButton(
-                                          onPressed: () {
-                                            cubit.removeDanger(
-                                                cubit.dangers[index]);
-                                          },
-                                          icon: const Icon(
-                                            Icons.delete_forever,
-                                            color: AppColors.redColor,
-                                          ),
-                                        ),
-                                      ],
+                                    Text(
+                                      ' رقم الخطر ${index + 1}',
+                                      style: TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontSize: 20.sp,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                      overflow: TextOverflow.ellipsis,
                                     ),
-                                    RichText(
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                          text: 'نوع الخطر  ',
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              color: AppColors.greyColor,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        TextSpan(
-                                          text: cubit.dangers[index].category,
-                                          style: TextStyle(
-                                            fontSize: 18.sp,
-                                            color: AppColors.greyColor,
-                                          ),
-                                        ),
-                                      ]),
+                                    const Spacer(),
+                                    IconButton(
+                                      onPressed: () {
+                                        cubit.removeDanger(
+                                            cubit.dangers[index]);
+                                      },
+                                      icon: const Icon(
+                                        Icons.delete_forever,
+                                        color: AppColors.redColor,
+                                      ),
                                     ),
-                                    RichText(
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                          text: 'اسم الخطر  ',
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              color: AppColors.greyColor,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                        TextSpan(
-                                          text: cubit.dangers[index].dangerName,
-                                          style: TextStyle(
-                                            fontSize: 18.sp,
-                                            color: AppColors.greyColor,
-                                          ),
-                                        ),
-                                      ]),
-                                    ),
-                                    RichText(
-                                      text: TextSpan(children: [
-                                        TextSpan(
-                                          text: 'طرق التعامل مع الخطر:  ',
-                                          style: TextStyle(
-                                              fontSize: 18.sp,
-                                              color: AppColors.greyColor,
-                                              fontWeight: FontWeight.bold),
-                                        ),
-                                      ]),
-                                    ),
-                                    Column(
-                                      children: List.generate(
-                                          cubit.dangers[index]
-                                              .measureControlAPIs.length,
-                                          (i) => Row(
-                                                children: [
-                                                  Text(
-                                                    '${i + 1} - ',
-                                                    style: TextStyle(
-                                                      fontSize: 18.sp,
-                                                      color:
-                                                          AppColors.greyColor,
-                                                    ),
-                                                  ),
-                                                  Text(
-                                                    cubit
-                                                        .dangers[index]
-                                                        .measureControlAPIs[i]
-                                                        .measureControlName,
-                                                    style: TextStyle(
-                                                      fontSize: 18.sp,
-                                                      color:
-                                                          AppColors.greyColor,
-                                                    ),
-                                                  ),
-                                                ],
-                                              )),
-                                    )
                                   ],
                                 ),
-                              )),
-                        )),
+                                RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text: 'نوع الخطر  ',
+                                      style: TextStyle(
+                                          fontSize: 18.sp,
+                                          color: AppColors.greyColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                      text: cubit.dangers[index].category,
+                                      style: TextStyle(
+                                        fontSize: 18.sp,
+                                        color: AppColors.greyColor,
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                                RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text: 'اسم الخطر  ',
+                                      style: TextStyle(
+                                          fontSize: 18.sp,
+                                          color: AppColors.greyColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    TextSpan(
+                                      text: cubit.dangers[index].dangerName,
+                                      style: TextStyle(
+                                        fontSize: 18.sp,
+                                        color: AppColors.greyColor,
+                                      ),
+                                    ),
+                                  ]),
+                                ),
+                                RichText(
+                                  text: TextSpan(children: [
+                                    TextSpan(
+                                      text: 'طرق التعامل مع الخطر:  ',
+                                      style: TextStyle(
+                                          fontSize: 18.sp,
+                                          color: AppColors.greyColor,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                  ]),
+                                ),
+                                Column(
+                                  children: List.generate(
+                                      cubit.dangers[index]
+                                          .measureControlAPIs.length,
+                                          (i) => Row(
+                                        children: [
+                                          Text(
+                                            '${i + 1} - ',
+                                            style: TextStyle(
+                                              fontSize: 18.sp,
+                                              color:
+                                              AppColors.greyColor,
+                                            ),
+                                          ),
+                                          Text(
+                                            cubit
+                                                .dangers[index]
+                                                .measureControlAPIs[i]
+                                                .measureControlName,
+                                            style: TextStyle(
+                                              fontSize: 18.sp,
+                                              color:
+                                              AppColors.greyColor,
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                )
+                              ],
+                            ),
+                          )),
+                    )),
               )
               // ElevatedButton(
               //   onPressed:

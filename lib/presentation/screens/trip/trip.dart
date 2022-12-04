@@ -13,6 +13,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/presentation/widgets/drawer_widget.dart';
+import 'package:take5/presentation/widgets/main_button.dart';
 import 'package:take5/presentation/widgets/powered_by_cemex.dart';
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
@@ -26,6 +27,7 @@ import '../../../injection_container.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
 import '../../utils/helpers/helpers.dart';
+import '../../widgets/my_app_bar.dart';
 import '../step_one/step_one_questions.dart';
 
 Future<void> initializeService() async {
@@ -90,7 +92,7 @@ void onStart(ServiceInstance service) async {
           'longitude': trip!.longitude
         });
         d = loc.getDistance(currentPosition, destination);
-        // d=100;
+         //d=100;
         if (d <= 1000) {
           //todo save local
           TripDestinationArrivedModel destinationArrivedRequest =
@@ -166,25 +168,9 @@ class _TripScreenState extends State<TripScreen> {
         builder: (context, state) {
           var cubit = TripCubit.get(context);
           return Scaffold(
+            backgroundColor: AppColors.backgroundColor,
             drawer: const DrawerWidget(),
-            appBar: AppBar(
-              leading: Builder(builder: (context) {
-                return IconButton(
-                    icon: const Icon(Icons.menu_open),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    });
-              }),
-              toolbarHeight: 80,
-              elevation: 0,
-              iconTheme: const IconThemeData(color: AppColors.redColor),
-              title: const Text(
-                'المسافة',
-                style: TextStyle(color: AppColors.redColor),
-              ),
-              backgroundColor: Colors.white,
-              centerTitle: true,
-            ),
+            appBar: MyAppBar(title: 'المسافة',),
             body: Center(
               child: Column(
                 children: [
@@ -238,27 +224,7 @@ class _TripScreenState extends State<TripScreen> {
                                               (route) => false);
                                         }
                                       : null,
-                                  child: Text('املأ الاستمارة'),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          8.r), // <-- Radius
-                                    ),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                width: double.infinity,
-                                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                                child: ElevatedButton(
-                                  onPressed: () async {
-                                    final service = FlutterBackgroundService();
-                                    var isRunning = await service.isRunning();
-                                    if (isRunning) {
-                                      service.invoke("stopService");
-                                    }
-                                  },
-                                  child: Text('stop service'),
+                                  child:Text('املأ الاستمارة'),
                                   style: ElevatedButton.styleFrom(
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(

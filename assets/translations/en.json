@@ -57,7 +57,8 @@
   "waiting step 2": "waiting step 2",
   "end step 1": "end step 1",
   "end step 2": "end step 2",
-  "Enter Valid serial Number": "Enter Valid serial Number"
-
+  "Enter Valid serial Number": "Enter Valid serial Number",
+  "true": "Network is available",
+  "false": "Network isn't available"
 
 }

@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/presentation/screens/step_one/widgets/selected_dangers.dart';
+import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
@@ -17,7 +19,9 @@ import '../../../logic/step_one_cubit/step_one_cubit.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/danger.dart';
 import '../../widgets/drawer_widget.dart';
+import '../../widgets/headline_step.dart';
 import '../../widgets/main_button.dart';
+import '../../widgets/my_app_bar.dart';
 import '../../widgets/true_false_question.dart';
 import '../home/home.dart';
 
@@ -112,131 +116,86 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           print(cubit.step1Answers);
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
+          backgroundColor: AppColors.backgroundColor,
             drawer: const DrawerWidget(),
-            appBar: AppBar(
-              leading: Builder(builder: (context) {
-                return IconButton(
-                    icon: const Icon(Icons.menu_open),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    });
-              }),
-              toolbarHeight: 80,
-              elevation: 0,
-              iconTheme: const IconThemeData(color: AppColors.redColor),
-              title: const Text(
-                'المرحله الاولى',
-                style: TextStyle(color: AppColors.redColor),
-              ),
-              backgroundColor: Colors.white,
-              centerTitle: true,
-            ),
+            appBar: MyAppBar(title:'المرحلة الاولى',),
             body: SingleChildScrollView(
-              child: cubit.isQuestions
-                  ? FormBuilder(
-                      key: _formKey,
-                      autovalidateMode: AutovalidateMode.disabled,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                            vertical: 10.h, horizontal: 15.w),
+               physics: ScrollPhysics(),
+              child:Padding(
+                padding: EdgeInsets.symmetric(
+                    vertical: 10.h, horizontal: 15.w),
+                child: Column(
+                  children: [
+                    cubit.isQuestions?
+                    const Headline(number: '1', title: 'قف وانظر وإستكشف مكان العمل حولك',):Container(),
+                    cubit.isQuestions?SizedBox(
+                      height: 30.h,
+                    ):Container(),
+                    cubit.isQuestions?const Headline(number: '2', title: 'فكر في العمل  المكلف به',) :Container(),
+                    cubit.isQuestions?SizedBox(
+                      height: 30.h,
+                    ):Container(),
+                    cubit.isQuestions
+                        ? FormBuilder(
+                        key: _formKey,
+                        autovalidateMode: AutovalidateMode.disabled,
                         child: Column(
-                          children: [
-                            Row(
-                              children: [
-                                CircleAvatar(
-                                  backgroundColor: AppColors.mainColor,
-                                  radius: 14.h,
-                                  child: const Center(
-                                    child: Text(
-                                      '3',
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700),
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 10.w,
-                                ),
-                                Text('جاوب علي الاسئلة الاتية',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 18.sp)),
-                              ],
-                            ),
-                            state is StepOneGetQuestionsLoading
-                                ? const Center(
-                                    child: CircularProgressIndicator(),
-                                  )
-                                : Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 0, horizontal: 35.w),
-                                    child: ListView.builder(
-                                      key: GlobalKey(),
-                                      shrinkWrap: true,
-                                      itemBuilder:
-                                          (BuildContext context, int index) =>
-                                              TrueFalseQuestion(
+                            children: [
+                              const Headline(number: '3', title: 'جاوب علي الاسئلة الاتية',),
+                              state is StepOneGetQuestionsLoading
+                                  ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                                  : Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 30.w),
+                                child: ListView.builder(
+                                  physics: NeverScrollableScrollPhysics(),
+                                  key: GlobalKey(),
+                                  shrinkWrap: true,
+                                  itemBuilder:
+                                      (BuildContext context, int index) =>
+                                      TrueFalseQuestion(
                                         questionAnswer:
-                                            cubit.step1Answers[index],
+                                        cubit.step1Answers[index],
                                         index: index+1,
                                       ),
-                                      itemCount: cubit.step1Answers.length,
-                                    ),
-                                  ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                            Center(
-                              child: SizedBox(
-                                width: double.infinity,
-                                height: 45.h,
-                                child: ElevatedButton(
-                                  onPressed: () {
+                                  itemCount: cubit.step1Answers.length,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 30.h,
+                              ),
+                              MainButton(
+                                  onPressed:  () {
                                     if (_formKey.currentState?.validate() ==
                                         true) {
                                       cubit.toggleToDangers();
                                     }
-                                  },
-                                  child: Text("next".tr()),
-                                ),
+                                  }, title:"next".tr()),
+                              SizedBox(
+                                height: 30.h,
                               ),
-                            ),
-                            SizedBox(
-                              height: 30.h,
-                            ),
-                          ],
-                        ),
-                      ))
-                  : Padding(
-                padding:
-                EdgeInsets.symmetric(vertical: 10.h, horizontal: 15.w),
-                    child: Column(
+                            ],
+                          ),
+                        )
+                        :  Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                         const Headline(number: '4', title: 'المخاطر',),
+                          SizedBox(
+                            height: 25.h,
+                          ),
                           ...List.generate(
                             c,
-                            (index) => const Danger(),
+                                (index) => const Danger(),
                           ),
-                          // SizedBox(
-                          //   height: 200,
-                          //   child: ListView.builder(
-                          //     itemCount: cubit.dangers.length,
-                          //     itemBuilder: (context, index) =>
-                          //         const SelectedDangerWidget(),
-                          //   ),
-                          // ),
-                          // Padding(
-                          //   padding: EdgeInsets.symmetric(horizontal: 16.w),
-                          //   child: MainButton(
-                          //     onPressed: () {
-                          //       cubit.submitAnswers();
-                          //     },
-                          //     title: "end step 1".tr(),
-                          //   ),
-                          // ),
+
                         ],
-                      ),
-                  ),
+                    ),
+                  ],
+                ),
+              )
             ),
           );
         },
