@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_colors.dart';
+import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
 import 'package:take5/presentation/screens/end_trip/end_trip.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
 
@@ -63,6 +64,7 @@ showMessageDialog({
                                     }
                                     else if(message=='لا يوجد اى مخاطر!')
                                       {
+                                        onPressedOk?.call();
                                         Navigator.of(context).pop();
                                         Navigator.pushNamed(context,StepTwoScreen.routeName);
                                       }
@@ -91,6 +93,10 @@ showMessageDialog({
                                 child: ElevatedButton(
                                   onPressed: () {
                                     if(message=='لا يوجد اى ملاحظات!') {
+                                      Navigator.of(context).pop();
+                                    }
+                                    else if(message=='لا يوجد اى مخاطر!')
+                                    {
                                       Navigator.of(context).pop();
                                     }
                                     else

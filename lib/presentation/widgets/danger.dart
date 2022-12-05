@@ -148,14 +148,15 @@ class _DangerState extends State<Danger> {
                         if(cubit.dangers.isEmpty)
                         {
                           showMessageDialog(
+                            onPressedOk:  cubit.submitAnswers,
                               context: context,
                               message: 'لا يوجد اى مخاطر!',
                               isSucceeded: false);
                         }
                         else
-                        {
-                          cubit.submitAnswers();
-                        }
+                          {
+                            cubit.submitAnswers();
+                          }
                       },
                       title: "next".tr(),
                     ),

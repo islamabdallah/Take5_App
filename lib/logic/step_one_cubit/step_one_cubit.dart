@@ -108,6 +108,8 @@ class StepOneCubit extends Cubit<StepOneState> {
 
     var result = await take5Repository.completeStepOne(
         surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel);
+    print(result);
+    print("result for step1");
 
     result.fold((l) => emit(StepOneSubmitAnswerFail(l.message)), (r) {
       print(r);
