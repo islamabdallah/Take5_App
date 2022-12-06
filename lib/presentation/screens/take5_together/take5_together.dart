@@ -97,13 +97,24 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                         popupProps: PopupPropsMultiSelection.dialog(
                           // fit: FlexFit.loose,
 
+                          emptyBuilder: (_, __) => Center(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              Text('لا يوجد')
+                            ],
+                          )),
+
                           ///decoration of the dialog
-                          dialogProps:DialogProps(
-                          ) ,
+                          dialogProps: DialogProps(),
                           showSelectedItems: true,
                           showSearchBox: true,
+
                           ///decoration of the dropdown items
                           itemBuilder: _customPopupItemBuilder,
+
                           ///decoration of search text field
                           searchFieldProps: TextFieldProps(
                             style: TextStyle(
@@ -153,10 +164,15 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
 
                         ///custom decoration of the text field
                         dropdownBuilder: (context, driver) {
-                          return driver!=null? Text(driver.fullName ?? ''): Text('اسم الزميل',style: TextStyle(color: Theme.of(context).hintColor,fontSize: 14),);
+                          return driver != null
+                              ? Text(driver.fullName ?? '')
+                              : Text(
+                                  'اسم الزميل',
+                                  style: TextStyle(
+                                      color: Theme.of(context).hintColor,
+                                      fontSize: 14),
+                                );
                         },
-
-
                       ),
                       SizedBox(
                         height: 20.w,
@@ -335,7 +351,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
     bool isSelected,
   ) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8,vertical: 0),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       decoration: !isSelected
           ? null
           : BoxDecoration(
