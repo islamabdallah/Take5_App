@@ -379,7 +379,7 @@ class MyApp extends StatelessWidget {
               );
             },
             onGenerateRoute: AppRoutes.onGenerateRoutes,
-            initialRoute: getLastRoute(),
+            // initialRoute: getLastRoute(),
             // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
             // initialRoute: StepOneQuestionsScreen.routeName,
@@ -388,7 +388,7 @@ class MyApp extends StatelessWidget {
             // initialRoute: HomeScreen.routeName,
             // initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
-            //initialRoute: Take5TogetherScreen.routeName,
+            initialRoute: Take5TogetherScreen.routeName,
             //  initialRoute: EndTripScreen.routeName,
            // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,

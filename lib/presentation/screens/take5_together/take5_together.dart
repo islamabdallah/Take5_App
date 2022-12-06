@@ -1,3 +1,4 @@
+import 'package:dropdown_search/dropdown_search.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -122,6 +123,46 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           });
                         },
                       ),
+                  DropdownSearch<Driver>(
+                    items: cubit.drivers,
+                    // asyncItems: (String? filter) => getData(filter),
+                    clearButtonProps: ClearButtonProps(isVisible: true),
+                    popupProps: PopupPropsMultiSelection.modalBottomSheet(
+                      showSelectedItems: true,
+                      itemBuilder: _customPopupItemBuilderExample2,
+                      showSearchBox: true,
+                      searchFieldProps: TextFieldProps(
+                        // controller: _userEditTextController,
+                        // decoration: InputDecoration(
+                        //   suffixIcon: IconButton(
+                        //     icon: Icon(Icons.clear),
+                        //     onPressed: () {
+                        //       _userEditTextController.clear();
+                        //     },
+                        //   ),
+                        // ),
+                      ),
+                    ),
+                    compareFn: (item, selectedItem) =>
+                    item.id == selectedItem.id,
+                    ///decoration of the text field
+                    dropdownDecoratorProps: DropDownDecoratorProps(
+                      dropdownSearchDecoration: InputDecoration(
+                          hintText:"اسم الزميل",
+                        hintStyle: TextStyle(color: Colors.black),
+                        contentPadding: EdgeInsets.symmetric(
+                            vertical: 0, horizontal: 16.w),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10.r),
+                          borderSide: BorderSide(width: 10.w),
+                        ),
+                      ),
+                    ),
+
+                    dropdownBuilder: (context,driver){
+                      return Text(driver?.fullName??'');
+                    },
+                  ),
                       SizedBox(
                         height: 20.w,
                       ),
@@ -287,6 +328,55 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
           },
         ),
       ),
+    );
+  }
+
+  Widget _customPopupItemBuilderExample2(
+      BuildContext context,
+      Driver? driver,
+      bool isSelected,
+      ) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 8),
+      decoration: !isSelected
+          ? null
+          : BoxDecoration(
+        border: Border.all(color: Theme.of(context).primaryColor),
+        borderRadius: BorderRadius.circular(5),
+        color: Colors.white,
+      ),
+      child: ListTile(
+        selected: isSelected,
+        title: Text(driver?.fullName ?? ''),
+      ),
+    );
+  }
+
+  Widget _customDropDownExampleMultiSelection(
+      BuildContext context, List<Driver?> selectedItems) {
+    if (selectedItems.isEmpty) {
+      return ListTile(
+        contentPadding: EdgeInsets.all(0),
+        leading: CircleAvatar(),
+        title: Text("No item selected"),
+      );
+    }
+    return Wrap(
+      children: selectedItems.map((e) {
+        return Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Container(
+            child: ListTile(
+              contentPadding: EdgeInsets.all(0),
+              leading: CircleAvatar(
+                // this does not work - throws 404 error
+                // backgroundImage: NetworkImage(item.avatar ?? ''),
+              ),
+              title: Text(e?.fullName ?? ''),
+            ),
+          ),
+        );
+      }).toList(),
     );
   }
 }
