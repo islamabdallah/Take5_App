@@ -126,7 +126,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                   DropdownSearch<Driver>(
                     items: cubit.drivers,
                     // asyncItems: (String? filter) => getData(filter),
-                    clearButtonProps: ClearButtonProps(isVisible: true),
+                   // clearButtonProps: ClearButtonProps(isVisible: true),
                     popupProps: PopupPropsMultiSelection.modalBottomSheet(
                       showSelectedItems: true,
                       itemBuilder: _customPopupItemBuilderExample2,
@@ -148,8 +148,6 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                     ///decoration of the text field
                     dropdownDecoratorProps: DropDownDecoratorProps(
                       dropdownSearchDecoration: InputDecoration(
-                          hintText:"اسم الزميل",
-                        hintStyle: TextStyle(color: Colors.black),
                         contentPadding: EdgeInsets.symmetric(
                             vertical: 0, horizontal: 16.w),
                         border: OutlineInputBorder(
@@ -158,7 +156,6 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                         ),
                       ),
                     ),
-
                     dropdownBuilder: (context,driver){
                       return Text(driver?.fullName??'');
                     },

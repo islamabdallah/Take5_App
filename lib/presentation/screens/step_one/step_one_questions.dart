@@ -179,7 +179,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                             ],
                           ),
                         )
-                        :  Column(
+                        :Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                          const Headline(number: '4', title: 'المخاطر',),
