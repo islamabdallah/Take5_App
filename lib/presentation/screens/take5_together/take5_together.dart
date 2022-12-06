@@ -85,81 +85,95 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 10.w,
                       ),
-                      DropdownButtonFormField(
-                        decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(
-                              vertical: 0, horizontal: 16.w),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10.r),
-                            borderSide: BorderSide(width: 10.w),
-                          ),
-                        ),
-                        key: GlobalKey(),
-                        validator: (value) =>
-                            value == null ? 'مطلوب' : null,
-                        hint: Text(
-                          'اسم الزميل',
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).hintColor,
-                          ),
-                        ),
-                        items: cubit.drivers
-                            .map((item) => DropdownMenuItem<Driver>(
-                                  value: item,
-                                  child: Text(
-                                    item.fullName!,
-                                    style: const TextStyle(
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                ))
-                            .toList(),
-                        value: cubit.selectedDriver,
+                      DropdownSearch<Driver>(
+                        items: cubit.drivers,
+                        validator: (value) => value == null ? 'مطلوب' : null,
+                        // asyncItems: (String? filter) => getData(filter),
+                        // clearButtonProps: ClearButtonProps(isVisible: false),
+                        selectedItem: cubit.selectedDriver,
                         onChanged: (value) {
                           cubit.onChangeDriver(value);
-                          setState(() {
-                            print(cubit.selectedDriver);
-                          });
+                        },
+                        popupProps: PopupPropsMultiSelection.dialog(
+                          // fit: FlexFit.loose,
+
+                          emptyBuilder: (_, __) => Center(
+                              child: Column(
+                            children: [
+                              SizedBox(
+                                height: 16.h,
+                              ),
+                              Text('لا يوجد')
+                            ],
+                          )),
+
+                          ///decoration of the dialog
+                          dialogProps: DialogProps(),
+                          showSelectedItems: true,
+                          showSearchBox: true,
+
+                          ///decoration of the dropdown items
+                          itemBuilder: _customPopupItemBuilder,
+
+                          ///decoration of search text field
+                          searchFieldProps: TextFieldProps(
+                            style: TextStyle(
+                                color: const Color(0xff767676),
+                                fontWeight: FontWeight.w400,
+                                fontFamily: "Roboto",
+                                fontStyle: FontStyle.normal,
+                                fontSize: 22.0.sp),
+                            decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 15.h, horizontal: 20.w),
+                              prefixIcon: Icon(
+                                Icons.search,
+                                size: 30.r,
+                              ),
+                              prefixIconConstraints: BoxConstraints(
+                                  maxHeight: 50.h, minWidth: 50.w),
+
+                              hintText: 'Search',
+                              hintStyle: TextStyle(
+                                  color: const Color(0xff767676),
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: "Roboto",
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 22.0.sp),
+                              border: const UnderlineInputBorder(),
+                              // border: InputBorder.none,
+                            ),
+                          ),
+                        ),
+                        compareFn: (item, selectedItem) =>
+                            item.id == selectedItem.id,
+
+                        ///decoration of the text field
+                        dropdownDecoratorProps: DropDownDecoratorProps(
+                          dropdownSearchDecoration: InputDecoration(
+                            // hintText: "اسم الزميل",
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 16.w),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10.r),
+                              borderSide: BorderSide(width: 10.w),
+                            ),
+                          ),
+                        ),
+
+                        ///custom decoration of the text field
+                        dropdownBuilder: (context, driver) {
+                          return driver != null
+                              ? Text(driver.fullName ?? '')
+                              : Text(
+                                  'اسم الزميل',
+                                  style: TextStyle(
+                                      color: Theme.of(context).hintColor,
+                                      fontSize: 14),
+                                );
                         },
                       ),
-                  DropdownSearch<Driver>(
-                    items: cubit.drivers,
-                    // asyncItems: (String? filter) => getData(filter),
-                   // clearButtonProps: ClearButtonProps(isVisible: true),
-                    popupProps: PopupPropsMultiSelection.modalBottomSheet(
-                      showSelectedItems: true,
-                      itemBuilder: _customPopupItemBuilderExample2,
-                      showSearchBox: true,
-                      searchFieldProps: TextFieldProps(
-                        // controller: _userEditTextController,
-                        // decoration: InputDecoration(
-                        //   suffixIcon: IconButton(
-                        //     icon: Icon(Icons.clear),
-                        //     onPressed: () {
-                        //       _userEditTextController.clear();
-                        //     },
-                        //   ),
-                        // ),
-                      ),
-                    ),
-                    compareFn: (item, selectedItem) =>
-                    item.id == selectedItem.id,
-                    ///decoration of the text field
-                    dropdownDecoratorProps: DropDownDecoratorProps(
-                      dropdownSearchDecoration: InputDecoration(
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 16.w),
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10.r),
-                          borderSide: BorderSide(width: 10.w),
-                        ),
-                      ),
-                    ),
-                    dropdownBuilder: (context,driver){
-                      return Text(driver?.fullName??'');
-                    },
-                  ),
                       SizedBox(
                         height: 20.w,
                       ),
@@ -183,8 +197,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           ),
                         ),
                         key: GlobalKey(),
-                        validator: (value) =>
-                            value == null ? 'مطلوب' : null,
+                        validator: (value) => value == null ? 'مطلوب' : null,
                         hint: Text(
                           'من الذى بدأ المحادثة',
                           style: TextStyle(
@@ -227,8 +240,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 150.h,
                         child: MyTextFormField(
-                          validator: (value) =>
-                          value!.isEmpty? 'مطلوب' : null,
+                          validator: (value) => value!.isEmpty ? 'مطلوب' : null,
                           controller: cubit.notesController,
                           label: "الملاحظات",
                           maxLines: 5,
@@ -285,16 +297,21 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 25.h,
                       ),
-                      cubit.notes.isNotEmpty?Divider(
-                        indent: 0,
-                        endIndent: 0,
-                        color: Colors.grey,
-                        thickness: 0.5.h,
-                      ):Container(),
-                      cubit.notes.isNotEmpty?Text(
-                        ' عدد المحادثات (${cubit.notes.length})',
-                        style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
-                      ):Container(),
+                      cubit.notes.isNotEmpty
+                          ? Divider(
+                              indent: 0,
+                              endIndent: 0,
+                              color: Colors.grey,
+                              thickness: 0.5.h,
+                            )
+                          : Container(),
+                      cubit.notes.isNotEmpty
+                          ? Text(
+                              ' عدد المحادثات (${cubit.notes.length})',
+                              style: TextStyle(
+                                  fontSize: 22.sp, fontWeight: FontWeight.bold),
+                            )
+                          : Container(),
                       ListView.builder(
                         physics: const NeverScrollableScrollPhysics(),
                         reverse: true,
@@ -328,52 +345,24 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
     );
   }
 
-  Widget _customPopupItemBuilderExample2(
-      BuildContext context,
-      Driver? driver,
-      bool isSelected,
-      ) {
+  Widget _customPopupItemBuilder(
+    BuildContext context,
+    Driver? driver,
+    bool isSelected,
+  ) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 8),
+      margin: EdgeInsets.symmetric(horizontal: 8, vertical: 0),
       decoration: !isSelected
           ? null
           : BoxDecoration(
-        border: Border.all(color: Theme.of(context).primaryColor),
-        borderRadius: BorderRadius.circular(5),
-        color: Colors.white,
-      ),
+              border: Border.all(color: Theme.of(context).primaryColor),
+              borderRadius: BorderRadius.circular(5),
+              color: Colors.white,
+            ),
       child: ListTile(
         selected: isSelected,
         title: Text(driver?.fullName ?? ''),
       ),
-    );
-  }
-
-  Widget _customDropDownExampleMultiSelection(
-      BuildContext context, List<Driver?> selectedItems) {
-    if (selectedItems.isEmpty) {
-      return ListTile(
-        contentPadding: EdgeInsets.all(0),
-        leading: CircleAvatar(),
-        title: Text("No item selected"),
-      );
-    }
-    return Wrap(
-      children: selectedItems.map((e) {
-        return Padding(
-          padding: const EdgeInsets.all(4.0),
-          child: Container(
-            child: ListTile(
-              contentPadding: EdgeInsets.all(0),
-              leading: CircleAvatar(
-                // this does not work - throws 404 error
-                // backgroundImage: NetworkImage(item.avatar ?? ''),
-              ),
-              title: Text(e?.fullName ?? ''),
-            ),
-          ),
-        );
-      }).toList(),
     );
   }
 }
