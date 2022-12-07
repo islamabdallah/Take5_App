@@ -1,3 +1,5 @@
+import 'package:take5/core/constants/app_constants.dart';
+import 'package:take5/core/constants/app_strings.dart';
 import 'package:take5/data/datasources/boxes.dart';
 import 'package:take5/data/models/take5_together/take5_together.dart';
 import '../../core/constants/keys.dart';
@@ -154,7 +156,7 @@ class LocalDataSourceImpl implements LocalDataSource {
     final box = Boxes.getTakeFiveBox();
     box.put(collectionKey, allTripStepsModel.toJson());
     print(box.get(collectionKey));
-    return "Done";
+    return AppStrings.saveDone;
   }
 
   @override
