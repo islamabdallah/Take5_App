@@ -6,6 +6,7 @@ import 'package:take5/logic/home_cubit/home_cubit.dart';
 import 'package:take5/presentation/screens/home/widgets/no_trip_widget.dart';
 import 'package:take5/presentation/screens/home/widgets/trip_card.dart';
 import 'package:take5/presentation/screens/trip/trip.dart';
+import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import 'package:take5/presentation/utils/helpers/helpers.dart';
 import '../../../logic/home_cubit/home_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
@@ -40,6 +41,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Navigator.pop(context);
           Navigator.pushNamedAndRemoveUntil(
               context, TripScreen.routeName, (route) => false);
+        }  
+        if (state is HomeStartTripFail) {
+          Navigator.pop(context);
+          showMessageDialog(context: context, isSucceeded: false,message: "لا يمكنك بدأ الرحلة\n الرجاء التاكد من الانترنت");
         }
       },
       builder: (context, state) {

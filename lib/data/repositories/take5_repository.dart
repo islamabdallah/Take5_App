@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:take5/core/constants/app_strings.dart';
 import '../../core/constants/app_constants.dart';
 import '../../core/errors/exceptions.dart';
 import '../datasources/local_data_source.dart';
@@ -107,7 +108,7 @@ class Take5RepositoryImpl extends Take5Repository {
       {required String userId}) async {
     try {
       UserTripResponse result =
-          await remoteDataSource.getCurrentTrip(userId: userId);
+      await remoteDataSource.getCurrentTrip(userId: userId);
       if (result.data != null) {
         localDataSource.cacheTrip(result.data!.tripAPIModel); //missed
         localDataSource.cacheTakeFiveSurvey(result.data!.allSurveyModel);
@@ -126,241 +127,146 @@ class Take5RepositoryImpl extends Take5Repository {
       {required TripStartRequest tripStartRequest}) async {
     try {
       TripStartResponse result =
-          await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
+      await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       return Right(result);
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
   }
 
-//done
+  AllTripStepsModel _getStoredAllTripStepsModel() {
+    return localDataSource.getCachedAllTripStepsModel() ??
+        AllTripStepsModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+  }
+
+  Future<String> _sendAllStepsModel(AllTripStepsModel allTripStepsModel) async {
+    try {
+      String result = await remoteDataSource.sendCollection(
+          allTripStepsModel: allTripStepsModel);
+      //done
+      localDataSource.clearCollection();
+      return result;
+    } on ServerException catch (e) {
+      //save local
+      String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+      return result;
+    }
+  }
+
   @override
   Future<Either<Failure, String>> arrivedToDestination(
       {required TripDestinationArrivedModel
-          tripDestinationArrivedModel}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
-      if (await deviceConnectivity.isConnected == false) {
-        return const Left(DeviceConnectivityFailure());
-      }
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          tripDestinationArrivedModel: tripDestinationArrivedModel,
-          endStatus: 'DestinationArrived');
-      try {
-        String result = await remoteDataSource.sendCollection(
-            allTripStepsModel: allTripStepsModel);
-        //done
-        localDataSource.clearCollection();
-        return const Right('result');
-      } on ServerException catch (e) {
-        //save local
-        String result =
-            localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return Right(result);
-      }
-    } else {
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          tripDestinationArrivedModel: tripDestinationArrivedModel,
-          endStatus: 'DestinationArrived');
+      tripDestinationArrivedModel}) async {
+
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+
+    allTripStepsModel = allTripStepsModel.copyWith(
+        tripDestinationArrivedModel: tripDestinationArrivedModel,
+        endStatus: 'DestinationArrived');
+
+    if (!AppConstants.trip.jobsiteHasNetworkCoverage) {
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right('تم الحفظ');
+      return const Right(AppStrings.saveDone);
     }
+
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
+    String result = await _sendAllStepsModel(allTripStepsModel);
+    return Right(result);
   }
 
 //done
   @override
   Future<Either<Failure, String>> completeStepOne(
       {required SurveyStepOneAnswersAPIModel
-          surveyStepOneAnswersAPIModel}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
-      //check device connectivity
-      if (await deviceConnectivity.isConnected == false) {
-        return const Left(DeviceConnectivityFailure());
-      }
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,
-          endStatus: 'SurveyStepOneCompleted');
-      try {
-        String result = await remoteDataSource.sendCollection(
-            allTripStepsModel: allTripStepsModel);
-        //done
-        localDataSource.clearCollection();
-        return Right(result);
-      } on ServerException catch (e) {
-        //save local
-        String result =
-            localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return Right(result);
-      }
-    } else {
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,
-          endStatus: 'SurveyStepOneCompleted');
+      surveyStepOneAnswersAPIModel}) async {
+
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+
+    allTripStepsModel = allTripStepsModel.copyWith(
+        surveyStepOneAnswersAPIModel: surveyStepOneAnswersAPIModel,
+        endStatus: 'SurveyStepOneCompleted');
+
+    if (!AppConstants.trip.jobsiteHasNetworkCoverage) {
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right('تم الحفظ');
+      return const Right(AppStrings.saveDone);
     }
+
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
+    String result = await _sendAllStepsModel(allTripStepsModel);
+    return Right(result);
   }
 
 //done
   @override
   Future<Either<Failure, String>> startStepTwo(
       {required Take5StepTwoRequestAPIModel
-          take5StepTwoRequestAPIModel}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
-      //check device connectivity
-      if (await deviceConnectivity.isConnected == false) {
-        return const Left(DeviceConnectivityFailure());
-      }
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,
-          endStatus: 'StepTwoRequested');
-      try {
-        String result = await remoteDataSource.sendCollection(
-            allTripStepsModel: allTripStepsModel);
-        //done
-        localDataSource.clearCollection();
-        return Right(result);
-      } on ServerException catch (e) {
-        //save local
-        //make response time same as request
-        String result = localDataSource.cacheAllTripStepsModel(
-            allTripStepsModel.copyWith(
-                take5StepTwoRequestAPIModel:
-                    take5StepTwoRequestAPIModel.copyWith(
-                        responseDate:
-                            take5StepTwoRequestAPIModel.requestDate)));
-        return Right(result);
-      }
-    } else {
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,
-          endStatus: 'StepTwoRequested');
+      take5StepTwoRequestAPIModel}) async {
+
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+
+    allTripStepsModel = allTripStepsModel.copyWith(
+        take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel,
+        endStatus: 'StepTwoRequested');
+
+    if (!AppConstants.trip.jobsiteHasNetworkCoverage) {
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right('تم الحفظ');
+      return const Right(AppStrings.saveDone);
     }
+
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
+    String result = await _sendAllStepsModel(allTripStepsModel);
+    return Right(result);
   }
 
 //done
   @override
   Future<Either<Failure, String>> completeStepTwo(
+
       {required SurveyStepTwoAnswersAPIModel
-          surveyStepTwoAnswersAPIModel}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage) {
-      //check device connectivity
-      if (await deviceConnectivity.isConnected == false) {
-        return const Left(DeviceConnectivityFailure());
-      }
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,
-          endStatus: 'SurveyStepTwoCompleted');
-      try {
-        String result = await remoteDataSource.sendCollection(
-            allTripStepsModel: allTripStepsModel);
-        //done
-        localDataSource.clearCollection();
-        return Right(result);
-      } on ServerException catch (e) {
-        //save local
-        String result =
-            localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-        return Right(result);
-      }
-    } else {
-      AllTripStepsModel allTripStepsModel;
-      if (localDataSource.getCachedAllTripStepsModel() == null) {
-        allTripStepsModel = AllTripStepsModel(
-            userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
-      } else {
-        allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      }
-      allTripStepsModel = allTripStepsModel.copyWith(
-          surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,
-          endStatus: 'SurveyStepTwoCompleted');
+      surveyStepTwoAnswersAPIModel}) async {
+
+
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+
+    allTripStepsModel = allTripStepsModel.copyWith(
+        surveyStepTwoAnswersAPIModel: surveyStepTwoAnswersAPIModel,
+        endStatus: 'SurveyStepTwoCompleted');
+
+    if (!AppConstants.trip.jobsiteHasNetworkCoverage) {
       localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-      return const Right('تم الحفظ');
+      return const Right(AppStrings.saveDone);
     }
+
+    if (await deviceConnectivity.isConnected == false) {
+      return const Left(DeviceConnectivityFailure());
+    }
+
+    String result = await _sendAllStepsModel(allTripStepsModel);
+    return Right(result);
   }
 
   @override
   Future<Either<Failure, String>> take5Together(
       {required List<Take5TogetherModel> notes}) async {
-    AllTripStepsModel allTripStepsModel;
-    if (localDataSource.getCachedAllTripStepsModel() == null) {
-      allTripStepsModel = AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
-    } else {
-      allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-    }
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+
     allTripStepsModel =
         allTripStepsModel.copyWith(take5TogetherAPIModels: notes);
-    localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-    return const Right('تم الحفظ');
+
+    String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+    return Right(result);
   }
 
   @override
@@ -388,15 +294,12 @@ class Take5RepositoryImpl extends Take5Repository {
     if (await deviceConnectivity.isConnected == false) {
       return const Left(DeviceConnectivityFailure());
     }
+
     try {
-      AllTripStepsModel? allTripStepsModel =
-          localDataSource.getCachedAllTripStepsModel();
-      allTripStepsModel ??= AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
+      AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
       allTripStepsModel =
           allTripStepsModel.copyWith(endStatus: 'TripCompleted');
+
       String result = await remoteDataSource.sendCollection(
           allTripStepsModel: allTripStepsModel);
       //done
@@ -418,15 +321,15 @@ class Take5RepositoryImpl extends Take5Repository {
     // }
     try {
       AllTripStepsModel? collectionModel =
-          localDataSource.getCachedAllTripStepsModel();
+      localDataSource.getCachedAllTripStepsModel();
 
       if (collectionModel != null) {
-        await remoteDataSource.sendCollection(
+        String result = await remoteDataSource.sendCollection(
             allTripStepsModel: collectionModel);
       }
       //done
       localDataSource.clearCollection();
-      return const Right('تم الارسال');
+      return  Right('تم الارسال');
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }
@@ -438,12 +341,7 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Left(DeviceConnectivityFailure());
     }
     try {
-      AllTripStepsModel? allTripStepsModel =
-          localDataSource.getCachedAllTripStepsModel();
-      allTripStepsModel ??= AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
+      AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
 
       String result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
@@ -463,12 +361,7 @@ class Take5RepositoryImpl extends Take5Repository {
     }
 
     try {
-      AllTripStepsModel? allTripStepsModel =
-          localDataSource.getCachedAllTripStepsModel();
-      allTripStepsModel ??= AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
+      AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
 
       //لو مفيش تغطية للانترنت في الرحلة
       //لو الrequest متبعتش و خزناه لوكال في case ال inbetween
@@ -490,26 +383,19 @@ class Take5RepositoryImpl extends Take5Repository {
   @override
   Future<Either<Failure, String>> startStepTwoOffline(
       {required Take5StepTwoRequestAPIModel
-          take5StepTwoRequestAPIModel}) async {
+      take5StepTwoRequestAPIModel}) async {
     Take5StepTwoRequestAPIModel? startStepTwoRequest;
-    AllTripStepsModel allTripStepsModel;
-    if (localDataSource.getCachedAllTripStepsModel() == null) {
-      allTripStepsModel = AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          jobsiteId: AppConstants.trip.jobsiteNumber);
-    } else {
-      allTripStepsModel = localDataSource.getCachedAllTripStepsModel()!;
-      startStepTwoRequest = allTripStepsModel.take5StepTwoRequestAPIModel;
-    }
+
+    AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
+    startStepTwoRequest = allTripStepsModel.take5StepTwoRequestAPIModel;
     startStepTwoRequest != null
         ? startStepTwoRequest.copyWith(
-            responseDate: take5StepTwoRequestAPIModel.responseDate)
+        responseDate: take5StepTwoRequestAPIModel.responseDate)
         : startStepTwoRequest = take5StepTwoRequestAPIModel;
 
     allTripStepsModel = allTripStepsModel.copyWith(
         take5StepTwoRequestAPIModel: startStepTwoRequest);
-    localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-    return const Right('تم الحفظ');
+    String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
+    return Right(result);
   }
 }

@@ -6,15 +6,18 @@ loadingAlertDialog(BuildContext context, {bool isDismissible = false}) {
     barrierDismissible: false,
     context: context,
     builder: (BuildContext context) {
-      return AlertDialog(
-        content: Row(
-          children: [
-            const CircularProgressIndicator(),
-            Container(
-              margin: EdgeInsets.symmetric(horizontal: 16),
-              child: Text("Loading".tr()),
-            ),
-          ],
+      return WillPopScope(
+        onWillPop: () async => false,
+        child: AlertDialog(
+          content: Row(
+            children: [
+              const CircularProgressIndicator(),
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                child: Text("Loading".tr()),
+              ),
+            ],
+          ),
         ),
       );
     },
