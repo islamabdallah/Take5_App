@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -15,12 +14,8 @@ import 'package:location/location.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/logic/home_cubit/home_states.dart';
 import 'package:take5/presentation/screens/home/home.dart';
-import 'package:take5/presentation/screens/step_one/preparing_step.dart';
+import 'package:take5/presentation/screens/login/login_screen.dart';
 import 'package:take5/presentation/screens/step_one/step_one_questions.dart';
-import 'package:take5/presentation/screens/step_two/step_two.dart';
-import 'package:take5/presentation/screens/step_two_waiting/step_two_waiting_screen.dart';
-import 'package:take5/presentation/screens/take5_together/take5_together.dart';
-import 'package:take5/presentation/screens/trip/trip.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import 'core/bloc_observer.dart';
@@ -29,7 +24,6 @@ import 'core/constants/app_assets.dart';
 import 'core/constants/app_colors.dart';
 import 'core/constants/app_constants.dart';
 import 'core/constants/app_endpoints.dart';
-import 'core/utils/services/background_service.dart';
 import 'core/utils/services/loaction_service.dart';
 import 'data/models/all_trip_steps/all_trip_steps.dart';
 import 'data/models/requests/destination_arrived_request/destination_arrived_request.dart';
@@ -38,12 +32,7 @@ import 'data/models/user/user.dart';
 import 'injection_container.dart' as di;
 import 'injection_container.dart';
 import 'logic/home_cubit/home_cubit.dart';
-import 'logic/take5_together_cubit/take5_together_cubit.dart';
-import 'presentation/screens/end_trip/end_trip.dart';
-import 'presentation/screens/login/login_screen.dart';
-import 'presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import 'presentation/utils/helpers/helpers.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
 
 Future<void> initializeService() async {
@@ -70,11 +59,9 @@ Future<void> initializeService() async {
     androidConfiguration: AndroidConfiguration(
       // this will be executed when app is in foreground or background in separated isolate
       onStart: onStart,
-
       // auto start service
       autoStart: true,
       isForegroundMode: true,
-
       notificationChannelId: 'my_foreground',
       initialNotificationTitle: 'AWESOME SERVICE',
       initialNotificationContent: 'Initializing',
@@ -83,10 +70,8 @@ Future<void> initializeService() async {
     iosConfiguration: IosConfiguration(
       // auto start service
       autoStart: false,
-
       // this will be executed when app is in foreground in separated isolate
       onForeground: onStart,
-
       // you have to enable background fetch capability on xcode project
       onBackground: onIosBackground,
     ),
@@ -102,13 +87,11 @@ Future<void> initializeService() async {
 Future<bool> onIosBackground(ServiceInstance service) async {
   WidgetsFlutterBinding.ensureInitialized();
   DartPluginRegistrant.ensureInitialized();
-
   SharedPreferences preferences = await SharedPreferences.getInstance();
   await preferences.reload();
   final log = preferences.getStringList('log') ?? <String>[];
   log.add(DateTime.now().toIso8601String());
   await preferences.setStringList('log', log);
-
   return true;
 }
 
@@ -132,12 +115,10 @@ void onStart(ServiceInstance service) async {
     service.on('setAsForeground').listen((event) {
       service.setAsForegroundService();
     });
-
     service.on('setAsBackground').listen((event) {
       service.setAsBackgroundService();
     });
   }
-
   service.on('stopService').listen((event) {
     service.stopSelf();
   });
@@ -169,7 +150,6 @@ void onStart(ServiceInstance service) async {
           Position pp = Position.fromMap(
               {'latitude': trip!.latituide, 'longitude': trip!.longitude});
           d = loc.getDistance(p, pp);
-
           if (d <= 1000) {
             //todo save local
             TripDestinationArrivedModel destinationArrivedRequest =
@@ -200,7 +180,6 @@ void onStart(ServiceInstance service) async {
               } on DioError catch (e) {
               } catch (e) {}
             }
-
             //todo stop timer or service
             timer.cancel();
             service.stopSelf();
@@ -245,7 +224,6 @@ Future<void> main() async {
   // await BackgroundService().initializeService();
   // await initializeService();
 
-
   Location location =  Location();
 
   bool _serviceEnabled;
@@ -270,7 +248,6 @@ Future<void> main() async {
 
   //todo remove this
   getLastRoute();
-
   BlocOverrides.runZoned(
     () {
       runApp(
@@ -382,15 +359,15 @@ class MyApp extends StatelessWidget {
             initialRoute: getLastRoute(),
             // initialRoute: LoginScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
-            // initialRoute: StepOneQuestionsScreen.routeName,
+            //initialRoute: StepOneQuestionsScreen.routeName,
             // initialRoute: PreparingStepScreen.routeName,
             // initialRoute: StepOneDangersScreen.routeName,
             // initialRoute: HomeScreen.routeName,
             // initialRoute: StepTwoScreen.routeName,
             // initialRoute: TripScreen.routeName,
             // initialRoute: Take5TogetherScreen.routeName,
-            //  initialRoute: EndTripScreen.routeName,
-           // initialRoute: StepTwoStartRequestScreen.routeName,
+            // initialRoute: EndTripScreen.routeName,
+            // initialRoute: StepTwoStartRequestScreen.routeName,
             // initialRoute: StepTwoWaitingScreen.routeName,
           ),
         );

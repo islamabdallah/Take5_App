@@ -1,6 +1,6 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../../core/constants/app_assets.dart';
 import '../../../../logic/home_cubit/home_cubit.dart';
 import '../../../widgets/main_button.dart';
@@ -19,7 +19,7 @@ class NoTripWidget extends StatelessWidget {
           height: 20.h,
         ),
         Text(
-          'لا يوجد رحلة',
+          "there is no trip".tr(),
           style: TextStyle(
               fontWeight: FontWeight.bold, fontSize: 28.sp),
         ),
@@ -32,7 +32,7 @@ class NoTripWidget extends StatelessWidget {
             onPressed: () {
               HomeCubit.get(context).getCurrentTrip();
             },
-            title: 'اعادة البحث',
+            title:"research".tr(),
           ),
         ),
       ],

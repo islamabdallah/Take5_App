@@ -51,7 +51,6 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
     connection.on('SubmitNotification', (message) {
       print(message.toString());
     });
-
     // await connection.invoke('SendMessage', args: ['Bob', 'Says hi!']);
   }
 
@@ -70,7 +69,7 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
                 showMessageDialog(
                     context: context,
                     isSucceeded: true,
-                    message: 'تم الغاء الرحلة',
+                    message:"trip canceled".tr(),
                     onPressedOk: () {
                       Navigator.pushNamedAndRemoveUntil(context,
                           HomeScreen.routeName, (route) => false);
@@ -80,7 +79,7 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
                 showMessageDialog(
                     context: context,
                     isSucceeded: true,
-                    message: 'تم تحويل الرحلة',
+                    message: "trip converted".tr(),
                     onPressedOk: () {
                       Navigator.pushNamedAndRemoveUntil(context,
                           HomeScreen.routeName, (route) => false);
@@ -113,7 +112,7 @@ class _StepTwoStartRequestScreenState extends State<StepTwoStartRequestScreen> {
               elevation: 0,
               iconTheme: const IconThemeData(color: AppColors.redColor),
               title: Text(
-                'طلب المرحله الثانية',
+                "Request step 2".tr(),
                 style: const TextStyle(color: AppColors.redColor),
               ),
               backgroundColor: Colors.white,

@@ -39,12 +39,12 @@ class TripCard extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                ItemOfTripDescription(index:0,title:'رقم الرحلة' ,icon:const Icon(Icons.numbers) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
-                ItemOfTripDescription(index:1,title:'حالة الرحلة' ,icon:const Icon(Icons.event_note_sharp)  ,value: tripStatusArabic(HomeCubit.get(context).trip!.tripStatus),),
-                ItemOfTripDescription(index:2,title:'اسم السائق' ,icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
-                ItemOfTripDescription(index:3,title:'مكان التوجه' ,icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
-                ItemOfTripDescription(index:4,title:'حالة الشبكة' ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString().tr(),),
-                ItemOfTripDescription(index:5,title:'رقم الشاحنة' ,icon: Container(
+                ItemOfTripDescription(index:0,title:"number of trip".tr() ,icon:const Icon(Icons.numbers) ,value: HomeCubit.get(context).trip!.tripNumber.toString(),),
+                ItemOfTripDescription(index:1,title:"status of trip".tr() ,icon:const Icon(Icons.event_note_sharp)  ,value: tripStatusArabic(HomeCubit.get(context).trip!.tripStatus),),
+                ItemOfTripDescription(index:2,title:"name of driver".tr(),icon:const Icon(Icons.person) ,value: HomeCubit.get(context).trip!.driverName,),
+                ItemOfTripDescription(index:3,title: "jopSite".tr(),icon:const Icon(Icons.location_on_rounded) ,value: HomeCubit.get(context).trip!.jobsiteName,),
+                ItemOfTripDescription(index:4,title:"network status".tr() ,icon:const Icon(Icons.wifi),value: HomeCubit.get(context).trip!.jobsiteHasNetworkCoverage.toString().tr(),),
+                ItemOfTripDescription(index:5,title:"truck number".tr(),icon: Container(
                   height: 25.h,
                   width: 65.w,
                   color: AppColors.mainColor,
@@ -62,13 +62,13 @@ class TripCard extends StatelessWidget {
                   height: 20.h,
                 ),
                 HomeCubit.get(context).trip!.tripStatus=='Pending'?
-                  MainButton(onPressed: () {
+                  MainButton(
+                    onPressed: () {
                   HomeCubit.get(context).startTrip();
-                  },title: 'ابدأ الرحلة',):
+                  },title: "start trip".tr(),):
                 MainButton(onPressed: () {
                   HomeCubit.get(context).continueTrip(context);
-                  print(AppConstants.trip.tripStatus);
-                }, title: 'استكمال الرحلة',)
+                }, title: "continue trip".tr(),)
               ],
             ),
           ),

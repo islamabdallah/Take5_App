@@ -106,12 +106,10 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                               Text('لا يوجد')
                             ],
                           )),
-
                           ///decoration of the dialog
                           dialogProps: DialogProps(),
                           showSelectedItems: true,
                           showSearchBox: true,
-
                           ///decoration of the dropdown items
                           itemBuilder: _customPopupItemBuilder,
 

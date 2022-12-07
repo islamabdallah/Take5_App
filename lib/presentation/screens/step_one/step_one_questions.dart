@@ -2,14 +2,11 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/core/constants/app_constants.dart';
-import 'package:take5/presentation/screens/step_one/widgets/selected_dangers.dart';
-import 'package:take5/presentation/screens/step_two/step_two.dart';
 import 'package:take5/presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
@@ -70,10 +67,9 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           if (state is StepOneAddDangerDublicated) {
             showMessageDialog(
                 context: context,
-                message: 'قمت باضافه هذا الخطر من قبل',
+                message: "you added this button before".tr(),
                 isSucceeded: false);
           }
-
           if (state is StepOneSubmitAnswerLoading) {
             loadingAlertDialog(context);
           }
@@ -83,7 +79,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 showMessageDialog(
                     context: context,
                     isSucceeded: true,
-                    message: 'تم الغاء الرحلة',
+                    message:"trip canceled".tr(),
                     onPressedOk: () {
                       Navigator.pushNamedAndRemoveUntil(context,
                           HomeScreen.routeName, (route) => false);
@@ -93,7 +89,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 showMessageDialog(
                     context: context,
                     isSucceeded: true,
-                    message: 'تم تحويل الرحلة',
+                    message: "trip converted".tr(),
                     onPressedOk: () {
                       Navigator.pushNamedAndRemoveUntil(context,
                           HomeScreen.routeName, (route) => false);
@@ -118,7 +114,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
           return Scaffold(
           backgroundColor: AppColors.backgroundColor,
             drawer: const DrawerWidget(),
-            appBar: MyAppBar(title:'المرحلة الاولى',),
+            appBar: MyAppBar(title: "step 1".tr(),),
             body: SingleChildScrollView(
                physics: ScrollPhysics(),
               child:Padding(
@@ -127,11 +123,11 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                 child: Column(
                   children: [
                     cubit.isQuestions?
-                    const Headline(number: '1', title: 'قف وانظر وإستكشف مكان العمل حولك',):Container(),
+                    Headline(number: '1', title: "stop and look around jopSite".tr(),):Container(),
                     cubit.isQuestions?SizedBox(
                       height: 30.h,
                     ):Container(),
-                    cubit.isQuestions?const Headline(number: '2', title: 'فكر في العمل  المكلف به',) :Container(),
+                    cubit.isQuestions?Headline(number: '2', title:"think at your work".tr(),) :Container(),
                     cubit.isQuestions?SizedBox(
                       height: 30.h,
                     ):Container(),
@@ -141,7 +137,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                         autovalidateMode: AutovalidateMode.disabled,
                         child: Column(
                             children: [
-                              const Headline(number: '3', title: 'جاوب علي الاسئلة الاتية',),
+                              Headline(number: '3', title: "answer these questions".tr(),),
                               state is StepOneGetQuestionsLoading
                                   ? const Center(
                                 child: CircularProgressIndicator(),
@@ -182,7 +178,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
                         :Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                         const Headline(number: '4', title: 'المخاطر',),
+                          Headline(number: '4', title:"dangers".tr(),),
                           SizedBox(
                             height: 25.h,
                           ),

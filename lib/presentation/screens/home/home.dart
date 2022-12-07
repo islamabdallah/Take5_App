@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -45,12 +46,10 @@ class _HomeScreenState extends State<HomeScreen> {
         var cubit = HomeCubit.get(context);
         return Scaffold(
           drawer: const DrawerWidget(),
-          appBar: MyAppBar(title: 'الرحلة',),
+          appBar: MyAppBar(title: "trip".tr(),),
           body: Column(
             children: [
-              SizedBox(
-                height: 16.h,
-              ),
+              SizedBox(height: 16.h,),
               state is HomeGetCurrentTripLoading
                   ?const Expanded(child: Center(child: CircularProgressIndicator()))
                   : cubit.trip == null

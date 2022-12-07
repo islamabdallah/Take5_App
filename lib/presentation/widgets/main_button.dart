@@ -4,9 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../core/constants/app_assets.dart';
 import '../../core/constants/app_colors.dart';
 class MainButton extends StatelessWidget {
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String title;
-  const MainButton({Key? key,required this.onPressed,required this.title}) : super(key: key);
+  const MainButton({Key? key,this.onPressed,required this.title}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

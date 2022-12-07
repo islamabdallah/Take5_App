@@ -34,7 +34,7 @@ showMessageDialog({
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            isSucceeded ? 'Succeeded'.tr() :message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?'انذار': 'Failed'.tr(),
+                            isSucceeded ? 'Succeeded'.tr() :message=="there is no notes".tr()||message=="there is no dangers".tr()?"warning".tr(): 'Failed'.tr(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 18.sp,
@@ -58,11 +58,11 @@ showMessageDialog({
                                 height: 50.h,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if(message=='لا يوجد اى ملاحظات!') {
+                                    if(message=="there is no notes".tr()) {
                                       Navigator.of(context).pop();
                                       Navigator.pushNamed(context,EndTripScreen.routeName);
                                     }
-                                    else if(message=='لا يوجد اى مخاطر!')
+                                    else if(message=="there is no dangers".tr())
                                       {
                                         onPressedOk?.call();
                                         Navigator.of(context).pop();
@@ -80,22 +80,22 @@ showMessageDialog({
                                         : AppColors.redColor,
                                   ),
                                   child: Text(
-                                    message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?"التالي":"Ok".tr(),
+                                    message=="there is no notes".tr()||message=="there is no dangers".tr()?"next".tr():"Ok".tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),
                                 ),
                               ),
-                              message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?const Spacer():Container(),
-                              message=='لا يوجد اى ملاحظات!'||message=='لا يوجد اى مخاطر!'?SizedBox(
+                              message=="there is no notes".tr()||message=="there is no dangers".tr()?const Spacer():Container(),
+                              message=="there is no notes".tr()||message=="there is no dangers".tr()?SizedBox(
                                 width: 100.w,
                                 height: 50.h,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if(message=='لا يوجد اى ملاحظات!') {
+                                    if(message=="there is no notes".tr()) {
                                       Navigator.of(context).pop();
                                     }
-                                    else if(message=='لا يوجد اى مخاطر!')
+                                    else if(message=="there is no dangers".tr())
                                     {
                                       Navigator.of(context).pop();
                                     }
@@ -111,7 +111,7 @@ showMessageDialog({
                                         :  AppColors.redColor,
                                   ),
                                   child: Text(
-                                    "الرجوع",
+                                    "back".tr(),
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 16.sp),
                                   ),

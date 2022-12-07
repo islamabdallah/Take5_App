@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../../../presentation/screens/end_trip/end_trip.dart';
 import '../../../presentation/screens/home/home.dart';
 import '../../../presentation/screens/login/login_screen.dart';
-import '../../../presentation/screens/step_one/preparing_step.dart';
 import '../../../presentation/screens/step_one/step_one_questions.dart';
 import '../../../presentation/screens/step_two/step_two.dart';
 import '../../../presentation/screens/step_two_waiting/step_two_start_request_screen.dart';
@@ -22,8 +21,6 @@ class AppRoutes {
 
       case TripScreen.routeName:
         return _materialRoute(const TripScreen(), TripScreen.routeName);
-      case PreparingStepScreen.routeName:
-        return _materialRoute(const PreparingStepScreen(), PreparingStepScreen.routeName);
       case StepOneQuestionsScreen.routeName:
         return _materialRoute(const StepOneQuestionsScreen(), StepOneQuestionsScreen.routeName);
 

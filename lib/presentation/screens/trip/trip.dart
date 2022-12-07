@@ -1,9 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
 import 'dart:ui';
-
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_background_service_android/flutter_background_service_android.dart';
@@ -13,7 +12,6 @@ import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:take5/presentation/widgets/drawer_widget.dart';
-import 'package:take5/presentation/widgets/main_button.dart';
 import 'package:take5/presentation/widgets/powered_by_cemex.dart';
 import '../../../core/constants/app_assets.dart';
 import '../../../core/constants/app_colors.dart';
@@ -27,6 +25,7 @@ import '../../../injection_container.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
 import '../../utils/helpers/helpers.dart';
+import '../../widgets/main_button.dart';
 import '../../widgets/my_app_bar.dart';
 import '../step_one/step_one_questions.dart';
 
@@ -170,7 +169,7 @@ class _TripScreenState extends State<TripScreen> {
           return Scaffold(
             backgroundColor: AppColors.backgroundColor,
             drawer: const DrawerWidget(),
-            appBar: MyAppBar(title: 'المسافة',),
+            appBar: MyAppBar(title: "distance".tr(),),
             body: Center(
               child: Column(
                 children: [
@@ -200,7 +199,7 @@ class _TripScreenState extends State<TripScreen> {
                               ),
                               Text(
                                 state is ArrivedSuccessTripState
-                                    ? 'تم التوصيل'
+                                    ? "arrived".tr()
                                     : " متبقي ${(cubit.d! / 1000).toStringAsFixed(2)} كم ",
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
@@ -212,26 +211,17 @@ class _TripScreenState extends State<TripScreen> {
                               SizedBox(
                                 height: 40.h,
                               ),
-                              Container(
-                                width: double.infinity,
+                              Padding(
                                 padding: EdgeInsets.symmetric(horizontal: 16.w),
-                                child: ElevatedButton(
-                                  onPressed: cubit.isButtonEnabled
-                                      ? () {
-                                          Navigator.pushNamedAndRemoveUntil(
-                                              context,
-                                              StepOneQuestionsScreen.routeName,
-                                              (route) => false);
-                                        }
-                                      : null,
-                                  child:Text('املأ الاستمارة'),
-                                  style: ElevatedButton.styleFrom(
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(
-                                          8.r), // <-- Radius
-                                    ),
-                                  ),
-                                ),
+                                child: MainButton(
+                                  onPressed:cubit.isButtonEnabled
+                                    ? () {
+                                  Navigator.pushNamedAndRemoveUntil(
+                                      context,
+                                      StepOneQuestionsScreen.routeName,
+                                          (route) => false);
+                                }
+                                    : null, title: "fill form".tr(),),
                               ),
                               SizedBox(height: 20.h),
                             ],

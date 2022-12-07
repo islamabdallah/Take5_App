@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -44,29 +43,16 @@ class _LoginScreenState extends State<LoginScreen> {
           }
           if (state is LoginUserFail) {
             Navigator.pop(context);
+            //message from backend
             showMessageDialog(
                 context: context, message: state.message, isSucceeded: false);
           }
           if (state is LoginUserSuccess) {
             Navigator.pop(context);
-            // QuickAlert.show(
-            //     context: context,
-            //     barrierDismissible: false,
-            //     title: "نجح!",
-            //     titleColor: Color(0xFF12c06a),
-            //     text: "تم تسجيل الدخول بنجاح",
-            //     type: QuickAlertType.success,
-            //     confirmBtnColor: AppColors.mainColor,
-            //     confirmBtnText: "تم",
-            //     onConfirmBtnTap: () {
-            //       Navigator.pushNamedAndRemoveUntil(
-            //           context, HomeScreen.routeName, (route) => false);
-            //     });
-
             showMessageDialog(
                 context: context,
                 isSucceeded: true,
-                message: 'تم تسجيل الدخول بنجاح',
+                message:AppStrings.successLogin.tr(),
                 onPressedOk: () {
                   Navigator.pushNamedAndRemoveUntil(
                       context, HomeScreen.routeName, (route) => false);
@@ -123,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   controller: _cubit.serialNumberController,
                                   label: "Id".tr(),
                                   errorText: _cubit.errorMessage ==
-                                          'رقم السركى غير مسجل'
+                                      "serial number isn't exit".tr()
                                       ? _cubit.errorMessage
                                       : null,
                                   prefixIcon: Icons.person_outline_sharp,
@@ -132,14 +118,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         RegExp("[0-9]")),
                                   ],
                                   validator: (String? value) {
-                                    if (value!.isEmpty) return "required".tr();
-                                    // String pattern = r'(^01[0125][0-9]{8}$)';
-                                    // RegExp regex = RegExp(pattern);
-                                    // if (!regex.hasMatch(value)) {
-                                    //   print(_cubit.serialNumberController.text);
-                                    //   return "Enter Valid serial Number".tr();
-                                    // }
-                                    // return null;
+                                    if (value!.isEmpty) return AppStrings.required.tr();
                                   },
                                   keyboardType: TextInputType.number,
                                 ),
@@ -147,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   controller: _cubit.passwordController,
                                   label: "password".tr(),
                                   errorText: _cubit.errorMessage ==
-                                          'خطأ فى كلمة المرور'
+                                      "password is wrong".tr()
                                       ? _cubit.errorMessage
                                       : null,
                                   obscureText: !_cubit.isTextVisible,
@@ -159,7 +138,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       : Icons.remove_red_eye_outlined,
                                   prefixIcon: Icons.lock_outline,
                                   validator: (String? value) {
-                                    if (value!.isEmpty) return "required".tr();
+                                    if (value!.isEmpty) return AppStrings.required.tr();
                                     return null;
                                   },
                                 ),
@@ -172,7 +151,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     {
                                       _cubit.loginUser();
                                     }
-                                  }, title: 'دخول',),
+                                  }, title:"login button title".tr(),),
                               ],
                             ),
                           ),

@@ -9,4 +9,6 @@ class AppStrings {
   static const String appName = 'CemexDictionary';
   static const String login = 'login';
   static const String products = 'Products';
+  static const String successLogin="success login";
+  static const String required="required";
 }
