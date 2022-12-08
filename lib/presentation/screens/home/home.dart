@@ -8,6 +8,7 @@ import 'package:take5/presentation/screens/home/widgets/trip_card.dart';
 import 'package:take5/presentation/screens/trip/trip.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
 import 'package:take5/presentation/utils/helpers/helpers.dart';
+import '../../../core/firebase/push_notification_service.dart';
 import '../../../logic/home_cubit/home_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
 import '../../widgets/drawer_widget.dart';
@@ -27,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     saveLastRoute(HomeScreen.routeName);
+    PushNotificationService.init(context);
     HomeCubit.get(context).getCurrentTrip();
   }
 
