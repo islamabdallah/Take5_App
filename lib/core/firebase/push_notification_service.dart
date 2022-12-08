@@ -1,8 +1,4 @@
-import 'dart:async';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
-
-import '../constants/app_constants.dart';
 import 'notifcation_service.dart';
 
 class PushNotificationService {
@@ -10,14 +6,14 @@ class PushNotificationService {
   static init(context) async {
     // await FirebaseMessaging.instance.getToken();
     await getDeviceToken();
-    await subscribeToTopicAll();
+   // await subscribeToTopicAll();
 
     // workaround for onLaunch: When the app is completely closed (not in the background) and opened directly from the push notification
     FirebaseMessaging.instance
         .getInitialMessage()
         .then((RemoteMessage? message) {
       if (message != null) {
-       // Navigator.pushNamed(context, NotificationScreen.routeName);
+      // Navigator.pushNamed(context, NotificationScreen.routeName);
       }
     });
 
@@ -71,16 +67,16 @@ class PushNotificationService {
     return deviceToken;
   }
 
-  static subscribeToTopicAll() async {
-    await FirebaseMessaging.instance.subscribeToTopic('all');
-  }
-
-  static unsubscribeFromTopicAll() async {
-    await FirebaseMessaging.instance.unsubscribeFromTopic('all');
-  }
+  // static subscribeToTopicAll() async {
+  //   await FirebaseMessaging.instance.subscribeToTopic('all');
+  // }
+  //
+  // static unsubscribeFromTopicAll() async {
+  //   await FirebaseMessaging.instance.unsubscribeFromTopic('all');
+  // }
 
   static deleteDeviceToken() async {
-    await unsubscribeFromTopicAll();
+    //await unsubscribeFromTopicAll();
     await FirebaseMessaging.instance.deleteToken();
   }
 

@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'dart:ui';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_background_service/flutter_background_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,6 +81,10 @@ Future<void> initializeService() async {
 
   // service.startService();
 }
+Future<void> _firebaseMessagingBackgroundHandler(RemoteMessage message) async {
+  await Firebase.initializeApp();
+  print('Handling a background message ${message.messageId}');
+}
 
 // to ensure this is executed
 // run app from xcode, then from xcode menu, select Simulate Background Fetch
@@ -94,7 +100,6 @@ Future<bool> onIosBackground(ServiceInstance service) async {
   await preferences.setStringList('log', log);
   return true;
 }
-
 
 @pragma('vm:entry-point')
 void onStart(ServiceInstance service) async {
@@ -214,6 +219,9 @@ void onStart(ServiceInstance service) async {
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+
+  await Firebase.initializeApp();//why 2 times
+  FirebaseMessaging.onBackgroundMessage(_firebaseMessagingBackgroundHandler);
 
   await di.init();
   await Hive.initFlutter();

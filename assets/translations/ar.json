@@ -66,6 +66,10 @@
   "type of danger": "نوع الخطر",
   "choice danger": "اختر الخطر",
   "Ways to deal with risk": "طرق التعامل مع الخطر",
-  "name of danger": "اسم الخطر  "
+  "name of danger": "اسم الخطر  ",
+  "number of danger": "رقم الخطر",
+  "end trip": "انهاء الرحلة",
+  "trip ended !": "انتهت الرحلة!",
+  "number of dangers": "عدد المخاطر"
 
 }

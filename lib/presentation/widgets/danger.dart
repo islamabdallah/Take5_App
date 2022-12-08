@@ -9,7 +9,6 @@ import 'package:multi_select_flutter/util/multi_select_list_type.dart';
 import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
 import '../../core/constants/app_colors.dart';
 import '../../data/models/responses/trip_pending_response/user_trip_response.dart';
-import '../screens/home/home.dart';
 import '../utils/dialogs/message_dialog.dart';
 import 'main_button.dart';
 
@@ -190,7 +189,7 @@ class _DangerState extends State<Danger> {
                 height: 25.h,
               ),
               cubit.dangers.isNotEmpty?Text(
-                ' عدد المخاطر (${cubit.dangers.length})',
+                ' ${"number of dangers".tr()} (${cubit.dangers.length})',
                 style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold),
               ):Container(),
               Column(
@@ -223,7 +222,7 @@ class _DangerState extends State<Danger> {
                                 Row(
                                   children: [
                                     Text(
-                                      ' رقم الخطر ${index + 1}',
+                                      ' ${"type of danger".tr()} ${index + 1}',
                                       style: TextStyle(
                                         color: AppColors.mainColor,
                                         fontSize: 20.sp,

@@ -1,10 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_assets.dart';
 import 'package:take5/presentation/utils/dialogs/loading_dialog.dart';
 import 'package:take5/presentation/utils/dialogs/message_dialog.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../../logic/end_trip_cubit/end_trip_cubit.dart';
@@ -40,7 +40,7 @@ class _EndTripScreenState extends State<EndTripScreen> {
           }
           if (state is EndTripSuccess) {
             Navigator.pop(context);
-            showMessageDialog(context: context, isSucceeded: true,message: "انتهت الرحلة!", onPressedOk: (){
+            showMessageDialog(context: context, isSucceeded: true,message:"trip ended !".tr(), onPressedOk: (){
               Navigator.pushNamedAndRemoveUntil(
                   context, HomeScreen.routeName, (route) => false);
             });
@@ -57,9 +57,9 @@ class _EndTripScreenState extends State<EndTripScreen> {
             appBar: AppBar(
               toolbarHeight: 80,
               elevation: 0,
-              title:const Text(
-                'انهاء الرحلة',
-                style: TextStyle(color: AppColors.redColor),
+              title:Text(
+                "end trip".tr(),
+                style:const TextStyle(color: AppColors.redColor),
               ),
               backgroundColor: Colors.white,
               centerTitle: true,
@@ -74,9 +74,8 @@ class _EndTripScreenState extends State<EndTripScreen> {
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 16.w),
                     child: MainButton(
-                      onPressed: cubit.endTrip, title: 'انهاء الرحلة',),
+                      onPressed: cubit.endTrip, title:"end trip".tr(),),
                   ),
-
                 ],
               ),
             ),

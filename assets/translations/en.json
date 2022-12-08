@@ -66,5 +66,9 @@
  "type of danger": "type of danger",
  "choice danger":"choice danger",
  "Ways to deal with risk": "Ways to deal with risk",
- "name of danger":"name of danger"
+ "name of danger":"name of danger",
+ "number of danger":"number of danger",
+ "end trip":"end trip",
+ "trip ended !":"trip ended !",
+ "number of dangers": "عدد المخاطر"
 }

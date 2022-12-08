@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "526412415208",
+    "project_id": "take5app-742d3",
+    "storage_bucket": "take5app-742d3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:526412415208:android:a7182f70eae10211fac95d",
+        "android_client_info": {
+          "package_name": "com.android.application"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "526412415208-a3mu88l6luq54is5u559qj0mjc5g1teh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANRXH96tt-VrRaWisQu2rWqbwgz6S700o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "526412415208-a3mu88l6luq54is5u559qj0mjc5g1teh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
