@@ -101,7 +101,7 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
           final _formKey = GlobalKey<FormBuilderState>();
           return Scaffold(
             drawer: const DrawerWidget(),
-              appBar: MyAppBar(title:'المرحلة الثانية',),
+              appBar: MyAppBar(title:"step 2".tr(),),
               body: state is StepTwoGetQuestionsLoading
                   ?const Center(
                       child: CircularProgressIndicator(),

@@ -13,6 +13,7 @@ import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
+import '../../widgets/my_app_bar.dart';
 
 class StepTwoWaitingScreen extends StatefulWidget {
   static const routeName = 'StepTwoWaitingScreen';
@@ -49,7 +50,6 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
     connection.on('SubmitNotification', (message) {
       print(message.toString());
     });
-
     // await connection.invoke('SendMessage', args: ['Bob', 'Says hi!']);
   }
 
@@ -71,7 +71,7 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
               showMessageDialog(
                   context: context,
                   isSucceeded: false,
-                  message: "لم يتم الرد بعد!");
+                  message:"there is no response yet".tr());
             }
           }
           if (state is StepTwoGetRequestRespondFail) {
@@ -89,24 +89,7 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(
             drawer: const DrawerWidget(),
-            appBar: AppBar(
-              leading: Builder(builder: (context) {
-                return IconButton(
-                    icon: const Icon(Icons.menu_open),
-                    onPressed: () {
-                      Scaffold.of(context).openDrawer();
-                    });
-              }),
-              toolbarHeight: 80,
-              elevation: 0,
-              iconTheme: const IconThemeData(color: AppColors.redColor),
-              title: Text(
-                'انتظار المرحله التانيه',
-                style: const TextStyle(color: AppColors.redColor),
-              ),
-              backgroundColor: Colors.white,
-              centerTitle: true,
-            ),
+            appBar: MyAppBar(title:"انتظار المرحله التانيه"),
             body: Column(
               children: [
                 SizedBox(
