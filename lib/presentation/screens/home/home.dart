@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
         }  
         if (state is HomeStartTripFail) {
           Navigator.pop(context);
-          showMessageDialog(context: context, isSucceeded: false,message: "لا يمكنك بدأ الرحلة\n الرجاء التاكد من الانترنت");
+          showMessageDialog(context: context, isSucceeded: false,message: "you can't start trip make sure that network is well".tr());
         }
       },
       builder: (context, state) {

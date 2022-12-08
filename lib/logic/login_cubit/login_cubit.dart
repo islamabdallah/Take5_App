@@ -28,8 +28,8 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> loginUser() async {
     emit(LoginUserLoading());
     final result = await take5Repository.loginUser(
-        driverNumber: int.parse(serialNumberController.text.split(" ").join("")),
-        password: passwordController.text.split(" ").join(""));
+        driverNumber: int.parse(serialNumberController.text.split(" ").join("")),//delete spaces in serial number
+        password: passwordController.text.split(" ").join(""));//delete spaces in password
     result.fold((failure) {
       errorMessage = failure.message;
       emit(LoginUserFail(failure.message));

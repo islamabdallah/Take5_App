@@ -36,6 +36,7 @@
   "there is no notes": "لا يوجد اى ملاحظات!",
   "there is no change in trip": "لا يوجد تغيير في الرحلة",
   "can't know trip status": "لا يمكن معرفة حالة الرحلة",
+  "you can't start trip make sure that network is well": "لا يمكنك بدأ الرحلة\\n الرجاء التاكد من الانترنت",
   "back": "الرجوع",
   "Search": "بحث",
   "Logout": "تسجيل خروج",
