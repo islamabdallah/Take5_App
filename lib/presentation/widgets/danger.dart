@@ -35,7 +35,7 @@ class _DangerState extends State<Danger> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'نوع الخطر',
+                "type of danger".tr(),
                 style: TextStyle(
                     color: AppColors.mainColor,
                     fontSize: 20.sp,
@@ -54,7 +54,7 @@ class _DangerState extends State<Danger> {
                       borderSide: BorderSide(width: 10.w),
                     ),
                   ),
-                  validator: (value) => value == null ? 'مطلوب' : null,
+                  validator: (value) => value == null ? "required".tr() : null,
                   value: cubit.selectedCategory,
                   items: cubit.dangerControlsWithCategory
                       .map((d) => DropdownMenuItem<DangerWithCategoryAPIModels>(
@@ -67,7 +67,7 @@ class _DangerState extends State<Danger> {
                 height: 20.w,
               ),
               Text(
-                'اختر الخطر',
+                "choice danger".tr(),
                 style: TextStyle(
                     color: AppColors.mainColor,
                     fontSize: 20.sp,
@@ -78,7 +78,7 @@ class _DangerState extends State<Danger> {
               ),
               DropdownButtonFormField<DangerModel>(
                   key: GlobalKey(),
-                  validator: (value) => value == null ? 'مطلوب' : null,
+                  validator: (value) => value == null ? "required".tr() : null,
                   decoration: InputDecoration(
                     contentPadding:
                         EdgeInsets.symmetric(vertical: 0, horizontal: 16.w),
@@ -99,7 +99,7 @@ class _DangerState extends State<Danger> {
                 height: 20.w,
               ),
               Text(
-                'طرق التعامل مع الخطر',
+                "Ways to deal with risk".tr(),
                 style: TextStyle(
                     color: AppColors.mainColor,
                     fontSize: 20.sp,
@@ -125,7 +125,7 @@ class _DangerState extends State<Danger> {
                   chipDisplay: MultiSelectChipDisplay(
                     alignment: Alignment.centerRight,
                   ),
-                  validator: (value) => value == null ? 'مطلوب' : null,
+                  validator: (value) => value == null ?"required".tr(): null,
                   key: GlobalKey(),
                   items: cubit.selectedDanger == null
                       ? []
@@ -150,7 +150,7 @@ class _DangerState extends State<Danger> {
                           showMessageDialog(
                             onPressedOk:  cubit.submitAnswers,
                               context: context,
-                              message: 'لا يوجد اى مخاطر!',
+                              message:  "there is no dangers".tr(),
                               isSucceeded: false);
                         }
                         else
@@ -172,7 +172,7 @@ class _DangerState extends State<Danger> {
                           cubit.addDanger();
                         }
                       },
-                      title: 'اضافة',
+                      title:"add".tr(),
                     ),
                   ),
                 ],
@@ -247,7 +247,7 @@ class _DangerState extends State<Danger> {
                                 RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: 'نوع الخطر  ',
+                                      text: "type of danger".tr(),
                                       style: TextStyle(
                                           fontSize: 18.sp,
                                           color: AppColors.greyColor,
@@ -265,7 +265,7 @@ class _DangerState extends State<Danger> {
                                 RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: 'اسم الخطر  ',
+                                      text:"name of danger".tr(),
                                       style: TextStyle(
                                           fontSize: 18.sp,
                                           color: AppColors.greyColor,
@@ -283,7 +283,7 @@ class _DangerState extends State<Danger> {
                                 RichText(
                                   text: TextSpan(children: [
                                     TextSpan(
-                                      text: 'طرق التعامل مع الخطر:  ',
+                                      text:"${"Ways to deal with risk".tr()}: ",
                                       style: TextStyle(
                                           fontSize: 18.sp,
                                           color: AppColors.greyColor,

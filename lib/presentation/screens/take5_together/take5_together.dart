@@ -13,6 +13,7 @@ import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
+import '../../widgets/my_app_bar.dart';
 import '../../widgets/my_text_form_field.dart';
 import '../../widgets/take5toghther_card.dart';
 
@@ -40,28 +41,9 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
   @override
   Widget build(BuildContext context) {
     final _formKey = GlobalKey<FormState>();
-
     return Scaffold(
       drawer: const DrawerWidget(),
-      appBar: AppBar(
-        leading: Builder(builder: (context) {
-          return IconButton(
-              icon: const Icon(Icons.menu_open),
-              onPressed: () {
-                Scaffold.of(context).openDrawer();
-              });
-        }),
-        actionsIconTheme: IconThemeData(size: 2),
-        toolbarHeight: 80,
-        elevation: 0,
-        iconTheme: const IconThemeData(color: AppColors.redColor),
-        title: const Text(
-          'أسأل زميل',
-          style: TextStyle(color: AppColors.redColor),
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
+      appBar: MyAppBar(title:"ask co_worker".tr(),),
       body: BlocProvider<Take5TogetherCubit>(
         create: (context) => sl<Take5TogetherCubit>()..getDrivers(),
         child: BlocBuilder<Take5TogetherCubit, Take5TogetherStates>(
@@ -76,7 +58,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'اسم الزميل',
+                        "name of co_worker".tr(),
                         style: TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 20.sp,
@@ -87,7 +69,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       ),
                       DropdownSearch<Driver>(
                         items: cubit.drivers,
-                        validator: (value) => value == null ? 'مطلوب' : null,
+                        validator: (value) => value == null ?"required".tr() : null,
                         // asyncItems: (String? filter) => getData(filter),
                         // clearButtonProps: ClearButtonProps(isVisible: false),
                         selectedItem: cubit.selectedDriver,
@@ -96,7 +78,6 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                         },
                         popupProps: PopupPropsMultiSelection.dialog(
                           // fit: FlexFit.loose,
-
                           emptyBuilder: (_, __) => Center(
                               child: Column(
                             children: [
@@ -165,7 +146,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           return driver != null
                               ? Text(driver.fullName ?? '')
                               : Text(
-                                  'اسم الزميل',
+                                  "name of co_worker".tr(),
                                   style: TextStyle(
                                       color: Theme.of(context).hintColor,
                                       fontSize: 14),
@@ -176,7 +157,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                         height: 20.w,
                       ),
                       Text(
-                        'من الذى بدأ المحادثة؟',
+                        "who start conversation?".tr(),
                         style: TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 20.sp,
@@ -195,9 +176,9 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                           ),
                         ),
                         key: GlobalKey(),
-                        validator: (value) => value == null ? 'مطلوب' : null,
+                        validator: (value) => value == null ? "required".tr() : null,
                         hint: Text(
-                          'من الذى بدأ المحادثة',
+                          "who start conversation?".tr(),
                           style: TextStyle(
                             fontSize: 14,
                             color: Theme.of(context).hintColor,
@@ -226,7 +207,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                         height: 20.w,
                       ),
                       Text(
-                        'الملاحظات',
+                        "notes".tr(),
                         style: TextStyle(
                             color: AppColors.mainColor,
                             fontSize: 20.sp,
@@ -238,9 +219,9 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                       SizedBox(
                         height: 150.h,
                         child: MyTextFormField(
-                          validator: (value) => value!.isEmpty ? 'مطلوب' : null,
+                          validator: (value) => value!.isEmpty ? "required".tr(): null,
                           controller: cubit.notesController,
-                          label: "الملاحظات",
+                          label: "notes".tr(),
                           maxLines: 5,
                           // errorText: _cubit.errorMessage ==
                           //     'رقم السركى غير مسجل'
@@ -263,7 +244,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                                 if (cubit.notes.isEmpty) {
                                   showMessageDialog(
                                       context: context,
-                                      message: 'لا يوجد اى ملاحظات!',
+                                      message:"there is no notes".tr(),
                                       isSucceeded: false);
                                 } else {
                                   //print(cubit.notes.length);
@@ -286,7 +267,7 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                                   print(cubit.notes);
                                 }
                               },
-                              title: 'اضافة',
+                              title:"add".tr(),
                             ),
                           ),
                         ],

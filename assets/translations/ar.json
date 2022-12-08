@@ -57,6 +57,15 @@
   "end step 2": "انهاء المرحله الثانية",
   "Enter Valid serial Number": "ادخل رقم سركى صحيح",
   "true": "توجد شبكة انترنت",
-  "false":"لا توجد شبكة انترنت"
+  "false":"لا توجد شبكة انترنت",
+  "ask co_worker": "أسأل زميل",
+  "name of co_worker": "اسم الزميل",
+  "who start conversation?": "من الذى بدأ المحادثة؟",
+  "notes": "الملاحظات",
+  "add": "اضافة",
+  "type of danger": "نوع الخطر",
+  "choice danger": "اختر الخطر",
+  "Ways to deal with risk": "طرق التعامل مع الخطر",
+  "name of danger": "اسم الخطر  "
 
 }

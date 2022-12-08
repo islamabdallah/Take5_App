@@ -115,7 +115,7 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const Headline(number: '5', title: 'جاوب علي الاسئلة الاتية',),
+                          Headline(number: '3', title: "answer these questions".tr(),),
                           state is StepTwoGetQuestionsLoading
                               ? const Center(child: CircularProgressIndicator(),)
                               :Padding(
@@ -136,12 +136,13 @@ class _StepTwoScreenState extends State<StepTwoScreen> {
                           ),
                         // Spacer(),
                           MainButton(
-                            onPressed: () {
+                            onPressed: ()
+                            {
                               if(_formKey.currentState?.validate()==true)
                               {
                                 cubit.submitAnswers();
                               }
-                            }, title: "next".tr(),),
+                            },title: "next".tr(),),
                           SizedBox(
                             height: 30.h,
                           ),

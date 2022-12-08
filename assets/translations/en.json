@@ -57,6 +57,14 @@
   "end step 2": "end step 2",
   "Enter Valid serial Number": "Enter Valid serial Number",
   "true": "Network is available",
-  "false": "Network isn't available"
-
+  "false": "Network isn't available",
+  "ask co_worker":"ask co_worker",
+  "name of co_worker":"name of co_worker",
+  "who start conversation?": "who start conversation?",
+ "notes": "notes",
+ "add": "add",
+ "type of danger": "type of danger",
+ "choice danger":"choice danger",
+ "Ways to deal with risk": "Ways to deal with risk",
+ "name of danger":"name of danger"
 }
