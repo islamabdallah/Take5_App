@@ -46,6 +46,7 @@ class TripCubit extends Cubit<TripStates> {
    }
 
 
+    bool iSTripArrivedSuccess = false;
     await preferences.reload();
     String? destination = preferences.getString("destination");
     if (destination != null) {
@@ -53,13 +54,19 @@ class TripCubit extends Cubit<TripStates> {
           tripDestinationArrivedModel:
               TripDestinationArrivedModel.fromJson(jsonDecode(destination)));
 
+
      result.fold((l) => null, (r) {
        enableButton();
        stopService();
+       iSTripArrivedSuccess = true;
        emit(ArrivedSuccessTripState());
-       return;
      });
     }
+    if(iSTripArrivedSuccess){
+      print('ssssssssss');
+      return;
+    }
+    print('tttttttttttt');
 
     if(destination==null){
       AppConstants.startBackgroundService();
