@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:526412415208:android:a7182f70eae10211fac95d",
+        "mobilesdk_app_id": "1:526412415208:android:40ade103917aaacefac95d",
         "android_client_info": {
-          "package_name": "com.android.application"
+          "package_name": "com.cemex.take5"
         }
       },
       "oauth_client": [
