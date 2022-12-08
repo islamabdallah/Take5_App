@@ -28,13 +28,12 @@ class LoginCubit extends Cubit<LoginStates> {
   Future<void> loginUser() async {
     emit(LoginUserLoading());
     final result = await take5Repository.loginUser(
-        driverNumber: int.parse(serialNumberController.text),
-        password: passwordController.text);
+        driverNumber: int.parse(serialNumberController.text.split(" ").join("")),
+        password: passwordController.text.split(" ").join(""));
     result.fold((failure) {
       errorMessage = failure.message;
-      //print(errorMessage);
       emit(LoginUserFail(failure.message));
-    }, (userResponse) {
+    },(userResponse) {
       AppConstants.user = userResponse.data.userAPIModel;
       emit(LoginUserSuccess());
     });

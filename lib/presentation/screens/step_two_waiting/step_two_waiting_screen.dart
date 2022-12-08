@@ -6,7 +6,6 @@ import 'package:signalr_core/signalr_core.dart';
 import 'package:take5/core/constants/app_assets.dart';
 import 'package:take5/logic/step_two_cubit/step_two_cubit.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
-
 import '../../../core/constants/app_colors.dart';
 import '../../../injection_container.dart';
 import '../../utils/dialogs/loading_dialog.dart';

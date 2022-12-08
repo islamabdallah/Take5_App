@@ -314,25 +314,24 @@ class MyApp extends StatelessWidget {
                         showMessageDialog(
                           context: context,
                           isSucceeded: true,
-                          message: 'لا يوجد تغيير في الرحلة',
+                          message: "there is no change in trip".tr(),
                         );
                         break;
                       case 'Cancelled':
                         showMessageDialog(
                             context: context,
                             isSucceeded: true,
-                            message: 'تم الغاء الرحلة',
+                            message:"trip canceled".tr(),
                             onPressedOk: () {
                               Navigator.pushNamedAndRemoveUntil(context,
                                   HomeScreen.routeName, (route) => false);
                             });
-
                         break;
                       case 'Converted':
                         showMessageDialog(
                             context: context,
                             isSucceeded: true,
-                            message: 'تم تحويل الرحلة',
+                            message: "trip converted".tr(),
                             onPressedOk: () {
                               Navigator.pushNamedAndRemoveUntil(context,
                                   HomeScreen.routeName, (route) => false);
@@ -345,12 +344,11 @@ class MyApp extends StatelessWidget {
                     // final context = navigatorKey.currentState!.overlay!.context;
                     Navigator.pop(context);
                     showMessageDialog(
-                    context: context,
-        isSucceeded: false,
-        message: 'لا يمكن معرفة حالة الرحلة',
-        );
+                     context: context,
+                     isSucceeded: false,
+                     message:"can't know trip status".tr(),
+                     );
                     }
-
                 },
                 child: child,
               );
