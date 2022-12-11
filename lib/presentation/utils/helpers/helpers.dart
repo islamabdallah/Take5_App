@@ -19,11 +19,7 @@ void logOut(BuildContext context) {
   //clear global cubits state
   // HomeCubit.get(context).clearData();
 
-  //clear FCM token
-  // PushNotificationService.deleteDeviceToken();
 
-  //clear cached data
-  // SharedPreferences.getInstance().then((value) => value.remove(CACHED_USER));
   sl<Take5Repository>()
       .sendCollection()
       .then((value) =>
@@ -49,6 +45,15 @@ void logOut(BuildContext context) {
                   });
             });
       }));
+
+
+  //clear FCM token
+  // PushNotificationService.deleteDeviceToken();
+
+  //clear cached data
+  SharedPreferences.getInstance().then((value) => value.clear());
+
+
 }
 
 Future<void> saveLastRoute(String route) async {

@@ -48,6 +48,7 @@ class _StepOneQuestionsScreenState extends State<StepOneQuestionsScreen> {
   void initState() {
     saveLastRoute(StepOneQuestionsScreen.routeName);
     AppConstants.stopService();
+    SharedPreferences.getInstance().then((value) => value.clear());
     clearSharedPreferences();
     super.initState();
   }

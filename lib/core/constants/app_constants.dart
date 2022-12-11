@@ -33,10 +33,11 @@ class AppConstants {
       await backgroundService.startService();
     }
   }
-  static sendDataToBackgroudnService() async {
+  static sendDataToBackgroudnService(double distance) async {
     backgroundService.invoke('startTrip',{
       'trip':AppConstants.trip.toJson(),
       'user':AppConstants.user.toJson(),
+      'distance':distance,
     });
   }
 

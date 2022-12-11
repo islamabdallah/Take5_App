@@ -24,120 +24,15 @@ import '../../../data/models/user/user.dart';
 import '../../../injection_container.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
+import '../../utils/dialogs/loading_dialog.dart';
+import '../../utils/dialogs/message_dialog.dart';
 import '../../utils/helpers/helpers.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/my_app_bar.dart';
+import '../home/home.dart';
 import '../step_one/step_one_questions.dart';
 
-Future<void> initializeService() async {
-  final service = FlutterBackgroundService();
-  await service.configure(
-    androidConfiguration: AndroidConfiguration(
-      onStart: onStart,
-      autoStart: true,
-      isForegroundMode: true,
-    ),
-    iosConfiguration: IosConfiguration(
-      autoStart: false,
-      onForeground: onStart,
-    ),
-  );
-}
 
-@pragma('vm:entry-point')
-void onStart(ServiceInstance service) async {
-  // Only available for flutter 3.0.0 and later
-  DartPluginRegistrant.ensureInitialized();
-
-  // For flutter prior to version 3.0.0
-  // We have to register the plugin manually
-
-  if (service is AndroidServiceInstance) {
-    service.on('setAsForeground').listen((event) {
-      service.setAsForegroundService();
-    });
-
-    service.on('setAsBackground').listen((event) {
-      service.setAsBackgroundService();
-    });
-  }
-
-  service.on('stopService').listen((event) {
-    service.stopSelf();
-  });
-
-  Trip? trip;
-  User? user;
-
-  service.on('startTrip').listen((data) {
-    // print('yes');
-    if(data!=null){
-      trip = Trip.fromJson(data["trip"]);
-      user = User.fromJson(data["user"]);
-    }
-    print(trip);
-    print(user);
-  });
-
-  // bring to foreground
-  var loc = LocationService();
-      double d = double.maxFinite;
-  StreamSubscription sub = loc.subscribeEvent((currentPosition) async {
-  if(service is AndroidServiceInstance){
-    if(await service.isForegroundService()) {
-      if (trip != null && user != null) {
-        Position destination = Position.fromMap({
-          'latitude': trip!.latituide,
-          'longitude': trip!.longitude
-        });
-        d = loc.getDistance(currentPosition, destination);
-         //d=100;
-        if (d <= 1000) {
-          //todo save local
-          TripDestinationArrivedModel destinationArrivedRequest =
-          TripDestinationArrivedModel(
-              destinationArrivedDate: DateTime.now());
-
-          SharedPreferences preferences =
-          await SharedPreferences.getInstance();
-          // await preferences.reload();
-          await preferences.setString(
-              "destination", jsonEncode(destinationArrivedRequest.toJson()));
-          print(preferences.get("destination"));
-
-          //todo send to server
-          if (trip!.jobsiteHasNetworkCoverage) {
-            var dio = Dio();
-            try {
-              Response response = await dio.post(
-                AppEndpoints.sendTripUpdate,
-                data: AllTripStepsModel(
-                    userId: user!.userId,
-                    tripId: trip!.tripNumber,
-                    jobsiteId: trip!.jobsiteNumber,
-                    tripDestinationArrivedModel: destinationArrivedRequest,
-                    endStatus: 'DestinationArrived'),
-              );
-              await preferences.setBool('isArrived', true);
-            } on DioError catch (e) {} catch (e) {}
-          }
-          //todo stop timer or service
-          service.stopSelf();
-        }
-      }
-    }
-  service.setForegroundNotificationInfo(
-    title: "My App Service",
-    content: "Updated at ${DateTime.now()}\nمتبقي ${(d/1000).toStringAsFixed(2)} كم ",
-  );
-  }
-
-
-  }, 100); //كل 400 متر بيحسب
-
-
-
-}
 
 class TripScreen extends StatefulWidget {
   static const routeName = 'TripScreen';
@@ -152,9 +47,6 @@ class _TripScreenState extends State<TripScreen> {
   @override
   void initState() {
     saveLastRoute(TripScreen.routeName);
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await initializeService();
-    });
     super.initState();
   }
 
@@ -163,7 +55,44 @@ class _TripScreenState extends State<TripScreen> {
     return BlocProvider(
       create: (context) => sl<TripCubit>()..start(),
       child: BlocConsumer<TripCubit, TripStates>(
-        listener: (context, state) {},
+        listener: (context, state) {
+          if (state is ArrivedLoadingTripState) {
+            loadingAlertDialog(context);
+          }
+          if (state is ArrivedSuccessTripState) {
+            switch (state.message) {
+              case 'Cancelled':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message:"trip canceled".tr(),
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              case 'Converted':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: true,
+                    message: "trip converted".tr(),
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              default:
+                Navigator.pushReplacementNamed(
+                    context, StepOneQuestionsScreen.routeName);
+            }
+
+          }
+          if (state is ArrivedFailTripState) {
+            Navigator.pop(context);
+            showMessageDialog(
+                context: context, isSucceeded: false, message: state.message);
+          }
+        },
         builder: (context, state) {
           var cubit = TripCubit.get(context);
           return Scaffold(
@@ -198,7 +127,7 @@ class _TripScreenState extends State<TripScreen> {
                                     fit: BoxFit.cover),
                               ),
                               Text(
-                                state is ArrivedSuccessTripState
+                                cubit.isArrived!=null && cubit.isArrived!
                                     ? "arrived".tr()
                                     : " متبقي ${(cubit.d! / 1000).toStringAsFixed(2)} كم ",
                                 textAlign: TextAlign.center,
@@ -215,11 +144,15 @@ class _TripScreenState extends State<TripScreen> {
                                 padding: EdgeInsets.symmetric(horizontal: 16.w),
                                 child: MainButton(
                                   onPressed:cubit.isButtonEnabled
-                                    ? () {
-                                  Navigator.pushNamedAndRemoveUntil(
+                                    ? () async {
+                                   var result = await cubit.submitArrival();
+                                   if(result!=null && result==true) {
+                                     if(!mounted) return;
+                                     Navigator.pushNamedAndRemoveUntil(
                                       context,
                                       StepOneQuestionsScreen.routeName,
                                           (route) => false);
+                                   }
                                 }
                                     : null, title: "fill form".tr(),),
                               ),
