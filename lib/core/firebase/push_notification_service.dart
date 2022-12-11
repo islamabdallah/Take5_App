@@ -16,19 +16,16 @@ class PushNotificationService {
       // Navigator.pushNamed(context, NotificationScreen.routeName);
       }
     });
-
     // onMessage: When the app is open and it receives a push notification
     FirebaseMessaging.onMessage.listen((RemoteMessage message) {
       print('Got a message whilst in the foreground!');
       print('Message data: ${message.data}');
       // FlutterAppBadger.updateBadgeCount(1);
-
       RemoteNotification? notification = message.notification;
       AndroidNotification? android = message.notification?.android;
       if (notification != null && android != null) {
         print(
             'Message also contained a notification:\n${message.notification!.title}\n${message.notification!.body}');
-
         // HomeCubit.get(context).changeNotificationCount(
         //     HomeCubit.get(context).userUnSeenNotificationCount + 1);
 

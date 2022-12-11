@@ -70,5 +70,8 @@
  "number of danger":"number of danger",
  "end trip":"end trip",
  "trip ended !":"trip ended !",
- "number of dangers": "عدد المخاطر"
+ "number of dangers": "number of dangers",
+ "check your network connection":"check your network connection",
+ "Something went wrong":"Something went wrong",
+ "process is wrong,trip is not exit":"process is wrong,trip is not exit"
 }

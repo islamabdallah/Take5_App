@@ -6,13 +6,11 @@ class AppStrings {
   // the properties are static so that we can use them without a class instance
   // e.g. can be retrieved by `LocalStorageKey.saveUserId`.
 
-  static const String appName = 'CemexDictionary';
   static const String login = 'login';
-  static const String products = 'Products';
-
   static const String saveDone = 'تم الحفظ';
-
-
   static const String successLogin="success login";
   static const String required="required";
+  static const String checkYourNetworkConnection="check your network connection";
+  static const String somethingWentWrong="Something went wrong";
+  static const String processIsWrongTripIsNotExit="process is wrong,trip is not exit";
 }

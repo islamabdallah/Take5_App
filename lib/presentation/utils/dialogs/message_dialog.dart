@@ -2,8 +2,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:take5/core/constants/app_colors.dart';
+import 'package:take5/core/constants/app_strings.dart';
 import 'package:take5/logic/step_one_cubit/step_one_cubit.dart';
 import 'package:take5/presentation/screens/end_trip/end_trip.dart';
+import 'package:take5/presentation/screens/home/home.dart';
 import 'package:take5/presentation/screens/step_two/step_two.dart';
 
 showMessageDialog({
@@ -42,7 +44,7 @@ showMessageDialog({
                             ),
                           ),
                           Text(
-                            message??'',
+                            message==AppStrings.processIsWrongTripIsNotExit.tr()?"حدث تعديل فى بيانات الرحلة":message??'',
                             textAlign: TextAlign.center,
                             style: TextStyle(fontSize: 18.sp,fontFamily: 'Roboto'),
                             overflow: TextOverflow.ellipsis,
@@ -67,6 +69,11 @@ showMessageDialog({
                                         onPressedOk?.call();
                                         Navigator.of(context).pop();
                                         Navigator.pushNamed(context,StepTwoScreen.routeName);
+                                      }
+                                    else if(message==AppStrings.processIsWrongTripIsNotExit.tr())
+                                      {
+                                        Navigator.of(context).pop();
+                                        Navigator.pushNamed(context,HomeScreen.routeName);
                                       }
                                     else
                                     {

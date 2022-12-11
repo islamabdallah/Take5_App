@@ -109,7 +109,8 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
         method: HttpMethod.POST,
         data: allTripStepsModel
     );
-    print(response.data);
+    print(response.data['data']);
+    print('****');
     return response.data['data'];
   }
 

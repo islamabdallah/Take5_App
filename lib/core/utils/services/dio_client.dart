@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:easy_localization/easy_localization.dart';
+import 'package:take5/core/constants/app_strings.dart';
 
 import '../../errors/exceptions.dart';
 
@@ -76,7 +78,7 @@ class DioClient {
         throw ServerException("Connection Timed Out!");
       }
       if (e.type == DioErrorType.other) {
-        throw ServerException("تاكد من اتصالك بالانترنت");
+        throw ServerException(AppStrings.checkYourNetworkConnection.tr());
       }
       print(e.type);
       if (e.response != null) {
@@ -88,17 +90,17 @@ class DioClient {
           // print('i have data');
           throw ServerException(e.response!.data['message']);
         } else {
-          throw ServerException("Something went wrong");
+          throw ServerException(AppStrings.somethingWentWrong.tr());
         }
         } on ServerException catch(e){
           throw ServerException(e.message);
         } catch(e){
-          throw ServerException("Something went wrong");
+          throw ServerException(AppStrings.somethingWentWrong.tr());
         }
       }
-      throw ServerException("Something went wrong");
+      throw ServerException(AppStrings.somethingWentWrong.tr());
     } catch (e) {
-      throw ServerException("Something went wrong");
+      throw ServerException(AppStrings.somethingWentWrong.tr());
     }
   }
 }
