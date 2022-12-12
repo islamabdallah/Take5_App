@@ -4,7 +4,6 @@ import '../requests/destination_arrived_request/destination_arrived_request.dart
 import '../requests/step_one_complete_request/step_one_complete_request.dart';
 import '../requests/step_two_complete_request/step_two_complete_request.dart';
 import '../requests/step_two_start_request/step_two_start_request.dart';
-import '../requests/trip_start_request/trip_start_request.dart';
 import '../take5_together/take5_together.dart';
 
 
@@ -17,15 +16,13 @@ class AllTripStepsModel with _$AllTripStepsModel{
     String? userId,
     int? tripId,
     int? jobsiteId,
-
+    String? TruckNumber,
     TripDestinationArrivedModel? tripDestinationArrivedModel,
     SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
     Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
     SurveyStepTwoAnswersAPIModel? surveyStepTwoAnswersAPIModel,
     List<Take5TogetherModel>? take5TogetherAPIModels,
-
     String? endStatus
   }) = _AllTripStepsModel;
-
   factory AllTripStepsModel.fromJson(Map<String, dynamic> json) => _$AllTripStepsModelFromJson(json);
 }

@@ -39,7 +39,7 @@ abstract class Take5Repository {
   Future<Either<Failure, String>> startStepTwo(
       {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
-  Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
+  Future<Either<Failure, String>> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel});
 
   Future<Either<Failure, String>> completeStepTwo(
@@ -139,6 +139,7 @@ class Take5RepositoryImpl extends Take5Repository {
         AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
+            TruckNumber: AppConstants.trip.truckNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
   }
 
@@ -294,7 +295,6 @@ class Take5RepositoryImpl extends Take5Repository {
     if (await deviceConnectivity.isConnected == false) {
       return const Left(DeviceConnectivityFailure());
     }
-
     try {
       AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
       allTripStepsModel =
@@ -342,7 +342,6 @@ class Take5RepositoryImpl extends Take5Repository {
     }
     try {
       AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
-
       String result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
       localDataSource.clearCollection();
@@ -353,7 +352,7 @@ class Take5RepositoryImpl extends Take5Repository {
   }
 
   @override
-  Future<Either<Failure, bool>> getStepTwoStartRequestRespond(
+  Future<Either<Failure, String>> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel}) async {
     if (AppConstants.trip.jobsiteHasNetworkCoverage &&
         await deviceConnectivity.isConnected == false) {
@@ -369,10 +368,10 @@ class Take5RepositoryImpl extends Take5Repository {
       if (!AppConstants.trip.jobsiteHasNetworkCoverage ||
           allTripStepsModel.take5StepTwoRequestAPIModel != null ||
           AppConstants.trip.tripStatus == "StepTwoResponsed") {
-        return const Right(true);
+        return const Right("Apprroved");// Right(true)
       }
 
-      bool result = await remoteDataSource.getStepTwoStartRequestRespond(
+      String result = await remoteDataSource.getStepTwoStartRequestRespond(
           allTripStepsModel: allTripStepsModel);
       return Right(result);
     } on ServerException catch (e) {

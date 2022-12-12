@@ -25,7 +25,7 @@ abstract class RemoteDataSource {
   Future<String> checkTripStatus(
       {AllTripStepsModel? allTripStepsModel});
 
-  Future<bool> getStepTwoStartRequestRespond(
+  Future<String> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel});
 
 }
@@ -115,7 +115,7 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
   }
 
   @override
-  Future<bool> getStepTwoStartRequestRespond({AllTripStepsModel? allTripStepsModel}) async{
+  Future<String> getStepTwoStartRequestRespond({AllTripStepsModel? allTripStepsModel}) async{
     final response = await client.request(
         url: AppEndpoints.isRequestApproved,
         method: HttpMethod.POST,

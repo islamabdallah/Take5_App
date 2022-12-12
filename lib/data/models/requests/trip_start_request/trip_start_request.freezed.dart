@@ -23,6 +23,7 @@ mixin _$TripStartRequest {
   String get userId => throw _privateConstructorUsedError;
   int get tripId => throw _privateConstructorUsedError;
   int get jobsiteId => throw _privateConstructorUsedError;
+  String? get TruckNumber => throw _privateConstructorUsedError;
   DateTime get startingDate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +38,12 @@ abstract class $TripStartRequestCopyWith<$Res> {
           TripStartRequest value, $Res Function(TripStartRequest) then) =
       _$TripStartRequestCopyWithImpl<$Res, TripStartRequest>;
   @useResult
-  $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
+  $Res call(
+      {String userId,
+      int tripId,
+      int jobsiteId,
+      String? TruckNumber,
+      DateTime startingDate});
 }
 
 /// @nodoc
@@ -56,6 +62,7 @@ class _$TripStartRequestCopyWithImpl<$Res, $Val extends TripStartRequest>
     Object? userId = null,
     Object? tripId = null,
     Object? jobsiteId = null,
+    Object? TruckNumber = freezed,
     Object? startingDate = null,
   }) {
     return _then(_value.copyWith(
@@ -71,6 +78,10 @@ class _$TripStartRequestCopyWithImpl<$Res, $Val extends TripStartRequest>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int,
+      TruckNumber: freezed == TruckNumber
+          ? _value.TruckNumber
+          : TruckNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       startingDate: null == startingDate
           ? _value.startingDate
           : startingDate // ignore: cast_nullable_to_non_nullable
@@ -87,7 +98,12 @@ abstract class _$$_TripStartRequestCopyWith<$Res>
       __$$_TripStartRequestCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String userId, int tripId, int jobsiteId, DateTime startingDate});
+  $Res call(
+      {String userId,
+      int tripId,
+      int jobsiteId,
+      String? TruckNumber,
+      DateTime startingDate});
 }
 
 /// @nodoc
@@ -104,6 +120,7 @@ class __$$_TripStartRequestCopyWithImpl<$Res>
     Object? userId = null,
     Object? tripId = null,
     Object? jobsiteId = null,
+    Object? TruckNumber = freezed,
     Object? startingDate = null,
   }) {
     return _then(_$_TripStartRequest(
@@ -119,6 +136,10 @@ class __$$_TripStartRequestCopyWithImpl<$Res>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int,
+      TruckNumber: freezed == TruckNumber
+          ? _value.TruckNumber
+          : TruckNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       startingDate: null == startingDate
           ? _value.startingDate
           : startingDate // ignore: cast_nullable_to_non_nullable
@@ -134,6 +155,7 @@ class _$_TripStartRequest implements _TripStartRequest {
       {required this.userId,
       required this.tripId,
       required this.jobsiteId,
+      required this.TruckNumber,
       required this.startingDate});
 
   factory _$_TripStartRequest.fromJson(Map<String, dynamic> json) =>
@@ -146,11 +168,13 @@ class _$_TripStartRequest implements _TripStartRequest {
   @override
   final int jobsiteId;
   @override
+  final String? TruckNumber;
+  @override
   final DateTime startingDate;
 
   @override
   String toString() {
-    return 'TripStartRequest(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, startingDate: $startingDate)';
+    return 'TripStartRequest(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, TruckNumber: $TruckNumber, startingDate: $startingDate)';
   }
 
   @override
@@ -162,14 +186,16 @@ class _$_TripStartRequest implements _TripStartRequest {
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobsiteId, jobsiteId) ||
                 other.jobsiteId == jobsiteId) &&
+            (identical(other.TruckNumber, TruckNumber) ||
+                other.TruckNumber == TruckNumber) &&
             (identical(other.startingDate, startingDate) ||
                 other.startingDate == startingDate));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, userId, tripId, jobsiteId, startingDate);
+  int get hashCode => Object.hash(
+      runtimeType, userId, tripId, jobsiteId, TruckNumber, startingDate);
 
   @JsonKey(ignore: true)
   @override
@@ -190,6 +216,7 @@ abstract class _TripStartRequest implements TripStartRequest {
       {required final String userId,
       required final int tripId,
       required final int jobsiteId,
+      required final String? TruckNumber,
       required final DateTime startingDate}) = _$_TripStartRequest;
 
   factory _TripStartRequest.fromJson(Map<String, dynamic> json) =
@@ -201,6 +228,8 @@ abstract class _TripStartRequest implements TripStartRequest {
   int get tripId;
   @override
   int get jobsiteId;
+  @override
+  String? get TruckNumber;
   @override
   DateTime get startingDate;
   @override

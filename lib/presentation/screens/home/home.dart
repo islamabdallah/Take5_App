@@ -31,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
     PushNotificationService.init(context);
     HomeCubit.get(context).getCurrentTrip();
   }
-
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit, HomeStates>(
@@ -56,6 +55,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 showMessageDialog(context: context, isSucceeded: false,message: "you can't start trip make sure that network is well".tr());
               }
         }
+        if(state is HomeCheckTripStatusFail)
+        {
+            Navigator.pop(context);
+            showMessageDialog(context: context, isSucceeded: false,message: state.message);
+        }
       },
       builder: (context, state) {
         var cubit = HomeCubit.get(context);
@@ -67,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(height: 16.h,),
               state is HomeGetCurrentTripLoading
                   ?const Expanded(child: Center(child: CircularProgressIndicator()))
-                  : cubit.trip == null
+                  :cubit.trip == null
                       ?const NoTripWidget()
                       : TripCard(trip: cubit.trip!),
             ],

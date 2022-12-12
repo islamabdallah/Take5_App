@@ -23,6 +23,7 @@ mixin _$AllTripStepsModel {
   String? get userId => throw _privateConstructorUsedError;
   int? get tripId => throw _privateConstructorUsedError;
   int? get jobsiteId => throw _privateConstructorUsedError;
+  String? get TruckNumber => throw _privateConstructorUsedError;
   TripDestinationArrivedModel? get tripDestinationArrivedModel =>
       throw _privateConstructorUsedError;
   SurveyStepOneAnswersAPIModel? get surveyStepOneAnswersAPIModel =>
@@ -51,6 +52,7 @@ abstract class $AllTripStepsModelCopyWith<$Res> {
       {String? userId,
       int? tripId,
       int? jobsiteId,
+      String? TruckNumber,
       TripDestinationArrivedModel? tripDestinationArrivedModel,
       SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
@@ -80,6 +82,7 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
     Object? userId = freezed,
     Object? tripId = freezed,
     Object? jobsiteId = freezed,
+    Object? TruckNumber = freezed,
     Object? tripDestinationArrivedModel = freezed,
     Object? surveyStepOneAnswersAPIModel = freezed,
     Object? take5StepTwoRequestAPIModel = freezed,
@@ -100,6 +103,10 @@ class _$AllTripStepsModelCopyWithImpl<$Res, $Val extends AllTripStepsModel>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int?,
+      TruckNumber: freezed == TruckNumber
+          ? _value.TruckNumber
+          : TruckNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       tripDestinationArrivedModel: freezed == tripDestinationArrivedModel
           ? _value.tripDestinationArrivedModel
           : tripDestinationArrivedModel // ignore: cast_nullable_to_non_nullable
@@ -196,6 +203,7 @@ abstract class _$$_AllTripStepsModelCopyWith<$Res>
       {String? userId,
       int? tripId,
       int? jobsiteId,
+      String? TruckNumber,
       TripDestinationArrivedModel? tripDestinationArrivedModel,
       SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
@@ -227,6 +235,7 @@ class __$$_AllTripStepsModelCopyWithImpl<$Res>
     Object? userId = freezed,
     Object? tripId = freezed,
     Object? jobsiteId = freezed,
+    Object? TruckNumber = freezed,
     Object? tripDestinationArrivedModel = freezed,
     Object? surveyStepOneAnswersAPIModel = freezed,
     Object? take5StepTwoRequestAPIModel = freezed,
@@ -247,6 +256,10 @@ class __$$_AllTripStepsModelCopyWithImpl<$Res>
           ? _value.jobsiteId
           : jobsiteId // ignore: cast_nullable_to_non_nullable
               as int?,
+      TruckNumber: freezed == TruckNumber
+          ? _value.TruckNumber
+          : TruckNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
       tripDestinationArrivedModel: freezed == tripDestinationArrivedModel
           ? _value.tripDestinationArrivedModel
           : tripDestinationArrivedModel // ignore: cast_nullable_to_non_nullable
@@ -282,6 +295,7 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       {this.userId,
       this.tripId,
       this.jobsiteId,
+      this.TruckNumber,
       this.tripDestinationArrivedModel,
       this.surveyStepOneAnswersAPIModel,
       this.take5StepTwoRequestAPIModel,
@@ -299,6 +313,8 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
   final int? tripId;
   @override
   final int? jobsiteId;
+  @override
+  final String? TruckNumber;
   @override
   final TripDestinationArrivedModel? tripDestinationArrivedModel;
   @override
@@ -323,7 +339,7 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
 
   @override
   String toString() {
-    return 'AllTripStepsModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, tripDestinationArrivedModel: $tripDestinationArrivedModel, surveyStepOneAnswersAPIModel: $surveyStepOneAnswersAPIModel, take5StepTwoRequestAPIModel: $take5StepTwoRequestAPIModel, surveyStepTwoAnswersAPIModel: $surveyStepTwoAnswersAPIModel, take5TogetherAPIModels: $take5TogetherAPIModels, endStatus: $endStatus)';
+    return 'AllTripStepsModel(userId: $userId, tripId: $tripId, jobsiteId: $jobsiteId, TruckNumber: $TruckNumber, tripDestinationArrivedModel: $tripDestinationArrivedModel, surveyStepOneAnswersAPIModel: $surveyStepOneAnswersAPIModel, take5StepTwoRequestAPIModel: $take5StepTwoRequestAPIModel, surveyStepTwoAnswersAPIModel: $surveyStepTwoAnswersAPIModel, take5TogetherAPIModels: $take5TogetherAPIModels, endStatus: $endStatus)';
   }
 
   @override
@@ -335,6 +351,8 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
             (identical(other.tripId, tripId) || other.tripId == tripId) &&
             (identical(other.jobsiteId, jobsiteId) ||
                 other.jobsiteId == jobsiteId) &&
+            (identical(other.TruckNumber, TruckNumber) ||
+                other.TruckNumber == TruckNumber) &&
             (identical(other.tripDestinationArrivedModel,
                     tripDestinationArrivedModel) ||
                 other.tripDestinationArrivedModel ==
@@ -364,6 +382,7 @@ class _$_AllTripStepsModel implements _AllTripStepsModel {
       userId,
       tripId,
       jobsiteId,
+      TruckNumber,
       tripDestinationArrivedModel,
       surveyStepOneAnswersAPIModel,
       take5StepTwoRequestAPIModel,
@@ -391,6 +410,7 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
       {final String? userId,
       final int? tripId,
       final int? jobsiteId,
+      final String? TruckNumber,
       final TripDestinationArrivedModel? tripDestinationArrivedModel,
       final SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
       final Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
@@ -407,6 +427,8 @@ abstract class _AllTripStepsModel implements AllTripStepsModel {
   int? get tripId;
   @override
   int? get jobsiteId;
+  @override
+  String? get TruckNumber;
   @override
   TripDestinationArrivedModel? get tripDestinationArrivedModel;
   @override

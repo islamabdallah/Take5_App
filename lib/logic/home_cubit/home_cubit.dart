@@ -45,6 +45,7 @@ class HomeCubit extends Cubit<HomeStates> {
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber,
+            TruckNumber: AppConstants.trip.truckNumber,
             startingDate: DateTime.now()));
     result.fold((failure) {
       emit(HomeStartTripFail(failure.message));
@@ -80,12 +81,19 @@ class HomeCubit extends Cubit<HomeStates> {
 
   Future<void> checkTripStatus() async {
     emit(HomeCheckTripStatusLoading());
-    final result = await take5Repository.checkTripStatus();
-    result.fold((failure) {
-      emit(HomeCheckTripStatusFail(failure.message));
-    }, (status) {
-      emit(HomeCheckTripStatusSuccess(status));
-    });
+    if(trip==null)
+      {
+        emit(HomeCheckTripStatusFail("لا يوجد رحلة"));
+      }
+    else
+      {
+        final result = await take5Repository.checkTripStatus();
+        result.fold((failure) {
+          emit(HomeCheckTripStatusFail(failure.message));
+        }, (status) {
+          emit(HomeCheckTripStatusSuccess(status));
+        });
+      }
   }
 
  // void logout() async {

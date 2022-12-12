@@ -11,6 +11,7 @@ _$_AllTripStepsModel _$$_AllTripStepsModelFromJson(Map json) =>
       userId: json['userId'] as String?,
       tripId: json['tripId'] as int?,
       jobsiteId: json['jobsiteId'] as int?,
+      TruckNumber: json['TruckNumber'] as String?,
       tripDestinationArrivedModel: json['tripDestinationArrivedModel'] == null
           ? null
           : TripDestinationArrivedModel.fromJson(Map<String, dynamic>.from(
@@ -40,6 +41,7 @@ Map<String, dynamic> _$$_AllTripStepsModelToJson(
       'userId': instance.userId,
       'tripId': instance.tripId,
       'jobsiteId': instance.jobsiteId,
+      'TruckNumber': instance.TruckNumber,
       'tripDestinationArrivedModel':
           instance.tripDestinationArrivedModel?.toJson(),
       'surveyStepOneAnswersAPIModel':

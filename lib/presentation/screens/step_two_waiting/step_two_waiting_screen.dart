@@ -14,6 +14,7 @@ import '../../utils/helpers/helpers.dart';
 import '../../widgets/drawer_widget.dart';
 import '../../widgets/main_button.dart';
 import '../../widgets/my_app_bar.dart';
+import '../home/home.dart';
 
 class StepTwoWaitingScreen extends StatefulWidget {
   static const routeName = 'StepTwoWaitingScreen';
@@ -64,14 +65,23 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           }
           if (state is StepTwoGetRequestRespondSuccess) {
             Navigator.pop(context);
-            if (state.isDone) {
+            if (state.isDone == "Apprroved") {
               Navigator.pushNamedAndRemoveUntil(
                   context, StepTwoScreen.routeName, (route) => false);
-            } else {
+            } else if (state.isDone == "Cancelled") {
+              showMessageDialog(
+                  context: context,
+                  isSucceeded: true,
+                  message:"يوجد تغيير فى بيانات الرحلة",
+                  onPressedOk: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        HomeScreen.routeName, (route) => false);
+                  });
+            } else{
               showMessageDialog(
                   context: context,
                   isSucceeded: false,
-                  message:"there is no response yet".tr());
+                  message: "there is no response yet".tr());
             }
           }
           if (state is StepTwoGetRequestRespondFail) {
@@ -89,7 +99,7 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           var cubit = StepTwoCubit.get(context);
           return Scaffold(
             drawer: const DrawerWidget(),
-            appBar: MyAppBar(title:"انتظار المرحله التانيه"),
+            appBar: MyAppBar(title: "انتظار المرحله التانيه"),
             body: Column(
               children: [
                 SizedBox(
