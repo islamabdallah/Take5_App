@@ -39,26 +39,6 @@ class HomeCubit extends Cubit<HomeStates> {
     });
   }
 
-  startTripWithCheckStatus() async
-  {
-    emit(HomeCheckTripStatusLoading());
-    if (trip == null) {
-      emit(HomeCheckTripStatusFail("لا يوجد رحلة"));
-    }
-    else {
-      final result = await take5Repository.checkTripStatus();
-      result.fold((failure) {
-        emit(HomeCheckTripStatusFail(failure.message));
-      }, (status) {
-        if (status == "Done") {
-          startTrip();
-        }
-        else {
-          emit(HomeCheckTripStatusSuccess(status));
-        }
-      });
-    }
-  }
 
   Future<void> startTrip() async {
     emit(HomeStartTripLoading());
