@@ -21,7 +21,7 @@ TripStartResponse _$TripStartResponseFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TripStartResponse {
   String get message => throw _privateConstructorUsedError;
-  bool get data => throw _privateConstructorUsedError;
+  String get data => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +35,7 @@ abstract class $TripStartResponseCopyWith<$Res> {
           TripStartResponse value, $Res Function(TripStartResponse) then) =
       _$TripStartResponseCopyWithImpl<$Res, TripStartResponse>;
   @useResult
-  $Res call({String message, bool data});
+  $Res call({String message, String data});
 }
 
 /// @nodoc
@@ -62,7 +62,7 @@ class _$TripStartResponseCopyWithImpl<$Res, $Val extends TripStartResponse>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
     ) as $Val);
   }
 }
@@ -75,7 +75,7 @@ abstract class _$$_TripStartResponseCopyWith<$Res>
       __$$_TripStartResponseCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String message, bool data});
+  $Res call({String message, String data});
 }
 
 /// @nodoc
@@ -100,7 +100,7 @@ class __$$_TripStartResponseCopyWithImpl<$Res>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as bool,
+              as String,
     ));
   }
 }
@@ -116,7 +116,7 @@ class _$_TripStartResponse implements _TripStartResponse {
   @override
   final String message;
   @override
-  final bool data;
+  final String data;
 
   @override
   String toString() {
@@ -154,7 +154,7 @@ class _$_TripStartResponse implements _TripStartResponse {
 abstract class _TripStartResponse implements TripStartResponse {
   const factory _TripStartResponse(
       {required final String message,
-      required final bool data}) = _$_TripStartResponse;
+      required final String data}) = _$_TripStartResponse;
 
   factory _TripStartResponse.fromJson(Map<String, dynamic> json) =
       _$_TripStartResponse.fromJson;
@@ -162,7 +162,7 @@ abstract class _TripStartResponse implements TripStartResponse {
   @override
   String get message;
   @override
-  bool get data;
+  String get data;
   @override
   @JsonKey(ignore: true)
   _$$_TripStartResponseCopyWith<_$_TripStartResponse> get copyWith =>

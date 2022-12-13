@@ -65,7 +65,8 @@ class TripCard extends StatelessWidget {
                   MainButton(
                     onPressed: () {
                     // HomeCubit.get(context).checkTripStatus();
-                      HomeCubit.get(context).startTripWithCheckStatus();
+                     // HomeCubit.get(context).startTripWithCheckStatus();
+                      HomeCubit.get(context).startTrip();
                   },title: "start trip".tr(),):
                 MainButton(onPressed: () {
                 //  HomeCubit.get(context).checkTripStatus();

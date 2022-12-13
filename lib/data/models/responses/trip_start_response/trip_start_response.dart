@@ -8,7 +8,7 @@ part 'trip_start_response.g.dart';
 class TripStartResponse with _$TripStartResponse {
   const factory TripStartResponse({
     required String message,
-    required bool data,
+    required String data,
   }) = _TripStartResponse;
 
   factory TripStartResponse.fromJson(Map<String, dynamic> json) => _$TripStartResponseFromJson(json);

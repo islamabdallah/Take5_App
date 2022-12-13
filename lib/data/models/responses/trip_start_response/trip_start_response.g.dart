@@ -9,7 +9,7 @@ part of 'trip_start_response.dart';
 _$_TripStartResponse _$$_TripStartResponseFromJson(Map json) =>
     _$_TripStartResponse(
       message: json['message'] as String,
-      data: json['data'] as bool,
+      data: json['data'] as String,
     );
 
 Map<String, dynamic> _$$_TripStartResponseToJson(
