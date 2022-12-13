@@ -1,4 +1,7 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:take5/core/constants/app_constants.dart';
+import '../../data/repositories/take5_repository.dart';
+import '../../injection_container.dart';
 import 'notifcation_service.dart';
 
 class PushNotificationService {
@@ -50,7 +53,7 @@ class PushNotificationService {
 
     FirebaseMessaging.instance.onTokenRefresh
         .listen((fcmToken) {
-     // _sendTokenToServer(fcmToken);
+     _sendTokenToServer(fcmToken);
     });
   }
 
@@ -58,7 +61,7 @@ class PushNotificationService {
     String? deviceToken = await FirebaseMessaging.instance.getToken();
     print("deviceFirebase Token: $deviceToken");
     if(deviceToken!=null) {
-     // _sendTokenToServer(deviceToken);
+     _sendTokenToServer(deviceToken);
     }
     // LocalStorageService().setToken(deviceToken);
     return deviceToken;
@@ -77,12 +80,11 @@ class PushNotificationService {
     await FirebaseMessaging.instance.deleteToken();
   }
 
-  // static _sendTokenToServer(String token) {
-  //   RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
-  //   remoteDataSource
-  //       .updateUserToken(id: AppConstants.userResponse.data?.id??'', token: token)
-  //       .then((value) => print(value));
-  // }
+  static _sendTokenToServer(String token) {
+    Take5Repository take5Repository = sl<Take5Repository>();
+    take5Repository.sendToken(userId: AppConstants.user.userId, userToken: token)
+        .then((value) => value.fold((l) => print('failed sent token'), (r) => print('token sent success')));
+  }
 // static serialiseAndNavigate(Map<String, dynamic> message, context) {
 //   var notificationData = message['data'];
 //   var view = notificationData['view'];

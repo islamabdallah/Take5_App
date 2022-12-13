@@ -7,12 +7,15 @@ import 'package:take5/presentation/utils/helpers/helpers.dart';
 
 import '../../core/constants/app_colors.dart';
 import '../../core/constants/app_constants.dart';
+import '../screens/home/home.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    bool isHome = ModalRoute.of(context)?.settings.name == HomeScreen.routeName;
+
     var style = TextStyle(
         color: AppColors.mainColor,
         fontWeight: FontWeight.bold,
@@ -22,7 +25,7 @@ class DrawerWidget extends StatelessWidget {
       width: 273.w,
       child: Drawer(
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal:16.0.w,vertical: 25.h),
+          padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 25.h),
           child: ListView(
             children: <Widget>[
               Align(
@@ -34,7 +37,7 @@ class DrawerWidget extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(Icons.close,size: 35.w),
+                    icon: Icon(Icons.close, size: 35.w),
                   ),
                 ),
               ),
@@ -48,7 +51,6 @@ class DrawerWidget extends StatelessWidget {
               ),
               Align(
                 alignment: Alignment.center,
-
                 child: Text(
                   AppConstants.user.driverName,
                   style: TextStyle(
@@ -67,38 +69,62 @@ class DrawerWidget extends StatelessWidget {
                 ),
               ),
               ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 12.w),
-                leading: Icon(Icons.alt_route,color: AppColors.mainColor,size: 30.r,),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+                leading: Icon(
+                  Icons.alt_route,
+                  color: isHome? AppColors.greyColor: AppColors.mainColor,
+                  size: 30.r,
+                ),
                 dense: true,
                 minLeadingWidth: 0,
                 // horizontalTitleGap: 0,
                 title: Text(
                   "تحويل الرحلة",
-                  style: style,
+                  style: TextStyle(
+                      color:isHome? AppColors.greyColor: AppColors.mainColor,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 20.0.sp),
                 ),
-                onTap: () {
+                onTap:isHome?null: () {
                   Navigator.pop(context);
                   HomeCubit.get(context).checkTripStatus();
                 },
               ),
               ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 12.w),
-                leading: Icon(Icons.highlight_remove,color: AppColors.mainColor,size: 30.r,),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+                leading: Icon(
+                  Icons.highlight_remove,
+                  color: isHome? AppColors.greyColor: AppColors.mainColor,
+                  size: 30.r,
+                ),
                 dense: true,
                 minLeadingWidth: 0,
                 // horizontalTitleGap: 0,
                 title: Text(
                   "الغاء الرحلة",
-                  style: style,
+                  style: TextStyle(
+                      color:isHome? AppColors.greyColor: AppColors.mainColor,
+                      fontWeight: FontWeight.bold,
+                      fontStyle: FontStyle.normal,
+                      fontSize: 20.0.sp),
                 ),
-                onTap: () {
-                  Navigator.pop(context);
-                  HomeCubit.get(context).checkTripStatus();
-                },
+                onTap: isHome? null
+                    : () {
+                        Navigator.pop(context);
+                        HomeCubit.get(context).checkTripStatus();
+                      },
               ),
               ListTile(
-                contentPadding: EdgeInsets.symmetric(vertical: 10.h,horizontal: 12.w),
-                leading: Icon(Icons.logout,color: AppColors.mainColor,size: 30.r,),
+                contentPadding:
+                    EdgeInsets.symmetric(vertical: 10.h, horizontal: 12.w),
+                leading: Icon(
+                  Icons.logout,
+                  color: AppColors.mainColor,
+                  size: 30.r,
+                ),
                 dense: true,
                 minLeadingWidth: 0,
                 // horizontalTitleGap: 0,

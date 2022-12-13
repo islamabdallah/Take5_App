@@ -40,19 +40,34 @@ class _HomeScreenState extends State<HomeScreen> {
         }
         if (state is HomeStartTripSuccess) {
           Navigator.pop(context);
-          Navigator.pushNamedAndRemoveUntil(context, TripScreen.routeName, (route) => false);
+
+          switch (state.message) {
+            case 'Cancelled':
+              showMessageDialog(
+                  context: context,
+                  isSucceeded: true,
+                  message:"trip canceled".tr(),
+                  onPressedOk: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        HomeScreen.routeName, (route) => false);
+                  });
+              break;
+            case 'Converted':
+              showMessageDialog(
+                  context: context,
+                  isSucceeded: true,
+                  message: "trip converted".tr(),
+                  onPressedOk: () {
+                    Navigator.pushNamedAndRemoveUntil(context,
+                        HomeScreen.routeName, (route) => false);
+                  });
+              break;
+            default:
+              Navigator.pushNamedAndRemoveUntil(context, TripScreen.routeName, (route) => false);
+          }
+
         }
         if (state is HomeStartTripFail) {
-          if(state.message =='عملية فاشلة الرحلة غير مسجلة')
-            {
-              Navigator.pop(context);
-              showMessageDialog(context: context, isSucceeded: false,message: state.message);
-            }
-            else
-              {
-                Navigator.pop(context);
-                showMessageDialog(context: context, isSucceeded: false,message: "you can't start trip make sure that network is well".tr());
-              }
           Navigator.pop(context);
           showMessageDialog(context: context, isSucceeded: false,message: "you can't start trip make sure that network is well".tr());
         }

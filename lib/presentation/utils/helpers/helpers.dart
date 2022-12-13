@@ -48,7 +48,7 @@ void logOut(BuildContext context) {
 
 
   //clear FCM token
-  // PushNotificationService.deleteDeviceToken();
+  PushNotificationService.deleteDeviceToken();
 
   //clear cached data
 

@@ -27,7 +27,7 @@ abstract class Take5Repository {
   Future<Either<Failure, UserTripResponse>> getCurrentTrip(
       {required String userId});
 
-  Future<Either<Failure, TripStartResponse>> startTrip(
+  Future<Either<Failure, String>> startTrip(
       {required TripStartRequest tripStartRequest});
 
   Future<Either<Failure, String>> arrivedToDestination(
@@ -124,10 +124,10 @@ class Take5RepositoryImpl extends Take5Repository {
 
   // already online
   @override
-  Future<Either<Failure, TripStartResponse>> startTrip(
+  Future<Either<Failure, String>> startTrip(
       {required TripStartRequest tripStartRequest}) async {
     try {
-      TripStartResponse result =
+      String result =
       await remoteDataSource.startTrip(tripStartRequest: tripStartRequest);
       return Right(result);
     } on ServerException catch (e) {

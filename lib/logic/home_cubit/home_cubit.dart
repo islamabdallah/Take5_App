@@ -47,13 +47,13 @@ class HomeCubit extends Cubit<HomeStates> {
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber,
-            TruckNumber: AppConstants.trip.truckNumber,
+            truckNumber: AppConstants.trip.truckNumber,
             startingDate: DateTime.now())
     );
     result.fold((failure) {
       emit(HomeStartTripFail(failure.message));
     }, (startTripResponse) {
-      emit(HomeStartTripSuccess());
+      emit(HomeStartTripSuccess(startTripResponse));
     });
   }
 
@@ -137,13 +137,5 @@ class HomeCubit extends Cubit<HomeStates> {
   //          });
   //    }));
   //  }
-  sendToken({required String userId, required String userToken}) async {
-    final result = await take5Repository.sendToken(
-        userId: userId, userToken: userToken);
-    result.fold((failure) {
-      emit(HomeSendTokenFail(failure.message));
-    }, (response) {
-      emit(HomeSendTokenSuccess());
-    });
-  }
+
 }

@@ -17,7 +17,12 @@ class HomeGetCurrentTripFail extends HomeStates {
 
 class HomeStartTripLoading extends HomeStates {}
 
-class HomeStartTripSuccess extends HomeStates {}
+class HomeStartTripSuccess extends HomeStates {
+  final String message;
+
+  HomeStartTripSuccess(this.message);
+
+}
 
 class HomeStartTripFail extends HomeStates {
   final String? message;
@@ -38,11 +43,4 @@ class HomeCheckTripStatusFail extends HomeStates {
   final String? message;
 
   HomeCheckTripStatusFail(this.message);
-}
-class HomeSendTokenSuccess extends HomeStates {}
-
-class HomeSendTokenFail extends HomeStates {
-  final String? message;
-
-  HomeSendTokenFail(this.message);
 }

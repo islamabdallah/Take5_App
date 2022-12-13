@@ -18,7 +18,7 @@ abstract class RemoteDataSource {
   Future<UserTripResponse> getCurrentTrip(
       {required String userId});
 
-  Future<TripStartResponse> startTrip(
+  Future<String> startTrip(
       {required TripStartRequest tripStartRequest});
 
   Future<String> sendCollection(
@@ -83,14 +83,14 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
   }
 
   @override
-  Future<TripStartResponse> startTrip({required TripStartRequest tripStartRequest})async {
+  Future<String> startTrip({required TripStartRequest tripStartRequest})async {
     final response = await client.request(
       url: AppEndpoints.tripStarting,
       method: HttpMethod.POST,
       data: tripStartRequest
     );
     print(response.data);
-    return TripStartResponse.fromJson(response.data);
+    return response.data['data'];
   }
 
   @override
