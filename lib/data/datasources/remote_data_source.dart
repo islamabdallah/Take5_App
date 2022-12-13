@@ -28,6 +28,8 @@ abstract class RemoteDataSource {
   Future<String> getStepTwoStartRequestRespond(
       {AllTripStepsModel? allTripStepsModel});
 
+  Future<bool> sendToken(
+      {required String userId,required String userToken});
 }
 
 // class RemoteDataSourceImpl extends RemoteDataSource {
@@ -120,6 +122,20 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
         url: AppEndpoints.isRequestApproved,
         method: HttpMethod.POST,
         data: allTripStepsModel
+    );
+    print(response.data);
+    return response.data['data'];
+  }
+  @override
+  Future<bool> sendToken(
+      {required String userId,required String userToken}) async{
+    final response = await client.request(
+        url: AppEndpoints.sendUserToken,
+        method: HttpMethod.POST,
+        queryParameters: {
+          "userId":userId,
+          "newToken":userToken
+        }
     );
     print(response.data);
     return response.data['data'];

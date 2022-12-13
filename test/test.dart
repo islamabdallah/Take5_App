@@ -48,6 +48,13 @@ Future<void> main() async {
 
     },
   );
+  test(
+    'test sendToken',//name
+        () async {
+          RemoteDataSource remoteDataSource = sl<RemoteDataSource>();
+          await remoteDataSource.sendToken(userId: "361c2269-a77a-4b08-bc26-3a5c18b9a0f1", userToken: "et2MyGJiTra6Zfw6LdPchb:APA91bH_bcW1nz3yUuWWPT9FAcQZR7BhS7mglCxhwjm2mp0Z-6AqW2p_KIa7pkWwmbN7zY2zdvraZD3y_dV4oCSmbLEAoeACxA7RaFY-ucXyAICf89f9h9Mu2ydf7LYgYVYpReqoSbd9");
+    },
+  );
   // test(
   //   'test getPendingTrip API',//name
   //       () async {

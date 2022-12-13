@@ -60,6 +60,7 @@ abstract class Take5Repository {
   Future<Either<Failure, String>> endTrip();
 
   Future<Either<Failure, String>> sendCollection();
+  Future<Either<Failure, bool>> sendToken({required String userId,required String userToken});
 }
 
 class Take5RepositoryImpl extends Take5Repository {
@@ -138,9 +139,10 @@ class Take5RepositoryImpl extends Take5Repository {
     return localDataSource.getCachedAllTripStepsModel() ??
         AllTripStepsModel(
             userId: AppConstants.user.userId,
-            tripId: AppConstants.trip.tripNumber,
-            TruckNumber: AppConstants.trip.truckNumber,
-            jobsiteId: AppConstants.trip.jobsiteNumber);
+            tripId: AppConstants.trip.tripNumber,//if no pending trip it will be null
+            TruckNumber: AppConstants.trip.truckNumber,//if no pending trip it will be null
+            jobsiteId: AppConstants.trip.jobsiteNumber,//if no pending trip it will be null
+        );
   }
 
   Future<String> _sendAllStepsModel(AllTripStepsModel allTripStepsModel) async {
@@ -396,5 +398,15 @@ class Take5RepositoryImpl extends Take5Repository {
         take5StepTwoRequestAPIModel: startStepTwoRequest);
     String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
     return Right(result);
+  }
+  @override
+  Future<Either<Failure, bool>> sendToken({required String userId,required String userToken})
+  async {
+    try {
+      bool result =await remoteDataSource.sendToken(userId: userId, userToken: userToken);
+      return Right(result);
+    } on ServerException catch (e) {
+      return Left(ServerFailure(e.message));
+    }
   }
 }
