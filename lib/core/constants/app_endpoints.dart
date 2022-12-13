@@ -12,4 +12,5 @@ class AppEndpoints {
   static const String sendOfflineTripAllSteps = '$baseUrl/TripAPI/SendOfflineTripAllSteps';
   static const String checkTripStatus = '$baseUrl/TripAPI/CheckTripStatus';
   static const String isRequestApproved = '$baseUrl/TripAPI/IsRequestApproved';
+  static const String sendUserToken = '$baseUrl/LoginAPI/refreshToken';
 }

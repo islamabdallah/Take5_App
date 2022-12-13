@@ -39,3 +39,10 @@ class HomeCheckTripStatusFail extends HomeStates {
 
   HomeCheckTripStatusFail(this.message);
 }
+class HomeSendTokenSuccess extends HomeStates {}
+
+class HomeSendTokenFail extends HomeStates {
+  final String? message;
+
+  HomeSendTokenFail(this.message);
+}

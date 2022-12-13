@@ -21,22 +21,24 @@ class HomeCubit extends Cubit<HomeStates> {
   HomeCubit({required this.take5Repository}) : super(InitialHomeState());
 
   Trip? trip;
+
 //done
-  Future<void> getCurrentTrip() async{
-    trip=null;
+  Future<void> getCurrentTrip() async {
+    trip = null;
     emit(HomeGetCurrentTripLoading());
     final result =
     await take5Repository.getCurrentTrip(userId: AppConstants.user.userId);
     result.fold((failure) {
       emit(HomeGetCurrentTripFail(failure.message));
     }, (tripPendingResponse) {
-      if(tripPendingResponse.data!=null){
-      trip = tripPendingResponse.data!.tripAPIModel;
-      AppConstants.trip = tripPendingResponse.data!.tripAPIModel;
+      if (tripPendingResponse.data != null) {
+        trip = tripPendingResponse.data!.tripAPIModel;
+        AppConstants.trip = tripPendingResponse.data!.tripAPIModel;
       }
       emit(HomeGetCurrentTripSuccess());
     });
   }
+
 
   Future<void> startTrip() async {
     emit(HomeStartTripLoading());
@@ -45,8 +47,9 @@ class HomeCubit extends Cubit<HomeStates> {
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber,
-            truckNumber: AppConstants.trip.truckNumber,
-            startingDate: DateTime.now()));
+            TruckNumber: AppConstants.trip.truckNumber,
+            startingDate: DateTime.now())
+    );
     result.fold((failure) {
       emit(HomeStartTripFail(failure.message));
     }, (startTripResponse) {
@@ -55,64 +58,92 @@ class HomeCubit extends Cubit<HomeStates> {
   }
 
   void continueTrip(BuildContext context) async {
-    switch (trip!.tripStatus) {
-      case 'Started':
-        Navigator.pushReplacementNamed(context, TripScreen.routeName);
-        break;
-      case 'DestinationArrived':
-        Navigator.pushReplacementNamed(context, StepOneQuestionsScreen.routeName);
-        break;
-      case 'SurveyStepOneCompleted':
-        Navigator.pushReplacementNamed(context, StepTwoStartRequestScreen.routeName);
-        break;
-      case 'StepTwoRequested':
-        Navigator.pushReplacementNamed(context, StepTwoWaitingScreen.routeName);
-        break;
-      case 'StepTwoResponsed':
-        Navigator.pushReplacementNamed(context, StepTwoWaitingScreen.routeName);
-        break;
-        //todo change this to take5together and add one for end trip screen
-      case 'SurveyStepTwoCompleted':
-        Navigator.pushReplacementNamed(context, Take5TogetherScreen.routeName);
-        break;
-      default:
+    emit(HomeCheckTripStatusLoading());
+    if (trip == null) {
+      emit(HomeCheckTripStatusFail("لا يوجد رحلة"));
+    }
+    else {
+      final result = await take5Repository.checkTripStatus();
+      result.fold((failure) {
+        emit(HomeCheckTripStatusFail(failure.message));
+      }, (status) {
+        if (status == "Done") {
+          switch (trip!.tripStatus) {
+            case 'Started':
+              Navigator.pushReplacementNamed(context, TripScreen.routeName);
+              break;
+            case 'DestinationArrived':
+              Navigator.pushReplacementNamed(
+                  context, StepOneQuestionsScreen.routeName);
+              break;
+            case 'SurveyStepOneCompleted':
+              Navigator.pushReplacementNamed(
+                  context, StepTwoStartRequestScreen.routeName);
+              break;
+            case 'StepTwoRequested':
+              Navigator.pushReplacementNamed(
+                  context, StepTwoWaitingScreen.routeName);
+              break;
+            case 'StepTwoResponsed':
+              Navigator.pushReplacementNamed(
+                  context, StepTwoWaitingScreen.routeName);
+              break;
+          //todo change this to take5together and add one for end trip screen
+            case 'SurveyStepTwoCompleted':
+              Navigator.pushReplacementNamed(
+                  context, Take5TogetherScreen.routeName);
+              break;
+            default:
+          }
+        }
+        else {
+          emit(HomeCheckTripStatusSuccess(status));
+        }
+      });
     }
   }
 
   Future<void> checkTripStatus() async {
     emit(HomeCheckTripStatusLoading());
-    if(trip==null)
-      {
-        emit(HomeCheckTripStatusFail("لا يوجد رحلة"));
-      }
-    else
-      {
-        final result = await take5Repository.checkTripStatus();
-        result.fold((failure) {
-          emit(HomeCheckTripStatusFail(failure.message));
-        }, (status) {
-          emit(HomeCheckTripStatusSuccess(status));
-        });
-      }
+    if (trip == null) {
+      emit(HomeCheckTripStatusFail("لا يوجد رحلة"));
+    }
+    else {
+      final result = await take5Repository.checkTripStatus();
+      result.fold((failure) {
+        emit(HomeCheckTripStatusFail(failure.message));
+      }, (status) {
+        emit(HomeCheckTripStatusSuccess(status));
+      });
+    }
   }
 
- // void logout() async {
- //   final result = await take5Repository
- //        .sendCollection();
- //
- //   result.fold((l) {
- //     return null;
- //   }, (r) {
- //     return null;
- //   })
- //        .then((value) => value.fold((l) => print(l.message), (r) {
- //      sl<Take5Repository>().clearUser().fold((l) => print(l.message),
- //              (r) {
- //            print("success logout");
- //            //Navigate to login screen
- //            Navigator.of(context).pushNamedAndRemoveUntil(
- //                LoginScreen.routeName, (Route<dynamic> route) => false);
- //          });
- //    }));
- //  }
+  // void logout() async {
+  //   final result = await take5Repository
+  //        .sendCollection();
+  //
+  //   result.fold((l) {
+  //     return null;
+  //   }, (r) {
+  //     return null;
+  //   })
+  //        .then((value) => value.fold((l) => print(l.message), (r) {
+  //      sl<Take5Repository>().clearUser().fold((l) => print(l.message),
+  //              (r) {
+  //            print("success logout");
+  //            //Navigate to login screen
+  //            Navigator.of(context).pushNamedAndRemoveUntil(
+  //                LoginScreen.routeName, (Route<dynamic> route) => false);
+  //          });
+  //    }));
+  //  }
+  sendToken({required String userId, required String userToken}) async {
+    final result = await take5Repository.sendToken(
+        userId: userId, userToken: userToken);
+    result.fold((failure) {
+      emit(HomeSendTokenFail(failure.message));
+    }, (response) {
+      emit(HomeSendTokenSuccess());
+    });
+  }
 }
