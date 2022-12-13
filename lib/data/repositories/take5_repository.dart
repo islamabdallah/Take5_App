@@ -139,7 +139,7 @@ class Take5RepositoryImpl extends Take5Repository {
         AllTripStepsModel(
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
-            TruckNumber: AppConstants.trip.truckNumber,
+            truckNumber: AppConstants.trip.truckNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
   }
 

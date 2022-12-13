@@ -11,7 +11,7 @@ class TripStartRequest with _$TripStartRequest{
     required String userId,
     required int tripId,
     required int jobsiteId,
-    required String? TruckNumber,
+    required String? truckNumber,
     required DateTime startingDate,
   }) = _TripStartRequest;
 

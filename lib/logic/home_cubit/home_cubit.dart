@@ -45,7 +45,7 @@ class HomeCubit extends Cubit<HomeStates> {
             userId: AppConstants.user.userId,
             tripId: AppConstants.trip.tripNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber,
-            TruckNumber: AppConstants.trip.truckNumber,
+            truckNumber: AppConstants.trip.truckNumber,
             startingDate: DateTime.now()));
     result.fold((failure) {
       emit(HomeStartTripFail(failure.message));

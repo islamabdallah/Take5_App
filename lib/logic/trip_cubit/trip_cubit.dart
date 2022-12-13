@@ -51,6 +51,8 @@ class TripCubit extends Cubit<TripStates> {
     //
     //todo code to check background service
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
+
     isArrivedSent = preferences.getBool('isArrived');
     if (isArrivedSent != null && isArrivedSent == true) {
       enableButton();
@@ -59,7 +61,6 @@ class TripCubit extends Cubit<TripStates> {
       return;
     }
 
-    await preferences.reload();
     String? destination = preferences.getString("destination");
     if (destination != null) {
       isArrived=true;
@@ -250,13 +251,20 @@ void onStart(ServiceInstance service) async {
                       userId: user!.userId,
                       tripId: trip!.tripNumber,
                       jobsiteId: trip!.jobsiteNumber,
+                      truckNumber: trip!.truckNumber,
                       tripDestinationArrivedModel: destinationArrivedRequest,
                       endStatus: 'DestinationArrived'),
                 );
+                print(response);
                 await preferences.setBool('isArrived', true);
-              } on DioError catch (e) {} catch (e) {}
+              } on DioError catch (e) {
+                await preferences.setBool('isArrived', false);
+              } catch (e) {
+                await preferences.setBool('isArrived', false);
+              }
             }
             //todo stop timer or service
+
             service.stopSelf();
           }
         }

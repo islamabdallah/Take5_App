@@ -1,4 +1,6 @@
 import 'dart:convert';
+import 'dart:developer';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:take5/core/constants/app_constants.dart';
 import 'package:take5/data/models/requests/trip_start_request/trip_start_request.dart';
@@ -91,7 +93,8 @@ class  RemoteDataSourceImpl  extends RemoteDataSource {
 
   @override
   Future<String> sendCollection({required AllTripStepsModel allTripStepsModel}) async{
-    print(jsonEncode(allTripStepsModel.toJson()));
+    log(jsonEncode(allTripStepsModel.toJson()));
+    print('tttt');
     final response = await client.request(
         url: AppConstants.trip.jobsiteHasNetworkCoverage? AppEndpoints.sendTripUpdate:AppEndpoints.sendOfflineTripAllSteps,
         method: HttpMethod.POST,

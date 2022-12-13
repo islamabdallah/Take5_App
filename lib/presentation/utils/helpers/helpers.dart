@@ -51,7 +51,11 @@ void logOut(BuildContext context) {
   // PushNotificationService.deleteDeviceToken();
 
   //clear cached data
-  SharedPreferences.getInstance().then((value) => value.clear());
+
+  SharedPreferences.getInstance().then((value) async {
+    await value.reload();
+    return value.clear();
+  });
 
 
 }

@@ -16,7 +16,7 @@ class AllTripStepsModel with _$AllTripStepsModel{
     String? userId,
     int? tripId,
     int? jobsiteId,
-    String? TruckNumber,
+    String? truckNumber,
     TripDestinationArrivedModel? tripDestinationArrivedModel,
     SurveyStepOneAnswersAPIModel? surveyStepOneAnswersAPIModel,
     Take5StepTwoRequestAPIModel? take5StepTwoRequestAPIModel,
