@@ -33,8 +33,6 @@ class StepTwoCubit extends Cubit<StepTwoState> {
         //       .add(Answer(id: question.id, question: question.question));
         // }
       }
-      print(takeFiveSurvey?.stepTwoQuestions.length);
-      print(step2Answers.length);
       emit(StepTwoGetQuestionsSuccess());
     });
   }
@@ -71,16 +69,13 @@ class StepTwoCubit extends Cubit<StepTwoState> {
   Future<void> getStepTwoStartRequestRespond() async {
     emit(StepTwoGetRequestRespondLoading());
     final result = await take5Repository.getStepTwoStartRequestRespond(
-      allTripStepsModel: AllTripStepsModel(
-          userId: AppConstants.user.userId,
-          tripId: AppConstants.trip.tripNumber,
-          truckNumber: AppConstants.trip.truckNumber ,
-          jobsiteId: AppConstants.trip.jobsiteNumber),
-    );
+        take5StepTwoRequestAPIModel:
+            Take5StepTwoRequestAPIModel(responseDate: DateTime.now()));
+
     result.fold(
       (failure) {
         emit(StepTwoGetRequestRespondFail(failure.message));
-        take5Repository.startStepTwoOffline(take5StepTwoRequestAPIModel: Take5StepTwoRequestAPIModel(responseDate: DateTime.now()));
+        //take5Repository.startStepTwoOffline(take5StepTwoRequestAPIModel: Take5StepTwoRequestAPIModel(responseDate: DateTime.now()));
       },
       (isDone) => emit(StepTwoGetRequestRespondSuccess(isDone)),
     );

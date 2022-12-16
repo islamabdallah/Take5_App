@@ -98,12 +98,12 @@ String tripStatusArabic(String triStatus) {
       return 'تم انهاء المرحلة الاولي';
     case 'StepTwoRequested':
       return 'تم ارسال طلب البدأ في المرحلة الثانية';
-    case 'StepTwoResponse':
+    case 'StepTwoResponsed':
       return 'تم الاستجابة علي طلب البدأ في المرحلة الثانية';
     case 'SurveyStepTwoCompleted':
       return 'تم انهاء المرحلة الثانية';
     default:
-      return '';
+      return 'غير معلوم';
   }
 }
 

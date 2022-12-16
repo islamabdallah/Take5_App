@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:take5/core/constants/app_strings.dart';
@@ -70,12 +72,14 @@ class DioClient {
           );
           break;
       }
+      log(response.toString());
       return response;
     } on DioError catch (e) {
+      log(e.toString());
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.sendTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw ServerException("Connection Timed Out!");
+        throw ServerException(AppStrings.connectionTimedOut);
       }
       if (e.type == DioErrorType.other) {
         throw ServerException(AppStrings.checkYourNetworkConnection.tr());

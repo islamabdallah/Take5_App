@@ -25,8 +25,8 @@ class StepTwoStartRequestFail extends StepTwoState {
 
 class StepTwoGetRequestRespondLoading extends StepTwoState {}
 class StepTwoGetRequestRespondSuccess extends StepTwoState {
-  final String isDone;
-  StepTwoGetRequestRespondSuccess(this.isDone);
+  final String message;
+  StepTwoGetRequestRespondSuccess(this.message);
 }
 
 class StepTwoGetRequestRespondFail extends StepTwoState {

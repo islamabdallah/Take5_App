@@ -60,26 +60,8 @@ showMessageDialog({
                                 height: 50.h,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if(message=="there is no notes".tr()) {
-                                      Navigator.of(context).pop();
-                                      Navigator.pushNamed(context,EndTripScreen.routeName);
-                                    }
-                                    else if(message=="there is no dangers".tr())
-                                      {
-                                        onPressedOk?.call();
-                                        Navigator.of(context).pop();
-                                        Navigator.pushNamed(context,StepTwoScreen.routeName);
-                                      }
-                                    else if(message==AppStrings.processIsWrongTripIsNotExit.tr())
-                                      {
-                                        Navigator.of(context).pop();
-                                        Navigator.pushNamed(context,HomeScreen.routeName);
-                                      }
-                                    else
-                                    {
-                                      Navigator.of(context).pop();
-                                      onPressedOk?.call();
-                                    }
+                                    Navigator.of(context).pop();
+                                    onPressedOk?.call();
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded
@@ -99,18 +81,7 @@ showMessageDialog({
                                 height: 50.h,
                                 child: ElevatedButton(
                                   onPressed: () {
-                                    if(message=="there is no notes".tr()) {
                                       Navigator.of(context).pop();
-                                    }
-                                    else if(message=="there is no dangers".tr())
-                                    {
-                                      Navigator.of(context).pop();
-                                    }
-                                    else
-                                    {
-                                      Navigator.of(context).pop();
-                                      onPressedOk?.call();
-                                    }
                                   },
                                   style: ElevatedButton.styleFrom(
                                     primary: isSucceeded

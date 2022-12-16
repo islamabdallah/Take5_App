@@ -73,5 +73,6 @@
  "number of dangers": "number of dangers",
  "check your network connection":"check your network connection",
  "Something went wrong":"Something went wrong",
+ "Connection Timed Out!": "Connection Timed Out!",
  "process is wrong,trip is not exit":"process is wrong,trip is not exit"
 }

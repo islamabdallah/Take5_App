@@ -143,6 +143,7 @@ class TripCubit extends Cubit<TripStates> {
 
   submitArrival() async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.reload();
     bool? isArrived = preferences.getBool('isArrived');
     if (isArrived != null && isArrived) {
       return true;
@@ -236,7 +237,7 @@ void onStart(ServiceInstance service) async {
 
             SharedPreferences preferences =
             await SharedPreferences.getInstance();
-            // await preferences.reload();
+            await preferences.reload();
             await preferences.setString(
                 "destination", jsonEncode(destinationArrivedRequest.toJson()));
             print(preferences.get("destination"));
@@ -256,6 +257,9 @@ void onStart(ServiceInstance service) async {
                       endStatus: 'DestinationArrived'),
                 );
                 print(response);
+                SharedPreferences preferences =
+                await SharedPreferences.getInstance();
+                await preferences.reload();
                 await preferences.setBool('isArrived', true);
               } on DioError catch (e) {
                 await preferences.setBool('isArrived', false);
@@ -269,9 +273,10 @@ void onStart(ServiceInstance service) async {
           }
         }
       }
+      String distanceRemaining =d ==double.maxFinite? "المسافة غير معلومة": "متبقي${(d/1000).toStringAsFixed(2)} كم ";
       service.setForegroundNotificationInfo(
         title: "My App Service",
-        content: "Updated at ${DateTime.now()}\nمتبقي ${(d/1000).toStringAsFixed(2)} كم ",
+        content: "Updated at ${DateTime.now()}\n$distanceRemaining",
       );
     }
 

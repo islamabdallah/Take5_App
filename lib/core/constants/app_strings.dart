@@ -11,6 +11,7 @@ class AppStrings {
   static const String successLogin="success login";
   static const String required="required";
   static const String checkYourNetworkConnection="check your network connection";
+  static const String connectionTimedOut ="Connection Timed Out!";
   static const String somethingWentWrong="Something went wrong";
   static const String processIsWrongTripIsNotExit="process is wrong,trip is not exit";
 }

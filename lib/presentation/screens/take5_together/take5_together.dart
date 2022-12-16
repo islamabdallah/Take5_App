@@ -243,6 +243,10 @@ class _Take5TogetherScreenState extends State<Take5TogetherScreen> {
                                 // print(cubit.notes.length);
                                 if (cubit.notes.isEmpty) {
                                   showMessageDialog(
+                                      onPressedOk: () {
+                                        Navigator.pushNamedAndRemoveUntil(context,
+                                            EndTripScreen.routeName, (route) => false);
+                                      },
                                       context: context,
                                       message:"there is no notes".tr(),
                                       isSucceeded: false);

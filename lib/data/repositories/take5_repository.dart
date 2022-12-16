@@ -40,16 +40,13 @@ abstract class Take5Repository {
       {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
   Future<Either<Failure, String>> getStepTwoStartRequestRespond(
-      {AllTripStepsModel? allTripStepsModel});
+      {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
   Future<Either<Failure, String>> completeStepTwo(
       {required SurveyStepTwoAnswersAPIModel surveyStepTwoAnswersAPIModel});
 
   Future<Either<Failure, String>> take5Together(
       {required List<Take5TogetherModel> notes});
-
-  Future<Either<Failure, String>> startStepTwoOffline(
-      {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel});
 
   Future<Either<Failure, String>> checkTripStatus();
 
@@ -354,50 +351,59 @@ class Take5RepositoryImpl extends Take5Repository {
 
   @override
   Future<Either<Failure, String>> getStepTwoStartRequestRespond(
-      {AllTripStepsModel? allTripStepsModel}) async {
-    if (AppConstants.trip.jobsiteHasNetworkCoverage &&
-        await deviceConnectivity.isConnected == false) {
-      return const Left(DeviceConnectivityFailure());
-    }
+      {required Take5StepTwoRequestAPIModel take5StepTwoRequestAPIModel}) async {
 
     try {
       AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
 
+      if(
+      AppConstants.trip.tripStatus == "StepTwoResponsed") {
+        return const Right("Approved");// Right(true)
+      }
       //لو مفيش تغطية للانترنت في الرحلة
       //لو الrequest متبعتش و خزناه لوكال في case ال inbetween
       //لو عمل استكمال للرحلة و كانت الtripStatus ب Responsed يعني اتعمل approve قبل كدا
       if (!AppConstants.trip.jobsiteHasNetworkCoverage ||
-          allTripStepsModel.take5StepTwoRequestAPIModel != null ||
-          AppConstants.trip.tripStatus == "StepTwoResponsed") {
-        return const Right("Apprroved");// Right(true)
+          allTripStepsModel.take5StepTwoRequestAPIModel?.requestDate != null)
+        {
+          String result = storeResponseDate(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
+          return Right(result);
+        }
+
+
+      if (await deviceConnectivity.isConnected == false) {
+        return const Left(DeviceConnectivityFailure());
       }
 
       String result = await remoteDataSource.getStepTwoStartRequestRespond(
           allTripStepsModel: allTripStepsModel);
       return Right(result);
     } on ServerException catch (e) {
-      return Left(ServerFailure(e.message));
+      String result = storeResponseDate(take5StepTwoRequestAPIModel: take5StepTwoRequestAPIModel);
+      return Right(result);
     }
   }
 
-  @override
-  Future<Either<Failure, String>> startStepTwoOffline(
+
+ String storeResponseDate(
       {required Take5StepTwoRequestAPIModel
-      take5StepTwoRequestAPIModel}) async {
+      take5StepTwoRequestAPIModel}) {
     Take5StepTwoRequestAPIModel? startStepTwoRequest;
 
     AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
     startStepTwoRequest = allTripStepsModel.take5StepTwoRequestAPIModel;
     startStepTwoRequest != null
-        ? startStepTwoRequest.copyWith(
+        ? startStepTwoRequest = startStepTwoRequest.copyWith(
         responseDate: take5StepTwoRequestAPIModel.responseDate)
         : startStepTwoRequest = take5StepTwoRequestAPIModel;
 
     allTripStepsModel = allTripStepsModel.copyWith(
         take5StepTwoRequestAPIModel: startStepTwoRequest);
     String result = localDataSource.cacheAllTripStepsModel(allTripStepsModel);
-    return Right(result);
+    return result;
   }
+
+
   @override
   Future<Either<Failure, bool>> sendToken({required String userId,required String userToken})
   async {

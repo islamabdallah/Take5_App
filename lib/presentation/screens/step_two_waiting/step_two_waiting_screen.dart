@@ -65,34 +65,33 @@ class _StepTwoWaitingScreenState extends State<StepTwoWaitingScreen> {
           }
           if (state is StepTwoGetRequestRespondSuccess) {
             Navigator.pop(context);
-            if (state.isDone == "Apprroved") {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, StepTwoScreen.routeName, (route) => false);
-            } else if (state.isDone == "Cancelled") {
-              showMessageDialog(
-                  context: context,
-                  isSucceeded: true,
-                  message:"يوجد تغيير فى بيانات الرحلة",
-                  onPressedOk: () {
-                    Navigator.pushNamedAndRemoveUntil(context,
-                        HomeScreen.routeName, (route) => false);
-                  });
-            } else{
-              showMessageDialog(
-                  context: context,
-                  isSucceeded: false,
-                  message: "there is no response yet".tr());
+            switch (state.message) {
+              case 'Cancelled':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: false,
+                    message:"يوجد تغيير فى بيانات الرحلة",
+                    onPressedOk: () {
+                      Navigator.pushNamedAndRemoveUntil(context,
+                          HomeScreen.routeName, (route) => false);
+                    });
+                break;
+              case 'Pending':
+                showMessageDialog(
+                    context: context,
+                    isSucceeded: false,
+                    message: "there is no response yet".tr()
+                  );
+                break;
+              default:
+                Navigator.pushNamedAndRemoveUntil(
+                    context, StepTwoScreen.routeName, (route) => false);
             }
           }
           if (state is StepTwoGetRequestRespondFail) {
             Navigator.pop(context);
-            if (state.message == "Connection Timed Out!") {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, StepTwoScreen.routeName, (route) => false);
-            } else {
               showMessageDialog(
                   context: context, isSucceeded: false, message: state.message);
-            }
           }
         },
         builder: (context, state) {

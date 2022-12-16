@@ -40,7 +40,7 @@ class HomeCheckTripStatusSuccess extends HomeStates {
 }
 
 class HomeCheckTripStatusFail extends HomeStates {
-  final String? message;
+  final String message;
 
   HomeCheckTripStatusFail(this.message);
 }

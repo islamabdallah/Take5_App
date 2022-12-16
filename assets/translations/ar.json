@@ -73,5 +73,6 @@
   "number of dangers": "عدد المخاطر",
   "check your network connection": "تأكد من اتصالك بالانترنت",
   "Something went wrong": "حدث شئ ما خطأ",
+  "Connection Timed Out!": "مهلة الاتصال قد انتهت",
   "process is wrong,trip is not exit": "عملية فاشلة الرحلة غير مسجلة"
 }
