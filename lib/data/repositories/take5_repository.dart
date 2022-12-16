@@ -339,11 +339,29 @@ class Take5RepositoryImpl extends Take5Repository {
       return const Left(DeviceConnectivityFailure());
     }
     try {
-      AllTripStepsModel allTripStepsModel = _getStoredAllTripStepsModel();
-      String result = await remoteDataSource.checkTripStatus(
+      String result;
+
+      AllTripStepsModel? allTripStepsModel = localDataSource.getCachedAllTripStepsModel();
+      if(allTripStepsModel==null || !AppConstants.trip.jobsiteHasNetworkCoverage){
+
+        allTripStepsModel= AllTripStepsModel(
+            userId: AppConstants.user.userId,
+            tripId: AppConstants.trip.tripNumber,
+            truckNumber: AppConstants.trip.truckNumber,
+            jobsiteId: AppConstants.trip.jobsiteNumber);
+
+      result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
-      localDataSource.clearCollection();
-      return Right(result);
+      } else{
+        result = await remoteDataSource.sendCollection(
+            allTripStepsModel: allTripStepsModel);
+      }
+      if(result=="Done"&& !AppConstants.trip.jobsiteHasNetworkCoverage){
+        return Right(result);
+      }else{
+        localDataSource.clearCollection();
+        return Right(result);
+      }
     } on ServerException catch (e) {
       return Left(ServerFailure(e.message));
     }

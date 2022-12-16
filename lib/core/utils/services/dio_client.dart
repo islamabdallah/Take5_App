@@ -79,7 +79,7 @@ class DioClient {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.sendTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw ServerException(AppStrings.connectionTimedOut);
+        throw ServerException(AppStrings.connectionTimedOut.tr());
       }
       if (e.type == DioErrorType.other) {
         throw ServerException(AppStrings.checkYourNetworkConnection.tr());

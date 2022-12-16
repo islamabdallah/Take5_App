@@ -106,11 +106,6 @@ class HomeCubit extends Cubit<HomeStates> {
   Future<void> checkTripStatus() async {
     emit(HomeCheckTripStatusLoading());
 
-    //todo remove this condition
-    if(!AppConstants.trip.jobsiteHasNetworkCoverage){
-      emit(HomeCheckTripStatusFail("لا يوجد تغطية للشبكة في هذه الرحلة"));
-    }
-
       final result = await take5Repository.checkTripStatus();
       result.fold((failure) {
         emit(HomeCheckTripStatusFail(failure.message));

@@ -145,7 +145,7 @@ class TripCubit extends Cubit<TripStates> {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     await preferences.reload();
     bool? isArrived = preferences.getBool('isArrived');
-    if (isArrived != null && isArrived) {
+    if ((isArrived != null && isArrived==true)||(isArrivedSent != null && isArrivedSent==true)) {
       return true;
     } else {
       emit(ArrivedLoadingTripState());
