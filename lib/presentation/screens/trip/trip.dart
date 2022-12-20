@@ -11,6 +11,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:take5/logic/home_cubit/home_cubit.dart';
 import 'package:take5/presentation/widgets/drawer_widget.dart';
 import 'package:take5/presentation/widgets/powered_by_cemex.dart';
 import '../../../core/constants/app_assets.dart';
@@ -22,6 +23,7 @@ import '../../../data/models/requests/destination_arrived_request/destination_ar
 import '../../../data/models/trip/trip.dart';
 import '../../../data/models/user/user.dart';
 import '../../../injection_container.dart';
+import '../../../logic/home_cubit/home_states.dart';
 import '../../../logic/trip_cubit/trip_cubit.dart';
 import '../../../logic/trip_cubit/trip_states.dart';
 import '../../utils/dialogs/loading_dialog.dart';
@@ -140,21 +142,75 @@ class _TripScreenState extends State<TripScreen> {
                               SizedBox(
                                 height: 40.h,
                               ),
-                              Padding(
-                                padding: EdgeInsets.symmetric(horizontal: 16.w),
-                                child: MainButton(
-                                  onPressed:cubit.isButtonEnabled
-                                    ? () async {
-                                   var result = await cubit.submitArrival();
-                                   if(result!=null && result==true) {
-                                     if(!mounted) return;
-                                     Navigator.pushNamedAndRemoveUntil(
-                                      context,
-                                      StepOneQuestionsScreen.routeName,
-                                          (route) => false);
-                                   }
-                                }
-                                    : null, title: "fill form".tr(),),
+                              BlocConsumer<HomeCubit,HomeStates>(
+                                listener: (context,state){
+                                  if (state is HomeCheckTripStatusSuccess) {
+                                    // final context = navigatorKey.currentState!.overlay!.context;
+                                    Navigator.pop(context);
+                                    switch (state.status) {
+                                      case 'Done':
+                                        showMessageDialog(
+                                          context: context,
+                                          isSucceeded: true,
+                                          message: "there is no change in trip".tr(),
+                                          onPressedOk: ()
+                                            {
+                                              Navigator.pushNamedAndRemoveUntil(
+                                                  context,
+                                                  StepOneQuestionsScreen.routeName,
+                                                      (route) => false);
+                                            }
+                                        );
+                                        break;
+                                      case 'Cancelled':
+                                        showMessageDialog(
+                                            context: context,
+                                            isSucceeded: true,
+                                            message:"trip canceled".tr(),
+                                            onPressedOk: () {
+                                              Navigator.pushNamedAndRemoveUntil(context,
+                                                  HomeScreen.routeName, (route) => false);
+                                            });
+                                        break;
+                                      case 'Converted':
+                                        showMessageDialog(
+                                            context: context,
+                                            isSucceeded: true,
+                                            message: "trip converted".tr(),
+                                            onPressedOk: () {
+                                              Navigator.pushNamedAndRemoveUntil(context,
+                                                  HomeScreen.routeName, (route) => false);
+                                            });
+                                        break;
+                                      default:
+                                    }
+                                  }
+                                  if (state is HomeCheckTripStatusFail) {
+                                    // final context = navigatorKey.currentState!.overlay!.context;
+                                    Navigator.pop(context);
+                                    showMessageDialog(
+                                        context: context,
+                                        isSucceeded: false,
+                                        message: state.message
+                                    );
+                                  }
+                                },
+                                builder: (context,state)
+                                {
+                                  return Padding(
+                                    padding: EdgeInsets.symmetric(horizontal: 16.w),
+                                    child: MainButton(
+                                      onPressed:cubit.isButtonEnabled
+                                          ? () async {
+                                        var result = await cubit.submitArrival();
+                                        if(result!=null && result==true) {
+                                          if(!mounted) return;
+                                          // todo checkTripStatus
+                                          HomeCubit.get(context).checkTripStatus();
+                                        }
+                                      } : null, title: "fill form".tr(),),
+                                  );
+                                },
                               ),
                               SizedBox(height: 20.h),
                             ],

@@ -320,7 +320,6 @@ class Take5RepositoryImpl extends Take5Repository {
     try {
       AllTripStepsModel? collectionModel =
       localDataSource.getCachedAllTripStepsModel();
-
       if (collectionModel != null) {
         String result = await remoteDataSource.sendCollection(
             allTripStepsModel: collectionModel);
@@ -349,7 +348,6 @@ class Take5RepositoryImpl extends Take5Repository {
             tripId: AppConstants.trip.tripNumber,
             truckNumber: AppConstants.trip.truckNumber,
             jobsiteId: AppConstants.trip.jobsiteNumber);
-
       result = await remoteDataSource.checkTripStatus(
           allTripStepsModel: allTripStepsModel);
       } else{
